@@ -2,7 +2,7 @@
 相关文档
 [乐福开放平台](https://uniquehealth.lefuenergy.com/unique-open-web/#/document)  |    [PPBluetoothKit Android SDK](https://lefuhengqi.apifox.cn/doc-3330813)  |    [PPBluetoothKit 微信小程序插件](https://uniquehealth.lefuenergy.com/unique-open-web/#/document?url=https://lefuhengqi.apifox.cn/doc-2625745)
 
-[iOS示例程序地址](https://gitee.com/shenzhen-lfscale/bluetooth-kit-iosdemo.git)
+[iOS示例程序地址](https://github.com/LefuHengqi/BluetoothKit-iOSDemo.git)
 
 # 快速链接
 - [1.概述](README.md)

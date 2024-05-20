@@ -2,7 +2,7 @@
 Related documents
 [Lefu Open Platform](https://uniquehealth.lefuenergy.com/unique-open-web/#/document)  |    [PPBluetoothKit Android SDK](https://lefuhengqi.apifox.cn/doc-3330813)  |    [PPBluetoothKit WeChat mini program plug-in](https://uniquehealth.lefuenergy.com/unique-open-web/#/document?url=https://lefuhengqi.apifox.cn/doc-2625745)
 
-[iOS sample program address](https://gitee.com/shenzhen-lfscale/bluetooth-kit-iosdemo.git)
+[iOS sample program address](https://github.com/LefuHengqi/BluetoothKit-iOSDemo.git)
 
 # Quick Links
 - [1.Overview](README_EN.md)
