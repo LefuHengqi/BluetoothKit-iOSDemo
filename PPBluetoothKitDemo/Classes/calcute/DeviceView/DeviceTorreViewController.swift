@@ -41,6 +41,9 @@ enum menuType:String{
     case impedanceTestMode = "Impedance Test Mode"
     case openImpedanceTestMode = "Open Impedance Test Mode"
     case closeImpedanceTestMode = "Close Impedance Test Mode"
+    
+    case setTorreLanguage = "set Language"
+    case getTorreLanguage = "get Language"
 }
 
 class DeviceTorreViewController: BaseViewController {
@@ -48,7 +51,7 @@ class DeviceTorreViewController: BaseViewController {
     var XM_Torre: PPBluetoothPeripheralTorre?
     
 
-    var array = [menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode]
+    var array = [menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage]
     
     let user : PPTorreSettingModel = {
         
@@ -735,6 +738,36 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
                 
                 self.addStatusCmd(ss: "\(status)")
 
+            })
+            
+        }
+        
+        if title == .setTorreLanguage {
+            
+            self.addBleCmd(ss: menuType.setTorreLanguage.rawValue)
+
+            self.XM_Torre?.setLanguage(.simplifiedChinese, completion: {[weak self] status in
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.addStatusCmd(ss: "\(status)")
+                
+            })
+            
+        }
+        
+        if title == .getTorreLanguage {
+            
+            self.addBleCmd(ss: menuType.getTorreLanguage.rawValue)
+
+            self.XM_Torre?.getLanguageWithCompletion({[weak self] (status, language) in
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.addStatusCmd(ss: "status:\(status) language:\(language)")
+                
             })
             
         }
