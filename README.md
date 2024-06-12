@@ -1,42 +1,64 @@
-[English Docs](README_EN.md)  |  [中文文档](README.md)
-相关文档
-[乐福开放平台](https://uniquehealth.lefuenergy.com/unique-open-web/#/document)  |    [PPBluetoothKit Android SDK](https://lefuhengqi.apifox.cn/doc-3330813)  |    [PPBluetoothKit 微信小程序插件](https://uniquehealth.lefuenergy.com/unique-open-web/#/document?url=https://lefuhengqi.apifox.cn/doc-2625745)
+# iOS SDK Overview
 
-[iOS示例程序地址](https://github.com/LefuHengqi/BluetoothKit-iOSDemo.git)
+# Quick links
 
-# 快速链接
-- [1.概述](README.md)
-- [2.集成方式](doc/Integration.md)
-- [3.设备扫描](doc/SearchDevice.md)
-- [4.人体秤接入](doc/BodyScaleIntegrate.md)
-- [5.厨房秤接入](doc/KitchenScaleIntegrate.md)
-- [6.计算库使用](doc/Calculate.md)
+<div style="display: flex; justify-content: space-between;">
+  <div style="width: 48%;">
 
-# 概述
+
+
+1. [iOS SDK Overview](https://xinzhiyun.feishu.cn/docx/FZYwd286NouHxoxXVpccUCZ9n4c)
+2. [iOS SDK Integration](https://xinzhiyun.feishu.cn/docx/HSu2d84ThoKYSbxdyFdciyIMnUh)
+3. [iOS SDK Device Scanning](https://xinzhiyun.feishu.cn/docx/IIihdZleFoUzUmxnD95c01Kgngd)
+4. [iOS SDK Integrated body scale](https://xinzhiyun.feishu.cn/docx/AcrBdE7D1oWRiexm1tLc4zRsnQc)
+5. [iOS SDK Integrated kitchen scale](https://xinzhiyun.feishu.cn/docx/R0IWd2wBCoa7Ymx0NBhcIWq4nTh)
+6. [iOS SDK Calculation library usage](https://xinzhiyun.feishu.cn/docx/BlaCdzEVeoF87JxbDsdcuESPnog)
+7. [iOS sample program address](https://github.com/LefuHengqi/BluetoothKit-iOSDemo)
+8. [Love Open Platform](https://uniquehealth.lefuenergy.com/unique-open-web/#/home)
+
+
+
+</div>
+  <div style="width: 48%;">
+
+
+
+1. [iOS SDK 概述](https://xinzhiyun.feishu.cn/docx/MaHEdRx7Bo02Q8x60pFcrzRgnkf)
+2. [iOS SDK 集成方式](https://xinzhiyun.feishu.cn/docx/MnUed4VF4o43KgxAugccG3pknbf)
+3. [iOS SDK 设备扫描](https://xinzhiyun.feishu.cn/docx/Sv51dG0DOoBinsxzQFjcWQcNnnd)
+4. [iOS SDK 人体秤接入](https://xinzhiyun.feishu.cn/docx/PGdydZYhUoQxDFxTmq2cMpF5noe)
+5. [iOS SDK 厨房秤接入](https://xinzhiyun.feishu.cn/docx/A0BLdhLP6oMhhxx8Dlbc7qgbnth)
+6. [iOS SDK 计算库使用](https://xinzhiyun.feishu.cn/docx/ESTNdFm9Ao7Ev9xen2mcKmyYnrg)
+7. [iOS 示例程序地址](https://github.com/LefuHengqi/BluetoothKit-iOSDemo)
+8. [乐福开放平台](https://uniquehealth.lefuenergy.com/unique-open-web/#/home)
+
+
+
+</div>
+</div>
+
+
+# Overview
+
 ## iOS SDK
 
-`PPBluetoothKit`是针对人体秤和食物秤进行封装的SDK，包含蓝牙扫描、蓝牙连接逻辑、数据解析逻辑。
+`PPBluetoothKit ` is a packaged SDK for body scales and food scales, including Bluetooth scanning, Bluetooth connection logic, and data parsing logic.
 
-`PPCalculateKit`是针对体脂计算封装的SDK，包含了4电极交流算法、4电极直流算法、8电极交流算法
+`PPCalculateKit ` is an SDK for body fat calculation package, including 4-electrode AC algorithm, 4-electrode DC algorithm, 8-electrode AC algorithm
 
-## 示例程序
+## Sample program
 
-为了让客户快速实现称重以及对应的功能而实现，提供了一个示例程序，示例程序中包含体脂计算模块和设备功能模块。
+In order to enable customers to quickly achieve weighing and corresponding functions, a sample program is provided, which includes a body fat calculation module and a device function module.
 
-- 设备功能模块目前支持的设备包含：蓝牙秤、食物秤、Torre系列蓝牙WiFi体脂秤。
-- 体脂计算模块支持4电极交流算法、4电极直流算法、8电极交流算法。
-- [iOS示例程序地址](https://gitee.com/shenzhen-lfscale/bluetooth-kit-iosdemo.git)
+- The devices currently supported by the device function module include: Bluetooth scale, food scale, and Torre series Bluetooth WiFi body fat scale.
+- The body fat calculation module supports 4-electrode AC algorithm, 4-electrode DC algorithm, and 8-electrode AC algorithm.
+- [iOS sample program address](https://github.com/LefuHengqi/BluetoothKit-iOSDemo)
 
-### 商用版本程序
+### Commercial version program
 
-- 可在App Store搜索下载 "Unique Health"
-- 也可扫描下面的二维码进行下载
+- You can search and download "Unique Health" on the App Store.
+- You can also scan the QR code below to download
 
 ![qrcode](images/qrcode_uh.png)
 
 <br/>
-<br/>
-
-[下一页: 2.集成方式](doc/Integration.md)
-
-

@@ -6,10 +6,10 @@ target 'PPBluetoothKitDemo' do
   use_frameworks!
 
 
-  # 设备连接相关：PPBluetoothKit
-  # 计算库相关：PPCalculateKit
-  pod 'PPCalculateKit'
-  pod 'PPBluetoothKit'
+  # Device connection：PPBluetoothKit
+  # Computing library：PPCalculateKit
+  pod 'PPCalculateKit', '1.2.3'
+  pod 'PPBluetoothKit', '1.2.5'
 
 
   pod 'IQKeyboardManager'
