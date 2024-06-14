@@ -109,7 +109,9 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
 
         case .peripheralJambul:
             caType = "PeripheralJambul"
-
+            
+        default:
+            caType = "Unknow"
      
         }
         
