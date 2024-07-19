@@ -120,7 +120,7 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
         
         cell.textLabel?.numberOfLines = 0
         
-        cell.textLabel?.text = "Name:\(model.0.deviceName)\t\tRSSI:\(model.0.rssi)\nmac:\(model.0.deviceMac)\nsettingId:\(model.0.deviceSettingId)\nadvLength:\(model.0.advLength)\t\tsign:\(model.0.sign)\nPeripheralType:\(caType)"
+        cell.textLabel?.text = "Name:\(model.0.deviceName)\t\tRSSI:\(model.0.rssi)\nmac:\(model.0.deviceMac)\nadvLength:\(model.0.advLength)\t\tsign:\(model.0.sign)\nPeripheralType:\(caType)"
         
         
         return cell

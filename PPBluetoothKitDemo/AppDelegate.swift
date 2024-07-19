@@ -8,6 +8,10 @@
 import UIKit
 import PPBluetoothKit
 
+// Please be sure to replace it with your AppKey and AppSecrect
+let DemoAppKey = "lefub60060202a15ac8a"
+let DemoAppSecrect = "UCzWzna/eazehXaz8kKAC6WVfcL25nIPYlV9fXYzqDM="
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        Please be sure to replace your own AppKey, AppSecret, and configuration file path, otherwise your application may not be able to use this SDK function normally. If you need to add equipment configuration, please contact our sales consultant
         
         let path = Bundle.main.path(forResource: "lefu", ofType: "config") ?? ""
-        PPBluetoothManager.loadDevice(withAppKey: "lefub60060202a15ac8a", appSecrect: "UCzWzna/eazehXaz8kKAC6WVfcL25nIPYlV9fXYzqDM=", filePath: path)
+        PPBluetoothManager.loadDevice(withAppKey: DemoAppKey, appSecrect: DemoAppSecrect, filePath: path)
 
         
         if userDefaults.object(forKey: "userModel.shared") == nil{
