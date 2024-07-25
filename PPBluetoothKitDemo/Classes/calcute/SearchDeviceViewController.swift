@@ -109,6 +109,9 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
 
         case .peripheralJambul:
             caType = "PeripheralJambul"
+        case .peripheralBorre:
+            caType = "PeripheralBorre"
+            
             
         default:
             caType = "Unknow"
@@ -120,7 +123,7 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
         
         cell.textLabel?.numberOfLines = 0
         
-        cell.textLabel?.text = "Name:\(model.0.deviceName)\t\tRSSI:\(model.0.rssi)\nmac:\(model.0.deviceMac)\nadvLength:\(model.0.advLength)\t\tsign:\(model.0.sign)\nPeripheralType:\(caType)"
+        cell.textLabel?.text = "Name:\(model.0.deviceName)\t\tRSSI:\(model.0.rssi)\nmac:\(model.0.deviceMac)\nsettingId:\(model.0.deviceSettingId)\nadvLength:\(model.0.advLength)\t\tsign:\(model.0.sign)\nPeripheralType:\(caType)"
         
         
         return cell
@@ -208,6 +211,15 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
             
             self.navigationController?.pushViewController(vc, animated: true)
             break
+        case .peripheralBorre:
+            let vc = DeviceBorreViewController.instantiate()
+            
+            vc.title = model.0.deviceName
+            
+            vc.deviceModel = model.0
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
         case .peripheralHamburger:
             let vc = DeviceHamburgerViewController.instantiate()
             
@@ -217,6 +229,8 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
             
             self.navigationController?.pushViewController(vc, animated: true)
             break
+            
+      
         case .peripheralIce:
             let vc = DeviceIceViewController.instantiate()
             
