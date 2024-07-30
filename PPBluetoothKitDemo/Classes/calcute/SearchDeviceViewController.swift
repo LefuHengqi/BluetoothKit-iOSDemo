@@ -211,15 +211,15 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
             
             self.navigationController?.pushViewController(vc, animated: true)
             break
-        case .peripheralBorre:
-            let vc = DeviceBorreViewController.instantiate()
-            
-            vc.title = model.0.deviceName
-            
-            vc.deviceModel = model.0
-            
-            self.navigationController?.pushViewController(vc, animated: true)
-            break
+//        case .peripheralBorre:
+//            let vc = DeviceBorreViewController.instantiate()
+//            
+//            vc.title = model.0.deviceName
+//            
+//            vc.deviceModel = model.0
+//            
+//            self.navigationController?.pushViewController(vc, animated: true)
+//            break
         case .peripheralHamburger:
             let vc = DeviceHamburgerViewController.instantiate()
             
