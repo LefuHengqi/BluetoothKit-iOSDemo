@@ -93,6 +93,12 @@ class CalcuelateResultViewController: UIViewController {
             
         }
         
+        //Get the range of each body indicator
+        let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
+        let weightParam = detailModel.ppBodyParam_Weight
+        print("weight-currentValue:\(weightParam.currentValue) weight-range:\(weightParam.standardArray)")
+//        print("data:\(detailModel.data)")
+        
         let arr = [ "PP_ERROR_TYPE_NONE",
                     "PP_ERROR_TYPE_AGE" ,
                     "PP_ERROR_TYPE_HEIGHT",
@@ -111,7 +117,7 @@ class CalcuelateResultViewController: UIViewController {
         let ss = """
         
         errorType = "\(arr[fatModel.errorType.rawValue])"
-        
+        ppSDKVersion = \(fatModel.ppSDKVersion)
         ppWeightKgList = \(fatModel.ppWeightKgList)
         ppBMI = \(fatModel.ppBMI)
         ppBMIList = \(fatModel.ppBMIList)

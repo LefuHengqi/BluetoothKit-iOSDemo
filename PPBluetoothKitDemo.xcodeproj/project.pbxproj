@@ -315,6 +315,7 @@
 				955A39BF2A2B3A0D00853B9D /* Frameworks */,
 				955A39C02A2B3A0D00853B9D /* Resources */,
 				9BC014EA59E6431333D9D3D9 /* [CP] Embed Pods Frameworks */,
+				1E043D897F29B4F582D6AB68 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -434,6 +435,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1E043D897F29B4F582D6AB68 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1F9550B24994B6C3CF919FBA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -681,7 +699,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.2.2.0;
-				DEVELOPMENT_TEAM = SCHLX7BNF8;
+				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -718,7 +736,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xm.PPBluetoothKitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lefu.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = PPBluetoothKitDemo/SwiftHeader.h;
@@ -735,7 +753,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.2.2.0;
-				DEVELOPMENT_TEAM = SCHLX7BNF8;
+				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -767,7 +785,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xm.PPBluetoothKitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lefu.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = PPBluetoothKitDemo/SwiftHeader.h;
