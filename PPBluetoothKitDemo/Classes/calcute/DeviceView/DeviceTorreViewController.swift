@@ -886,7 +886,8 @@ extension DeviceTorreViewController: PPBluetoothServiceDelegate{
             self.addStatusCmd(ss: "\(statu)")
             
             self.addBleCmd(ss: "codeStartMeasure")
-            // Start measurement command, issue "stop measurement command" after measurement is completed
+            
+            // Start measurement command, and send "stop measurement" command after measurement is completed.
             self.XM_Torre?.codeStartMeasure({ [weak self] status in
                 
                 guard let `self` = self else {return}

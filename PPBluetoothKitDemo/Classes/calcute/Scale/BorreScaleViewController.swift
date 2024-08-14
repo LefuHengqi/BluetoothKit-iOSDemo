@@ -8,6 +8,7 @@
 import UIKit
 import PPBluetoothKit
 
+
 class BorreScaleViewController: UIViewController {
 
     @IBOutlet weak var consoleView: UITextView!
@@ -203,7 +204,7 @@ extension BorreScaleViewController:PPBluetoothScaleDataDelegate{
             self.addStatusCmd(ss: model.description)
             
             
-            let fat = PPBodyFatModel(userModel: self.user, deviceMac: advModel.deviceMac, weight: CGFloat(model.weight) / 100, heartRate: model.heartRate, andImpedance: model.impedance, impedance100EnCode: model.impedance100EnCode)
+            let fat = PPBodyFatModel(userModel: self.user, deviceCalcuteType: .alternate4_1, deviceMac: advModel.deviceMac, weight: CGFloat(model.weight) / 100, heartRate: model.heartRate, andImpedance: model.impedance, impedance100EnCode: model.impedance100EnCode)
             
             let alertVC = UIAlertController(title: fat.description, message: "", preferredStyle: .alert)
             

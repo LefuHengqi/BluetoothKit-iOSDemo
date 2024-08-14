@@ -698,7 +698,7 @@ extension DeviceBorreViewController:UICollectionViewDelegate,UICollectionViewDat
         if title == .setRGBMode{
             self.addBleCmd(ss: "setRGBMode")
 
-            self.XM_Borre?.setRGBMode(true, lightMode: .always, normalColor: UIColor.yellow, gain: UIColor.systemPink, lossColor: UIColor.orange, handler: { statu in
+            self.XM_Borre?.setRGBMode(true, lightMode: .always, normalColor: "#ff0000", gainColor: "#00ff00", lossColor: "#0000ff", handler:{ statu in
                 
                 self.addStatusCmd(ss: "\(statu)")
 
