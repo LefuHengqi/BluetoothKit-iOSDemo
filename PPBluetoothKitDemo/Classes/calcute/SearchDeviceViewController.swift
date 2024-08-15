@@ -268,7 +268,7 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
             break
         @unknown default:
             
-            
+            print("undefined")
             break
         }
         

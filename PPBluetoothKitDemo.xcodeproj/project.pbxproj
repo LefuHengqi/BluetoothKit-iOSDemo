@@ -47,6 +47,8 @@
 		966F7B1A2B90688F0006A1C8 /* SelecteCalcuteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7B192B90688F0006A1C8 /* SelecteCalcuteCell.swift */; };
 		96DE32B02B994C0A004D2842 /* OpenTestTorreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DE32AF2B994C0A004D2842 /* OpenTestTorreViewController.swift */; };
 		96DE32B22B994C9F004D2842 /* DeviceOpenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DE32B12B994C9F004D2842 /* DeviceOpenViewController.swift */; };
+		96EB01D42C6C562000DAB8CC /* BorreScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EB01D32C6C562000DAB8CC /* BorreScaleViewController.swift */; };
+		96EB01D62C6C56A600DAB8CC /* DeviceBorreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EB01D52C6C56A600DAB8CC /* DeviceBorreViewController.swift */; };
 		96F6601E2C50DEF300A7855E /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F6601D2C50DEF300A7855E /* Constant.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +115,8 @@
 		966F7B192B90688F0006A1C8 /* SelecteCalcuteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelecteCalcuteCell.swift; sourceTree = "<group>"; };
 		96DE32AF2B994C0A004D2842 /* OpenTestTorreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTestTorreViewController.swift; sourceTree = "<group>"; };
 		96DE32B12B994C9F004D2842 /* DeviceOpenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceOpenViewController.swift; sourceTree = "<group>"; };
+		96EB01D32C6C562000DAB8CC /* BorreScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorreScaleViewController.swift; sourceTree = "<group>"; };
+		96EB01D52C6C56A600DAB8CC /* DeviceBorreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceBorreViewController.swift; sourceTree = "<group>"; };
 		96F6601D2C50DEF300A7855E /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		DE895BE9C07F15D7E6408539 /* Pods_PPBluetoothKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PPBluetoothKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAD8C40FCCE4BC474A517D5 /* Pods-PPBluetoothKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PPBluetoothKitDemo.debug.xcconfig"; path = "Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 		966F7AE12B9064300006A1C8 /* Scale */ = {
 			isa = PBXGroup;
 			children = (
+				96EB01D32C6C562000DAB8CC /* BorreScaleViewController.swift */,
 				966F7AE22B9064300006A1C8 /* ScaleViewController.swift */,
 				966F7AE32B9064300006A1C8 /* ScaleCoconutViewController.swift */,
 			);
@@ -258,6 +263,7 @@
 		966F7AE52B9064300006A1C8 /* DeviceView */ = {
 			isa = PBXGroup;
 			children = (
+				96EB01D52C6C56A600DAB8CC /* DeviceBorreViewController.swift */,
 				966F7AE62B9064300006A1C8 /* DeviceCoconutViewController.swift */,
 				966F7AE72B9064300006A1C8 /* DeviceBananaViewController.swift */,
 				966F7AE82B9064300006A1C8 /* DeviceFishViewController.swift */,
@@ -315,6 +321,7 @@
 				955A39BF2A2B3A0D00853B9D /* Frameworks */,
 				955A39C02A2B3A0D00853B9D /* Resources */,
 				9BC014EA59E6431333D9D3D9 /* [CP] Embed Pods Frameworks */,
+				1E043D897F29B4F582D6AB68 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -434,6 +441,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1E043D897F29B4F582D6AB68 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1F9550B24994B6C3CF919FBA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -499,9 +523,11 @@
 				966F7B162B9064300006A1C8 /* FoundedViewController.swift in Sources */,
 				966F7B132B9064300006A1C8 /* DemoIndexViewController.swift in Sources */,
 				966F7B092B9064300006A1C8 /* DeviceHamburgerViewController.swift in Sources */,
+				96EB01D42C6C562000DAB8CC /* BorreScaleViewController.swift in Sources */,
 				96F6601E2C50DEF300A7855E /* Constant.swift in Sources */,
 				966F7B0D2B9064300006A1C8 /* DeviceAppleViewController.swift in Sources */,
 				966F7B0F2B9064300006A1C8 /* CoconutCollectionViewCell.swift in Sources */,
+				96EB01D62C6C56A600DAB8CC /* DeviceBorreViewController.swift in Sources */,
 				966F7B112B9064300006A1C8 /* CalcuelateResultViewController.swift in Sources */,
 				96DE32B02B994C0A004D2842 /* OpenTestTorreViewController.swift in Sources */,
 				966F7B052B9064300006A1C8 /* DeviceTorreViewController.swift in Sources */,
@@ -681,7 +707,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.2.2.0;
-				DEVELOPMENT_TEAM = SCHLX7BNF8;
+				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -718,7 +744,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xm.PPBluetoothKitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lefu.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = PPBluetoothKitDemo/SwiftHeader.h;
@@ -735,7 +761,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.2.2.0;
-				DEVELOPMENT_TEAM = SCHLX7BNF8;
+				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -767,7 +793,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xm.PPBluetoothKitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lefu.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = PPBluetoothKitDemo/SwiftHeader.h;

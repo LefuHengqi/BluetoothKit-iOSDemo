@@ -115,7 +115,7 @@ class CalcuteInfoViewController: UIViewController {
     let jsonData = """
         {
             "sex": 0,
-             "impedance": 500,
+             "impedance": 156780,
              "weight":65,
              "age": 20,
              "height": 160,

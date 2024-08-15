@@ -121,7 +121,16 @@ class DeviceTorreViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.XM_Torre?.scaleDataDelegate = self
-
+        self.XM_Torre?.codeStartMeasure({ status in
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Stop measurement command
+        self.XM_Torre?.codeStopMeasure({ status in
+        })
     }
   
 
@@ -881,6 +890,16 @@ extension DeviceTorreViewController: PPBluetoothServiceDelegate{
             guard let `self` = self else {return}
             
             self.addStatusCmd(ss: "\(statu)")
+            
+            self.addBleCmd(ss: "codeStartMeasure")
+            
+            // Start measurement command, and send "stop measurement" command after measurement is completed.
+            self.XM_Torre?.codeStartMeasure({ [weak self] status in
+                
+                guard let `self` = self else {return}
+                
+                self.addStatusCmd(ss: "\(statu)")
+            })
 
             
             self.connectStateLbl.text = "connected"
