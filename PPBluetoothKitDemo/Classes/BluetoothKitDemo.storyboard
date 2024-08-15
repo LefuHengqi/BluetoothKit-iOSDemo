@@ -3004,6 +3004,117 @@
             </objects>
             <point key="canvasLocation" x="2286" y="-1242"/>
         </scene>
+        <!--Device Dorre View Controller-->
+        <scene sceneID="uRp-z8-ejY">
+            <objects>
+                <viewController storyboardIdentifier="DeviceDorreViewController" id="woL-Pi-9qs" customClass="DeviceDorreViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="keu-1Z-khW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="connect state" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ux-wv-k13">
+                                <rect key="frame" x="144.33333333333334" y="79" width="104.33333333333334" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peu-hZ-2Hd">
+                                <rect key="frame" x="20" y="120" width="353" height="350"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="HYY-0X-hPf"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="llw-2v-Oou">
+                                <rect key="frame" x="0.0" y="470" width="393" height="382"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hnn-CV-xRg">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="30"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="yvu-9B-d3o" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="42H-l8-Usr">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CT7-3T-v4w">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hW-W1-7Z8">
+                                                            <rect key="frame" x="8" y="57.000000000000007" width="112" height="14.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="1hW-W1-7Z8" secondAttribute="trailing" constant="8" id="4cT-R6-T4G"/>
+                                                        <constraint firstItem="1hW-W1-7Z8" firstAttribute="leading" secondItem="CT7-3T-v4w" secondAttribute="leading" constant="8" id="IMO-Ba-DJM"/>
+                                                        <constraint firstItem="1hW-W1-7Z8" firstAttribute="centerY" secondItem="CT7-3T-v4w" secondAttribute="centerY" id="qpP-i5-C78"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="CT7-3T-v4w" secondAttribute="bottom" id="6Gg-Wd-zXN"/>
+                                                <constraint firstAttribute="trailing" secondItem="CT7-3T-v4w" secondAttribute="trailing" id="Xdm-hs-5rw"/>
+                                                <constraint firstItem="CT7-3T-v4w" firstAttribute="leading" secondItem="42H-l8-Usr" secondAttribute="leading" id="bVD-tK-Run"/>
+                                                <constraint firstItem="CT7-3T-v4w" firstAttribute="top" secondItem="42H-l8-Usr" secondAttribute="top" id="yIb-Cj-Sgm"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="mainView" destination="CT7-3T-v4w" id="esU-f2-Pmm"/>
+                                            <outlet property="titleLbl" destination="1hW-W1-7Z8" id="3Os-Uz-M7d"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="woL-Pi-9qs" id="Qec-SL-GoI"/>
+                                    <outlet property="delegate" destination="woL-Pi-9qs" id="xKB-Cb-vDO"/>
+                                </connections>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMV-n4-wmd">
+                                <rect key="frame" x="196.66666666666666" y="110" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5UQ-Or-PoN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5UQ-Or-PoN" firstAttribute="trailing" secondItem="peu-hZ-2Hd" secondAttribute="trailing" constant="20" id="188-WF-THF"/>
+                            <constraint firstItem="llw-2v-Oou" firstAttribute="leading" secondItem="keu-1Z-khW" secondAttribute="leading" id="A3g-Od-GW1"/>
+                            <constraint firstItem="peu-hZ-2Hd" firstAttribute="top" secondItem="EMV-n4-wmd" secondAttribute="bottom" constant="10" id="CZ9-Gk-wvn"/>
+                            <constraint firstItem="EMV-n4-wmd" firstAttribute="centerX" secondItem="6ux-wv-k13" secondAttribute="centerX" id="Gnj-XB-kKa"/>
+                            <constraint firstAttribute="bottom" secondItem="llw-2v-Oou" secondAttribute="bottom" id="LsC-K9-sOq"/>
+                            <constraint firstItem="EMV-n4-wmd" firstAttribute="top" secondItem="6ux-wv-k13" secondAttribute="bottom" constant="10" id="XMT-6v-872"/>
+                            <constraint firstItem="6ux-wv-k13" firstAttribute="top" secondItem="5UQ-Or-PoN" secondAttribute="top" constant="20" id="XNu-9U-n4B"/>
+                            <constraint firstItem="llw-2v-Oou" firstAttribute="top" secondItem="peu-hZ-2Hd" secondAttribute="bottom" id="Z6v-AO-EYC"/>
+                            <constraint firstItem="peu-hZ-2Hd" firstAttribute="leading" secondItem="5UQ-Or-PoN" secondAttribute="leading" constant="20" id="Zjp-vu-QSh"/>
+                            <constraint firstAttribute="trailing" secondItem="llw-2v-Oou" secondAttribute="trailing" id="ekR-mx-eQL"/>
+                            <constraint firstItem="6ux-wv-k13" firstAttribute="centerX" secondItem="keu-1Z-khW" secondAttribute="centerX" id="kUm-aw-dys"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="llw-2v-Oou" id="yyC-Xy-ic2"/>
+                        <outlet property="connectStateLbl" destination="6ux-wv-k13" id="kBr-qp-pds"/>
+                        <outlet property="consoleView" destination="peu-hZ-2Hd" id="KKy-6T-25Y"/>
+                        <outlet property="weightLbl" destination="EMV-n4-wmd" id="MA9-UY-SKV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bIS-Fu-5bD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1737" y="-751"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="labelColor">

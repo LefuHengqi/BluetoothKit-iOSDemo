@@ -1,5 +1,5 @@
 //
-//  DeviceTorreViewController.swift
+//  DeviceDorreViewController.swift
 //  PPBluetoothKitDemo
 //
 //  Created by  lefu on 2023/7/29.
@@ -9,64 +9,53 @@ import UIKit
 import PPBluetoothKit
 
 
-enum menuType:String{
-    
-    case connectDevice = "connect Device"
-    case checkBindState = "check bindState"
-    case deviceInfo = "device info"
-    case startMeasure = "start measure"
-    case SyncTime = "Sync time"
-    case SyncUserList = "Sync user list"
-    case ImpedanceSwitch = "Impedance Switch"
-    case HeartRateSwitch = "HeartRate Switch"
-
-    case FetchHistory = "Fetch History"
-    case changeUnit = "Change unit"
-    case clearDeviceData = "Clear DeviceData"
-    case ScreenLuminance = "ScreenLuminance"
-    case keepAlive = "keep connect alive"
-    case wificonfigstatus = "wifi config"
-    case distributionNetwork = "distribution network"
-    case selectUser = "select user"
-    case deleteUser = "delete user"
-
-    case openHeartRate = "Open HeartRate"
-    case closeHeartRate = "Close HeartRate"
-    case openImpedance = "Open Impedance"
-    case closeImpedance = "Close Impedance"
-    case otaUser = "OTA-User Upgrade"
-    case otaLocal = "OTA-Local Upgrade"
-    case dataSyncLog = "Sync Log"
-    
-    case impedanceTestMode = "Impedance Test Mode"
-    case openImpedanceTestMode = "Open Impedance Test Mode"
-    case closeImpedanceTestMode = "Close Impedance Test Mode"
-    
-    case setTorreLanguage = "set Language"
-    case getTorreLanguage = "get Language"
-    
-    case getRGBMode = "get RGBMode"
-    case setRGBMode = "set RGBMode"
-    case getUserMembers = "get UserMembers"
-
-    case fetchUserInfo = "fetch UserInfo"
-    case getUserInfoIsEdit = "get UserInfoIsEdit"
-    case setUserInfoIsNotEdit = "set UserInfoIsNotEdit"
-    case setUserInfoIsEdit = "set UserInfoIsEdit"
 
 
-}
+class DeviceDorreViewController: BaseViewController {
 
-class DeviceTorreViewController: BaseViewController {
-
-    var XM_Torre: PPBluetoothPeripheralTorre?
+    var XM_Dorre: PPBluetoothPeripheralDorre?
     
 
-    var array = [menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage]
+    var array = [menuType.checkBindState,
+                 menuType.deviceInfo,
+                 menuType.startMeasure,
+                 .selectUser,menuType.SyncTime,
+//                 .wificonfigstatus,
+//                 .distributionNetwork,
+                 .SyncUserList,
+                 .deleteUser,
+//                 .ImpedanceSwitch,
+//                 .openImpedance,
+//                 .closeImpedance,
+//                 .changeUnit,
+//                 .HeartRateSwitch,
+//                 .openHeartRate,
+//                 .closeHeartRate,
+                 .clearDeviceData,
+//                 .ScreenLuminance,
+                 .keepAlive,
+//                 .getRGBMode,
+//                 .setRGBMode,
+                 .fetchUserInfo,
+                 .FetchHistory,
+        .getUserInfoIsEdit ,
+        .setUserInfoIsNotEdit,
+        .setUserInfoIsEdit,
+//                 .getUserMembers,
+
+//        .otaUser,
+//                 .otaLocal,
+//                 .dataSyncLog,
+//        .impedanceTestMode,
+//        .openImpedanceTestMode,
+//        .closeImpedanceTestMode,
+//                 .setTorreLanguage,
+//        .getTorreLanguage
+    ]
     
-    let user : PPTorreSettingModel = {
+    let user : PPDorreSettingModel = {
         
-        let uu = PPTorreSettingModel()
+        let uu = PPDorreSettingModel()
         
         uu.isAthleteMode = false
         uu.isPregnantMode = false
@@ -76,15 +65,22 @@ class DeviceTorreViewController: BaseViewController {
         uu.gender = PPDeviceGenderType.female
         uu.unit = .unitKG
         
-        uu.memberID = "1234567890"
+        uu.memberID = "0EFA1294-A2D4-4476-93DC-1C2A2D8F1FEE"
         
-        uu.userID = "abcdefghijklmn"
+        uu.userID = "0EFA1294-A2D4-4476-93DC-1C2A2D8F1FEE"
         
+//        uu.memberID = UUID().uuidString
+//        
+//                uu.userID = UUID().uuidString
         uu.userName = "Tom"
         
         uu.targetWeight = 60
         
         uu.idealWeight = 50
+        
+        uu.currentWeight = 62.9
+        
+        uu.pIndex = 1
         
         return uu
     }()
@@ -105,7 +101,7 @@ class DeviceTorreViewController: BaseViewController {
                     
                     DispatchQueue.main.async {
                         self.addBleCmd(ss: "sendKeepAliveCode")
-                        self.XM_Torre?.sendKeepAliveCode()
+                        self.XM_Dorre?.sendKeepAliveCode()
                     }
                 }
                 timer?.resume()
@@ -120,7 +116,7 @@ class DeviceTorreViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.XM_Torre?.scaleDataDelegate = self
+        self.XM_Dorre?.scaleDataDelegate = self
 
     }
   
@@ -213,7 +209,7 @@ class DeviceTorreViewController: BaseViewController {
 
         timer?.cancel()
         self.scaleManager.stopSearch()
-        if let peripheral = self.XM_Torre?.peripheral{
+        if let peripheral = self.XM_Dorre?.peripheral{
             
             self.scaleManager.disconnect(peripheral)
         }
@@ -222,7 +218,7 @@ class DeviceTorreViewController: BaseViewController {
 
 }
  
-extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+extension DeviceDorreViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.array.count
@@ -279,9 +275,9 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         if title == .startMeasure{
             
             
-            let vc = ScaleViewController.instantiate()
+            let vc = BorreScaleViewController.instantiate()
             vc.deviceModel = self.deviceModel
-            vc.XM_Torre = self.XM_Torre
+            vc.XM_Obj = self.XM_Dorre
             
             self.navigationController?.pushViewController(vc, animated: true)
             
@@ -294,7 +290,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "codeFetchBindingState")
 
-            self.XM_Torre?.codeFetchBindingState({ [weak self] status in
+            self.XM_Dorre?.codeFetchBindingState({ [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -308,7 +304,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "discoverDeviceInfoService")
 
-            self.XM_Torre?.discoverDeviceInfoService({ [weak self] model in
+            self.XM_Dorre?.discoverDeviceInfoService({ [weak self] model in
                 guard let `self` = self else {
                     return
                 }
@@ -322,7 +318,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "codeSyncTime")
             
-            self.XM_Torre?.codeSyncTime({ [weak self] status in
+            self.XM_Dorre?.codeSyncTime({ [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -341,7 +337,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "dataSyncUserList")
             
-            self.XM_Torre?.dataSyncUserList([user], withHandler: { [weak self] status in
+            self.XM_Dorre?.dataSyncUserList([user], withHandler: { [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -356,7 +352,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "codeFetchImpedanceSwitch")
 
-            self.XM_Torre?.codeFetchImpedanceSwitch({ [weak self] status in
+            self.XM_Dorre?.codeFetchImpedanceSwitch({ [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -367,11 +363,12 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
         }
         
+      
         if title == .openImpedance{
             
             self.addBleCmd(ss: "codeOpenImpedanceSwitch")
 
-            self.XM_Torre?.codeOpenImpedanceSwitch({ [weak self] status in
+            self.XM_Dorre?.codeOpenImpedanceSwitch({ [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -386,7 +383,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "codeCloseImpedanceSwitch")
 
-            self.XM_Torre?.codeCloseImpedanceSwitch({ [weak self] status in
+            self.XM_Dorre?.codeCloseImpedanceSwitch({ [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -401,7 +398,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "codeFetchHeartRateSwitch")
 
-            self.XM_Torre?.codeFetchHeartRateSwitch({ [weak self] status in
+            self.XM_Dorre?.codeFetchHeartRateSwitch({ [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -416,7 +413,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "codeOpenHeartRateSwitch")
 
-            self.XM_Torre?.codeOpenHeartRateSwitch({ [weak self] status in
+            self.XM_Dorre?.codeOpenHeartRateSwitch({ [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -431,7 +428,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "codeCloseHeartRateSwitch")
 
-            self.XM_Torre?.codeCloseHeartRateSwitch({ [weak self] status in
+            self.XM_Dorre?.codeCloseHeartRateSwitch({ [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -445,7 +442,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         if title == .FetchHistory{
             self.addBleCmd(ss: "dataFetchHistoryData")
             
-            self.XM_Torre?.dataFetchHistoryData(user, withHandler: { [weak self] models in
+            self.XM_Dorre?.dataFetchHistoryData(user, withHandler: { [weak self] models in
                 guard let `self` = self else {
                     return
                 }
@@ -465,7 +462,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             self.addBleCmd(ss: "codeChange")
 
             self.unit = self.unit == PPDeviceUnit.unitKG ? PPDeviceUnit.unitLB  : PPDeviceUnit.unitKG
-            self.XM_Torre?.codeChange(self.unit , withHandler: { [weak self] status in
+            self.XM_Dorre?.codeChange(self.unit , withHandler: { [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -480,7 +477,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         if title == .clearDeviceData{
             self.addBleCmd(ss: "codeClearDeviceData")
             
-            self.XM_Torre?.codeClearDeviceData(0, withHandler:{ [weak self] status in
+            self.XM_Dorre?.codeClearDeviceData(0, withHandler:{ [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -491,8 +488,44 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
 
         }
         
-    
+        if title == .getUserInfoIsEdit{
+            
+            self.addBleCmd(ss: "getUserInfoIsEdit")
+            
+            self.XM_Dorre?.codeGetUserInfoIsEdithandler({ isEdit in
+                self.addStatusCmd(ss: "\(isEdit)")
+
+            })
+            
+           
+            
+        }
         
+        if title == .setUserInfoIsNotEdit{
+            
+            self.addBleCmd(ss: "setUserInfoIsNotEdit")
+            
+            self.XM_Dorre?.codeSetUserInfoIsEdit(false, handler: { status in
+                self.addStatusCmd(ss: "\(status)")
+
+            })
+            
+            
+        }
+        
+        if title == .setUserInfoIsEdit{
+            
+            self.addBleCmd(ss: "setUserInfoIsEdit")
+            
+            self.XM_Dorre?.codeSetUserInfoIsEdit(true, handler: { status in
+                self.addStatusCmd(ss: "\(status)")
+
+            })
+            
+        }
+        
+    
+     
         if title == .ScreenLuminance {
 
             let alertController = UIAlertController(title: "Screen Luminance", message: "", preferredStyle: .alert)
@@ -517,7 +550,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
                     
                     self.addBleCmd(ss: "codeSetScreenLuminance")
                     
-                    self.XM_Torre?.codeSetScreenLuminance(num, handler: { [weak self] statu in
+                    self.XM_Dorre?.codeSetScreenLuminance(num, handler: { [weak self] statu in
                         guard let `self` = self else {
                             return
                         }
@@ -538,14 +571,14 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         
         if title == .keepAlive{
             self.addBleCmd(ss: "sendKeepAliveCode")
-            self.XM_Torre?.sendKeepAliveCode()
+            self.XM_Dorre?.sendKeepAliveCode()
 
             
         }
         
         if title == .wificonfigstatus{
             self.addBleCmd(ss: "codeFetchWifiConfig")
-            self.XM_Torre?.codeFetchWifiConfig({ [weak self] status in
+            self.XM_Dorre?.codeFetchWifiConfig({ [weak self] status in
                 guard let `self` = self else {
                     return
                 }
@@ -567,7 +600,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             self.addBleCmd(ss: "dataFindSurroundDevice")
             self.addBleCmd(ss: "hold on")
             
-            self.XM_Torre?.dataFindSurroundDevice({ [weak self] wifiList in
+            self.XM_Dorre?.dataFindSurroundDevice({ [weak self] wifiList in
                 guard let `self` = self else {
                     return
                 }
@@ -593,7 +626,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
                     let domain = dns ?? ""
                     
                     self.addBleCmd(ss: "dataConfigNetWork")
-                    self.XM_Torre?.dataConfigNetWork(wifiModel, domain: domain, withHandler: { [weak self] status, error in
+                    self.XM_Dorre?.dataConfigNetWork(wifiModel, domain: domain, withHandler: { [weak self] status, error in
                         guard let `self` = self else {
                             return
                         }
@@ -611,7 +644,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         if title == .selectUser{
             
             self.addBleCmd(ss: "dataSelectUser")
-            self.XM_Torre?.dataSelectUser(self.user, withHandler: { [weak self] statu in
+            self.XM_Dorre?.dataSelectUser(self.user, withHandler: { [weak self] statu in
                 guard let `self` = self else {
                     return
                 }
@@ -624,7 +657,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         if title == .deleteUser{
             
             self.addBleCmd(ss: "dataDeleteUser")
-            self.XM_Torre?.dataDeleteUser(self.user, withHandler: { [weak self] statu in
+            self.XM_Dorre?.dataDeleteUser(self.user, withHandler: { [weak self] statu in
                 guard let `self` = self else {
                     return
                 }
@@ -645,7 +678,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             }
             
             self.addBleCmd(ss: "codeFetchWifiConfig")
-            self.XM_Torre?.codeFetchWifiConfig({ [weak self] state in
+            self.XM_Dorre?.codeFetchWifiConfig({ [weak self] state in
                 guard let `self` = self else {
                     return
                 }
@@ -655,7 +688,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
                 if state == 1 {
                     
                     self.addBleCmd(ss: "codeOtaUpdate")
-                    self.XM_Torre?.codeOtaUpdate(handler: { [weak self] statu in
+                    self.XM_Dorre?.codeOtaUpdate(handler: { [weak self] statu in
                         guard let `self` = self else {
                             return
                         }
@@ -681,14 +714,14 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             self.addStatusCmd(ss: "Local upgrade: There must be a Wi Fi with the name Test and password 12345678 on the local device, and the device will automatically connect to that Wi Fi (ssid: Test, password: 12345678)")
             
             self.addBleCmd(ss: "startLocalUpdate")
-            self.XM_Torre?.startLocalUpdate(handle: { [weak self] status in
-                guard let `self` = self else {
-                    return
-                }
-                
-                self.addStatusCmd(ss: "\(status)")
-                
-            })
+//            self.XM_Dorre?.startLocalUpdate(handle: { [weak self] status in
+//                guard let `self` = self else {
+//                    return
+//                }
+//
+//                self.addStatusCmd(ss: "\(status)")
+//
+//            })
 
         }
         
@@ -697,7 +730,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             self.addBleCmd(ss: "dataSyncLog")
             
             self.addStatusCmd(ss: "hold on...")
-            self.XM_Torre?.dataSyncLog({ [weak self] (progress, path, isFail) in
+            self.XM_Dorre?.dataSyncLog({ [weak self] (progress, path, isFail) in
                 guard let `self` = self else {
                     return
                 }
@@ -708,85 +741,121 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
         }
         
-        if title == .impedanceTestMode {
-            
-            self.addBleCmd(ss: "fetchImpedanceTestMode")
+       
+        
+        if title == .fetchUserInfo{
+            self.addBleCmd(ss: "fetchUserInfo")
 
-            self.XM_Torre?.fetchImpedanceTestMode({ [weak self] status in
-                guard let `self` = self else {
-                    return
-                }
-                
-                self.addStatusCmd(ss: "\(status)")
+            self.XM_Dorre?.dataFetchUserID({ userids in
+                                
+                self.addStatusCmd(ss: "\(userids.description)")
 
             })
             
         }
         
-        if title == .openImpedanceTestMode {
-            
-            self.addBleCmd(ss: "openImpedanceTestMode")
-
-            self.XM_Torre?.openImpedanceTestMode({ [weak self] status in
-                guard let `self` = self else {
-                    return
-                }
-                
-                self.addStatusCmd(ss: "\(status)")
-
-            })
-            
-        }
+//        if title == .getUserMembers{
+//
+//            self.addBleCmd(ss: "getUserMembers")
+//
+//            self.XM_Dorre?.dataUserMemberids(user, withHandler: { statu in
+//
+//                self.addStatusCmd(ss: "\(statu)")
+//
+//            })
+//
+//        }
         
-        if title == .closeImpedanceTestMode {
-            
-            self.addBleCmd(ss: "closeImpedanceTestMode")
-
-            self.XM_Torre?.closeImpedanceTestMode({ [weak self] status in
-                guard let `self` = self else {
-                    return
-                }
-                
-                self.addStatusCmd(ss: "\(status)")
-
-            })
-            
-        }
         
-        if title == .setTorreLanguage {
-            
-            self.addBleCmd(ss: menuType.setTorreLanguage.rawValue)
-
-            self.XM_Torre?.setLanguage(.simplifiedChinese, completion: {[weak self] status in
-                guard let `self` = self else {
-                    return
-                }
-                
-                self.addStatusCmd(ss: "\(status)")
-                
-            })
-            
-        }
+//        if title == .getRGBMode{
+//            self.addBleCmd(ss: "getRGBMode")
+//
+//            self.XM_Dorre?.getRGBModeHandler({ enable,mode, color1, color2, color3 in
+//                
+//                self.addStatusCmd(ss: "enable:\(enable) mode:\(mode.rawValue) color1:\(color1.description) color2:\(color2.description) color3:\(color3.description)")
+//
+//            })
+//        }
         
-        if title == .getTorreLanguage {
-            
-            self.addBleCmd(ss: menuType.getTorreLanguage.rawValue)
+//        if title == .impedanceTestMode {
+//
+//            self.addBleCmd(ss: "fetchImpedanceTestMode")
 
-            self.XM_Torre?.getLanguageWithCompletion({[weak self] (status, language) in
-                guard let `self` = self else {
-                    return
-                }
-                
-                self.addStatusCmd(ss: "status:\(status) language:\(language)")
-                
-            })
+//            self.XM_Dorre?.fetchImpedanceTestMode({ [weak self] status in
+//                guard let `self` = self else {
+//                    return
+//                }
+//
+//                self.addStatusCmd(ss: "\(status)")
+//
+//            })
             
-        }
+//        }
+//
+//        if title == .openImpedanceTestMode {
+//
+//            self.addBleCmd(ss: "openImpedanceTestMode")
+
+//            self.XM_Dorre?.openImpedanceTestMode({ [weak self] status in
+//                guard let `self` = self else {
+//                    return
+//                }
+//
+//                self.addStatusCmd(ss: "\(status)")
+//
+//            })
+            
+//        }
+        
+//        if title == .closeImpedanceTestMode {
+//
+//            self.addBleCmd(ss: "closeImpedanceTestMode")
+
+//            self.XM_Dorre?.closeImpedanceTestMode({ [weak self] status in
+//                guard let `self` = self else {
+//                    return
+//                }
+//
+//                self.addStatusCmd(ss: "\(status)")
+//
+//            })
+            
+//        }
+        
+//        if title == .setTorreLanguage {
+//
+//            self.addBleCmd(ss: menuType.setTorreLanguage.rawValue)
+
+//            self.XM_Dorre?.setLanguage(.simplifiedChinese, completion: {[weak self] status in
+//                guard let `self` = self else {
+//                    return
+//                }
+//
+//                self.addStatusCmd(ss: "\(status)")
+//
+//            })
+            
+//        }
+        
+//        if title == .getTorreLanguage {
+//
+//            self.addBleCmd(ss: menuType.getTorreLanguage.rawValue)
+//
+//            self.XM_Dorre?.getLanguageWithCompletion({[weak self] (status, language) in
+//                guard let `self` = self else {
+//                    return
+//                }
+//
+//                self.addStatusCmd(ss: "status:\(status) language:\(language)")
+//
+//            })
+//
+//        }
     }
     
 }
 
-extension DeviceTorreViewController:PPBluetoothUpdateStateDelegate{
+extension DeviceDorreViewController:PPBluetoothUpdateStateDelegate{
     func centralManagerDidUpdate(_ state: PPBluetoothState) {
         
         self.addConsoleLog(ss: "centralManagerDidUpdate:\(state)")
@@ -805,7 +874,7 @@ extension DeviceTorreViewController:PPBluetoothUpdateStateDelegate{
     
 }
 
-extension DeviceTorreViewController:PPBluetoothSurroundDeviceDelegate{
+extension DeviceDorreViewController:PPBluetoothSurroundDeviceDelegate{
     
 
     
@@ -824,9 +893,9 @@ extension DeviceTorreViewController:PPBluetoothSurroundDeviceDelegate{
             self.scaleManager.connectDelegate = self;
             self.scaleManager.connect(peripheral, withDevice: device)
             
-            self.XM_Torre = PPBluetoothPeripheralTorre(peripheral: peripheral, andDevice: device)
-            self.XM_Torre?.serviceDelegate = self
-            self.XM_Torre?.scaleDataDelegate = self
+            self.XM_Dorre = PPBluetoothPeripheralDorre(peripheral: peripheral, andDevice: device)
+            self.XM_Dorre?.serviceDelegate = self
+            self.XM_Dorre?.scaleDataDelegate = self
             
         }
         
@@ -836,7 +905,7 @@ extension DeviceTorreViewController:PPBluetoothSurroundDeviceDelegate{
     
 }
 
-extension DeviceTorreViewController:PPBluetoothConnectDelegate{
+extension DeviceDorreViewController:PPBluetoothConnectDelegate{
     
     
     func centralManagerDidConnect() {
@@ -847,7 +916,7 @@ extension DeviceTorreViewController:PPBluetoothConnectDelegate{
         
         self.addBleCmd(ss: "discoverFFF0Service")
         
-        self.XM_Torre?.discoverFFF0Service()
+        self.XM_Dorre?.discoverFFF0Service()
     }
     
     func centralManagerDidDisconnect() {
@@ -862,7 +931,7 @@ extension DeviceTorreViewController:PPBluetoothConnectDelegate{
     
 }
 
-extension DeviceTorreViewController: PPBluetoothServiceDelegate{
+extension DeviceDorreViewController: PPBluetoothServiceDelegate{
     
     func discoverDeviceInfoServiceSuccess(_ device: PPBluetooth180ADeviceModel!) {
         
@@ -875,7 +944,7 @@ extension DeviceTorreViewController: PPBluetoothServiceDelegate{
         self.addBleCmd(ss: "codeUpdateMTU")
 
         
-        self.XM_Torre?.codeUpdateMTU({[weak self] statu in
+        self.XM_Dorre?.codeUpdateMTU({[weak self] statu in
             
             
             guard let `self` = self else {return}
@@ -895,7 +964,7 @@ extension DeviceTorreViewController: PPBluetoothServiceDelegate{
     
 }
 
-extension DeviceTorreViewController:PPBluetoothScaleDataDelegate{
+extension DeviceDorreViewController:PPBluetoothScaleDataDelegate{
     func monitorProcessData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
         self.weightLbl.text = String.init(format: "weight process:%0.2f", Float(model.weight) / 100.0)
@@ -915,13 +984,13 @@ extension DeviceTorreViewController:PPBluetoothScaleDataDelegate{
     
 }
 
-extension DeviceTorreViewController:DemoStoryboardInstantiable{
+extension DeviceDorreViewController:DemoStoryboardInstantiable{
     static var storyboardName: String {
         return "BluetoothKitDemo"
     }
     
     static var storyboardIdentifier: String {
-        return "DeviceTorreViewController"
+        return "DeviceDorreViewController"
     }
     
     

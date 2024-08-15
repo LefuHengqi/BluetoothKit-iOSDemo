@@ -101,6 +101,11 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
             
             break
             
+        case .peripheralDorre:
+            caType = "PeripheralDorre"
+            
+            break
+            
         case .peripheralHamburger:
             caType = "PeripheralHamburger"
 
@@ -213,6 +218,16 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
             break
         case .peripheralBorre:
             let vc = DeviceBorreViewController.instantiate()
+            
+            vc.title = model.0.deviceName
+            
+            vc.deviceModel = model.0
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+            
+        case .peripheralDorre:
+            let vc = DeviceDorreViewController.instantiate()
             
             vc.title = model.0.deviceName
             

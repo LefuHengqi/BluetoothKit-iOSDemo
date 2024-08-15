@@ -36,6 +36,7 @@ class DeviceBorreViewController: BaseViewController {
                  .keepAlive,
                  .getRGBMode,
                  .setRGBMode,
+                 .FetchHistory,
 //                 .getUserMembers,
 
 //        .otaUser,
@@ -267,7 +268,7 @@ extension DeviceBorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             let vc = BorreScaleViewController.instantiate()
             vc.deviceModel = self.deviceModel
-            vc.XM_Borre = self.XM_Borre
+            vc.XM_Obj = self.XM_Borre
             
             self.navigationController?.pushViewController(vc, animated: true)
             
@@ -698,7 +699,7 @@ extension DeviceBorreViewController:UICollectionViewDelegate,UICollectionViewDat
         if title == .setRGBMode{
             self.addBleCmd(ss: "setRGBMode")
 
-            self.XM_Borre?.setRGBMode(true, lightMode: .always, normalColor: UIColor.yellow, gain: UIColor.systemPink, lossColor: UIColor.orange, handler: { statu in
+            self.XM_Borre?.setRGBMode(true, lightMode: .always, normalColor: "#FF00FF", gainColor: "#FF00FF", lossColor: "#FF00FF", handler: { statu in
                 
                 self.addStatusCmd(ss: "\(statu)")
 

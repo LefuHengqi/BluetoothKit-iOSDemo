@@ -16,7 +16,7 @@ class BorreScaleViewController: UIViewController {
     
     var deviceModel : PPBluetoothAdvDeviceModel?
     
-    var XM_Borre: PPBluetoothPeripheralBorre?
+    var XM_Obj: Any?
     
     var conslogStr = ""
 
@@ -56,20 +56,45 @@ class BorreScaleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.XM_Borre?.scaleDataDelegate = self
+        if let XM_Borre = self.XM_Obj as? PPBluetoothPeripheralBorre{
+            XM_Borre.scaleDataDelegate = self
+
+        }
+        
+        
+        if let XM_Borre = self.XM_Obj as? PPBluetoothPeripheralDorre{
+            XM_Borre.scaleDataDelegate = self
+
+        }
 
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.XM_Borre?.codeStopMeasure { statu in
-        
-        }
-        
-        self.XM_Borre?.codeExitBabyModel { statu in
+        if let XM_Borre = self.XM_Obj as? PPBluetoothPeripheralBorre{
             
+           XM_Borre.codeStopMeasure { statu in
+            
+            }
+            
+            XM_Borre.codeExitBabyModel { statu in
+                
+            }
         }
+        
+        
+        if let XM_Borre = self.XM_Obj as? PPBluetoothPeripheralDorre{
+            
+           XM_Borre.codeStopMeasure { statu in
+            
+            }
+            
+            XM_Borre.codeExitBabyModel { statu in
+                
+            }
+        }
+     
     }
 
     
@@ -85,67 +110,141 @@ class BorreScaleViewController: UIViewController {
     
     @IBAction func scaleBtnClick(_ sender: Any) {
         
-        
-        self.XM_Borre?.codeStopMeasure { statu in
-        
+        if let XM_Borre = self.XM_Obj as? PPBluetoothPeripheralBorre{
+            
+            XM_Borre.codeStopMeasure { statu in
+            
+            }
+            
+            XM_Borre.codeExitBabyModel { statu in
+                
+            }
+            
+            self.isBabyMode = false
+            
+            
+            self.addBleCmd(ss: "codeStartMeasure")
+
+            XM_Borre.codeStartMeasure({ status in
+                
+                self.addStatusCmd(ss: "\(status)")
+
+            })
         }
         
-        self.XM_Borre?.codeExitBabyModel { statu in
+        
+        if let XM_Borre = self.XM_Obj as? PPBluetoothPeripheralDorre{
             
+            XM_Borre.codeStopMeasure { statu in
+            
+            }
+            
+            XM_Borre.codeExitBabyModel { statu in
+                
+            }
+            
+            self.isBabyMode = false
+            
+            
+            self.addBleCmd(ss: "codeStartMeasure")
+
+            XM_Borre.codeStartMeasure({ status in
+                
+                self.addStatusCmd(ss: "\(status)")
+
+            })
         }
-        
-        self.isBabyMode = false
-        
-        
-        self.addBleCmd(ss: "codeStartMeasure")
-
-        self.XM_Borre?.codeStartMeasure({ status in
-            
-            self.addStatusCmd(ss: "\(status)")
-
-        })
+     
     }
     
     @IBAction func babyWeightBtnClick(_ sender: Any) {
         
-        self.XM_Borre?.codeStopMeasure { statu in
         
-        }
-        
-        self.XM_Borre?.codeExitBabyModel { statu in
+        if let XM_Borre = self.XM_Obj as? PPBluetoothPeripheralBorre{
             
-        }
-        
-        self.step = 0
-        
-        self.weight = 0
-        
-        self.isBabyMode = true
-        
-        let semaphore = DispatchSemaphore(value: 0)
-        
-        DispatchQueue.global().async {
+            XM_Borre.codeStopMeasure { statu in
             
-            self.addBleCmd(ss: "codeEnableBabyModel 0")
-
-
-            self.XM_Borre?.codeEnableBabyModel(0, weight: 0, withHandler: { statu in
+            }
+            
+            XM_Borre.codeExitBabyModel { statu in
                 
-                self.addStatusCmd(ss: "\(statu)")
-
-                semaphore.signal()
-            })
+            }
             
-            _ = semaphore.wait(timeout: DispatchTime.now() + 1)
-
-            self.addBleCmd(ss: "codeStartMeasure")
-
-            self.XM_Borre?.codeStartMeasure({ statu in
-                self.addStatusCmd(ss: "\(statu)")
-
-            })
+            self.step = 0
             
+            self.weight = 0
+            
+            self.isBabyMode = true
+            
+            let semaphore = DispatchSemaphore(value: 0)
+            
+            DispatchQueue.global().async {
+                
+                self.addBleCmd(ss: "codeEnableBabyModel 0")
+
+
+                XM_Borre.codeEnableBabyModel(0, weight: 0, withHandler: { statu in
+                    
+                    self.addStatusCmd(ss: "\(statu)")
+
+                    semaphore.signal()
+                })
+                
+                _ = semaphore.wait(timeout: DispatchTime.now() + 1)
+
+                self.addBleCmd(ss: "codeStartMeasure")
+
+                XM_Borre.codeStartMeasure({ statu in
+                    self.addStatusCmd(ss: "\(statu)")
+
+                })
+                
+            }
         }
+        
+        if let XM_Borre = self.XM_Obj as? PPBluetoothPeripheralDorre{
+            
+            XM_Borre.codeStopMeasure { statu in
+            
+            }
+            
+            XM_Borre.codeExitBabyModel { statu in
+                
+            }
+            
+            self.step = 0
+            
+            self.weight = 0
+            
+            self.isBabyMode = true
+            
+            let semaphore = DispatchSemaphore(value: 0)
+            
+            DispatchQueue.global().async {
+                
+                self.addBleCmd(ss: "codeEnableBabyModel 0")
+
+
+                XM_Borre.codeEnableBabyModel(0, weight: 0, withHandler: { statu in
+                    
+                    self.addStatusCmd(ss: "\(statu)")
+
+                    semaphore.signal()
+                })
+                
+                _ = semaphore.wait(timeout: DispatchTime.now() + 1)
+
+                self.addBleCmd(ss: "codeStartMeasure")
+
+                XM_Borre.codeStartMeasure({ statu in
+                    self.addStatusCmd(ss: "\(statu)")
+
+                })
+                
+            }
+        }
+        
+     
 
     }
     
@@ -203,7 +302,7 @@ extension BorreScaleViewController:PPBluetoothScaleDataDelegate{
             self.addStatusCmd(ss: model.description)
             
             
-            let fat = PPBodyFatModel(userModel: self.user, deviceMac: advModel.deviceMac, weight: CGFloat(model.weight) / 100, heartRate: model.heartRate, andImpedance: model.impedance, impedance100EnCode: model.impedance100EnCode)
+            let fat = PPBodyFatModel.init(userModel: self.user, deviceCalcuteType: advModel.deviceCalcuteType, deviceMac: advModel.deviceMac, weight: CGFloat(model.weight) / 100, heartRate: model.heartRate, andImpedance: model.impedance, impedance100EnCode: model.impedance100EnCode)
             
             let alertVC = UIAlertController(title: fat.description, message: "", preferredStyle: .alert)
             
@@ -213,23 +312,51 @@ extension BorreScaleViewController:PPBluetoothScaleDataDelegate{
             
             if self.isBabyMode{
                 
-                if self.step == 0{
-                    self.addBleCmd(ss: "codeEnableBabyModel  1")
-                    self.XM_Borre?.codeEnableBabyModel(1, weight: model.weight, withHandler: { statu in
+                
+                if let XM_Borre = self.XM_Obj as? PPBluetoothPeripheralBorre{
+                    if self.step == 0{
+                        self.addBleCmd(ss: "codeEnableBabyModel  1")
+                        XM_Borre.codeEnableBabyModel(1, weight: model.weight, withHandler: { statu in
+                            
+                            self.addStatusCmd(ss: "\(statu)")
+                        })
                         
-                        self.addStatusCmd(ss: "\(statu)")
-                    })
+                        self.step = 1
+                    }
                     
-                    self.step = 1
-                }
-                
-                
-                if self.step == 1{
                     
-                    self.weightLbl.text = String.init(format: "weight lock:%0.2f", Float(model.weight) / 100.0 - self.weight)
+                    if self.step == 1{
+                        
+                        self.weightLbl.text = String.init(format: "weight lock:%0.2f", Float(model.weight) / 100.0 - self.weight)
 
+                    }
+                   
+                    
                 }
-               
+                
+                
+                if let XM_Borre = self.XM_Obj as? PPBluetoothPeripheralDorre{
+                    if self.step == 0{
+                        self.addBleCmd(ss: "codeEnableBabyModel  1")
+                        XM_Borre.codeEnableBabyModel(1, weight: model.weight, withHandler: { statu in
+                            
+                            self.addStatusCmd(ss: "\(statu)")
+                        })
+                        
+                        self.step = 1
+                    }
+                    
+                    
+                    if self.step == 1{
+                        
+                        self.weightLbl.text = String.init(format: "weight lock:%0.2f", Float(model.weight) / 100.0 - self.weight)
+
+                    }
+                   
+                    
+                }
+                
+              
             }
 
 
