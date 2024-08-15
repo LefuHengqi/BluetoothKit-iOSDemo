@@ -105,55 +105,7 @@ class ScaleCoconutViewController:UIViewController{
     
 }
 
-//extension ScaleCoconutViewController:PPBluetoothScaleDataDelegate{
-//
-//    func monitorProcessData(_ model: PPBluetoothScaleBaseModel!) {
-//
-//        DispatchQueue.main.async {
-//            self.weightLabe.text = String.init(format: "weight process:%0.2f", Float(model.weight) / 100.0)
-//
-//            self.weightLabe.textColor = UIColor.red
-//
-//        }
-//
-//
-//        self.addConsoleLog(ss: "monitorProcessData")
-//
-//        self.addStatusCmd(ss: model.description)
-//
-//    }
-//
-//    func monitorLockData(_ model: PPBluetoothScaleBaseModel!) {
-//
-//        DispatchQueue.main.async {
-//
-//
-//            self.weightLabe.text = String.init(format: "weight lock:%0.2f", Float(model.weight) / 100.0)
-//
-//            if model.heartRate > 0{
-//
-//                self.weightLabe.text = String.init(format: "weight lock:%0.2f    heartRate:%ld", Float(model.weight) / 100.0,model.heartRate)
-//
-//            }
-//
-//            self.weightLabe.textColor = UIColor.green
-//
-//            self.addConsoleLog(ss: "monitorLockData")
-//
-//            self.addStatusCmd(ss: model.description)
-//
-//
-//
-//
-//        }
-//
-//    }
-//
-//
-//
-//
-//
-//}
+
 
 
 extension ScaleCoconutViewController:DemoStoryboardInstantiable{

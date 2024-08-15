@@ -60,7 +60,9 @@ class BaseViewController: UIViewController {
         consoleView.layer.masksToBounds = true
         
         DispatchQueue.main.asyncAfter(wallDeadline: DispatchWallTime.now() + 2) {
-            self.collectionView.reloadData()
+            if self.collectionView != nil {
+                self.collectionView.reloadData()
+            }
 
         }
     }

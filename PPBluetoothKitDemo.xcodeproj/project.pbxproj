@@ -15,6 +15,7 @@
 		955A39E72A2B3A0E00853B9D /* PPBluetoothKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A39E62A2B3A0E00853B9D /* PPBluetoothKitDemoUITests.swift */; };
 		955A39E92A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A39E82A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift */; };
 		95EBEFDD2AEA406A00CEA5CF /* lefu.config in Resources */ = {isa = PBXBuildFile; fileRef = 95EBEFDC2AEA406A00CEA5CF /* lefu.config */; };
+		96177BB22C6DB06C00A9554C /* CommonTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96177BB12C6DB06C00A9554C /* CommonTool.swift */; };
 		966F7A1C2B9053740006A1C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966F7A1B2B9053740006A1C8 /* Main.storyboard */; };
 		966F7AFC2B9064300006A1C8 /* DemoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7ADD2B9064300006A1C8 /* DemoExtensions.swift */; };
 		966F7AFD2B9064300006A1C8 /* SearchDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7ADF2B9064300006A1C8 /* SearchDeviceViewController.swift */; };
@@ -83,6 +84,7 @@
 		955A39E62A2B3A0E00853B9D /* PPBluetoothKitDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPBluetoothKitDemoUITests.swift; sourceTree = "<group>"; };
 		955A39E82A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPBluetoothKitDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		95EBEFDC2AEA406A00CEA5CF /* lefu.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lefu.config; sourceTree = "<group>"; };
+		96177BB12C6DB06C00A9554C /* CommonTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTool.swift; sourceTree = "<group>"; };
 		966F7A1B2B9053740006A1C8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		966F7ADD2B9064300006A1C8 /* DemoExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoExtensions.swift; sourceTree = "<group>"; };
 		966F7ADF2B9064300006A1C8 /* SearchDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDeviceViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			children = (
 				966F7ADD2B9064300006A1C8 /* DemoExtensions.swift */,
 				96F6601D2C50DEF300A7855E /* Constant.swift */,
+				96177BB12C6DB06C00A9554C /* CommonTool.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				966F7B102B9064300006A1C8 /* ItemCollectionViewCell.swift in Sources */,
 				966F7AFD2B9064300006A1C8 /* SearchDeviceViewController.swift in Sources */,
 				966F7B1A2B90688F0006A1C8 /* SelecteCalcuteCell.swift in Sources */,
+				96177BB22C6DB06C00A9554C /* CommonTool.swift in Sources */,
 				966F7B042B9064300006A1C8 /* DeviceFishViewController.swift in Sources */,
 				966F7B022B9064300006A1C8 /* DeviceCoconutViewController.swift in Sources */,
 				966F7AFF2B9064300006A1C8 /* ScaleViewController.swift in Sources */,
