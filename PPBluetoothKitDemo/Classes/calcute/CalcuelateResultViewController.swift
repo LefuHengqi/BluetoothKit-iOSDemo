@@ -82,14 +82,18 @@ class CalcuelateResultViewController: UIViewController {
                                        z100KhzRightLegEnCode: self.myUserModel.z100KhzRightLegEnCode,
                                        z100KhzTrunkEnCode: self.myUserModel.z100KhzTrunkEnCode)
         }else{
+            
             let deviceCalcuteType4 = self.deviceCalcuteType ?? .alternate
+            
+            // Only dual-frequency algorithm (PPDeviceCalcuteType.alternate4_1) needs to pass "impedance100EnCode"
             
             fatModel =  PPBodyFatModel(userModel: userModel,
                                        deviceCalcuteType: deviceCalcuteType4,
                                        deviceMac: "c1:c1:c1:c1",
                                        weight: CGFloat(self.myUserModel.weight),
                                        heartRate: heartRate,
-                                       andImpedance: self.myUserModel.impedance)
+                                       andImpedance: self.myUserModel.impedance,
+                                       impedance100EnCode: self.myUserModel.impedance100)
             
         }
         
@@ -117,6 +121,7 @@ class CalcuelateResultViewController: UIViewController {
         let ss = """
         
         errorType = "\(arr[fatModel.errorType.rawValue])"
+        isAthleteMode = "\(userModel.isAthleteMode)"
         ppSDKVersion = \(fatModel.ppSDKVersion)
         ppWeightKgList = \(fatModel.ppWeightKgList)
         ppBMI = \(fatModel.ppBMI)
@@ -202,6 +207,7 @@ class CalcuelateResultViewController: UIViewController {
         
         self.textView.text = ss
      
+//        print("\(ss)")
     }
 
 
