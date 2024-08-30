@@ -24,6 +24,10 @@ enum DeviceMenuType:String{
 
     case getNetworkInfo = "get network info"
     case restoreFactory = "Restore Factory"
+    
+    case queryDeviceTime = "Query Device Time"
+    case deleteWIFI = "Delete WIFI"
+    case queryWifiConfig = "Query Wifi Config"
 }
 
 

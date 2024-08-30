@@ -17,7 +17,7 @@ class DeviceAppleViewController: BaseViewController {
     var scaleCoconutViewController:ScaleCoconutViewController?
 
     
-    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.restoreFactory]
+    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime]
     
     let user : PPTorreSettingModel = {
         
@@ -203,7 +203,7 @@ class DeviceAppleViewController: BaseViewController {
             
             self.scaleManager.disconnect(peripheral)
         }
-
+        
     }
 
 }
@@ -466,7 +466,8 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
 
             self.addBleCmd(ss: "codeSyncTime")
 
-            self.XM_Apple?.syncDeviceTime()
+            self.XM_Apple?.syncDeviceTime(handler: { status in
+            })
 
         }
 
@@ -479,7 +480,8 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
         }
         if title == .DeleteHistoryData{
             self.addBleCmd(ss: "deleteHistoryData")
-            self.XM_Apple?.deleteDeviceHistoryData()
+            self.XM_Apple?.deleteDeviceHistoryData(handler: { status in
+            })
         }
         
         if title == .changeUnit{
@@ -494,6 +496,18 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
             self.enterWifiConfigClick()
         }
         
+        if title == .queryWifiConfig {
+            self.addBleCmd(ss: "queryWifiConfig")
+            self.XM_Apple?.queryWifiConfig(handler: {[weak self] wifiInfo in
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.addConsoleLog(ss: "ssid:\(wifiInfo?.ssid ?? "")")
+                self.addConsoleLog(ss: "password:\(wifiInfo?.password ?? "")")
+            })
+        }
+        
         if title == .restoreFactory {
             self.addBleCmd(ss: "restoreFactory")
             
@@ -502,6 +516,20 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
             }
             
         }
+        
+        if title == .queryDeviceTime {
+            self.addBleCmd(ss: "queryDeviceTime")
+            
+            self.XM_Apple?.queryDeviceTime({[weak self] timeStr in
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.addConsoleLog(ss: timeStr)
+            })
+        }
+        
+        
 
     }
 }

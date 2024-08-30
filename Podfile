@@ -8,8 +8,8 @@ target 'PPBluetoothKitDemo' do
 
   # Device connection：PPBluetoothKit
   # Computing library：PPCalculateKit
-  pod 'PPCalculateKit', '1.2.5'
-  pod 'PPBluetoothKit', '1.2.8'
+  pod 'PPCalculateKit', '1.2.6'
+  pod 'PPBluetoothKit', '1.2.9'
 
 
   pod 'IQKeyboardManager'

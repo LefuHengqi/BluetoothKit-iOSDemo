@@ -931,7 +931,9 @@ extension DeviceBorreViewController:PPBluetoothScaleDataDelegate{
         self.weightLbl.textColor = UIColor.green
     }
     
-    
+    func monitorScaleState(_ scaleState: PPScaleState!) {
+        print("monitorScaleState --- captureZeroType:\(scaleState.captureZeroType) heartRateType:\(scaleState.heartRateType) impedanceType:\(scaleState.impedanceType) measureModeType:\(scaleState.measureModeType) measureResultType:\(scaleState.measureResultType) powerType:\(scaleState.powerType) weightType:\(scaleState.weightType)")
+    }
     
 }
 
