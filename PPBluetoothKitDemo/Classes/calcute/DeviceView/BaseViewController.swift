@@ -28,6 +28,8 @@ enum DeviceMenuType:String{
     case queryDeviceTime = "Query Device Time"
     case deleteWIFI = "Delete WIFI"
     case queryWifiConfig = "Query Wifi Config"
+    
+    case queryDNS = "Query DNS"
 }
 
 

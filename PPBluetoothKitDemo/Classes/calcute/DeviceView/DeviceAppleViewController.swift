@@ -17,7 +17,7 @@ class DeviceAppleViewController: BaseViewController {
     var scaleCoconutViewController:ScaleCoconutViewController?
 
     
-    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime]
+    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime,DeviceMenuType.queryDNS]
     
     let user : PPTorreSettingModel = {
         
@@ -529,7 +529,17 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
             })
         }
         
-        
+        if title == .queryDNS {
+            self.addBleCmd(ss: "queryDNS")
+            
+            self.XM_Apple?.queryDNS(handler: { [weak self] dns in
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.addConsoleLog(ss: dns)
+            })
+        }
 
     }
 }
