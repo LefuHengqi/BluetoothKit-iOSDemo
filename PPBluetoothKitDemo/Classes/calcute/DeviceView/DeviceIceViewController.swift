@@ -318,8 +318,68 @@ extension DeviceIceViewController:UICollectionViewDelegate,UICollectionViewDataS
             })
         }
         
-        if title == .distributionNetwork{
+        if title == .distributionNetwork {
+            self.addBleCmd(ss: "hasWifiFunc")
             
+            let funcType = self.deviceModel.deviceFuncType
+            if !PPBluetoothManager.hasWifiFunc(funcType) {
+                
+                self.addStatusCmd(ss: "The device does not support Wi Fi")
+                return
+            }
+
+            self.addBleCmd(ss: "dataFindSurroundDevice")
+            self.addBleCmd(ss: "hold on")
+            
+            self.XM_Ice?.dataFindSurroundDevice({ [weak self] wifiList, status in
+                guard let `self` = self else {
+                    return
+                }
+                
+                for info in wifiList {
+                    self.addStatusCmd(ss: "wifi:\(info.ssid)")
+                }
+                
+                let vc = WifiConfigViewController.instantiate()
+                vc.wifiList = wifiList
+                
+                vc.configHandle = { [weak self] (ssid, password, dns) in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    self.addStatusCmd(ss: "ssid:\(ssid ?? "") password:\(password ?? "") dns:\(dns ?? "")")
+                    
+                    let wifiModel = PPWifiInfoModel()
+                    wifiModel.ssid = ssid ?? ""
+                    wifiModel.password = password ?? ""
+
+                    
+                    self.addBleCmd(ss: "dataConfigNetWork")
+                    self.XM_Ice?.dataConfigNetWork(wifiModel, withHandler: {[weak self] success, sn in
+                        guard let `self` = self else {
+                            return
+                        }
+                        
+                        self.addStatusCmd(ss: "\(status) \(sn)")
+                        
+                    })
+
+                }
+
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+        }
+        
+        if title == .queryDeviceTime{
+            self.addBleCmd(ss: "queryDeviceTime")
+            self.XM_Ice?.queryDeviceTime({[weak self] timeStr in
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.addStatusCmd(ss: "\(timeStr)")
+            })
         }
     }
 }
@@ -420,7 +480,7 @@ extension DeviceIceViewController:PPBluetoothScaleDataDelegate{
         
         self.scaleCoconutViewController?.XM_PPBluetoothScaleBaseModel = model
         self.scaleCoconutViewController?.complete = false
-        
+        print("timeStr:\(model.dateStr) \(model.dateTimeInterval)")
     }
     
     func monitorLockData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {

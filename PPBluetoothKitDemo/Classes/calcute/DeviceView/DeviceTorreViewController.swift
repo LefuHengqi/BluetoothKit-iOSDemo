@@ -48,6 +48,8 @@ enum menuType:String{
     case getRGBMode = "get RGBMode"
     case setRGBMode = "set RGBMode"
     case getUserMembers = "get UserMembers"
+    
+    case queryDeviceTime = "Query Device Time"
 
 }
 
