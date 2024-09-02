@@ -353,17 +353,33 @@ extension DeviceIceViewController:UICollectionViewDelegate,UICollectionViewDataS
                     let wifiModel = PPWifiInfoModel()
                     wifiModel.ssid = ssid ?? ""
                     wifiModel.password = password ?? ""
-
                     
-                    self.addBleCmd(ss: "dataConfigNetWork")
-                    self.XM_Ice?.dataConfigNetWork(wifiModel, withHandler: {[weak self] success, sn in
+                    self.addBleCmd(ss: "changeDNS")
+                    self.XM_Ice?.changeDNS(dns ?? "", withReciveDataHandler: {[weak self] isSuccess in
                         guard let `self` = self else {
                             return
                         }
                         
-                        self.addStatusCmd(ss: "\(status) \(sn)")
+                        self.addStatusCmd(ss: "changeDNS-\(isSuccess)")
+                        
+                        if  isSuccess {
+                            
+                            self.addBleCmd(ss: "dataConfigNetWork")
+                            self.XM_Ice?.dataConfigNetWork(wifiModel, withHandler: {[weak self] success, sn in
+                                guard let `self` = self else {
+                                    return
+                                }
+                                
+                                self.addStatusCmd(ss: "\(status) \(sn)")
+                                
+                            })
+                            
+                        }
                         
                     })
+
+                    
+                    
 
                 }
 

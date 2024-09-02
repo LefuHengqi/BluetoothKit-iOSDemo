@@ -85,7 +85,7 @@ class DeviceAppleViewController: BaseViewController {
         }
         alertController.addTextField { (textField) in
             textField.placeholder = "DOMAIN"
-            textField.text = "http://nat.lefuenergy.com:10082"
+            textField.text = "http://uniquehealth.lefuenergy.com:9092"
         }
 
         // 添加取消和确定按钮
