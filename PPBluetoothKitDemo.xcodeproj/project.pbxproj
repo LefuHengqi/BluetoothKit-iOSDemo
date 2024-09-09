@@ -16,6 +16,7 @@
 		955A39E92A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A39E82A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift */; };
 		95EBEFDD2AEA406A00CEA5CF /* lefu.config in Resources */ = {isa = PBXBuildFile; fileRef = 95EBEFDC2AEA406A00CEA5CF /* lefu.config */; };
 		96177BB22C6DB06C00A9554C /* CommonTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96177BB12C6DB06C00A9554C /* CommonTool.swift */; };
+		966811FE2C8F159F0018172C /* body_lang_en.json in Resources */ = {isa = PBXBuildFile; fileRef = 966811FD2C8F159F0018172C /* body_lang_en.json */; };
 		966F7A1C2B9053740006A1C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966F7A1B2B9053740006A1C8 /* Main.storyboard */; };
 		966F7AFC2B9064300006A1C8 /* DemoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7ADD2B9064300006A1C8 /* DemoExtensions.swift */; };
 		966F7AFD2B9064300006A1C8 /* SearchDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7ADF2B9064300006A1C8 /* SearchDeviceViewController.swift */; };
@@ -87,6 +88,7 @@
 		955A39E82A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPBluetoothKitDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		95EBEFDC2AEA406A00CEA5CF /* lefu.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lefu.config; sourceTree = "<group>"; };
 		96177BB12C6DB06C00A9554C /* CommonTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTool.swift; sourceTree = "<group>"; };
+		966811FD2C8F159F0018172C /* body_lang_en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = body_lang_en.json; sourceTree = "<group>"; };
 		966F7A1B2B9053740006A1C8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		966F7ADD2B9064300006A1C8 /* DemoExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoExtensions.swift; sourceTree = "<group>"; };
 		966F7ADF2B9064300006A1C8 /* SearchDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDeviceViewController.swift; sourceTree = "<group>"; };
@@ -216,9 +218,18 @@
 			path = PPBluetoothKitDemoUITests;
 			sourceTree = "<group>";
 		};
+		966811FA2C8F11A40018172C /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				966811FD2C8F159F0018172C /* body_lang_en.json */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		966F7ADB2B9064300006A1C8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				966811FA2C8F11A40018172C /* resource */,
 				96DE32AE2B994BCC004D2842 /* Test */,
 				966F7ADC2B9064300006A1C8 /* Tools */,
 				966F7ADE2B9064300006A1C8 /* calcute */,
@@ -428,6 +439,7 @@
 				955A39D22A2B3A0E00853B9D /* LaunchScreen.storyboard in Resources */,
 				966F7A1C2B9053740006A1C8 /* Main.storyboard in Resources */,
 				955A39CF2A2B3A0E00853B9D /* Assets.xcassets in Resources */,
+				966811FE2C8F159F0018172C /* body_lang_en.json in Resources */,
 				966F7B122B9064300006A1C8 /* BluetoothKitDemo.storyboard in Resources */,
 				95EBEFDD2AEA406A00CEA5CF /* lefu.config in Resources */,
 			);
@@ -718,7 +730,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.4.0;
+				CURRENT_PROJECT_VERSION = 1.2.5.0;
 				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -743,7 +755,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -773,7 +785,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.4.0;
+				CURRENT_PROJECT_VERSION = 1.2.5.0;
 				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -793,7 +805,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",

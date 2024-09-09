@@ -114,4 +114,23 @@ class CommonTool {
         
         return ss
     }
+    
+    
+    class func loadJSONFromFile(filename: String) -> [String: Any] {
+        
+        if let url = Bundle.main.url(forResource: filename, withExtension: "") {
+            do {
+                
+                let data = try Data(contentsOf: url)
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    return json
+                }
+            } catch {
+                
+                print("Error reading JSON: \(error)")
+            }
+        }
+        
+        return [:]
+    }
 }
