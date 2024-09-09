@@ -7,7 +7,7 @@
 
 import UIKit
 import PPBluetoothKit
-
+import PPCalculateKit
 
 enum menuType:String{
     
@@ -48,6 +48,8 @@ enum menuType:String{
     case getRGBMode = "get RGBMode"
     case setRGBMode = "set RGBMode"
     case getUserMembers = "get UserMembers"
+    
+    case queryDeviceTime = "Query Device Time"
 
     case fetchUserInfo = "fetch UserInfo"
     case getUserInfoIsEdit = "get UserInfoIsEdit"
@@ -198,7 +200,7 @@ class DeviceTorreViewController: BaseViewController {
     
     }
     
-    func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, isLock:Bool) {
+    func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, advModel: PPBluetoothAdvDeviceModel, isLock:Bool) {
         
         let calculateWeightKg = Float(scaleModel.weight)/100
         
@@ -206,16 +208,57 @@ class DeviceTorreViewController: BaseViewController {
         
         weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
         
-        if (scaleModel.isHeartRating) {
+        
+        // Measurement completed
+        if scaleModel.isEnd {
             
-            weightStr = weightStr + "\nMeasuring heart rate..."
-        } else if (scaleModel.isFatting) {
+            // User information
+            let user = PPBluetoothDeviceSettingModel()
+            user.height = 160
+            user.age = 20
+            user.gender = .female
+            user.isAthleteMode = false
             
-            weightStr = weightStr + "\nMeasuring body fat..."
+            // Calculate body data (Eight electrodes)
+            let fatModel = PPBodyFatModel(userModel: user,
+                                          deviceMac: self.deviceModel.deviceMac,
+                                          weight: CGFloat(calculateWeightKg),
+                                          heartRate: scaleModel.heartRate,
+                                          deviceCalcuteType: advModel.deviceCalcuteType,
+                                          z20KhzLeftArmEnCode: scaleModel.z20KhzLeftArmEnCode,
+                                          z20KhzRightArmEnCode: scaleModel.z20KhzRightArmEnCode,
+                                          z20KhzLeftLegEnCode: scaleModel.z20KhzLeftLegEnCode,
+                                          z20KhzRightLegEnCode: scaleModel.z20KhzRightLegEnCode,
+                                          z20KhzTrunkEnCode: scaleModel.z20KhzTrunkEnCode,
+                                          z100KhzLeftArmEnCode: scaleModel.z100KhzLeftArmEnCode,
+                                          z100KhzRightArmEnCode: scaleModel.z100KhzRightArmEnCode,
+                                          z100KhzLeftLegEnCode: scaleModel.z100KhzLeftLegEnCode,
+                                          z100KhzRightLegEnCode: scaleModel.z100KhzRightLegEnCode,
+                                          z100KhzTrunkEnCode: scaleModel.z100KhzTrunkEnCode)
+            
+            //Get the range of each body indicator
+            let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
+            let weightParam = detailModel.ppBodyParam_Weight
+            print("weight-currentValue:\(weightParam.currentValue) weight-range:\(weightParam.standardArray)")
+    //        print("data:\(detailModel.data)")
+            
+            
+            let ss = CommonTool.getDesp(fatModel: fatModel, userModel: user)
+            self.addStatusCmd(ss: ss)
+            
+        } else {
+            
+            if (scaleModel.isHeartRating) {
+                
+                weightStr = weightStr + "\nMeasuring heart rate..."
+            } else if (scaleModel.isFatting) {
+                
+                weightStr = weightStr + "\nMeasuring body fat..."
+            }
+            
         }
         
         self.weightLbl.text = weightStr
-        
     }
 
     deinit{
@@ -917,7 +960,7 @@ extension DeviceTorreViewController: PPBluetoothServiceDelegate{
 extension DeviceTorreViewController:PPBluetoothScaleDataDelegate{
     func monitorProcessData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        self.weightLbl.text = String.init(format: "weight process:%0.2f", Float(model.weight) / 100.0)
+        displayScaleModel(model, advModel: advModel, isLock: false)
         
         self.weightLbl.textColor = UIColor.red
         
@@ -925,11 +968,15 @@ extension DeviceTorreViewController:PPBluetoothScaleDataDelegate{
     
     func monitorLockData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        self.weightLbl.text = String.init(format: "weight lock:%0.2f", Float(model.weight) / 100.0)
+        displayScaleModel(model, advModel: advModel, isLock: true)
         
         self.weightLbl.textColor = UIColor.green
     }
     
+    func monitorScaleState(_ scaleState: PPScaleState!) {
+        
+        print("monitorScaleState --- captureZeroType:\(scaleState.captureZeroType) heartRateType:\(scaleState.heartRateType) impedanceType:\(scaleState.impedanceType) measureModeType:\(scaleState.measureModeType) measureResultType:\(scaleState.measureResultType) powerType:\(scaleState.powerType) weightType:\(scaleState.weightType)")
+    }
     
     
 }

@@ -24,6 +24,12 @@ enum DeviceMenuType:String{
 
     case getNetworkInfo = "get network info"
     case restoreFactory = "Restore Factory"
+    
+    case queryDeviceTime = "Query Device Time"
+    case deleteWIFI = "Delete WIFI"
+    case queryWifiConfig = "Query Wifi Config"
+    
+    case queryDNS = "Query DNS"
 }
 
 
@@ -60,7 +66,9 @@ class BaseViewController: UIViewController {
         consoleView.layer.masksToBounds = true
         
         DispatchQueue.main.asyncAfter(wallDeadline: DispatchWallTime.now() + 2) {
-            self.collectionView.reloadData()
+            if self.collectionView != nil {
+                self.collectionView.reloadData()
+            }
 
         }
     }

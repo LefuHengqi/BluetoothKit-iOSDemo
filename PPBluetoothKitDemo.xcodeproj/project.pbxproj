@@ -15,6 +15,7 @@
 		955A39E72A2B3A0E00853B9D /* PPBluetoothKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A39E62A2B3A0E00853B9D /* PPBluetoothKitDemoUITests.swift */; };
 		955A39E92A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A39E82A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift */; };
 		95EBEFDD2AEA406A00CEA5CF /* lefu.config in Resources */ = {isa = PBXBuildFile; fileRef = 95EBEFDC2AEA406A00CEA5CF /* lefu.config */; };
+		96177BB22C6DB06C00A9554C /* CommonTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96177BB12C6DB06C00A9554C /* CommonTool.swift */; };
 		966F7A1C2B9053740006A1C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966F7A1B2B9053740006A1C8 /* Main.storyboard */; };
 		966F7AFC2B9064300006A1C8 /* DemoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7ADD2B9064300006A1C8 /* DemoExtensions.swift */; };
 		966F7AFD2B9064300006A1C8 /* SearchDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7ADF2B9064300006A1C8 /* SearchDeviceViewController.swift */; };
@@ -83,6 +84,7 @@
 		955A39E62A2B3A0E00853B9D /* PPBluetoothKitDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPBluetoothKitDemoUITests.swift; sourceTree = "<group>"; };
 		955A39E82A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPBluetoothKitDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		95EBEFDC2AEA406A00CEA5CF /* lefu.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lefu.config; sourceTree = "<group>"; };
+		96177BB12C6DB06C00A9554C /* CommonTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTool.swift; sourceTree = "<group>"; };
 		966F7A1B2B9053740006A1C8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		966F7ADD2B9064300006A1C8 /* DemoExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoExtensions.swift; sourceTree = "<group>"; };
 		966F7ADF2B9064300006A1C8 /* SearchDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDeviceViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			children = (
 				966F7ADD2B9064300006A1C8 /* DemoExtensions.swift */,
 				96F6601D2C50DEF300A7855E /* Constant.swift */,
+				96177BB12C6DB06C00A9554C /* CommonTool.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -321,7 +324,7 @@
 				955A39BF2A2B3A0D00853B9D /* Frameworks */,
 				955A39C02A2B3A0D00853B9D /* Resources */,
 				9BC014EA59E6431333D9D3D9 /* [CP] Embed Pods Frameworks */,
-				1E043D897F29B4F582D6AB68 /* [CP] Copy Pods Resources */,
+				FDA9534DB508DEFA3EC3F096 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -441,23 +444,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1E043D897F29B4F582D6AB68 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1F9550B24994B6C3CF919FBA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -497,6 +483,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FDA9534DB508DEFA3EC3F096 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -509,6 +512,7 @@
 				966F7B102B9064300006A1C8 /* ItemCollectionViewCell.swift in Sources */,
 				966F7AFD2B9064300006A1C8 /* SearchDeviceViewController.swift in Sources */,
 				966F7B1A2B90688F0006A1C8 /* SelecteCalcuteCell.swift in Sources */,
+				96177BB22C6DB06C00A9554C /* CommonTool.swift in Sources */,
 				966F7B042B9064300006A1C8 /* DeviceFishViewController.swift in Sources */,
 				966F7B022B9064300006A1C8 /* DeviceCoconutViewController.swift in Sources */,
 				966F7AFF2B9064300006A1C8 /* ScaleViewController.swift in Sources */,
@@ -706,7 +710,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.2.0;
+				CURRENT_PROJECT_VERSION = 1.2.3.0;
 				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -717,6 +721,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PPBluetoothKitDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PPBluetoothKitDemo;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "需要您的同意,使用蓝牙连接设备";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "需要您的同意,使用蓝牙连接设备";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -730,7 +735,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -760,12 +765,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.2.0;
+				CURRENT_PROJECT_VERSION = 1.2.3.0;
 				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PPBluetoothKitDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PPBluetoothKitDemo;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "需要您的同意,使用蓝牙连接设备";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "需要您的同意,使用蓝牙连接设备";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -779,7 +785,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",

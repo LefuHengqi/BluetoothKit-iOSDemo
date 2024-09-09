@@ -7,20 +7,7 @@
 
 import UIKit
 import PPBluetoothKit
-
-//- (instancetype)initWithPeripheral:(CBPeripheral *)peripheral  andDevice:(PPBluetoothAdvDeviceModel *)device;
-//
-//- (void)discoverDeviceInfoService:(void(^)(PPBluetooth180ADeviceModel *deviceModel))deviceInfoResponseHandler;
-//
-//- (void)discoverFFF0Service;
-//
-//- (void)fetchDeviceHistoryData;
-//
-//- (void)deleteDeviceHistoryData;
-//
-//- (void)syncDeviceTime;
-//
-//- (void)syncDeviceSetting:(PPBluetoothDeviceSettingModel *)settingModel;
+import PPCalculateKit
 
 
 
@@ -105,6 +92,58 @@ class DeviceCoconutViewController:BaseViewController{
         self.scaleManager.updateStateDelegate = self;
         
         self.scaleManager.surroundDeviceDelegate = self;
+    }
+    
+    func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, advModel: PPBluetoothAdvDeviceModel, isLock:Bool) {
+        
+        let calculateWeightKg = Float(scaleModel.weight)/100
+        
+        var weightStr = calculateWeightKg.toCurrentUserString(accuracyType: Int(self.deviceModel.deviceAccuracyType.rawValue), unitType: Int(scaleModel.unit.rawValue),forWeight: true) + " \(Int(scaleModel.unit.rawValue).getUnitStr())"
+        
+        weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
+        
+        // Measurement completed
+        if scaleModel.isEnd {
+            
+            // User information
+            let user = PPBluetoothDeviceSettingModel()
+            user.height = 160
+            user.age = 20
+            user.gender = .female
+            user.isAthleteMode = false
+            
+            // Calculate body data (Eight electrodes)
+            let fatModel = PPBodyFatModel(userModel: user,
+                                          deviceCalcuteType: advModel.deviceCalcuteType,
+                                          deviceMac: advModel.deviceMac,
+                                          weight: CGFloat(calculateWeightKg),
+                                          heartRate: scaleModel.heartRate,
+                                          andImpedance: scaleModel.impedance,
+                                          impedance100EnCode: scaleModel.impedance100EnCode
+            )
+            
+            //Get the range of each body indicator
+            let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
+            let weightParam = detailModel.ppBodyParam_Weight
+            print("weight-currentValue:\(weightParam.currentValue) weight-range:\(weightParam.standardArray)")
+            //        print("data:\(detailModel.data)")
+            
+            
+            let ss = CommonTool.getDesp(fatModel: fatModel, userModel: user)
+            self.addStatusCmd(ss: ss)
+        } else {
+            
+            if (scaleModel.isHeartRating) {
+                
+                weightStr = weightStr + "\nMeasuring heart rate..."
+            } else if (scaleModel.isFatting) {
+                
+                weightStr = weightStr + "\nMeasuring body fat..."
+            }
+            
+        }
+        
+        self.weightLbl.text = weightStr
     }
 
 }
@@ -349,7 +388,7 @@ extension DeviceCoconutViewController: PPBluetoothServiceDelegate{
 extension DeviceCoconutViewController:PPBluetoothScaleDataDelegate{
     func monitorProcessData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        self.weightLbl.text = String.init(format: "weight process:%0.2f", Float(model.weight) / 100.0)
+        self.displayScaleModel(model, advModel: advModel, isLock: false)
         
         self.weightLbl.textColor = UIColor.red
         
@@ -360,7 +399,7 @@ extension DeviceCoconutViewController:PPBluetoothScaleDataDelegate{
     
     func monitorLockData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        self.weightLbl.text = String.init(format: "weight lock:%0.2f", Float(model.weight) / 100.0)
+        self.displayScaleModel(model, advModel: advModel, isLock: true)
         
         self.weightLbl.textColor = UIColor.green
         

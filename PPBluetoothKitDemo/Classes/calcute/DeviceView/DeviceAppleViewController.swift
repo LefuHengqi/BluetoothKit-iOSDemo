@@ -7,6 +7,7 @@
 
 import UIKit
 import PPBluetoothKit
+import PPCalculateKit
 
 class DeviceAppleViewController: BaseViewController {
 
@@ -16,7 +17,7 @@ class DeviceAppleViewController: BaseViewController {
     var scaleCoconutViewController:ScaleCoconutViewController?
 
     
-    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.restoreFactory]
+    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime,DeviceMenuType.queryDNS]
     
     let user : PPTorreSettingModel = {
         
@@ -84,7 +85,7 @@ class DeviceAppleViewController: BaseViewController {
         }
         alertController.addTextField { (textField) in
             textField.placeholder = "DOMAIN"
-            textField.text = "http://nat.lefuenergy.com:10082"
+            textField.text = "http://uniquehealth.lefuenergy.com:9092"
         }
 
         // 添加取消和确定按钮
@@ -142,7 +143,7 @@ class DeviceAppleViewController: BaseViewController {
         
     }
     
-    func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, isLock:Bool) {
+    func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, advModel: PPBluetoothAdvDeviceModel, isLock:Bool) {
         
         let calculateWeightKg = Float(scaleModel.weight)/100
         
@@ -150,16 +151,48 @@ class DeviceAppleViewController: BaseViewController {
         
         weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
         
-        if (scaleModel.isHeartRating) {
+        // Measurement completed
+        if scaleModel.isEnd {
             
-            weightStr = weightStr + "\nMeasuring heart rate..."
-        } else if (scaleModel.isFatting) {
+            // User information
+            let user = PPBluetoothDeviceSettingModel()
+            user.height = 160
+            user.age = 20
+            user.gender = .female
+            user.isAthleteMode = false
             
-            weightStr = weightStr + "\nMeasuring body fat..."
+            // Calculate body data (Eight electrodes)
+            let fatModel = PPBodyFatModel(userModel: user,
+                                          deviceCalcuteType: advModel.deviceCalcuteType,
+                                          deviceMac: advModel.deviceMac,
+                                          weight: CGFloat(calculateWeightKg),
+                                          heartRate: scaleModel.heartRate,
+                                          andImpedance: scaleModel.impedance,
+                                          impedance100EnCode: scaleModel.impedance100EnCode
+            )
+            
+            //Get the range of each body indicator
+            let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
+            let weightParam = detailModel.ppBodyParam_Weight
+            print("weight-currentValue:\(weightParam.currentValue) weight-range:\(weightParam.standardArray)")
+            //        print("data:\(detailModel.data)")
+            
+            
+            let ss = CommonTool.getDesp(fatModel: fatModel, userModel: user)
+            self.addStatusCmd(ss: ss)
+        } else {
+            
+            if (scaleModel.isHeartRating) {
+                
+                weightStr = weightStr + "\nMeasuring heart rate..."
+            } else if (scaleModel.isFatting) {
+                
+                weightStr = weightStr + "\nMeasuring body fat..."
+            }
+            
         }
         
         self.weightLbl.text = weightStr
-        
     }
 
     deinit {
@@ -170,7 +203,7 @@ class DeviceAppleViewController: BaseViewController {
             
             self.scaleManager.disconnect(peripheral)
         }
-
+        
     }
 
 }
@@ -317,7 +350,7 @@ extension DeviceAppleViewController: PPBluetoothCMDDataDelegate{
 extension DeviceAppleViewController:PPBluetoothScaleDataDelegate{
     func monitorProcessData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        displayScaleModel(model, isLock: false)
+        displayScaleModel(model, advModel: advModel, isLock: false)
         
         self.weightLbl.textColor = UIColor.red
         
@@ -328,7 +361,7 @@ extension DeviceAppleViewController:PPBluetoothScaleDataDelegate{
     
     func monitorLockData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        displayScaleModel(model, isLock: true)
+        displayScaleModel(model, advModel: advModel, isLock: true)
         
         self.weightLbl.textColor = UIColor.green
         
@@ -433,7 +466,8 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
 
             self.addBleCmd(ss: "codeSyncTime")
 
-            self.XM_Apple?.syncDeviceTime()
+            self.XM_Apple?.syncDeviceTime(handler: { status in
+            })
 
         }
 
@@ -446,7 +480,8 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
         }
         if title == .DeleteHistoryData{
             self.addBleCmd(ss: "deleteHistoryData")
-            self.XM_Apple?.deleteDeviceHistoryData()
+            self.XM_Apple?.deleteDeviceHistoryData(handler: { status in
+            })
         }
         
         if title == .changeUnit{
@@ -461,6 +496,18 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
             self.enterWifiConfigClick()
         }
         
+        if title == .queryWifiConfig {
+            self.addBleCmd(ss: "queryWifiConfig")
+            self.XM_Apple?.queryWifiConfig(handler: {[weak self] wifiInfo in
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.addConsoleLog(ss: "ssid:\(wifiInfo?.ssid ?? "")")
+                self.addConsoleLog(ss: "password:\(wifiInfo?.password ?? "")")
+            })
+        }
+        
         if title == .restoreFactory {
             self.addBleCmd(ss: "restoreFactory")
             
@@ -468,6 +515,30 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
                 
             }
             
+        }
+        
+        if title == .queryDeviceTime {
+            self.addBleCmd(ss: "queryDeviceTime")
+            
+            self.XM_Apple?.queryDeviceTime({[weak self] timeStr in
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.addConsoleLog(ss: timeStr)
+            })
+        }
+        
+        if title == .queryDNS {
+            self.addBleCmd(ss: "queryDNS")
+            
+            self.XM_Apple?.queryDNS(handler: { [weak self] dns in
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.addConsoleLog(ss: dns)
+            })
         }
 
     }

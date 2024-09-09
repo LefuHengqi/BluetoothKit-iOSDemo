@@ -18,10 +18,12 @@ struct UserModel:Codable{
     
     var sex = 0
     var impedance = 1000
+    var impedance100 = 0
     var weight : Float  = 60
     var age = 20
     var height = 160
     var heartRate:Int = 0
+    
 
     public var z100KhzLeftArmEnCode : Int = 0
     public var z100KhzLeftLegEnCode : Int = 0
@@ -37,7 +39,7 @@ struct UserModel:Codable{
     var isAthleteMode  = 0
     
     enum CodingKeys: String, CodingKey {
-           case sex, impedance, weight, age, height
+           case sex, impedance, weight, age, height, impedance100
            case z100KhzLeftArmEnCode
            case z100KhzLeftLegEnCode
            case z100KhzRightArmEnCode
@@ -60,6 +62,7 @@ struct UserModel:Codable{
         impedance = try container.decode(Int.self, forKey: .impedance)
         age = try container.decode(Int.self, forKey: .age)
         height = try container.decode(Int.self, forKey: .height)
+        impedance100 = try container.decode(Int.self, forKey: .impedance100)
         
         // 将weight属性从Double类型解码为CGFloat类型
         weight = try container.decode(Float.self, forKey: .weight)
@@ -106,7 +109,9 @@ class CalcuteInfoViewController: UIViewController {
     @IBOutlet weak var z20KhzTrunkEnCode: UITextField!
     @IBOutlet weak var heartRateTF: UITextField!
     @IBOutlet weak var calcuteTypeBtn: UIButton!
+    @IBOutlet weak var athleteSwitch: UISwitch!
     
+    @IBOutlet weak var impedance100TF: UITextField!
     var deviceCalcuteType:PPDeviceCalcuteType?
     
     var deviceCalcuteTypeArray = [(String, PPDeviceCalcuteType)]()
@@ -115,7 +120,8 @@ class CalcuteInfoViewController: UIViewController {
     let jsonData = """
         {
             "sex": 0,
-             "impedance": 156780,
+             "impedance": 12801119,
+            "impedance100": 0,
              "weight":65,
              "age": 20,
              "height": 160,
@@ -194,7 +200,9 @@ class CalcuteInfoViewController: UIViewController {
             self.z20KhzRightArmEnCode.text = "\(self.myUserModel.z20KhzRightArmEnCode)"
             self.z20KhzRightLegEnCode.text = "\(self.myUserModel.z20KhzRightLegEnCode)"
             self.z20KhzTrunkEnCode.text = "\(self.myUserModel.z20KhzTrunkEnCode)"
-
+            
+            self.athleteSwitch.isOn = self.myUserModel.isAthleteMode == 1
+            self.impedance100TF.text = "\(self.myUserModel.impedance100)"
         }
         
     }
@@ -284,6 +292,12 @@ class CalcuteInfoViewController: UIViewController {
             
             self.myUserModel.z20KhzTrunkEnCode = Int(z20KhzTrunkEnCode) ?? 20
         }
+        
+        if let impedance100 = self.impedance100TF.text {
+            self.myUserModel.impedance100 = Int(impedance100) ?? 0
+        }
+        
+        self.myUserModel.isAthleteMode = self.athleteSwitch.isOn ? 1 : 0
 
         let vc = CalcuelateResultViewController.instantiate()
         vc.myUserModel = self.myUserModel

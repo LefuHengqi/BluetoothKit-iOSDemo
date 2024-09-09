@@ -23,8 +23,9 @@ class WifiConfigViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.dnsTF.text = "http://nat.lefuenergy.com:10082"
+    
+        self.dnsTF.text = "http://uniquehealth.lefuenergy.com:9092"
+
     }
 
     

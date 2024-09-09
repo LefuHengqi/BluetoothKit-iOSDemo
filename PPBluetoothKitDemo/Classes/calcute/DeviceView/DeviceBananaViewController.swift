@@ -7,6 +7,7 @@
 
 import UIKit
 import PPBluetoothKit
+import PPCalculateKit
 
 class DeviceBananaViewController: BaseViewController {
     var XM_Banana : PPBluetoothPeripheralBanana!
@@ -22,6 +23,58 @@ class DeviceBananaViewController: BaseViewController {
         
         
         // Do any additional setup after loading the view.
+    }
+    
+    func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, advModel: PPBluetoothAdvDeviceModel, isLock:Bool) {
+        
+        let calculateWeightKg = Float(scaleModel.weight)/100
+        
+        var weightStr = calculateWeightKg.toCurrentUserString(accuracyType: Int(self.deviceModel.deviceAccuracyType.rawValue), unitType: Int(scaleModel.unit.rawValue),forWeight: true) + " \(Int(scaleModel.unit.rawValue).getUnitStr())"
+        
+        weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
+        
+        // Measurement completed
+        if scaleModel.isEnd {
+            
+            // User information
+            let user = PPBluetoothDeviceSettingModel()
+            user.height = 160
+            user.age = 20
+            user.gender = .female
+            user.isAthleteMode = false
+            
+            // Calculate body data (Eight electrodes)
+            let fatModel = PPBodyFatModel(userModel: user,
+                                          deviceCalcuteType: advModel.deviceCalcuteType,
+                                          deviceMac: advModel.deviceMac,
+                                          weight: CGFloat(calculateWeightKg),
+                                          heartRate: scaleModel.heartRate,
+                                          andImpedance: scaleModel.impedance,
+                                          impedance100EnCode: scaleModel.impedance100EnCode
+            )
+            
+            //Get the range of each body indicator
+            let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
+            let weightParam = detailModel.ppBodyParam_Weight
+            print("weight-currentValue:\(weightParam.currentValue) weight-range:\(weightParam.standardArray)")
+            //        print("data:\(detailModel.data)")
+            
+            
+            let ss = CommonTool.getDesp(fatModel: fatModel, userModel: user)
+            self.addStatusCmd(ss: ss)
+        } else {
+            
+            if (scaleModel.isHeartRating) {
+                
+                weightStr = weightStr + "\nMeasuring heart rate..."
+            } else if (scaleModel.isFatting) {
+                
+                weightStr = weightStr + "\nMeasuring body fat..."
+            }
+            
+        }
+        
+        self.weightLbl.text = weightStr
     }
     
     deinit{
@@ -74,20 +127,15 @@ extension DeviceBananaViewController: PPBluetoothScaleDataDelegate{
     
     func monitorProcessData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        self.weightLbl.text = String.init(format: "weight process:%0.2f", Float(model.weight) / 100.0)
-        
-        self.addConsoleLog(ss: "monitorProcessData")
-
-        self.addStatusCmd(ss: model.description)
+        self.displayScaleModel(model, advModel: advModel, isLock: false)
+        self.weightLbl.textColor = .red
 
     }
     
     func monitorLockData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
      
-        self.weightLbl.text = String.init(format: "weight lock:%0.2f", Float(model.weight) / 100.0)
-        self.addConsoleLog(ss: "monitorLockData")
-
-        self.addStatusCmd(ss: model.description)
+        self.displayScaleModel(model, advModel: advModel, isLock: true)
+        self.weightLbl.textColor = .green
 
     
     }
