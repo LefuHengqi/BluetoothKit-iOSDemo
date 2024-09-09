@@ -16,9 +16,9 @@ struct DFUPackageModel: Codable {
 }
 
 struct Packages: Codable {
-    let mcu: PackageInfo
-    let ble: PackageInfo
-    let res: PackageInfo
+    let mcu: PackageInfo?
+    let ble: PackageInfo?
+    let res: PackageInfo?
 }
 
 struct PackageInfo: Codable {
@@ -145,9 +145,9 @@ class DFUViewController: UIViewController {
                 
                 if let config = self.XM_DFUConfig, let unzipPath = self.XM_DFUUnzipFilePath{
                    
-                    let mcuPath = "\(unzipPath)/\(config.packages.mcu.filename)"
-                    let blePath = "\(unzipPath)/\(config.packages.ble.filename)"
-                    let resPath = "\(unzipPath)/\(config.packages.res.filename)"
+                    let mcuPath = "\(unzipPath)/\(config.packages.mcu?.filename ?? "")"
+                    let blePath = "\(unzipPath)/\(config.packages.ble?.filename ?? "")"
+                    let resPath = "\(unzipPath)/\(config.packages.res?.filename ?? "")"
                     
                     
                     var versions = [String]()
