@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -68,7 +68,7 @@
         <!--Search Device View Controller-->
         <scene sceneID="Kcp-OV-K0Q">
             <objects>
-                <viewController storyboardIdentifier="SearchDeviceViewController" id="4df-4M-dsY" customClass="SearchDeviceViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchDeviceViewController" id="4df-4M-dsY" customClass="SearchDeviceViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ybC-05-Yc7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +113,7 @@
         <!--Device Torre View Controller-->
         <scene sceneID="dbn-9h-3FR">
             <objects>
-                <viewController storyboardIdentifier="DeviceTorreViewController" id="aZT-sj-xxP" customClass="DeviceTorreViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceTorreViewController" id="aZT-sj-xxP" customClass="DeviceTorreViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FvD-2a-duj">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,7 +144,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="30"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="faQ-uf-Uas" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="faQ-uf-Uas" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="W9p-Ya-b9u">
@@ -224,7 +224,7 @@
         <!--Demo Index View Controller-->
         <scene sceneID="4PV-do-D1m">
             <objects>
-                <viewController storyboardIdentifier="DemoIndexViewController" id="zGR-PY-Tll" customClass="DemoIndexViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DemoIndexViewController" id="zGR-PY-Tll" customClass="DemoIndexViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="txF-SF-PXd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -264,7 +264,7 @@
         <!--Calcute Select Device View Controller-->
         <scene sceneID="nRJ-0O-vfI">
             <objects>
-                <viewController storyboardIdentifier="CalcuteSelectDeviceViewController" id="pyy-Kz-KHp" customClass="CalcuteSelectDeviceViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalcuteSelectDeviceViewController" id="pyy-Kz-KHp" customClass="CalcuteSelectDeviceViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Re6-m9-NCb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -323,7 +323,7 @@
         <!--Calcute Info View Controller-->
         <scene sceneID="Jos-pJ-3hX">
             <objects>
-                <viewController storyboardIdentifier="CalcuteInfoViewController" id="0RG-u5-dby" customClass="CalcuteInfoViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalcuteInfoViewController" id="0RG-u5-dby" customClass="CalcuteInfoViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LZk-fI-E6G">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -967,7 +967,7 @@
         <!--Calcuelate Result View Controller-->
         <scene sceneID="eCn-Ll-JoB">
             <objects>
-                <viewController storyboardIdentifier="CalcuelateResultViewController" id="ZME-CC-rzv" customClass="CalcuelateResultViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalcuelateResultViewController" id="ZME-CC-rzv" customClass="CalcuelateResultViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LSc-qa-szB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1001,7 +1001,7 @@
         <!--Device Coconut View Controller-->
         <scene sceneID="GfS-7l-tzr">
             <objects>
-                <viewController storyboardIdentifier="DeviceCoconutViewController1" id="oRd-D1-na7" customClass="DeviceCoconutViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceCoconutViewController1" id="oRd-D1-na7" customClass="DeviceCoconutViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KlI-rB-AZA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1033,7 +1033,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CoconutCollectionViewCell" id="j7h-6t-YKw" customClass="CoconutCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CoconutCollectionViewCell" id="j7h-6t-YKw" customClass="CoconutCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="47" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Yr9-fK-6N6">
@@ -1106,10 +1106,177 @@
             </objects>
             <point key="canvasLocation" x="2956" y="-661"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="eBA-k3-dz4">
+            <objects>
+                <viewController storyboardIdentifier="DFUViewController" id="aTV-Fm-OBb" customClass="DFUViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4lA-CZ-wYV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jMT-sg-BXw">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="350"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="T39-3w-ZOX"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PathTavleCell" id="VEa-FX-tQ9">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="20.666666030883789"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VEa-FX-tQ9" id="Duk-gx-o9m">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="20.666666030883789"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MO6-3g-jun">
+                                                    <rect key="frame" x="16" y="0.0" width="377" height="20.666666666666668"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="MO6-3g-jun" secondAttribute="trailing" id="IrS-UJ-Kfo"/>
+                                                <constraint firstAttribute="bottom" secondItem="MO6-3g-jun" secondAttribute="bottom" id="Vmo-Hi-MPr"/>
+                                                <constraint firstItem="MO6-3g-jun" firstAttribute="leading" secondItem="Duk-gx-o9m" secondAttribute="leading" constant="16" id="Za9-Ot-rao"/>
+                                                <constraint firstItem="MO6-3g-jun" firstAttribute="top" secondItem="Duk-gx-o9m" secondAttribute="top" id="kGJ-qe-aJV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="aTV-Fm-OBb" id="2FT-6d-fq5"/>
+                                    <outlet property="delegate" destination="aTV-Fm-OBb" id="E5a-ZW-cz0"/>
+                                </connections>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ofn-QU-B03">
+                                <rect key="frame" x="0.0" y="350" width="393" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdP-94-Xbg">
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MCU" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ee8-X7-6bw">
+                                                <rect key="frame" x="16.000000000000004" y="13" width="45.333333333333343" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pc0-pc-Itq">
+                                                <rect key="frame" x="69.333333333333329" y="9.6666666666666856" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="mcuSwitch:" destination="aTV-Fm-OBb" eventType="valueChanged" id="QlG-Ss-2A4"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="pc0-pc-Itq" firstAttribute="leading" secondItem="Ee8-X7-6bw" secondAttribute="trailing" constant="8" id="BOn-Ol-ZLc"/>
+                                            <constraint firstItem="pc0-pc-Itq" firstAttribute="centerY" secondItem="Ee8-X7-6bw" secondAttribute="centerY" id="IFU-i3-dRf"/>
+                                            <constraint firstItem="Ee8-X7-6bw" firstAttribute="leading" secondItem="QdP-94-Xbg" secondAttribute="leading" constant="16" id="RPx-32-TSd"/>
+                                            <constraint firstItem="Ee8-X7-6bw" firstAttribute="centerY" secondItem="QdP-94-Xbg" secondAttribute="centerY" id="lQR-CO-Hs0"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8B5-0S-Jfe">
+                                        <rect key="frame" x="131" y="0.0" width="131" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ble" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pxg-aF-cfV">
+                                                <rect key="frame" x="16" y="13" width="27.666666666666671" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vls-YZ-42x">
+                                                <rect key="frame" x="51.666666666666657" y="9.6666666666666856" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="bleSwitch:" destination="aTV-Fm-OBb" eventType="valueChanged" id="B5Q-zg-g8a"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Vls-YZ-42x" firstAttribute="leading" secondItem="Pxg-aF-cfV" secondAttribute="trailing" constant="8" id="4Qr-Xp-dhe"/>
+                                            <constraint firstItem="Vls-YZ-42x" firstAttribute="centerY" secondItem="Pxg-aF-cfV" secondAttribute="centerY" id="MGJ-Dq-8SG"/>
+                                            <constraint firstItem="Pxg-aF-cfV" firstAttribute="centerY" secondItem="8B5-0S-Jfe" secondAttribute="centerY" id="fLb-Gm-eqX"/>
+                                            <constraint firstItem="Pxg-aF-cfV" firstAttribute="leading" secondItem="8B5-0S-Jfe" secondAttribute="leading" constant="16" id="m3w-vp-7mh"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ear-Tw-C2b">
+                                        <rect key="frame" x="262" y="0.0" width="131" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OqI-24-ccv">
+                                                <rect key="frame" x="15.999999999999996" y="13" width="36.666666666666657" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tzW-tC-0D2">
+                                                <rect key="frame" x="60.666666666666686" y="9.6666666666666856" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="resSwitch:" destination="aTV-Fm-OBb" eventType="valueChanged" id="AEm-aO-3R5"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="tzW-tC-0D2" firstAttribute="leading" secondItem="OqI-24-ccv" secondAttribute="trailing" constant="8" id="4sI-A7-6pv"/>
+                                            <constraint firstItem="OqI-24-ccv" firstAttribute="leading" secondItem="Ear-Tw-C2b" secondAttribute="leading" constant="16" id="bgY-vP-Nyb"/>
+                                            <constraint firstItem="OqI-24-ccv" firstAttribute="centerY" secondItem="Ear-Tw-C2b" secondAttribute="centerY" id="bw4-4L-LWu"/>
+                                            <constraint firstItem="tzW-tC-0D2" firstAttribute="centerY" secondItem="OqI-24-ccv" secondAttribute="centerY" id="cn3-GU-nTk"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="8B5-0S-Jfe" firstAttribute="width" secondItem="QdP-94-Xbg" secondAttribute="width" id="eCp-rc-n96"/>
+                                    <constraint firstItem="Ear-Tw-C2b" firstAttribute="width" secondItem="QdP-94-Xbg" secondAttribute="width" id="jzM-3G-apg"/>
+                                    <constraint firstAttribute="height" constant="50" id="qxz-8S-z92"/>
+                                </constraints>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2p4-bn-BMR">
+                                <rect key="frame" x="0.0" y="443.33333333333326" width="393" height="374.66666666666674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpY-o3-lPW">
+                                <rect key="frame" x="167.33333333333334" y="409" width="58.666666666666657" height="34.333333333333314"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="开始"/>
+                                <connections>
+                                    <action selector="startBtnClick:" destination="aTV-Fm-OBb" eventType="touchUpInside" id="B7H-WO-Gpq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mmp-gX-g2b"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2p4-bn-BMR" firstAttribute="top" secondItem="jpY-o3-lPW" secondAttribute="bottom" id="5A0-wS-aNd"/>
+                            <constraint firstItem="mmp-gX-g2b" firstAttribute="bottom" secondItem="2p4-bn-BMR" secondAttribute="bottom" id="6Gp-Km-mN8"/>
+                            <constraint firstItem="jpY-o3-lPW" firstAttribute="top" secondItem="Ofn-QU-B03" secondAttribute="bottom" constant="9" id="AY3-N5-s5j"/>
+                            <constraint firstItem="jpY-o3-lPW" firstAttribute="centerX" secondItem="4lA-CZ-wYV" secondAttribute="centerX" id="C6G-q5-opj"/>
+                            <constraint firstItem="mmp-gX-g2b" firstAttribute="trailing" secondItem="jMT-sg-BXw" secondAttribute="trailing" id="F6x-CC-dJy"/>
+                            <constraint firstItem="jMT-sg-BXw" firstAttribute="leading" secondItem="mmp-gX-g2b" secondAttribute="leading" id="GOA-WB-mJH"/>
+                            <constraint firstItem="Ofn-QU-B03" firstAttribute="top" secondItem="jMT-sg-BXw" secondAttribute="bottom" id="OpW-2m-f6f"/>
+                            <constraint firstItem="2p4-bn-BMR" firstAttribute="leading" secondItem="mmp-gX-g2b" secondAttribute="leading" id="Snz-no-Abs"/>
+                            <constraint firstItem="mmp-gX-g2b" firstAttribute="trailing" secondItem="2p4-bn-BMR" secondAttribute="trailing" id="fJX-yB-EBn"/>
+                            <constraint firstItem="mmp-gX-g2b" firstAttribute="trailing" secondItem="Ofn-QU-B03" secondAttribute="trailing" id="qwe-Vm-iy4"/>
+                            <constraint firstItem="jMT-sg-BXw" firstAttribute="top" secondItem="4lA-CZ-wYV" secondAttribute="top" id="vRz-MM-q8K"/>
+                            <constraint firstItem="Ofn-QU-B03" firstAttribute="leading" secondItem="mmp-gX-g2b" secondAttribute="leading" id="vSi-L9-Wi5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="consoleView" destination="2p4-bn-BMR" id="ZoT-eA-eCp"/>
+                        <outlet property="tableView" destination="jMT-sg-BXw" id="1cw-H3-zEN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tOt-2m-7wl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3701.5267175572517" y="-648.59154929577471"/>
+        </scene>
         <!--Selecte Calcute Type List View Controller-->
         <scene sceneID="fNP-Fj-vrf">
             <objects>
-                <viewController storyboardIdentifier="SelecteCalcuteTypeListViewController" id="ZKI-Tq-gMa" customClass="SelecteCalcuteTypeListViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelecteCalcuteTypeListViewController" id="ZKI-Tq-gMa" customClass="SelecteCalcuteTypeListViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UqS-rS-5UV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1124,7 +1291,7 @@
                                 <rect key="frame" x="0.0" y="97" width="393" height="755"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelecteCalcuteCell" id="Veb-jZ-63n" customClass="SelecteCalcuteCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelecteCalcuteCell" id="Veb-jZ-63n" customClass="SelecteCalcuteCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="71.666664123535156"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Veb-jZ-63n" id="MXk-EW-HlA">
@@ -1179,7 +1346,7 @@
         <!--Scale Coconut View Controller-->
         <scene sceneID="iFZ-3f-dsQ">
             <objects>
-                <viewController storyboardIdentifier="ScaleCoconutViewController" id="XkQ-YM-Xtq" customClass="ScaleCoconutViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScaleCoconutViewController" id="XkQ-YM-Xtq" customClass="ScaleCoconutViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dhg-ft-VT3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1221,7 +1388,7 @@
         <!--Founded View Controller-->
         <scene sceneID="Hku-tv-7FB">
             <objects>
-                <viewController storyboardIdentifier="FoundedViewController" id="Ieh-XP-dlj" customClass="FoundedViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FoundedViewController" id="Ieh-XP-dlj" customClass="FoundedViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t3I-8p-Mf2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1282,7 +1449,7 @@
         <!--Borre Scale View Controller-->
         <scene sceneID="4GB-5p-hpr">
             <objects>
-                <viewController storyboardIdentifier="BorreScaleViewController" id="hh4-B1-adm" customClass="BorreScaleViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BorreScaleViewController" id="hh4-B1-adm" customClass="BorreScaleViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qwi-la-T1w">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1346,7 +1513,7 @@
         <!--User Info View Controller-->
         <scene sceneID="cAj-kB-pt0">
             <objects>
-                <viewController storyboardIdentifier="UserInfoViewController" id="RVm-5f-9AP" customClass="UserInfoViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserInfoViewController" id="RVm-5f-9AP" customClass="UserInfoViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cxs-Ak-Tho">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1469,7 +1636,7 @@
         <!--Base View Controller-->
         <scene sceneID="w7W-pu-XNZ">
             <objects>
-                <viewController storyboardIdentifier="BaseViewController" id="7ew-oa-icE" customClass="BaseViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BaseViewController" id="7ew-oa-icE" customClass="BaseViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WZn-29-5th">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1500,7 +1667,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="RI3-eW-TLK" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="RI3-eW-TLK" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="47" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6qH-UR-TZZ">
@@ -1576,7 +1743,7 @@
         <!--Device Coconut View Controller-->
         <scene sceneID="gsC-Sa-sWT">
             <objects>
-                <viewController storyboardIdentifier="DeviceCoconutViewController" id="3EP-MG-www" customClass="DeviceCoconutViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceCoconutViewController" id="3EP-MG-www" customClass="DeviceCoconutViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oEo-Sx-0c8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1607,7 +1774,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="R0h-Rs-ShW" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="R0h-Rs-ShW" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vjD-2t-mr8">
@@ -1683,7 +1850,7 @@
         <!--Device Banana View Controller-->
         <scene sceneID="CTb-Mn-640">
             <objects>
-                <viewController storyboardIdentifier="DeviceBananaViewController" id="LOR-AD-lKn" customClass="DeviceBananaViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceBananaViewController" id="LOR-AD-lKn" customClass="DeviceBananaViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iv8-Ub-NAy">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1714,7 +1881,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="o8Q-d9-dPO" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="o8Q-d9-dPO" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="96P-ZJ-4mn">
@@ -1790,7 +1957,7 @@
         <!--Device Apple View Controller-->
         <scene sceneID="lrI-lv-w0J">
             <objects>
-                <viewController storyboardIdentifier="DeviceAppleViewController" id="9a7-hH-OiJ" customClass="DeviceAppleViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceAppleViewController" id="9a7-hH-OiJ" customClass="DeviceAppleViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N7o-hv-RRh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1821,7 +1988,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="J8f-7B-Ay0" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="J8f-7B-Ay0" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MVB-na-Swo">
@@ -1897,7 +2064,7 @@
         <!--Device Durian View Controller-->
         <scene sceneID="oL7-iA-AnS">
             <objects>
-                <viewController storyboardIdentifier="DeviceDurianViewController" id="9u5-HA-Eqe" customClass="DeviceDurianViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceDurianViewController" id="9u5-HA-Eqe" customClass="DeviceDurianViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K9U-ZO-KTu">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1928,7 +2095,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="Xw8-al-PYN" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="Xw8-al-PYN" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TV3-Sy-6Xn">
@@ -2004,7 +2171,7 @@
         <!--Device Egg View Controller-->
         <scene sceneID="gH2-cl-kcJ">
             <objects>
-                <viewController storyboardIdentifier="DeviceEggViewController" id="ErY-Rb-nq9" customClass="DeviceEggViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceEggViewController" id="ErY-Rb-nq9" customClass="DeviceEggViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jyh-Ix-PQq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2035,7 +2202,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="9Rt-ps-fno" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="9Rt-ps-fno" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="47" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Bmf-pk-usv">
@@ -2113,7 +2280,7 @@
         <!--Device Open View Controller-->
         <scene sceneID="m1C-in-Nut">
             <objects>
-                <viewController storyboardIdentifier="DeviceOpenViewController" id="VEQ-gX-uQw" customClass="DeviceOpenViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceOpenViewController" id="VEQ-gX-uQw" customClass="DeviceOpenViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xrv-Sy-6fA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2128,7 +2295,7 @@
         <!--Device Hamburger View Controller-->
         <scene sceneID="SLC-R8-SKV">
             <objects>
-                <viewController storyboardIdentifier="DeviceHamburgerViewController" id="szA-FD-LWR" customClass="DeviceHamburgerViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceHamburgerViewController" id="szA-FD-LWR" customClass="DeviceHamburgerViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="caF-ap-t5l">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2159,7 +2326,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="YLQ-eF-YJY" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="YLQ-eF-YJY" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="47" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="AZD-eQ-eUA">
@@ -2237,7 +2404,7 @@
         <!--Device Grapes View Controller-->
         <scene sceneID="wXL-E5-dsY">
             <objects>
-                <viewController storyboardIdentifier="DeviceGrapesViewController" id="831-i0-cmw" customClass="DeviceGrapesViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceGrapesViewController" id="831-i0-cmw" customClass="DeviceGrapesViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MNo-Cv-L5n">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2268,7 +2435,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="1s2-W4-oDg" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="1s2-W4-oDg" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="47" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Pjp-6T-PFo">
@@ -2346,7 +2513,7 @@
         <!--Device Fish View Controller-->
         <scene sceneID="TM5-dh-i8M">
             <objects>
-                <viewController storyboardIdentifier="DeviceFishViewController" id="UDS-fk-D0K" customClass="DeviceFishViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceFishViewController" id="UDS-fk-D0K" customClass="DeviceFishViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bnl-db-xGp">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2377,7 +2544,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="1hf-vJ-dxA" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="1hf-vJ-dxA" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="47" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kmo-gk-CWe">
@@ -2455,7 +2622,7 @@
         <!--Device Ice View Controller-->
         <scene sceneID="KWl-1V-jBu">
             <objects>
-                <viewController storyboardIdentifier="DeviceIceViewController" id="LKm-CD-7P9" customClass="DeviceIceViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceIceViewController" id="LKm-CD-7P9" customClass="DeviceIceViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5hw-Px-eh8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2486,7 +2653,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="a9k-0l-c5I" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="a9k-0l-c5I" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="T1D-Wd-QU0">
@@ -2566,7 +2733,7 @@
         <!--Device Jambul View Controller-->
         <scene sceneID="dky-Mz-yer">
             <objects>
-                <viewController storyboardIdentifier="DeviceJambulViewController" id="2WU-xe-bmY" customClass="DeviceJambulViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceJambulViewController" id="2WU-xe-bmY" customClass="DeviceJambulViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pwR-M1-fpC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2617,7 +2784,7 @@
         <!--Wifi Config View Controller-->
         <scene sceneID="hwb-rZ-LOZ">
             <objects>
-                <viewController storyboardIdentifier="WifiConfigViewController" id="ped-JR-T3M" customClass="WifiConfigViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WifiConfigViewController" id="ped-JR-T3M" customClass="WifiConfigViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IEf-ZD-jPC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2770,7 +2937,7 @@
         <!--Open Test Torre View Controller-->
         <scene sceneID="v3l-ly-4dP">
             <objects>
-                <viewController storyboardIdentifier="OpenTestTorreViewController" id="m1Q-gm-Y13" customClass="OpenTestTorreViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OpenTestTorreViewController" id="m1Q-gm-Y13" customClass="OpenTestTorreViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6bl-lC-v2e">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2801,7 +2968,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="30"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="Vgy-5q-U5j" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="Vgy-5q-U5j" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="62S-pV-AH8">
@@ -2881,7 +3048,7 @@
         <!--Device Borre View Controller-->
         <scene sceneID="LCZ-gR-uv2">
             <objects>
-                <viewController storyboardIdentifier="DeviceBorreViewController" id="Ovd-R5-KNy" customClass="DeviceBorreViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceBorreViewController" id="Ovd-R5-KNy" customClass="DeviceBorreViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PeH-q2-P2W">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2912,7 +3079,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="30"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="YCp-Sg-JfS" customClass="ItemCollectionViewCell" customModule="PPBluetoothKitDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCollectionViewCell" id="YCp-Sg-JfS" customClass="ItemCollectionViewCell" customModule="bluetooth_kit_iosdemo" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pMf-vC-bY2">
@@ -2992,7 +3159,7 @@
         <!--Scale View Controller-->
         <scene sceneID="7mq-jx-bAB">
             <objects>
-                <viewController storyboardIdentifier="ScaleViewController" id="jC1-rk-ASq" customClass="ScaleViewController" customModule="PPBluetoothKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScaleViewController" id="jC1-rk-ASq" customClass="ScaleViewController" customModule="bluetooth_kit_iosdemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WFo-1B-9x5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

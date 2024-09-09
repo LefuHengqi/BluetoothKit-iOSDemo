@@ -29,5 +29,7 @@ Pod::Spec.new do |spec|
 
   spec.dependency 'PPBluetoothKit'
   spec.dependency 'PPCalculateKit'
+  spec.dependency 'SSZipArchive'
+
 
 end

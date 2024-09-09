@@ -55,6 +55,7 @@ enum menuType:String{
     case getUserInfoIsEdit = "get UserInfoIsEdit"
     case setUserInfoIsNotEdit = "set UserInfoIsNotEdit"
     case setUserInfoIsEdit = "set UserInfoIsEdit"
+    case DFU = "DFU"
 
 
 }
@@ -64,7 +65,7 @@ class DeviceTorreViewController: BaseViewController {
     var XM_Torre: PPBluetoothPeripheralTorre?
     
 
-    var array = [menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage]
+    var array = [menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage,.DFU]
     
     let user : PPTorreSettingModel = {
         
@@ -462,6 +463,15 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
 
             })
             
+        }
+        
+        if title == .DFU{
+            
+            let vc = DFUViewController.instantiate()
+            
+            vc.XM_Obj = self.XM_Torre
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
         if title == .openHeartRate{
