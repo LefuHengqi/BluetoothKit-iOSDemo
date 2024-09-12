@@ -1246,26 +1246,34 @@
                                     <action selector="startBtnClick:" destination="aTV-Fm-OBb" eventType="touchUpInside" id="B7H-WO-Gpq"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0iw-Pd-5R2">
+                                <rect key="frame" x="32" y="628.66666666666663" width="329" height="4"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mmp-gX-g2b"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2p4-bn-BMR" firstAttribute="top" secondItem="jpY-o3-lPW" secondAttribute="bottom" id="5A0-wS-aNd"/>
                             <constraint firstItem="mmp-gX-g2b" firstAttribute="bottom" secondItem="2p4-bn-BMR" secondAttribute="bottom" id="6Gp-Km-mN8"/>
+                            <constraint firstItem="0iw-Pd-5R2" firstAttribute="leading" secondItem="mmp-gX-g2b" secondAttribute="leading" constant="32" id="8UG-o4-odS"/>
                             <constraint firstItem="jpY-o3-lPW" firstAttribute="top" secondItem="Ofn-QU-B03" secondAttribute="bottom" constant="9" id="AY3-N5-s5j"/>
                             <constraint firstItem="jpY-o3-lPW" firstAttribute="centerX" secondItem="4lA-CZ-wYV" secondAttribute="centerX" id="C6G-q5-opj"/>
                             <constraint firstItem="mmp-gX-g2b" firstAttribute="trailing" secondItem="jMT-sg-BXw" secondAttribute="trailing" id="F6x-CC-dJy"/>
                             <constraint firstItem="jMT-sg-BXw" firstAttribute="leading" secondItem="mmp-gX-g2b" secondAttribute="leading" id="GOA-WB-mJH"/>
                             <constraint firstItem="Ofn-QU-B03" firstAttribute="top" secondItem="jMT-sg-BXw" secondAttribute="bottom" id="OpW-2m-f6f"/>
                             <constraint firstItem="2p4-bn-BMR" firstAttribute="leading" secondItem="mmp-gX-g2b" secondAttribute="leading" id="Snz-no-Abs"/>
+                            <constraint firstItem="mmp-gX-g2b" firstAttribute="trailing" secondItem="0iw-Pd-5R2" secondAttribute="trailing" constant="32" id="dK6-ur-inC"/>
+                            <constraint firstItem="0iw-Pd-5R2" firstAttribute="centerY" secondItem="2p4-bn-BMR" secondAttribute="centerY" id="f8Q-xU-ex2"/>
                             <constraint firstItem="mmp-gX-g2b" firstAttribute="trailing" secondItem="2p4-bn-BMR" secondAttribute="trailing" id="fJX-yB-EBn"/>
                             <constraint firstItem="mmp-gX-g2b" firstAttribute="trailing" secondItem="Ofn-QU-B03" secondAttribute="trailing" id="qwe-Vm-iy4"/>
+                            <constraint firstItem="0iw-Pd-5R2" firstAttribute="centerX" secondItem="2p4-bn-BMR" secondAttribute="centerX" id="s4S-Bm-5gk"/>
                             <constraint firstItem="jMT-sg-BXw" firstAttribute="top" secondItem="4lA-CZ-wYV" secondAttribute="top" id="vRz-MM-q8K"/>
                             <constraint firstItem="Ofn-QU-B03" firstAttribute="leading" secondItem="mmp-gX-g2b" secondAttribute="leading" id="vSi-L9-Wi5"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="consoleView" destination="2p4-bn-BMR" id="ZoT-eA-eCp"/>
+                        <outlet property="progressView" destination="0iw-Pd-5R2" id="b59-I7-MQX"/>
                         <outlet property="tableView" destination="jMT-sg-BXw" id="1cw-H3-zEN"/>
                     </connections>
                 </viewController>
@@ -3340,10 +3348,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

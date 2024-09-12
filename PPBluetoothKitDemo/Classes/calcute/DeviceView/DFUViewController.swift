@@ -35,7 +35,8 @@ class DFUViewController: UIViewController {
     
     @IBOutlet weak var consoleView: UITextView!
 
-
+    @IBOutlet weak var progressView: UIProgressView!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var selectPath = ""
@@ -151,6 +152,33 @@ class DFUViewController: UIViewController {
                     
                     
                     var versions = [String]()
+                    
+//                    if let mcu = config.packages.mcu{
+//                        versions.append("999")
+//
+//                        
+//                    }else{
+//                        versions.append("000")
+//
+//                    }
+//                    
+//                    if let ble = config.packages.ble{
+//                        versions.append("999")
+//
+//                        
+//                    }else{
+//                        versions.append("000")
+//
+//                    }
+//                    
+//                    if let res = config.packages.res{
+//                        versions.append("999")
+//
+//                        
+//                    }else{
+//                        versions.append("000")
+//
+//                    }
 
                     if self.mcuUpdate{
                         versions.append("999")
@@ -172,6 +200,9 @@ class DFUViewController: UIViewController {
                         versions.append("000")
 
                     }
+                    
+                    
+                    
                     if versions.count >= 3{
                         
                         let package = PPTorreDFUPackageModel()
@@ -207,7 +238,9 @@ class DFUViewController: UIViewController {
                                     
                                     if (progress > 0 && progress <= 1){
                                         
-                                        self.addConsoleLog(ss: String.init(format: "progress:%0.2f", progress))
+                                        self.addConsoleLog(ss: String.init(format: "\(versions)progress:%0.2f", progress))
+                                        
+                                        self.progressView.progress = Float(progress)
                                     
                                     }
                                     
@@ -272,12 +305,12 @@ extension DFUViewController{
 
         
         let zipPath = path1! + "/" + path
-        let destinationPath = path1!
+        let destinationPath = path1! + "/" + path.replacingOccurrences(of: ".zip", with: "")
 
         let success = unzipFile(atPath: zipPath, toDestination: destinationPath)
         
         
-        self.XM_DFUUnzipFilePath = destinationPath + "/" + path.replacingOccurrences(of: ".zip", with: "")
+//        self.XM_DFUUnzipFilePath = destinationPath + "/" + path.replacingOccurrences(of: ".zip", with: "")
 
         if success {
             print("解压成功！")
@@ -291,7 +324,7 @@ extension DFUViewController{
     func unzipFile(atPath filePath: String, toDestination destinationPath: String) -> Bool {
         
         let success = SSZipArchive.unzipFile(atPath: filePath, toDestination: destinationPath)
-      
+              
         return success
     }
     
@@ -306,6 +339,8 @@ extension DFUViewController{
                 if isDirectory.boolValue {
                     // 如果是目录，则递归遍历
                     try traverseDirectory(fullPath)
+                    
+                    self.XM_DFUUnzipFilePath = fullPath
                 } else {
                     // 如果是文件，则输出文件名
                     if file == "package.json"{
