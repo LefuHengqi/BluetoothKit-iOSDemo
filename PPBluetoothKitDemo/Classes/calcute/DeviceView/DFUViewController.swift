@@ -127,6 +127,15 @@ class DFUViewController: UIViewController {
     }
     @IBAction func startBtnClick(_ sender: Any) {
         
+        if let btn = sender as? UIButton{
+            
+            btn.isEnabled = false
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 20) {
+                btn.isEnabled = true
+            }
+        }
+        
         if self.selectPath.count <= 0{
             
             self.addConsoleLog(ss: "请选择文件")
