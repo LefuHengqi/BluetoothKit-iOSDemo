@@ -67,6 +67,9 @@ class DFUViewController: UIViewController {
         self.listFiles(inDirectory: path!)
 
         self.tableView.reloadData()
+        
+        UIApplication.shared.isIdleTimerDisabled = true
+        
     }
     
     override func viewDidLoad() {
