@@ -166,7 +166,7 @@ class CalcuteInfoViewController: UIViewController {
             
         } else {
             
-            deviceCalcuteTypeArray = [("8电极交流算法 bhProduct = 1",PPDeviceCalcuteType.alternate8), ("8电极算法 bhProduct = 4",PPDeviceCalcuteType.alternate8_0), ("8电极算法 bhProduct = 3",PPDeviceCalcuteType.alternate8_1),("8电极算法，bhProduct =0",PPDeviceCalcuteType.alternate8_2),("8电极算法，差异算法 bhProduct = 5",PPDeviceCalcuteType.alternate8_3),("8电极算法，bhProduct =6--CF597_N",PPDeviceCalcuteType.alternate8_4)]
+            deviceCalcuteTypeArray = [("8电极交流算法 CF577 bhProduct = 1",PPDeviceCalcuteType.alternate8), ("8电极算法CF597 bhProduct = 4",PPDeviceCalcuteType.alternate8_0), ("8电极算法CF586 bhProduct = 3",PPDeviceCalcuteType.alternate8_1),("8电极算法，bhProduct =7--CF610",PPDeviceCalcuteType.alternate8_2),("8电极算法，差异算法 bhProduct = 5",PPDeviceCalcuteType.alternate8_3),("8电极算法，bhProduct =6--CF597_N",PPDeviceCalcuteType.alternate8_4)]
             
             let title = deviceCalcuteTypeArray.first!.0 + " >"
             

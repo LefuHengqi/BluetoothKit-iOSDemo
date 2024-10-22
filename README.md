@@ -46,6 +46,8 @@
 
 `PPCalculateKit ` is an SDK for body fat calculation package, including 4-electrode AC algorithm, 4-electrode DC algorithm, 8-electrode AC algorithm
 
+[Version update instructions](https://xinzhiyun.feishu.cn/wiki/CIrBwHz5ziwM1UkTPdocJpTTnib?from=from_copylink)
+
 ## Sample program
 
 In order to enable customers to quickly achieve weighing and corresponding functions, a sample program is provided, which includes a body fat calculation module and a device function module.
