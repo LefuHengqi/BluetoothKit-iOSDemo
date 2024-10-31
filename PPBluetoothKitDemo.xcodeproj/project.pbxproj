@@ -47,6 +47,7 @@
 		966F7B162B9064300006A1C8 /* FoundedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7AFB2B9064300006A1C8 /* FoundedViewController.swift */; };
 		966F7B182B9068080006A1C8 /* SelecteCalcuteTypeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7B172B9068080006A1C8 /* SelecteCalcuteTypeListViewController.swift */; };
 		966F7B1A2B90688F0006A1C8 /* SelecteCalcuteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7B192B90688F0006A1C8 /* SelecteCalcuteCell.swift */; };
+		96CB5CF62CD36B5F00ECE549 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 96CB5CF52CD36B5F00ECE549 /* PrivacyInfo.xcprivacy */; };
 		96DE32B02B994C0A004D2842 /* OpenTestTorreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DE32AF2B994C0A004D2842 /* OpenTestTorreViewController.swift */; };
 		96DE32B22B994C9F004D2842 /* DeviceOpenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DE32B12B994C9F004D2842 /* DeviceOpenViewController.swift */; };
 		96DED0272C8EF61500947A09 /* DeviceDorreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED0262C8EF61500947A09 /* DeviceDorreViewController.swift */; };
@@ -119,6 +120,7 @@
 		966F7AFB2B9064300006A1C8 /* FoundedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundedViewController.swift; sourceTree = "<group>"; };
 		966F7B172B9068080006A1C8 /* SelecteCalcuteTypeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelecteCalcuteTypeListViewController.swift; sourceTree = "<group>"; };
 		966F7B192B90688F0006A1C8 /* SelecteCalcuteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelecteCalcuteCell.swift; sourceTree = "<group>"; };
+		96CB5CF52CD36B5F00ECE549 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		96DE32AF2B994C0A004D2842 /* OpenTestTorreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTestTorreViewController.swift; sourceTree = "<group>"; };
 		96DE32B12B994C9F004D2842 /* DeviceOpenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceOpenViewController.swift; sourceTree = "<group>"; };
 		96DED0262C8EF61500947A09 /* DeviceDorreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDorreViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		955A39B92A2B3A0D00853B9D = {
 			isa = PBXGroup;
 			children = (
+				96CB5CF52CD36B5F00ECE549 /* PrivacyInfo.xcprivacy */,
 				955A39C42A2B3A0D00853B9D /* PPBluetoothKitDemo */,
 				955A39DB2A2B3A0E00853B9D /* PPBluetoothKitDemoTests */,
 				955A39E52A2B3A0E00853B9D /* PPBluetoothKitDemoUITests */,
@@ -437,6 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				955A39D22A2B3A0E00853B9D /* LaunchScreen.storyboard in Resources */,
+				96CB5CF62CD36B5F00ECE549 /* PrivacyInfo.xcprivacy in Resources */,
 				966F7A1C2B9053740006A1C8 /* Main.storyboard in Resources */,
 				955A39CF2A2B3A0E00853B9D /* Assets.xcassets in Resources */,
 				966811FE2C8F159F0018172C /* body_lang_en.json in Resources */,
@@ -730,7 +734,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.8.0;
+				CURRENT_PROJECT_VERSION = 1.2.10.0;
 				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -755,7 +759,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.9;
+				MARKETING_VERSION = 1.2.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -785,7 +789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.8.0;
+				CURRENT_PROJECT_VERSION = 1.2.10.0;
 				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -805,7 +809,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.9;
+				MARKETING_VERSION = 1.2.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
