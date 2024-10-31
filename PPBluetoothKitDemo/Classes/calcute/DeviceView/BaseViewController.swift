@@ -30,6 +30,8 @@ enum DeviceMenuType:String{
     case queryWifiConfig = "Query Wifi Config"
     
     case queryDNS = "Query DNS"
+    case TestOTA = "Start Test OTA"
+    case UserOTA = "Start User OTA"
 }
 
 

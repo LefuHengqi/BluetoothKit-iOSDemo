@@ -17,7 +17,7 @@ class DeviceAppleViewController: BaseViewController {
     var scaleCoconutViewController:ScaleCoconutViewController?
 
     
-    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime,DeviceMenuType.queryDNS]
+    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime,DeviceMenuType.queryDNS, DeviceMenuType.TestOTA, DeviceMenuType.UserOTA]
     
     let user : PPTorreSettingModel = {
         
@@ -85,7 +85,7 @@ class DeviceAppleViewController: BaseViewController {
         }
         alertController.addTextField { (textField) in
             textField.placeholder = "DOMAIN"
-            textField.text = "http://uniquehealth.lefuenergy.com:9092"
+            textField.text = "http://nat.lefuenergy.com:10082"
         }
 
         // 添加取消和确定按钮
@@ -539,6 +539,59 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
                 
                 self.addConsoleLog(ss: dns)
             })
+        }
+        
+        
+        // Develop dedicated OTA for use in special circumstances
+        if title == .TestOTA {
+
+            self.addStatusCmd(ss: "queryWifiConfig")
+            
+            // Query Wi-Fi distribution network
+            self.XM_Apple?.queryWifiConfig(handler: {[weak self] wifiInfo in
+                guard let `self` = self else {
+                    return
+                }
+
+                if (wifiInfo?.ssid.count ?? 0) < 1 || (wifiInfo?.password.count ?? 0) < 1 {
+                    self.addConsoleLog(ss: "Need to configure the network first")
+                    return
+                }
+                
+                self.view.isUserInteractionEnabled = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self.view.isUserInteractionEnabled = true
+                }
+                
+                self.addStatusCmd(ss: "startUserOTA")
+                self.addStatusCmd(ss: "Upgrade command has been sent, please wait")
+                
+                // OTA needs to complete Wi-Fi network configuration
+                self.XM_Apple?.startTestOTA()
+                
+            })
+
+        }
+        
+        if title == .UserOTA {
+
+            self.view.isUserInteractionEnabled = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.view.isUserInteractionEnabled = true
+            }
+            
+            self.addStatusCmd(ss: "startUserOTA")
+            
+            self.XM_Apple?.startUserOTA(handler: {[weak self] status in
+                guard let `self` = self else {
+                    return
+                }
+                
+                // 0 Successful reception, start OTA; 1 Failure to receive, no SSID configured, exit OTA; 2 Low battery, exit OTA; 3 Charging, exit OTA
+                self.addStatusCmd(ss: "status:\(status)")
+                
+            })
+
         }
 
     }
