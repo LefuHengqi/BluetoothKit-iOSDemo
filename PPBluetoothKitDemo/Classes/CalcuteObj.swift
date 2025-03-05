@@ -42,7 +42,8 @@ class CalcuteObj: NSObject {
                                       deviceMac: selectDevice!.0.deviceMac,
                                       weight: CGFloat(model.weight) / 100.0,
                                       heartRate: model.heartRate,
-                                      andImpedance: model.impedance)
+                                      andImpedance: model.impedance,
+                                      footLen: model.footLen)
         
         
         return fatModel

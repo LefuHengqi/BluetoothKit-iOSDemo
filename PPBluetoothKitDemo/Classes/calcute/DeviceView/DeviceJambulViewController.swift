@@ -50,7 +50,8 @@ class DeviceJambulViewController: BaseViewController {
                                           weight: CGFloat(calculateWeightKg),
                                           heartRate: scaleModel.heartRate,
                                           andImpedance: scaleModel.impedance,
-                                          impedance100EnCode: scaleModel.impedance100EnCode
+                                          impedance100EnCode: scaleModel.impedance100EnCode,
+                                          footLen:scaleModel.footLen
             )
             
             //Get the range of each body indicator

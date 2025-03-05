@@ -56,7 +56,8 @@ class CalcuelateResultViewController: UIViewController {
                                       deviceMac: "c1:c1:c1:c1",
                                       weight: CGFloat(self.myUserModel.weight),
                                       heartRate: heartRate,
-                                      andImpedance: self.myUserModel.impedance)
+                                      andImpedance: self.myUserModel.impedance,
+                                      footLen: 0)
             
             
             
@@ -93,7 +94,8 @@ class CalcuelateResultViewController: UIViewController {
                                        weight: CGFloat(self.myUserModel.weight),
                                        heartRate: heartRate,
                                        andImpedance: self.myUserModel.impedance,
-                                       impedance100EnCode: self.myUserModel.impedance100)
+                                       impedance100EnCode: self.myUserModel.impedance100,
+                                       footLen: 0)
             
         }
         
