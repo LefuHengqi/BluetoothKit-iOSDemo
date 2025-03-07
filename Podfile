@@ -10,7 +10,7 @@ target 'PPBluetoothKitDemo' do
   # Computing library：PPCalculateKit
   pod 'PPCalculateKit', '1.2.16'
   pod 'PPBluetoothKit', '1.2.18'
-  pod 'PPBaseKit', '1.2.13'
+  pod 'PPBaseKit', '1.2.14'
   
   
   pod 'SSZipArchive'
