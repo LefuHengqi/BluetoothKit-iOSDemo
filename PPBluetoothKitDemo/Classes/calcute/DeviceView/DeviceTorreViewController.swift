@@ -64,6 +64,7 @@ class DeviceTorreViewController: BaseViewController {
 
     var XM_Torre: PPBluetoothPeripheralTorre?
     
+    var XM_MtuSuccess = false
 
     var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage]
     
@@ -124,8 +125,14 @@ class DeviceTorreViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.XM_Torre?.scaleDataDelegate = self
-        self.XM_Torre?.codeStartMeasure({ status in
-        })
+        
+        if self.XM_MtuSuccess == true {
+            
+            self.XM_Torre?.codeStartMeasure({ status in
+            })
+            
+        }
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -329,6 +336,12 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             return
         }
         
+        if !self.XM_MtuSuccess {
+            
+            self.addConsoleLog(ss: "MTU not updated")
+            return
+        }
+        
         if title == .startMeasure{
             
             
@@ -467,6 +480,7 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         
         if title == .DFU{
             
+
             let vc = DFUViewController.instantiate()
             
             vc.XM_Obj = self.XM_Torre
@@ -882,7 +896,6 @@ extension DeviceTorreViewController:PPBluetoothSurroundDeviceDelegate{
             
             self.scaleManager.stopSearch()
             
-            
             self.scaleManager.connectDelegate = self;
             self.scaleManager.connect(peripheral, withDevice: device)
             
@@ -903,7 +916,7 @@ extension DeviceTorreViewController:PPBluetoothConnectDelegate{
     
     func centralManagerDidConnect() {
                 
-        
+        self.XM_MtuSuccess = false
         self.addConsoleLog(ss: "centralManagerDidConnect")
 
         
@@ -919,6 +932,8 @@ extension DeviceTorreViewController:PPBluetoothConnectDelegate{
         self.connectStateLbl.text = "disconnect"
         
         self.connectStateLbl.textColor = UIColor.red
+        
+        self.XM_MtuSuccess = false
     }
     
     
@@ -938,28 +953,32 @@ extension DeviceTorreViewController: PPBluetoothServiceDelegate{
 
         
         self.XM_Torre?.codeUpdateMTU({[weak self] statu in
-            
-            
+
             guard let `self` = self else {return}
             
             self.addStatusCmd(ss: "\(statu)")
             
             self.addBleCmd(ss: "codeStartMeasure")
             
-            // Start measurement command, and send "stop measurement" command after measurement is completed.
-            self.XM_Torre?.codeStartMeasure({ [weak self] status in
+            if statu == 0 { // MTU successful
                 
-                guard let `self` = self else {return}
+                // Start measurement command, and send "stop measurement" command after measurement is completed.
+                self.XM_Torre?.codeStartMeasure({ [weak self] status in
+                    
+                    guard let `self` = self else {return}
+                    
+                    self.addStatusCmd(ss: "\(statu)")
+                })
                 
-                self.addStatusCmd(ss: "\(statu)")
-            })
-
-            
-            self.connectStateLbl.text = "connected"
-            
-            self.connectStateLbl.textColor = UIColor.green
-            
-            self.XM_IsConnect = true
+                self.XM_MtuSuccess = true
+                
+                self.connectStateLbl.text = "connected"
+                
+                self.connectStateLbl.textColor = UIColor.green
+                
+                self.XM_IsConnect = true
+                
+            }
 
         })
 
