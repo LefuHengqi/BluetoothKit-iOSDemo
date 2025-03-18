@@ -227,27 +227,40 @@ class DeviceTorreViewController: BaseViewController {
             user.gender = .female
             user.isAthleteMode = false
             
-            // Calculate body data (Eight electrodes)
-            let fatModel = PPBodyFatModel(userModel: user,
-                                          deviceMac: self.deviceModel.deviceMac,
-                                          weight: CGFloat(calculateWeightKg),
-                                          heartRate: scaleModel.heartRate,
-                                          deviceCalcuteType: advModel.deviceCalcuteType,
-                                          z20KhzLeftArmEnCode: scaleModel.z20KhzLeftArmEnCode,
-                                          z20KhzRightArmEnCode: scaleModel.z20KhzRightArmEnCode,
-                                          z20KhzLeftLegEnCode: scaleModel.z20KhzLeftLegEnCode,
-                                          z20KhzRightLegEnCode: scaleModel.z20KhzRightLegEnCode,
-                                          z20KhzTrunkEnCode: scaleModel.z20KhzTrunkEnCode,
-                                          z100KhzLeftArmEnCode: scaleModel.z100KhzLeftArmEnCode,
-                                          z100KhzRightArmEnCode: scaleModel.z100KhzRightArmEnCode,
-                                          z100KhzLeftLegEnCode: scaleModel.z100KhzLeftLegEnCode,
-                                          z100KhzRightLegEnCode: scaleModel.z100KhzRightLegEnCode,
-                                          z100KhzTrunkEnCode: scaleModel.z100KhzTrunkEnCode)
+            var fatModel:PPBodyFatModel? = nil
+            if (PPCalculateTools.is8Electrodes(with: advModel.deviceCalcuteType)) {
+                // Calculate body data (Eight electrodes)
+                fatModel = PPBodyFatModel(userModel: user,
+                                              deviceMac: self.deviceModel.deviceMac,
+                                              weight: CGFloat(calculateWeightKg),
+                                              heartRate: scaleModel.heartRate,
+                                              deviceCalcuteType: advModel.deviceCalcuteType,
+                                              z20KhzLeftArmEnCode: scaleModel.z20KhzLeftArmEnCode,
+                                              z20KhzRightArmEnCode: scaleModel.z20KhzRightArmEnCode,
+                                              z20KhzLeftLegEnCode: scaleModel.z20KhzLeftLegEnCode,
+                                              z20KhzRightLegEnCode: scaleModel.z20KhzRightLegEnCode,
+                                              z20KhzTrunkEnCode: scaleModel.z20KhzTrunkEnCode,
+                                              z100KhzLeftArmEnCode: scaleModel.z100KhzLeftArmEnCode,
+                                              z100KhzRightArmEnCode: scaleModel.z100KhzRightArmEnCode,
+                                              z100KhzLeftLegEnCode: scaleModel.z100KhzLeftLegEnCode,
+                                              z100KhzRightLegEnCode: scaleModel.z100KhzRightLegEnCode,
+                                              z100KhzTrunkEnCode: scaleModel.z100KhzTrunkEnCode)
+            } else {
+                // Calculate body data (Four electrodes)
+                fatModel = PPBodyFatModel(userModel: user, deviceCalcuteType: advModel.deviceCalcuteType, deviceMac: self.deviceModel.deviceMac, weight: CGFloat(calculateWeightKg), heartRate: scaleModel.heartRate, andImpedance: scaleModel.impedance, impedance100EnCode: scaleModel.impedance100EnCode, footLen: scaleModel.footLen)
+            }
+            
+            guard let fatModel = fatModel else {
+                print("fatModel is nil")
+                return
+            }
+            
+            let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
             
             //Get the range of each body indicator
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
             let weightParam = detailModel.ppBodyParam_Weight
-            print("weight-currentValue:\(weightParam.currentValue) weight-range:\(weightParam.standardArray)")
+            print("weight-currentValue:\(weightParam.currentValue) range:\(weightParam.standardArray)  standardTitle:\(bodyDataJson[weightParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[weightParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[weightParam.standeValuation] ?? "")")
     //        print("data:\(detailModel.data)")
             
             

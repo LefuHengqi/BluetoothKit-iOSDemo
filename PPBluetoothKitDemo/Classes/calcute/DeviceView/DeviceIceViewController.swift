@@ -89,10 +89,12 @@ class DeviceIceViewController: BaseViewController {
                                           z100KhzRightLegEnCode: scaleModel.z100KhzRightLegEnCode,
                                           z100KhzTrunkEnCode: scaleModel.z100KhzTrunkEnCode)
             
+            let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
+            
             //Get the range of each body indicator
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
             let weightParam = detailModel.ppBodyParam_Weight
-            print("weight-currentValue:\(weightParam.currentValue) weight-range:\(weightParam.standardArray)")
+            print("weight-currentValue:\(weightParam.currentValue) range:\(weightParam.standardArray)  standardTitle:\(bodyDataJson[weightParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[weightParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[weightParam.standeValuation] ?? "")")
     //        print("data:\(detailModel.data)")
             
             

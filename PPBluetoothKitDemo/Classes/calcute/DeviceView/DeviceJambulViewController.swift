@@ -43,7 +43,7 @@ class DeviceJambulViewController: BaseViewController {
             user.gender = .female
             user.isAthleteMode = false
             
-            // Calculate body data (Eight electrodes)
+            // Calculate body data (Four electrodes)
             let fatModel = PPBodyFatModel(userModel: user,
                                           deviceCalcuteType: advModel.deviceCalcuteType,
                                           deviceMac: advModel.deviceMac,
@@ -54,10 +54,12 @@ class DeviceJambulViewController: BaseViewController {
                                           footLen:scaleModel.footLen
             )
             
+            let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
+            
             //Get the range of each body indicator
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
             let weightParam = detailModel.ppBodyParam_Weight
-            print("weight-currentValue:\(weightParam.currentValue) weight-range:\(weightParam.standardArray)")
+            print("weight-currentValue:\(weightParam.currentValue) range:\(weightParam.standardArray)  standardTitle:\(bodyDataJson[weightParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[weightParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[weightParam.standeValuation] ?? "")")
             //        print("data:\(detailModel.data)")
             
             
