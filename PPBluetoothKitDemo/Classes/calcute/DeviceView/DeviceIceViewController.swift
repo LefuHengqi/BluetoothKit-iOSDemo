@@ -16,7 +16,7 @@ class DeviceIceViewController: BaseViewController {
     
     var scaleCoconutViewController:ScaleCoconutViewController?
     
-    var array:[menuType] = [.deviceInfo,.startMeasure,.SyncTime,.wificonfigstatus,.distributionNetwork,.changeUnit,.openHeartRate, .openImpedance, .closeImpedance, .closeHeartRate,.keepAlive]
+    var array:[menuType] = [.deviceInfo,.startMeasure,.SyncTime,.wificonfigstatus,.distributionNetwork,.changeUnit,.openHeartRate, .openImpedance, .closeImpedance, .closeHeartRate,.keepAlive, .dataSyncLog]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -397,6 +397,22 @@ extension DeviceIceViewController:UICollectionViewDelegate,UICollectionViewDataS
                 }
                 
                 self.addStatusCmd(ss: "\(timeStr)")
+            })
+        }
+        if title == .dataSyncLog {
+            self.addBleCmd(ss: "queryDeviceTime")
+            self.addBleCmd(ss: "hold on...")
+            self.XM_Ice?.dataSyncLog({[weak self] progress, path, isFailed in
+                guard let `self` = self else {
+                    return
+                }
+                
+                print("progress:\(progress) isFailed:\(isFailed) path:\(path)")
+                
+                if progress >= 1.0 {
+                    self.addStatusCmd(ss: "progress:\(progress) isFailed:\(isFailed) path:\(path)")
+                }
+                
             })
         }
     }
