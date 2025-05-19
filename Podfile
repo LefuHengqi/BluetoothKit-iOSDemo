@@ -9,7 +9,7 @@ target 'PPBluetoothKitDemo' do
   # Device connection：PPBluetoothKit
   # Computing library：PPCalculateKit
   pod 'PPCalculateKit', '1.2.19'
-  pod 'PPBluetoothKit', '1.2.24'
+  pod 'PPBluetoothKit', '1.2.25'
   pod 'PPBaseKit', '1.2.16'
 
 
