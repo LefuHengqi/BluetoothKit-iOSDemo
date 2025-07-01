@@ -53,9 +53,9 @@ class DeviceDorreViewController: BaseViewController {
 //        .getTorreLanguage
     ]
     
-    let user : PPDorreSettingModel = {
+    let user : PPTorreSettingModel = {
         
-        let uu = PPDorreSettingModel()
+        let uu = PPTorreSettingModel()
         
         uu.isAthleteMode = false
         uu.isPregnantMode = false
