@@ -116,7 +116,12 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
             caType = "PeripheralJambul"
         case .peripheralBorre:
             caType = "PeripheralBorre"
-            
+        case .peripheralKorre:
+            caType = "PeripheralKorre"
+        case .peripheralLorre:
+            caType = "PeripheralLorre"
+        case .peripheralMorre:
+            caType = "PeripheralMorre"
             
         default:
             caType = "Unknow"

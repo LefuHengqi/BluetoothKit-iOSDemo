@@ -56,6 +56,10 @@ enum menuType:String{
     case setUserInfoIsNotEdit = "set UserInfoIsNotEdit"
     case setUserInfoIsEdit = "set UserInfoIsEdit"
     case DFU = "DFU"
+    
+    case showWifiIcon = "Show Wi-Fi Icon"
+    case hideWifiIcon = "Hide Wi-Fi Icon"
+    case getWifiIconStatus = "Get Wi-Fi icon status"
 
 
 }
@@ -66,7 +70,7 @@ class DeviceTorreViewController: BaseViewController {
     
     var XM_MtuSuccess = false
 
-    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage]
+    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus]
     
     let user : PPTorreSettingModel = {
         
@@ -871,6 +875,56 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             })
             
         }
+        
+        if title == .showWifiIcon {
+            
+            self.addBleCmd(ss: menuType.showWifiIcon.rawValue)
+
+            self.XM_Torre?.showWifiIcon({[weak self] (status) in
+                guard let `self` = self else {
+                    return
+                }
+                
+                let ret = status == 0 ? "success" : "failed"
+                self.addStatusCmd(ss: "status:\(ret)")
+                
+            })
+            
+        }
+        
+        if title == .hideWifiIcon {
+            
+            self.addBleCmd(ss: menuType.hideWifiIcon.rawValue)
+
+            self.XM_Torre?.hideWifiIcon({[weak self] (status) in
+                guard let `self` = self else {
+                    return
+                }
+                
+                let ret = status == 0 ? "success" : "failed"
+                self.addStatusCmd(ss: "status:\(ret)")
+                
+            })
+            
+        }
+        
+        if title == .getWifiIconStatus {
+            
+            self.addBleCmd(ss: menuType.getWifiIconStatus.rawValue)
+
+            self.XM_Torre?.fetchWifiIconStatus({[weak self] (status) in
+                guard let `self` = self else {
+                    return
+                }
+                
+                let str = status == 0 ? "open" : "close"
+                
+                self.addStatusCmd(ss: "status:\(str)")
+                
+            })
+            
+        }
+        
     }
     
 }
