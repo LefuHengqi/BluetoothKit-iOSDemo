@@ -60,6 +60,8 @@ enum menuType:String{
     case showWifiIcon = "Show Wi-Fi Icon"
     case hideWifiIcon = "Hide Wi-Fi Icon"
     case getWifiIconStatus = "Get Wi-Fi icon status"
+    
+    
 
 
 }

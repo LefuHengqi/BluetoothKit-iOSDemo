@@ -271,6 +271,19 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
             
             
             break
+        case .peripheralKorre:
+            
+            let vc = DeviceKorreViewController.instantiate()
+            vc.title = model.0.deviceName
+            vc.deviceModel = model.0
+            self.navigationController?.pushViewController(vc, animated: true)
+        case .peripheralLorre:
+            
+            let vc = DeviceLorreViewController.instantiate()
+            vc.title = model.0.deviceName
+            vc.deviceModel = model.0
+            self.navigationController?.pushViewController(vc, animated: true)
+            
         @unknown default:
             
             print("undefined")

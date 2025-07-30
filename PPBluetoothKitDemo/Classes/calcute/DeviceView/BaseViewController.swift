@@ -32,6 +32,13 @@ enum DeviceMenuType:String{
     case queryDNS = "Query DNS"
     case TestOTA = "Start Test OTA"
     case UserOTA = "Start User OTA"
+    
+    case syncUserInfo = "Sync user info"
+    case syncFood = "Sync Food"
+    case selectUser = "Select User"
+    case deleteUser = "Delete User"
+    case fetchFoodIDList = "Fetch FoodID List"
+    case deleteFood = "Delete Food"
 }
 
 
@@ -49,7 +56,7 @@ class BaseViewController: UIViewController {
     @IBOutlet weak var connectStateLbl: UILabel!
     
     @IBOutlet weak var weightLbl: UILabel!
-    var unit = PPDeviceUnit.unitKG
+    var unit = PPDeviceUnit.unitG
     
 
     var XM_IsConnect: Bool = false 
@@ -94,16 +101,19 @@ class BaseViewController: UIViewController {
 extension BaseViewController{
     
      func addConsoleLog(ss:String){
-         self.conslogStr.append("\ndelegate:\(ss)\n")
-         
-       
-         self.scrollBottom()
+         DispatchQueue.main.async {
+             self.conslogStr.append("\ndelegate:\(ss)\n")
+
+             self.scrollBottom()
+         }
     }
     
     func addBleCmd(ss:String){
-        self.conslogStr.append("\nfunction:\(ss)\n")
-
-        self.scrollBottom()
+        DispatchQueue.main.async {
+            self.conslogStr.append("\nfunction:\(ss)\n")
+            
+            self.scrollBottom()
+        }
 
     }
     
