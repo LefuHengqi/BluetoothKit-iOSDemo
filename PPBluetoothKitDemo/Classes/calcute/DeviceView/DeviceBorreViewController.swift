@@ -7,7 +7,7 @@
 
 import UIKit
 import PPBluetoothKit
-
+import PPCalculateKit
 
 
 
@@ -17,36 +17,20 @@ class DeviceBorreViewController: BaseViewController {
     
 
     var array = [menuType.checkBindState,
-                 menuType.deviceInfo,
-                 menuType.startMeasure,
-                 .selectUser,menuType.SyncTime,
-//                 .wificonfigstatus,
-//                 .distributionNetwork,
+                 .deviceInfo,
+                 .selectUser,
+                 .SyncTime,
                  .SyncUserList,
                  .deleteUser,
-//                 .ImpedanceSwitch,
-//                 .openImpedance,
-//                 .closeImpedance,
-//                 .changeUnit,
-//                 .HeartRateSwitch,
-//                 .openHeartRate,
-//                 .closeHeartRate,
-//                 .clearDeviceData,
-//                 .ScreenLuminance,
+                 .ImpedanceSwitch,
+                 .openImpedance,
+                 .closeImpedance,
+                 .changeUnit,
+                 .clearDeviceData,
                  .keepAlive,
                  .getRGBMode,
                  .setRGBMode,
                  .FetchHistory,
-//                 .getUserMembers,
-
-//        .otaUser,
-//                 .otaLocal,
-//                 .dataSyncLog,
-//        .impedanceTestMode,
-//        .openImpedanceTestMode,
-//        .closeImpedanceTestMode,
-//                 .setTorreLanguage,
-//        .getTorreLanguage
     ]
     
     let user : PPTorreSettingModel = {
@@ -176,7 +160,7 @@ class DeviceBorreViewController: BaseViewController {
     
     }
     
-    func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, isLock:Bool) {
+    func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, advModel: PPBluetoothAdvDeviceModel, isLock:Bool) {
         
         let calculateWeightKg = Float(scaleModel.weight)/100
         
@@ -184,16 +168,70 @@ class DeviceBorreViewController: BaseViewController {
         
         weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
         
-        if (scaleModel.isHeartRating) {
+        
+        // Measurement completed
+        if scaleModel.isEnd {
             
-            weightStr = weightStr + "\nMeasuring heart rate..."
-        } else if (scaleModel.isFatting) {
+            // User information
+            let user = PPBluetoothDeviceSettingModel()
+            user.height = 160
+            user.age = 20
+            user.gender = .female
+            user.isAthleteMode = false
             
-            weightStr = weightStr + "\nMeasuring body fat..."
+            var fatModel:PPBodyFatModel? = nil
+            if (PPCalculateTools.is8Electrodes(with: advModel.deviceCalcuteType)) {
+                // Calculate body data (Eight electrodes)
+                fatModel = PPBodyFatModel(userModel: user,
+                                              deviceMac: self.deviceModel.deviceMac,
+                                              weight: CGFloat(calculateWeightKg),
+                                              heartRate: scaleModel.heartRate,
+                                              deviceCalcuteType: advModel.deviceCalcuteType,
+                                              z20KhzLeftArmEnCode: scaleModel.z20KhzLeftArmEnCode,
+                                              z20KhzRightArmEnCode: scaleModel.z20KhzRightArmEnCode,
+                                              z20KhzLeftLegEnCode: scaleModel.z20KhzLeftLegEnCode,
+                                              z20KhzRightLegEnCode: scaleModel.z20KhzRightLegEnCode,
+                                              z20KhzTrunkEnCode: scaleModel.z20KhzTrunkEnCode,
+                                              z100KhzLeftArmEnCode: scaleModel.z100KhzLeftArmEnCode,
+                                              z100KhzRightArmEnCode: scaleModel.z100KhzRightArmEnCode,
+                                              z100KhzLeftLegEnCode: scaleModel.z100KhzLeftLegEnCode,
+                                              z100KhzRightLegEnCode: scaleModel.z100KhzRightLegEnCode,
+                                              z100KhzTrunkEnCode: scaleModel.z100KhzTrunkEnCode)
+            } else {
+                // Calculate body data (Four electrodes)
+                fatModel = PPBodyFatModel(userModel: user, deviceCalcuteType: advModel.deviceCalcuteType, deviceMac: self.deviceModel.deviceMac, weight: CGFloat(calculateWeightKg), heartRate: scaleModel.heartRate, andImpedance: scaleModel.impedance, impedance100EnCode: scaleModel.impedance100EnCode, footLen: scaleModel.footLen)
+            }
+            
+            guard let fatModel = fatModel else {
+                print("fatModel is nil")
+                return
+            }
+            
+            let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
+            
+            //Get the range of each body indicator
+            let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
+            let weightParam = detailModel.ppBodyParam_Weight
+            print("weight-currentValue:\(weightParam.currentValue) range:\(weightParam.standardArray)  standardTitle:\(bodyDataJson[weightParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[weightParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[weightParam.standeValuation] ?? "")")
+    //        print("data:\(detailModel.data)")
+            
+            
+            let ss = CommonTool.getDesp(fatModel: fatModel, userModel: user)
+            self.addStatusCmd(ss: ss)
+            
+        } else {
+            
+            if (scaleModel.isHeartRating) {
+                
+                weightStr = weightStr + "\nMeasuring heart rate..."
+            } else if (scaleModel.isFatting) {
+                
+                weightStr = weightStr + "\nMeasuring body fat..."
+            }
+            
         }
         
         self.weightLbl.text = weightStr
-        
     }
 
     deinit{
@@ -706,17 +744,7 @@ extension DeviceBorreViewController:UICollectionViewDelegate,UICollectionViewDat
             })
         }
         
-//        if title == .getUserMembers{
-//            
-//            self.addBleCmd(ss: "getUserMembers")
-//            
-//            self.XM_Borre?.dataUserMemberids(user, withHandler: { statu in
-//                
-//                self.addStatusCmd(ss: "\(statu)")
-//
-//            })
-//
-//        }
+
         
         
         if title == .getRGBMode{
@@ -919,7 +947,7 @@ extension DeviceBorreViewController: PPBluetoothServiceDelegate{
 extension DeviceBorreViewController:PPBluetoothScaleDataDelegate{
     func monitorProcessData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        self.weightLbl.text = String.init(format: "weight process:%0.2f", Float(model.weight) / 100.0)
+        displayScaleModel(model, advModel: advModel, isLock: false)
         
         self.weightLbl.textColor = UIColor.red
         
@@ -927,12 +955,13 @@ extension DeviceBorreViewController:PPBluetoothScaleDataDelegate{
     
     func monitorLockData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        self.weightLbl.text = String.init(format: "weight lock:%0.2f", Float(model.weight) / 100.0)
+        displayScaleModel(model, advModel: advModel, isLock: true)
         
         self.weightLbl.textColor = UIColor.green
     }
     
     func monitorScaleState(_ scaleState: PPScaleState!) {
+        
         print("monitorScaleState --- captureZeroType:\(scaleState.captureZeroType) heartRateType:\(scaleState.heartRateType) impedanceType:\(scaleState.impedanceType) measureModeType:\(scaleState.measureModeType) measureResultType:\(scaleState.measureResultType) powerType:\(scaleState.powerType) weightType:\(scaleState.weightType)")
     }
     
