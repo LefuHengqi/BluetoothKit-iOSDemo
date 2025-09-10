@@ -7,7 +7,7 @@
 
 import UIKit
 import PPBluetoothKit
-
+import PPCalculateKit
 
 class BorreScaleViewController: UIViewController {
 
@@ -302,8 +302,57 @@ extension BorreScaleViewController:PPBluetoothScaleDataDelegate{
             
             self.addStatusCmd(ss: model.description)
             
+            var fat = PPBodyFatModel()
             
-            let fat = PPBodyFatModel.init(userModel: self.user, deviceCalcuteType: advModel.deviceCalcuteType, deviceMac: advModel.deviceMac, weight: CGFloat(model.weight) / 100, heartRate: model.heartRate, andImpedance: model.impedance, impedance100EnCode: model.impedance100EnCode, footLen: model.footLen)
+            if (PPCalculateTools.is8Electrodes(with: advModel.deviceCalcuteType)) {
+                
+                // Calculate body data (Eight electrodes)
+                let inputModel = PPCalculateInputModel()
+                inputModel.secret = CommonTool.getSecret(calcuteType: advModel.deviceCalcuteType)
+                inputModel.isAthleteMode = self.user.isAthleteMode
+                inputModel.isPregnantMode = self.user.isPregnantMode
+                inputModel.height = self.user.height
+                inputModel.age = self.user.age
+                inputModel.gender = self.user.gender
+                inputModel.deviceCalcuteType = advModel.deviceCalcuteType
+                inputModel.weight = CGFloat(model.weight) / 100
+                inputModel.z20KhzLeftArmEnCode = model.z20KhzLeftArmEnCode
+                inputModel.z20KhzRightArmEnCode = model.z20KhzRightArmEnCode
+                inputModel.z20KhzLeftLegEnCode = model.z20KhzLeftLegEnCode
+                inputModel.z20KhzRightLegEnCode = model.z20KhzRightLegEnCode
+                inputModel.z20KhzTrunkEnCode = model.z20KhzTrunkEnCode
+                inputModel.z100KhzLeftArmEnCode = model.z100KhzLeftArmEnCode
+                inputModel.z100KhzRightArmEnCode = model.z100KhzRightArmEnCode
+                inputModel.z100KhzLeftLegEnCode = model.z100KhzLeftLegEnCode
+                inputModel.z100KhzRightLegEnCode = model.z100KhzRightLegEnCode
+                inputModel.z100KhzTrunkEnCode = model.z100KhzTrunkEnCode
+                inputModel.deviceMac = advModel.deviceMac
+                inputModel.heartRate = model.heartRate
+                inputModel.footLen = model.footLen
+
+                
+                fat = PPBodyFatModel(inputModel: inputModel)
+            } else {
+                
+                // Calculate body data (Four electrodes)
+                let inputModel = PPCalculateInputModel()
+                inputModel.secret = CommonTool.getSecret(calcuteType: advModel.deviceCalcuteType)
+                inputModel.isAthleteMode = self.user.isAthleteMode
+                inputModel.isPregnantMode = self.user.isPregnantMode
+                inputModel.height = self.user.height
+                inputModel.age = self.user.age
+                inputModel.gender = self.user.gender
+                inputModel.deviceCalcuteType = advModel.deviceCalcuteType
+                inputModel.weight = CGFloat(model.weight) / 100
+                inputModel.impedance = model.impedance
+                inputModel.impedance100EnCode = model.impedance100EnCode
+                inputModel.deviceMac = advModel.deviceMac
+                inputModel.heartRate = model.heartRate
+                inputModel.footLen = model.footLen
+
+                fat = PPBodyFatModel(inputModel: inputModel)
+            }
+
             
             let alertVC = UIAlertController(title: fat.description, message: "", preferredStyle: .alert)
             

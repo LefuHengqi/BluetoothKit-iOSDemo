@@ -226,34 +226,53 @@ class DeviceTorreViewController: BaseViewController {
         // Measurement completed
         if scaleModel.isEnd {
             
-            // User information
-            let user = PPBluetoothDeviceSettingModel()
-            user.height = 160
-            user.age = 20
-            user.gender = .female
-            user.isAthleteMode = false
+            
+            let inputModel = PPCalculateInputModel()
+            inputModel.secret = CommonTool.getSecret(calcuteType: advModel.deviceCalcuteType)
+            inputModel.isAthleteMode = self.user.isAthleteMode
+            inputModel.isPregnantMode = self.user.isPregnantMode
+            inputModel.height = self.user.height
+            inputModel.age = self.user.age
+            inputModel.gender = self.user.gender
+            inputModel.unit = unit
             
             var fatModel:PPBodyFatModel? = nil
             if (PPCalculateTools.is8Electrodes(with: advModel.deviceCalcuteType)) {
                 // Calculate body data (Eight electrodes)
-                fatModel = PPBodyFatModel(userModel: user,
-                                              deviceMac: self.deviceModel.deviceMac,
-                                              weight: CGFloat(calculateWeightKg),
-                                              heartRate: scaleModel.heartRate,
-                                              deviceCalcuteType: advModel.deviceCalcuteType,
-                                              z20KhzLeftArmEnCode: scaleModel.z20KhzLeftArmEnCode,
-                                              z20KhzRightArmEnCode: scaleModel.z20KhzRightArmEnCode,
-                                              z20KhzLeftLegEnCode: scaleModel.z20KhzLeftLegEnCode,
-                                              z20KhzRightLegEnCode: scaleModel.z20KhzRightLegEnCode,
-                                              z20KhzTrunkEnCode: scaleModel.z20KhzTrunkEnCode,
-                                              z100KhzLeftArmEnCode: scaleModel.z100KhzLeftArmEnCode,
-                                              z100KhzRightArmEnCode: scaleModel.z100KhzRightArmEnCode,
-                                              z100KhzLeftLegEnCode: scaleModel.z100KhzLeftLegEnCode,
-                                              z100KhzRightLegEnCode: scaleModel.z100KhzRightLegEnCode,
-                                              z100KhzTrunkEnCode: scaleModel.z100KhzTrunkEnCode)
+                
+                
+                inputModel.deviceCalcuteType = advModel.deviceCalcuteType
+                inputModel.weight = CGFloat(calculateWeightKg)
+                inputModel.z20KhzLeftArmEnCode = scaleModel.z20KhzLeftArmEnCode
+                inputModel.z20KhzRightArmEnCode = scaleModel.z20KhzRightArmEnCode
+                inputModel.z20KhzLeftLegEnCode = scaleModel.z20KhzLeftLegEnCode
+                inputModel.z20KhzRightLegEnCode = scaleModel.z20KhzRightLegEnCode
+                inputModel.z20KhzTrunkEnCode = scaleModel.z20KhzTrunkEnCode
+                inputModel.z100KhzLeftArmEnCode = scaleModel.z100KhzLeftArmEnCode
+                inputModel.z100KhzRightArmEnCode = scaleModel.z100KhzRightArmEnCode
+                inputModel.z100KhzLeftLegEnCode = scaleModel.z100KhzLeftLegEnCode
+                inputModel.z100KhzRightLegEnCode = scaleModel.z100KhzRightLegEnCode
+                inputModel.z100KhzTrunkEnCode = scaleModel.z100KhzTrunkEnCode
+                inputModel.deviceMac = advModel.deviceMac
+                inputModel.heartRate = scaleModel.heartRate
+                inputModel.footLen = scaleModel.footLen
+
+                
+                fatModel = PPBodyFatModel(inputModel: inputModel)
             } else {
                 // Calculate body data (Four electrodes)
-                fatModel = PPBodyFatModel(userModel: user, deviceCalcuteType: advModel.deviceCalcuteType, deviceMac: self.deviceModel.deviceMac, weight: CGFloat(calculateWeightKg), heartRate: scaleModel.heartRate, andImpedance: scaleModel.impedance, impedance100EnCode: scaleModel.impedance100EnCode, footLen: scaleModel.footLen)
+
+
+                inputModel.deviceCalcuteType = advModel.deviceCalcuteType
+                inputModel.weight = CGFloat(calculateWeightKg)
+                inputModel.impedance = scaleModel.impedance
+                inputModel.impedance100EnCode = scaleModel.impedance100EnCode
+                inputModel.deviceMac = advModel.deviceMac
+                inputModel.heartRate = scaleModel.heartRate
+                inputModel.footLen = scaleModel.footLen
+
+                
+                fatModel = PPBodyFatModel(inputModel: inputModel)
             }
             
             guard let fatModel = fatModel else {
@@ -270,7 +289,7 @@ class DeviceTorreViewController: BaseViewController {
     //        print("data:\(detailModel.data)")
             
             
-            let ss = CommonTool.getDesp(fatModel: fatModel, userModel: user)
+            let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
             self.addStatusCmd(ss: ss)
             
         } else {

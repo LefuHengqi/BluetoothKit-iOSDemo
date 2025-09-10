@@ -38,66 +38,69 @@ class CalcuelateResultViewController: UIViewController {
     
     
     func showReslut(){
-        let userModel =  PPBluetoothDeviceSettingModel()
         
-        userModel.age = self.myUserModel.age
-        userModel.height = self.myUserModel.height
-        userModel.gender = PPDeviceGenderType.init(rawValue: UInt(self.myUserModel.sex))!
-        userModel.isAthleteMode = self.myUserModel.isAthleteMode == 1 ?true:false
+        let inputModel = PPCalculateInputModel()
+        inputModel.age = self.myUserModel.age
+        inputModel.height = self.myUserModel.height
+        inputModel.gender = PPDeviceGenderType.init(rawValue: UInt(self.myUserModel.sex)) ?? .female
+        inputModel.isAthleteMode = self.myUserModel.isAthleteMode == 1 ?true:false
         
         let heartRate = self.myUserModel.heartRate
+        
+        
         
         var fatModel:PPBodyFatModel!
         
         if self.selectType == .calcuteType4DC{
-            
-            fatModel = PPBodyFatModel(userModel: userModel,
-                                      deviceCalcuteType: PPDeviceCalcuteType.direct,
-                                      deviceMac: "c1:c1:c1:c1",
-                                      weight: CGFloat(self.myUserModel.weight),
-                                      heartRate: heartRate,
-                                      andImpedance: self.myUserModel.impedance,
-                                      footLen: 0)
-            
-            
-            
+
+            inputModel.secret = CommonTool.getSecret(calcuteType: PPDeviceCalcuteType.direct)
+            inputModel.deviceCalcuteType = PPDeviceCalcuteType.direct
+            inputModel.weight = CGFloat(self.myUserModel.weight)
+            inputModel.impedance = self.myUserModel.impedance
+            inputModel.deviceMac = "c1:c1:c1:c1"
+            inputModel.heartRate = heartRate
             
             
         }else if self.selectType == .calcuteType8AC{
             
             let deviceCalcuteType8 = self.deviceCalcuteType ?? .alternate8
             
-            fatModel  = PPBodyFatModel(userModel: userModel,
-                                       deviceMac: "",
-                                       weight: CGFloat(self.myUserModel.weight),
-                                       heartRate: heartRate, 
-                                       deviceCalcuteType: deviceCalcuteType8,
-                                       z20KhzLeftArmEnCode: self.myUserModel.z20KhzLeftArmEnCode,
-                                       z20KhzRightArmEnCode: self.myUserModel.z20KhzRightArmEnCode,
-                                       z20KhzLeftLegEnCode: self.myUserModel.z20KhzLeftLegEnCode,
-                                       z20KhzRightLegEnCode: self.myUserModel.z20KhzRightLegEnCode,
-                                       z20KhzTrunkEnCode: self.myUserModel.z20KhzTrunkEnCode,
-                                       z100KhzLeftArmEnCode: self.myUserModel.z100KhzLeftArmEnCode,
-                                       z100KhzRightArmEnCode: self.myUserModel.z100KhzRightArmEnCode,
-                                       z100KhzLeftLegEnCode: self.myUserModel.z100KhzLeftLegEnCode,
-                                       z100KhzRightLegEnCode: self.myUserModel.z100KhzRightLegEnCode,
-                                       z100KhzTrunkEnCode: self.myUserModel.z100KhzTrunkEnCode)
+            inputModel.secret = CommonTool.getSecret(calcuteType: deviceCalcuteType8)
+            inputModel.deviceCalcuteType = deviceCalcuteType8
+            inputModel.weight = CGFloat(self.myUserModel.weight)
+            inputModel.z20KhzLeftArmEnCode = self.myUserModel.z20KhzLeftArmEnCode
+            inputModel.z20KhzRightArmEnCode = self.myUserModel.z20KhzRightArmEnCode
+            inputModel.z20KhzLeftLegEnCode = self.myUserModel.z20KhzLeftLegEnCode
+            inputModel.z20KhzRightLegEnCode = self.myUserModel.z20KhzRightLegEnCode
+            inputModel.z20KhzTrunkEnCode = self.myUserModel.z20KhzTrunkEnCode
+            inputModel.z100KhzLeftArmEnCode = self.myUserModel.z100KhzLeftArmEnCode
+            inputModel.z100KhzRightArmEnCode = self.myUserModel.z100KhzRightArmEnCode
+            inputModel.z100KhzLeftLegEnCode = self.myUserModel.z100KhzLeftLegEnCode
+            inputModel.z100KhzRightLegEnCode = self.myUserModel.z100KhzRightLegEnCode
+            inputModel.z100KhzTrunkEnCode = self.myUserModel.z100KhzTrunkEnCode
+            inputModel.deviceMac = ""
+            inputModel.heartRate = heartRate
+
+            
         }else{
             
             let deviceCalcuteType4 = self.deviceCalcuteType ?? .alternate
             
             // Only dual-frequency algorithm (PPDeviceCalcuteType.alternate4_1) needs to pass "impedance100EnCode"
+            inputModel.secret = CommonTool.getSecret(calcuteType: deviceCalcuteType4)
+            inputModel.deviceCalcuteType = deviceCalcuteType4
+            inputModel.weight = CGFloat(self.myUserModel.weight)
+            inputModel.impedance = self.myUserModel.impedance
+            inputModel.impedance100EnCode = self.myUserModel.impedance100
+            inputModel.deviceMac = "c1:c1:c1:c1"
+            inputModel.heartRate = heartRate
+
             
-            fatModel =  PPBodyFatModel(userModel: userModel,
-                                       deviceCalcuteType: deviceCalcuteType4,
-                                       deviceMac: "c1:c1:c1:c1",
-                                       weight: CGFloat(self.myUserModel.weight),
-                                       heartRate: heartRate,
-                                       andImpedance: self.myUserModel.impedance,
-                                       impedance100EnCode: self.myUserModel.impedance100,
-                                       footLen: 0)
+            
             
         }
+        
+        fatModel = PPBodyFatModel(inputModel: inputModel)
         
         let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
         
@@ -107,7 +110,7 @@ class CalcuelateResultViewController: UIViewController {
         print("weight-currentValue:\(weightParam.currentValue) range:\(weightParam.standardArray)  standardTitle:\(bodyDataJson[weightParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[weightParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[weightParam.standeValuation] ?? "")")
 //        print("data:\(detailModel.data)")
         
-        let ss = CommonTool.getDesp(fatModel: fatModel, userModel: userModel)
+        let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
 
         
         self.textView.text = ss

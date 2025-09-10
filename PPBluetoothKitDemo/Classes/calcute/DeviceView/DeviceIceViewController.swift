@@ -65,29 +65,34 @@ class DeviceIceViewController: BaseViewController {
         // Measurement completed
         if scaleModel.isEnd {
             
-            // User information
-            let user = PPBluetoothDeviceSettingModel()
-            user.height = 160
-            user.age = 20
-            user.gender = .female
-            user.isAthleteMode = false
-            
             // Calculate body data (Eight electrodes)
-            let fatModel = PPBodyFatModel(userModel: user,
-                                          deviceMac: self.deviceModel.deviceMac,
-                                          weight: CGFloat(calculateWeightKg),
-                                          heartRate: scaleModel.heartRate,
-                                          deviceCalcuteType: advModel.deviceCalcuteType,
-                                          z20KhzLeftArmEnCode: scaleModel.z20KhzLeftArmEnCode,
-                                          z20KhzRightArmEnCode: scaleModel.z20KhzRightArmEnCode,
-                                          z20KhzLeftLegEnCode: scaleModel.z20KhzLeftLegEnCode,
-                                          z20KhzRightLegEnCode: scaleModel.z20KhzRightLegEnCode,
-                                          z20KhzTrunkEnCode: scaleModel.z20KhzTrunkEnCode,
-                                          z100KhzLeftArmEnCode: scaleModel.z100KhzLeftArmEnCode,
-                                          z100KhzRightArmEnCode: scaleModel.z100KhzRightArmEnCode,
-                                          z100KhzLeftLegEnCode: scaleModel.z100KhzLeftLegEnCode,
-                                          z100KhzRightLegEnCode: scaleModel.z100KhzRightLegEnCode,
-                                          z100KhzTrunkEnCode: scaleModel.z100KhzTrunkEnCode)
+            let inputModel = PPCalculateInputModel()
+            inputModel.secret = CommonTool.getSecret(calcuteType: advModel.deviceCalcuteType)
+            inputModel.isAthleteMode = false
+            inputModel.isPregnantMode = false
+            inputModel.height = 160
+            inputModel.age = 20
+            inputModel.gender = .female
+            inputModel.unit = unit
+            inputModel.deviceCalcuteType = advModel.deviceCalcuteType
+            inputModel.weight = CGFloat(calculateWeightKg)
+            inputModel.z20KhzLeftArmEnCode = scaleModel.z20KhzLeftArmEnCode
+            inputModel.z20KhzRightArmEnCode = scaleModel.z20KhzRightArmEnCode
+            inputModel.z20KhzLeftLegEnCode = scaleModel.z20KhzLeftLegEnCode
+            inputModel.z20KhzRightLegEnCode = scaleModel.z20KhzRightLegEnCode
+            inputModel.z20KhzTrunkEnCode = scaleModel.z20KhzTrunkEnCode
+            inputModel.z100KhzLeftArmEnCode = scaleModel.z100KhzLeftArmEnCode
+            inputModel.z100KhzRightArmEnCode = scaleModel.z100KhzRightArmEnCode
+            inputModel.z100KhzLeftLegEnCode = scaleModel.z100KhzLeftLegEnCode
+            inputModel.z100KhzRightLegEnCode = scaleModel.z100KhzRightLegEnCode
+            inputModel.z100KhzTrunkEnCode = scaleModel.z100KhzTrunkEnCode
+            inputModel.deviceMac = advModel.deviceMac
+            inputModel.heartRate = scaleModel.heartRate
+            inputModel.footLen = scaleModel.footLen
+
+            
+            let fatModel = PPBodyFatModel(inputModel: inputModel)
+
             
             let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
             
@@ -98,7 +103,7 @@ class DeviceIceViewController: BaseViewController {
     //        print("data:\(detailModel.data)")
             
             
-            let ss = CommonTool.getDesp(fatModel: fatModel, userModel: user)
+            let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
             self.addStatusCmd(ss: ss)
         } else {
             

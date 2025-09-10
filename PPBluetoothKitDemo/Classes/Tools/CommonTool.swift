@@ -8,9 +8,10 @@
 
 import Foundation
 import PPBluetoothKit
+import PPCalculateKit
 
 class CommonTool {
-    class func getDesp(fatModel:PPBodyFatModel, userModel:PPBluetoothDeviceSettingModel)->String {
+    class func getDesp(fatModel:PPBodyFatModel, inputModel:PPCalculateInputModel)->String {
         
         let arr = [ "PP_ERROR_TYPE_NONE",
                     "PP_ERROR_TYPE_AGE" ,
@@ -30,7 +31,7 @@ class CommonTool {
         let ss = """
         
         errorType = "\(arr[fatModel.errorType.rawValue])"
-        isAthleteMode = "\(userModel.isAthleteMode)"
+        isAthleteMode = "\(inputModel.isAthleteMode)"
         ppSDKVersion = \(fatModel.ppSDKVersion)
         ppWeightKgList = \(fatModel.ppWeightKgList)
         ppBMI = \(fatModel.ppBMI)
@@ -133,4 +134,21 @@ class CommonTool {
         
         return [:]
     }
+    
+    class func getSecret(calcuteType:PPDeviceCalcuteType)->String {
+        
+        if PPCalculateTools.is8Electrodes(with: calcuteType) {
+            
+            return DemoSecretByBody270
+        } else if calcuteType == .alternate4_1 {
+            
+            return DemoSecretByTwoLegs240
+        } else {
+            
+            return DemoSecretByTwoLegs140
+        }
+        
+        
+    }
+    
 }

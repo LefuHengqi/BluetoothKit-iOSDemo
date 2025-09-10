@@ -7,7 +7,7 @@
 
 import UIKit
 import PPBluetoothKit
-
+import PPCalculateKit
 
 class CalcuteObj: NSObject {
 
@@ -27,23 +27,24 @@ class CalcuteObj: NSObject {
         let unit:PPDeviceUnit = .unitKG
         
         
-        let settingModel = PPBluetoothDeviceSettingModel()
-        settingModel.isAthleteMode = isAthleteMode
-        settingModel.isPregnantMode = false
-        settingModel.height = height
-        settingModel.age = age
-        settingModel.gender = PPDeviceGenderType(rawValue: UInt(gender)) ?? .female
-        settingModel.unit = unit
-        
-        
+        let inputModel = PPCalculateInputModel()
+        inputModel.secret = CommonTool.getSecret(calcuteType: selectDevice?.0.deviceCalcuteType ?? .alternate)
+        inputModel.isAthleteMode = isAthleteMode
+        inputModel.isPregnantMode = isPregnantMode
+        inputModel.height = height
+        inputModel.age = age
+        inputModel.gender = PPDeviceGenderType(rawValue: UInt(gender)) ?? .female
+        inputModel.unit = unit
+        inputModel.deviceCalcuteType = selectDevice?.0.deviceCalcuteType ?? .alternate
+        inputModel.deviceMac = selectDevice!.0.deviceMac
+        inputModel.heartRate = model.heartRate
+        inputModel.weight = CGFloat(model.weight) / 100.0
+        inputModel.impedance = model.impedance
+        inputModel.impedance100EnCode = model.impedance100EnCode
+        inputModel.footLen = model.footLen
 
-        let fatModel = PPBodyFatModel(userModel: settingModel,
-                                      deviceCalcuteType: selectDevice!.0.deviceCalcuteType,
-                                      deviceMac: selectDevice!.0.deviceMac,
-                                      weight: CGFloat(model.weight) / 100.0,
-                                      heartRate: model.heartRate,
-                                      andImpedance: model.impedance,
-                                      footLen: model.footLen)
+        
+        let fatModel = PPBodyFatModel(inputModel: inputModel)
         
         
         return fatModel

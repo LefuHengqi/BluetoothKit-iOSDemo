@@ -36,23 +36,24 @@ class DeviceBananaViewController: BaseViewController {
         // Measurement completed
         if scaleModel.isEnd {
             
-            // User information
-            let user = PPBluetoothDeviceSettingModel()
-            user.height = 160
-            user.age = 20
-            user.gender = .female
-            user.isAthleteMode = false
-            
             // Calculate body data (Four electrodes)
-            let fatModel = PPBodyFatModel(userModel: user,
-                                          deviceCalcuteType: advModel.deviceCalcuteType,
-                                          deviceMac: advModel.deviceMac,
-                                          weight: CGFloat(calculateWeightKg),
-                                          heartRate: scaleModel.heartRate,
-                                          andImpedance: scaleModel.impedance,
-                                          impedance100EnCode: scaleModel.impedance100EnCode,
-                                          footLen: scaleModel.footLen
-            )
+            let inputModel = PPCalculateInputModel()
+            inputModel.secret = CommonTool.getSecret(calcuteType: advModel.deviceCalcuteType)
+            inputModel.isAthleteMode = false
+            inputModel.isPregnantMode = false
+            inputModel.height = 160
+            inputModel.age = 20
+            inputModel.gender = .female
+            inputModel.deviceCalcuteType = advModel.deviceCalcuteType
+            inputModel.weight = CGFloat(calculateWeightKg)
+            inputModel.impedance = scaleModel.impedance
+            inputModel.impedance100EnCode = scaleModel.impedance100EnCode
+            inputModel.deviceMac = advModel.deviceMac
+            inputModel.heartRate = scaleModel.heartRate
+            inputModel.footLen = scaleModel.footLen
+
+            
+            let fatModel = PPBodyFatModel(inputModel: inputModel)
             
             let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
             
@@ -63,7 +64,7 @@ class DeviceBananaViewController: BaseViewController {
             //        print("data:\(detailModel.data)")
             
             
-            let ss = CommonTool.getDesp(fatModel: fatModel, userModel: user)
+            let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
             self.addStatusCmd(ss: ss)
         } else {
             
