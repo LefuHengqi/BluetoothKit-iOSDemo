@@ -20,6 +20,9 @@ let DemoAppSecrect = "UCzWzna/eazehXaz8kKAC6WVfcL25nIPYlV9fXYzqDM="
 
 // 请务必将下面的计算库 Secret 换成你们自己的，否则可能无法计算出结果。请联系商务获取计算库密钥
 // Please be sure to replace the following calculation library Secret with your own, otherwise it may not be possible to calculate the result.Please contact the business department to obtain the calculation library key
-let DemoSecretByTwoLegs140 = "UhL3G7xkxhOVhQELD+9K5jV2WeOcZmfoo7Yav3u8o///HhW0N6uDhPLNwf8ArIwE"
-let DemoSecretByTwoLegs240 = "p4YZ7TcNq6dq5U/059qKpxe1XZ3q4WYfCaFRAG6cfiD2xFpziP/aDWvTWcAwvXRF"
-let DemoSecretByBody270 = "khdaGIhbNpGHZhJdXdoy1k5mq/qj2yI5gsfkGWzSOxbUXvVGPUI84JVtPYwGq8zE"
+
+let DemoSecretAlternate4Common = "Hl3R4f7lyP+neAWbZBmvW2di1+gZXGzuYNZ0kAwAjnElNrR/CaoAcy1mB2CfHizc"
+let DemoSecretAlternate4_0 = "up5dkj8oEi4NUmcziVCUkaAZM4j80ffS0p8yEkDNUP+5lY4izQ7iTMV+8Qg4R/Lg"
+let DemoSecretAlternate4_1 = "9emloLinGXEk1n8oqsccPkFjEU4mGOK6r69Lgk2XDBcnQM19AwnWOw/9lIID0ove"
+let DemoSecretAlternate8 = "i+OS1Ir4pHlQEnN+N0NGAigejDX3ztNAhHOCNIUXA+TNUHCD5aOKhGVE4jf3uKpi"
+let DemoSecretAlternate8Common = "Zvpw7/fttSdetsb9CBPEdsKTIf1Dr7Avu9AnOm8o9LdH3bAxwUeOFJaW/OqmEldp"

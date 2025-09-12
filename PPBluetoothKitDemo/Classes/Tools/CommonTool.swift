@@ -26,11 +26,20 @@ class CommonTool {
                     "PP_ERROR_TYPE_IMPEDANCE_RIGHT_ARM",
                     "PP_ERROR_TYPE_IMPEDANCE_LEFT_LEG",
                     "PP_ERROR_TYPE_IMPEDANCE_RIGHT_LEG",
-                    "PP_ERROR_TYPE_IMPEDANCE_TRUNK",]
+                    "PP_ERROR_TYPE_IMPEDANCE_TRUNK",
+                    "PP_ERROR_TYPE_HOME",
+                    "PP_ERROR_TYPE_PRODUCT",
+                    "PP_ERROR_TYPE_Ohter"
+        ]
+        
+        var index = fatModel.errorType.rawValue
+        if index > arr.count {
+            index = arr.count - 1
+        }
         
         let ss = """
         
-        errorType = "\(arr[fatModel.errorType.rawValue])"
+        errorType = "\(arr[index])"
         isAthleteMode = "\(inputModel.isAthleteMode)"
         ppSDKVersion = \(fatModel.ppSDKVersion)
         ppWeightKgList = \(fatModel.ppWeightKgList)
@@ -138,14 +147,20 @@ class CommonTool {
     class func getSecret(calcuteType:PPDeviceCalcuteType)->String {
         
         if PPCalculateTools.is8Electrodes(with: calcuteType) {
-            
-            return DemoSecretByBody270
+            if calcuteType == .alternate8 {
+                return DemoSecretAlternate8
+            } else {
+                return DemoSecretAlternate8Common
+            }
         } else if calcuteType == .alternate4_1 {
             
-            return DemoSecretByTwoLegs240
+            return DemoSecretAlternate4_1
+        } else if calcuteType == .alternate4_0 {
+            
+            return DemoSecretAlternate4_0
         } else {
             
-            return DemoSecretByTwoLegs140
+            return DemoSecretAlternate4Common
         }
         
         
