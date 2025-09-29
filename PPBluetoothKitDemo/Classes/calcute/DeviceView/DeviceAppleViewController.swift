@@ -252,7 +252,7 @@ extension DeviceAppleViewController:PPBluetoothSurroundDeviceDelegate{
             self.XM_Apple = PPBluetoothPeripheralApple(peripheral: peripheral, andDevice: device)
             self.XM_Apple?.serviceDelegate = self
             self.XM_Apple?.cmdDelegate = self
-//            self.XM_Coconut?.scaleDataDelegate = self
+
 
         }
         

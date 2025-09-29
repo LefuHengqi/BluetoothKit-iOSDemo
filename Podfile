@@ -7,13 +7,14 @@ target 'PPBluetoothKitDemo' do
 
 
   pod 'PPBaseKit', '1.2.17'
-  pod 'PPBluetoothKit', '1.2.29'
+  pod 'PPBluetoothKit', '1.2.30'
   pod 'PPCalculateKit', '1.2.21'
   pod 'PPBasicCalculateKit', '1.0.4'
 
 #  pod 'PPBaseKit',:path=>'../PPBaseKit'
 #  pod 'PPCalculateKit',:path=>'../PPCalculateKit'
 #  pod 'PPBasicCalculateKit',:path=>'../PPBasicCalculateKit'
+#pod 'PPBluetoothKit',:path=>'../PPBluetoothKit'
 
 
   pod 'SSZipArchive'
