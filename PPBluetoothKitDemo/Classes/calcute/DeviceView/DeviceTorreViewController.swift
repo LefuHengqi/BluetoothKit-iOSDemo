@@ -235,6 +235,7 @@ class DeviceTorreViewController: BaseViewController {
             inputModel.age = self.user.age
             inputModel.gender = self.user.gender
             inputModel.unit = unit
+            inputModel.bodyAgeMethod = PPBodyAgeMethod(rawValue: UInt(advModel.getBodyAgeTypeCode())) ?? .default
             
             var fatModel:PPBodyFatModel? = nil
             if (PPCalculateTools.is8Electrodes(with: advModel.deviceCalcuteType)) {

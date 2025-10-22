@@ -42,6 +42,7 @@ class CalcuteObj: NSObject {
         inputModel.impedance = model.impedance
         inputModel.impedance100EnCode = model.impedance100EnCode
         inputModel.footLen = model.footLen
+        inputModel.bodyAgeMethod = .default
 
         
         let fatModel = PPBodyFatModel(inputModel: inputModel)

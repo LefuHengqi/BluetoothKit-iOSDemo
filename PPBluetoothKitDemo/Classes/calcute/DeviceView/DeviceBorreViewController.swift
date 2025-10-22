@@ -175,6 +175,7 @@ class DeviceBorreViewController: BaseViewController {
         inputModel.height = self.user.height
         inputModel.age = self.user.age
         inputModel.gender = self.user.gender
+        inputModel.bodyAgeMethod = PPBodyAgeMethod(rawValue: UInt(advModel.getBodyAgeTypeCode())) ?? .default
         
         // Measurement completed
         if scaleModel.isEnd {

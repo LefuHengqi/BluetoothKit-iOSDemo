@@ -44,6 +44,7 @@ class CalcuelateResultViewController: UIViewController {
         inputModel.height = self.myUserModel.height
         inputModel.gender = PPDeviceGenderType.init(rawValue: UInt(self.myUserModel.sex)) ?? .female
         inputModel.isAthleteMode = self.myUserModel.isAthleteMode == 1 ?true:false
+        inputModel.bodyAgeMethod = .default // Set Body Age Calculation Method​​
         
         let heartRate = self.myUserModel.heartRate
         

@@ -51,6 +51,7 @@ class DeviceJambulViewController: BaseViewController {
             inputModel.deviceMac = advModel.deviceMac
             inputModel.heartRate = scaleModel.heartRate
             inputModel.footLen = scaleModel.footLen
+            inputModel.bodyAgeMethod = PPBodyAgeMethod(rawValue: UInt(advModel.getBodyAgeTypeCode())) ?? .default
 
             let fatModel = PPBodyFatModel(inputModel: inputModel)
             

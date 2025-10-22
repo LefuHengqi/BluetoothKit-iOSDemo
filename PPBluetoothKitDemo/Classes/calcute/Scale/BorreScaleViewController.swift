@@ -329,7 +329,7 @@ extension BorreScaleViewController:PPBluetoothScaleDataDelegate{
                 inputModel.deviceMac = advModel.deviceMac
                 inputModel.heartRate = model.heartRate
                 inputModel.footLen = model.footLen
-
+                inputModel.bodyAgeMethod = PPBodyAgeMethod(rawValue: UInt(advModel.getBodyAgeTypeCode())) ?? .default
                 
                 fat = PPBodyFatModel(inputModel: inputModel)
             } else {
@@ -349,6 +349,7 @@ extension BorreScaleViewController:PPBluetoothScaleDataDelegate{
                 inputModel.deviceMac = advModel.deviceMac
                 inputModel.heartRate = model.heartRate
                 inputModel.footLen = model.footLen
+                inputModel.bodyAgeMethod = PPBodyAgeMethod(rawValue: UInt(advModel.getBodyAgeTypeCode())) ?? .default
 
                 fat = PPBodyFatModel(inputModel: inputModel)
             }
