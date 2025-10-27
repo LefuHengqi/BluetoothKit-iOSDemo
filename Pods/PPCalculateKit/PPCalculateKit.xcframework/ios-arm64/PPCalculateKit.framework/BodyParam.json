@@ -1,0 +1,863 @@
+{
+  "BodyParam_BMI": {
+    "bodyParamKey": "ppBMI",
+    "unit": "",
+    "suggestionArray": [
+      "BMI_leve1_suggestion",
+      "BMI_leve2_suggestion",
+      "BMI_leve3_suggestion",
+      "BMI_leve4_suggestion"
+    ],
+    "evaluationArray": [
+      "BMI_leve1_evaluation",
+      "BMI_leve2_evaluation",
+      "BMI_leve3_evaluation",
+      "BMI_leve4_evaluation"
+    ],
+    "standardTitleArray": [
+      "BMI_leve1_name",
+      "BMI_leve2_name",
+      "BMI_leve3_name",
+      "BMI_leve4_name"
+    ],
+    "introductionString": "BMI_introduction",
+    "bodyParamNameString": "BMI_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#F43F31",
+      "#C23227"
+    ],
+    "watchfulArray": [
+      0,
+      2,
+      3
+    ]
+  },
+  "BodyParam_Weight": {
+    "bodyParamKey": "ppWeightKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "Weight_leve1_suggestion",
+      "Weight_leve2_suggestion",
+      "Weight_leve3_suggestion"
+    ],
+    "evaluationArray": [
+      "Weight_leve1_evaluation",
+      "Weight_leve2_evaluation",
+      "Weight_leve3_evaluation"
+    ],
+    "standardTitleArray": [
+      "Weight_leve1_name",
+      "Weight_leve2_name",
+      "Weight_leve3_name"
+    ],
+    "introductionString": "Weight_introduction",
+    "bodyParamNameString": "Weight_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#F43F31"
+    ],
+    "watchfulArray": [
+      0,
+      2
+    ]
+  },
+  "BodyParam_BodyFat": {
+    "bodyParamKey": "ppFat",
+    "unit": "%",
+    "suggestionArray": [
+      "Bodyfat_leve1_suggestion",
+      "Bodyfat_leve2_suggestion",
+      "Bodyfat_leve3_suggestion",
+      "Bodyfat_leve4_suggestion",
+      "Bodyfat_leve5_suggestion"
+    ],
+    "evaluationArray": [
+      "Bodyfat_leve1_evaluation",
+      "Bodyfat_leve2_evaluation",
+      "Bodyfat_leve3_evaluation",
+      "Bodyfat_leve4_evaluation",
+      "Bodyfat_leve5_evaluation"
+    ],
+    "standardTitleArray": [
+      "Bodyfat_leve1_name",
+      "Bodyfat_leve2_name",
+      "Bodyfat_leve3_name",
+      "Bodyfat_leve4_name",
+      "Bodyfat_leve5_name"
+    ],
+    "introductionString": "Bodyfat_introduction",
+    "bodyParamNameString": "Bodyfat_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#F43F31",
+      "#C23227",
+      "#8F251D"
+    ],
+    "watchfulArray": [
+      0,
+      2,
+      3,
+      4
+    ]
+  },
+  "BodyParam_Bone": {
+    "bodyParamKey": "ppBoneKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "bone_leve1_suggestion",
+      "bone_leve2_suggestion",
+      "bone_leve3_suggestion"
+    ],
+    "evaluationArray": [
+      "bone_leve1_evaluation",
+      "bone_leve2_evaluation",
+      "bone_leve3_evaluation"
+    ],
+    "standardTitleArray": [
+      "bone_leve1_name",
+      "bone_leve2_name",
+      "bone_leve3_name"
+    ],
+    "introductionString": "bone_introduction",
+    "bodyParamNameString": "bone_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#0F9982"
+    ],
+    "watchfulArray": [
+      0
+    ]
+  },
+  "BodyParam_VisFat": {
+    "bodyParamKey": "ppVisceralFat",
+    "unit": "",
+    "suggestionArray": [
+      "visfat_leve1_suggestion_h4",
+      "visfat_leve2_suggestion_h4",
+      "visfat_leve3_suggestion_h4"
+    ],
+    "evaluationArray": [
+      "visfat_leve1_evaluation_h4",
+      "visfat_leve2_evaluation_h4",
+      "visfat_leve3_evaluation_h4"
+    ],
+    "standardTitleArray": [
+      "visfat_leve1_name_h4",
+      "visfat_leve2_name_h4",
+      "visfat_leve3_name_h4"
+    ],
+    "introductionString": "visfat_introduction",
+    "bodyParamNameString": "visfat_name",
+    "colorArray": [
+      "#14CCAD",
+      "#F5A623",
+      "#F43F31"
+    ],
+    "watchfulArray": [
+      1,
+      2
+    ]
+  },
+  "BodyParam_BMR": {
+    "bodyParamKey": "ppBMR",
+    "unit": "kcal",
+    "suggestionArray": [
+      "BMR_leve1_suggestion",
+      "BMR_leve2_suggestion"
+    ],
+    "evaluationArray": [
+      "BMR_leve1_evaluation",
+      "BMR_leve2_evaluation"
+    ],
+    "standardTitleArray": [
+      "BMR_leve1_name",
+      "BMR_leve2_name"
+    ],
+    "introductionString": "BMR_introduction",
+    "bodyParamNameString": "BMR_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD"
+    ],
+    "watchfulArray": [
+      0
+    ]
+  },
+  "BodyParam_Water": {
+    "bodyParamKey": "ppWaterPercentage",
+    "unit": "%",
+    "suggestionArray": [
+      "water_leve1_suggestion",
+      "water_leve2_suggestion",
+      "water_leve3_suggestion"
+    ],
+    "evaluationArray": [
+      "water_leve1_evaluation",
+      "water_leve2_evaluation",
+      "water_leve3_evaluation"
+    ],
+    "standardTitleArray": [
+      "water_leve1_name",
+      "water_leve2_name",
+      "water_leve3_name"
+    ],
+    "introductionString": "water_introduction",
+    "bodyParamNameString": "water_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#0F9982"
+    ],
+    "watchfulArray": [
+      0
+    ]
+  },
+  "BodyParam_Mus": {
+    "bodyParamKey": "ppMuscleKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "mus_leve1_suggestion",
+      "mus_leve2_suggestion",
+      "mus_leve3_suggestion"
+    ],
+    "evaluationArray": [
+      "mus_leve1_evaluation",
+      "mus_leve2_evaluation",
+      "mus_leve3_evaluation"
+    ],
+    "standardTitleArray": [
+      "mus_leve1_name",
+      "mus_leve2_name",
+      "mus_leve3_name"
+    ],
+    "introductionString": "mus_introduction",
+    "bodyParamNameString": "mus_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#0F9982"
+    ],
+    "watchfulArray": [
+      0
+    ]
+  },
+  "BodyParam_proteinPercentage": {
+    "bodyParamKey": "ppProteinPercentage",
+    "unit": "%",
+    "suggestionArray": [
+      "proteinPercentage_leve1_suggestion",
+      "proteinPercentage_leve2_suggestion",
+      "proteinPercentage_leve3_suggestion"
+    ],
+    "evaluationArray": [
+      "proteinPercentage_leve1_evaluation",
+      "proteinPercentage_leve2_evaluation",
+      "proteinPercentage_leve3_evaluation"
+    ],
+    "standardTitleArray": [
+      "proteinPercentage_leve1_name",
+      "proteinPercentage_leve2_name",
+      "proteinPercentage_leve3_name"
+    ],
+    "introductionString": "proteinPercentage_introduction",
+    "bodyParamNameString": "proteinPercentage_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#0F9982"
+    ],
+    "watchfulArray": [
+      0
+    ]
+  },
+  "BodyParam_FatGrade": {
+    "bodyParamKey": "PPBodyFatGrade",
+    "unit": "",
+    "suggestionArray": [
+      "FatGrade_leve1_suggestion",
+      "FatGrade_leve2_suggestion",
+      "FatGrade_leve3_suggestion",
+      "FatGrade_leve4_suggestion",
+      "FatGrade_leve5_suggestion",
+      "FatGrade_leve6_suggestion"
+    ],
+    "evaluationArray": [
+      "FatGrade_leve1_evaluation",
+      "FatGrade_leve2_evaluation",
+      "FatGrade_leve3_evaluation",
+      "FatGrade_leve4_evaluation",
+      "FatGrade_leve5_evaluation",
+      "FatGrade_leve6_evaluation"
+    ],
+    "standardTitleArray": [
+      "FatGrade_leve1_name",
+      "FatGrade_leve2_name",
+      "FatGrade_leve3_name",
+      "FatGrade_leve4_name",
+      "FatGrade_leve5_name",
+      "FatGrade_leve6_name"
+    ],
+    "introductionString": "FatGrade_introduction",
+    "bodyParamNameString": "FatGrade_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#F43F31",
+      "#C23227",
+      "#8F251D",
+      "#5C1813"
+    ],
+    "watchfulArray": [
+      0,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "BodyParam_BodySubcutaneousFat": {
+    "bodyParamKey": "ppBodyFatSubCutPercentage",
+    "unit": "%",
+    "suggestionArray": [
+      "BodySubcutaneousFat_leve1_suggestion",
+      "BodySubcutaneousFat_leve2_suggestion",
+      "BodySubcutaneousFat_leve3_suggestion"
+    ],
+    "evaluationArray": [
+      "BodySubcutaneousFat_leve1_evaluation",
+      "BodySubcutaneousFat_leve2_evaluation",
+      "BodySubcutaneousFat_leve3_evaluation"
+    ],
+    "standardTitleArray": [
+      "BodySubcutaneousFat_leve1_name",
+      "BodySubcutaneousFat_leve2_name",
+      "BodySubcutaneousFat_leve3_name"
+    ],
+    "introductionString": "BodySubcutaneousFat_introduction",
+    "bodyParamNameString": "BodySubcutaneousFat_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#F43F31"
+    ],
+    "watchfulArray": [
+      0,
+      2
+    ]
+  },
+  "BodyParam_BodyScore": {
+    "bodyParamKey": "ppBodyScore",
+    "unit": "",
+    "suggestionArray": [
+      "BodyScore_leve1_suggestion",
+      "BodyScore_leve2_suggestion",
+      "BodyScore_leve3_suggestion",
+      "BodyScore_leve4_suggestion"
+    ],
+    "evaluationArray": [
+      "BodyScore_leve1_evaluation",
+      "BodyScore_leve2_evaluation",
+      "BodyScore_leve3_evaluation",
+      "BodyScore_leve4_evaluation"
+    ],
+    "standardTitleArray": [
+      "BodyScore_leve1_name",
+      "BodyScore_leve2_name",
+      "BodyScore_leve3_name",
+      "BodyScore_leve4_name"
+    ],
+    "introductionString": "BodyScore_introduction",
+    "bodyParamNameString": "BodyScore_name",
+    "colorArray": [
+      "#C2831C",
+      "#F5A623",
+      "#14CCAD",
+      "#0F9982"
+    ],
+    "watchfulArray": [
+      0,
+      1
+    ]
+  },
+  "BodyParam_physicalAgeValue": {
+    "bodyParamKey": "ppBodyAge",
+    "unit": "",
+    "suggestionArray": [
+      "physicalAgeValue_leve1_suggestion",
+      "physicalAgeValue_leve2_suggestion"
+    ],
+    "evaluationArray": [
+      "physicalAgeValue_leve1_evaluation",
+      "physicalAgeValue_leve2_evaluation"
+    ],
+    "standardTitleArray": [
+      "physicalAgeValue_leve1_name",
+      "physicalAgeValue_leve2_name"
+    ],
+    "introductionString": "physicalAgeValue_introduction",
+    "bodyParamNameString": "physicalAgeValue_name",
+    "colorArray": [
+      "#14CCAD",
+      "#F43F31"
+    ],
+    "watchfulArray": []
+  },
+  "BodyParam_BodyType": {
+    "bodyParamKey": "ppBodyType",
+    "unit": "",
+    "suggestionArray": [
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--"
+    ],
+    "evaluationArray": [
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--"
+    ],
+    "standardTitleArray": [
+      "BodyType_leve1_name",
+      "BodyType_leve2_name",
+      "BodyType_leve3_name",
+      "BodyType_leve4_name",
+      "BodyType_leve5_name",
+      "BodyType_leve6_name",
+      "BodyType_leve7_name",
+      "BodyType_leve8_name",
+      "BodyType_leve9_name"
+    ],
+    "introductionString": "BodyType_introduction",
+    "bodyParamNameString": "BodyType_name",
+    "colorArray": [
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--",
+      "--"
+    ],
+    "watchfulArray": []
+  },
+  "BodyParam_BodyLBW": {
+    "bodyParamKey": "ppLoseFatWeightKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "--"
+    ],
+    "evaluationArray": [
+      "--"
+    ],
+    "standardTitleArray": [
+      "--"
+    ],
+    "introductionString": "BodyLBW_introduction",
+    "bodyParamNameString": "BodyLBW_name",
+    "colorArray": [
+      "--"
+    ],
+    "watchfulArray": []
+  },
+  "BodyParam_heart": {
+    "bodyParamKey": "ppHeartRate",
+    "unit": "bpm",
+    "suggestionArray": [
+      "heart_leve1_suggestion",
+      "heart_leve2_suggestion",
+      "heart_leve3_suggestion",
+      "heart_leve4_suggestion"
+    ],
+    "evaluationArray": [
+      "heart_leve1_evaluation",
+      "heart_leve2_evaluation",
+      "heart_leve3_evaluation",
+      "heart_leve4_evaluation"
+    ],
+    "standardTitleArray": [
+      "heart_leve1_name",
+      "heart_leve4_name",
+      "heart_leve3_name",
+      "heart_leve5_name"
+    ],
+    "introductionString": "heart_introduction",
+    "bodyParamNameString": "heart_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#F43F31",
+      "#C23227"
+    ],
+    "watchfulArray": [
+      0,
+      2,
+      3
+    ]
+  },
+  "BodyParam_Bodystandard": {
+    "bodyParamKey": "ppBodyStandardWeightKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "--"
+    ],
+    "evaluationArray": [
+      "--"
+    ],
+    "standardTitleArray": [
+      "--"
+    ],
+    "introductionString": "Bodystandard_introduction",
+    "bodyParamNameString": "Bodystandard_name",
+    "colorArray": [
+      "--"
+    ],
+    "watchfulArray": []
+  },
+  "BodyParam_BodyHealth": {
+    "bodyParamKey": "ppBodyHealth",
+    "unit": "",
+    "suggestionArray": [
+      "BodyHealth_leve1_suggestion",
+      "BodyHealth_leve2_suggestion",
+      "BodyHealth_leve3_suggestion",
+      "BodyHealth_leve4_suggestion",
+      "BodyHealth_leve5_suggestion"
+    ],
+    "evaluationArray": [
+      "BodyHealth_leve1_evaluation",
+      "BodyHealth_leve2_evaluation",
+      "BodyHealth_leve3_evaluation",
+      "BodyHealth_leve4_evaluation",
+      "BodyHealth_leve5_evaluation"
+    ],
+    "standardTitleArray": [
+      "BodyHealth_leve1_name",
+      "BodyHealth_leve2_name",
+      "BodyHealth_leve3_name",
+      "BodyHealth_leve4_name",
+      "BodyHealth_leve5_name"
+    ],
+    "introductionString": "",
+    "bodyParamNameString": "BodyHealth_name",
+    "colorArray": [
+      "#8F6015",
+      "#C2831C",
+      "#F5A623",
+      "#14CCAD",
+      "#0F9982"
+    ],
+    "watchfulArray": [
+      0,
+      1,
+      2
+    ]
+  },
+  "BodyParam_BodySkeletal": {
+    "bodyParamKey": "ppBodySkeletal",
+    "unit": "%",
+    "suggestionArray": [
+      "BodySkeletal_leve1_suggestion",
+      "BodySkeletal_leve2_suggestion",
+      "BodySkeletal_leve3_suggestion"
+    ],
+    "evaluationArray": [
+      "BodySkeletal_leve1_evaluation",
+      "BodySkeletal_leve2_evaluation",
+      "BodySkeletal_leve3_evaluation"
+    ],
+    "standardTitleArray": [
+      "BodySkeletal_leve1_name",
+      "BodySkeletal_leve2_name",
+      "BodySkeletal_leve3_name"
+    ],
+    "introductionString": "BodySkeletal_introduction",
+    "bodyParamNameString": "BodySkeletal_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#0F9982"
+    ],
+    "watchfulArray": [
+      0
+    ]
+  },
+  "BodyParam_SkeletalMuscleKg": {
+    "bodyParamKey": "ppBodySkeletalKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "SkeletalMuscleKg_leve1_suggestion",
+      "SkeletalMuscleKg_leve2_suggestion",
+      "SkeletalMuscleKg_leve3_suggestion"
+    ],
+    "evaluationArray": [
+      "SkeletalMuscleKg_leve1_evaluation",
+      "SkeletalMuscleKg_leve2_evaluation",
+      "SkeletalMuscleKg_leve3_evaluation"
+    ],
+    "standardTitleArray": [
+      "SkeletalMuscleKg_leve1_name",
+      "SkeletalMuscleKg_leve2_name",
+      "SkeletalMuscleKg_leve3_name"
+    ],
+    "introductionString": "SkeletalMuscleKg_introduction",
+    "bodyParamNameString": "SkeletalMuscleKg_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#0F9982"
+    ],
+    "watchfulArray": [
+      0
+    ]
+  },
+  "BodyParam_BodyControl": {
+    "bodyParamKey": "ppControlWeightKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "--"
+    ],
+    "evaluationArray": [
+      "--"
+    ],
+    "standardTitleArray": [
+      "--"
+    ],
+    "introductionString": "BodyControl_introduction",
+    "bodyParamNameString": "BodyControl_name",
+    "colorArray": [
+      "--"
+    ],
+    "watchfulArray": []
+  },
+  "BodyParam_BodyControlLiang": {
+    "bodyParamKey": "ppFatControlKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "--"
+    ],
+    "evaluationArray": [
+      "--"
+    ],
+    "standardTitleArray": [
+      "--"
+    ],
+    "introductionString": "BodyControlLiang_introduction",
+    "bodyParamNameString": "BodyControlLiang_name",
+    "colorArray": [
+      "--"
+    ],
+    "watchfulArray": []
+  },
+  "BodyParam_MuscleControl": {
+    "bodyParamKey": "ppBodyMuscleControl",
+    "unit": "kg",
+    "suggestionArray": [
+      "--"
+    ],
+    "evaluationArray": [
+      "--"
+    ],
+    "standardTitleArray": [
+      "--"
+    ],
+    "introductionString": "MuscleControl_introduction",
+    "bodyParamNameString": "MuscleControl_name",
+    "colorArray": [
+      "--"
+    ],
+    "watchfulArray": []
+  },
+  "BodyParam_MusRate": {
+    "bodyParamKey": "ppMusclePercentage",
+    "unit": "%",
+    "suggestionArray": [
+      "MusRate_leve1_suggestion",
+      "MusRate_leve2_suggestion",
+      "MusRate_leve3_suggestion"
+    ],
+    "evaluationArray": [
+      "MusRate_leve1_evaluation",
+      "MusRate_leve2_evaluation",
+      "MusRate_leve3_evaluation"
+    ],
+    "standardTitleArray": [
+      "MusRate_leve1_name",
+      "MusRate_leve2_name",
+      "MusRate_leve3_name"
+    ],
+    "introductionString": "MusRate_introduction",
+    "bodyParamNameString": "MusRate_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#0F9982"
+    ],
+    "watchfulArray": [
+      0
+    ]
+  },
+  "BodyParam_BodyFatKg": {
+    "bodyParamKey": "ppBodyfatKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "BodyFatKg_leve1_suggestion",
+      "BodyFatKg_leve2_suggestion",
+      "BodyFatKg_leve3_suggestion",
+      "BodyFatKg_leve4_suggestion",
+      "BodyFatKg_leve5_suggestion"
+    ],
+    "evaluationArray": [
+      "BodyFatKg_leve1_evaluation",
+      "BodyFatKg_leve2_evaluation",
+      "BodyFatKg_leve3_evaluation",
+      "BodyFatKg_leve4_evaluation",
+      "BodyFatKg_leve5_evaluation"
+    ],
+    "standardTitleArray": [
+      "BodyFatKg_leve1_name",
+      "BodyFatKg_leve2_name",
+      "BodyFatKg_leve3_name",
+      "BodyFatKg_leve4_name",
+      "BodyFatKg_leve5_name"
+    ],
+    "introductionString": "BodyFatKg_introduction",
+    "bodyParamNameString": "BodyFatKg_name",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#F43F31",
+      "#C23227",
+      "#8F251D"
+    ],
+    "watchfulArray": [
+      0,
+      2,
+      3,
+      4
+    ]
+  },
+  "BodyParam_waterKg": {
+    "bodyParamKey": "ppWaterKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "--"
+    ],
+    "evaluationArray": [
+      "--"
+    ],
+    "standardTitleArray": [
+      "--"
+    ],
+    "introductionString": "BodyParam_waterKg_introduction",
+    "bodyParamNameString": "BodyParam_waterKg",
+    "colorArray": [
+      "--"
+    ],
+    "watchfulArray": []
+  },
+  "BodyParam_proteinKg": {
+    "bodyParamKey": "ppProteinKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "--"
+    ],
+    "evaluationArray": [
+      "--"
+    ],
+    "standardTitleArray": [
+      "--"
+    ],
+    "introductionString": "BodyParam_proteinKg_introduction",
+    "bodyParamNameString": "BodyParam_proteinKg",
+    "colorArray": [
+      "--"
+    ],
+    "watchfulArray": []
+  },
+  "BodyParam_bodyFatSubCutKg": {
+    "bodyParamKey": "ppBodyFatSubCutKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "BodySubcutaneousFat_leve1_suggestion",
+      "BodySubcutaneousFat_leve2_suggestion",
+      "BodySubcutaneousFat_leve3_suggestion"
+    ],
+    "evaluationArray": [
+      "BodySubcutaneousFat_leve1_evaluation",
+      "BodySubcutaneousFat_leve2_evaluation",
+      "BodySubcutaneousFat_leve3_evaluation"
+    ],
+    "standardTitleArray": [
+      "BodySubcutaneousFat_leve1_name",
+      "BodySubcutaneousFat_leve2_name",
+      "BodySubcutaneousFat_leve3_name"
+    ],
+    "introductionString": "BodyParam_bodyFatSubCutKg_introduction",
+    "bodyParamNameString": "BodyParam_bodyFatSubCutKg",
+    "colorArray": [
+      "#F5A623",
+      "#14CCAD",
+      "#F43F31"
+    ],
+    "watchfulArray": [
+      0,
+      2
+    ]
+  },
+  "BodyParam_FootLen": {
+    "bodyParamKey": "ppFootLen",
+    "unit": "cm",
+    "suggestionArray": [
+      "--"
+    ],
+    "evaluationArray": [
+      "--"
+    ],
+    "standardTitleArray": [
+      "--"
+    ],
+    "introductionString": "",
+    "bodyParamNameString": "FootLen_name",
+    "colorArray": [
+      "--"
+    ],
+    "watchfulArray": []
+  },
+  "BodyParam_IdealWeight": {
+    "bodyParamKey": "ppIdealWeightKg",
+    "unit": "kg",
+    "suggestionArray": [
+      "--"
+    ],
+    "evaluationArray": [
+      "--"
+    ],
+    "standardTitleArray": [
+      "--"
+    ],
+    "introductionString": "BodyIdealWeight_introduction",
+    "bodyParamNameString": "BodyIdealWeight_name",
+    "colorArray": [
+      "--"
+    ],
+    "watchfulArray": []
+  }
+}

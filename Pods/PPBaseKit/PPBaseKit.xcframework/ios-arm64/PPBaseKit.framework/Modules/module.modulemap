@@ -1,0 +1,6 @@
+framework module PPBaseKit {
+  umbrella header "PPBaseKit.h"
+  export *
+
+  module * { export * }
+}

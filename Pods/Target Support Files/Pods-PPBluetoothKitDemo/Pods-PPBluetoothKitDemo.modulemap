@@ -1,0 +1,6 @@
+framework module Pods_PPBluetoothKitDemo {
+  umbrella header "Pods-PPBluetoothKitDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

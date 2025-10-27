@@ -1,0 +1,7 @@
+${PODS_ROOT}/Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/PPBaseKit/PPBaseKit.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/PPBasicCalculateKit/PPBasicCalculateKit.bundle
+${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64/PPCalculateKit.framework/BodyParam.json
+${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64/PPCalculateKit.framework/BodyParam_HT_8.json
+${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64_x86_64-simulator/PPCalculateKit.framework/BodyParam.json
+${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64_x86_64-simulator/PPCalculateKit.framework/BodyParam_HT_8.json

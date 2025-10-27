@@ -4,7 +4,7 @@
 *.xcuserstate
 
 # Pods
-Pods/
+# Pods/
 Podfile.lock
 
 # Exclude the Pods project from being committed

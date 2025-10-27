@@ -1,0 +1,13 @@
+CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager" "${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive" "${PODS_ROOT}/PPBaseKit" "${PODS_ROOT}/PPBasicCalculateKit" "${PODS_ROOT}/PPBluetoothKit" "${PODS_ROOT}/PPCalculateKit" "${PODS_XCFRAMEWORKS_BUILD_DIR}/PPBaseKit" "${PODS_XCFRAMEWORKS_BUILD_DIR}/PPBasicCalculateKit" "${PODS_XCFRAMEWORKS_BUILD_DIR}/PPBluetoothKit" "${PODS_XCFRAMEWORKS_BUILD_DIR}/PPCalculateKit"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager/IQKeyboardManager.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive/SSZipArchive.framework/Headers"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_LDFLAGS = $(inherited) -ObjC -l"iconv" -l"z" -framework "CoreGraphics" -framework "Foundation" -framework "IQKeyboardManager" -framework "PPBaseKit" -framework "PPBasicCalculateKit" -framework "PPBluetoothKit" -framework "PPCalculateKit" -framework "QuartzCore" -framework "SSZipArchive" -framework "Security" -framework "UIKit"
+OTHER_MODULE_VERIFIER_FLAGS = $(inherited) "-F${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager" "-F${PODS_CONFIGURATION_BUILD_DIR}/PPBaseKit" "-F${PODS_CONFIGURATION_BUILD_DIR}/PPBasicCalculateKit" "-F${PODS_CONFIGURATION_BUILD_DIR}/PPBluetoothKit" "-F${PODS_CONFIGURATION_BUILD_DIR}/PPCalculateKit" "-F${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods
+PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates
+USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES

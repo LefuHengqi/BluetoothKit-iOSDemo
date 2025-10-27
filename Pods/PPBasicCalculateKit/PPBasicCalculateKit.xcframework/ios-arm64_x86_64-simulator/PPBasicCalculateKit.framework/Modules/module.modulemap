@@ -1,0 +1,6 @@
+framework module PPBasicCalculateKit {
+  umbrella header "PPBasicCalculateKit.h"
+  export *
+
+  module * { export * }
+}
