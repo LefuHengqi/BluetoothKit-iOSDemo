@@ -1,6 +1,6 @@
 # Xcode
 .DS_Store
-*.xcworkspace
+# *.xcworkspace
 *.xcuserstate
 
 # Pods
@@ -8,4 +8,4 @@
 Podfile.lock
 
 # Exclude the Pods project from being committed
-Pods.xcodeproj/
+# Pods.xcodeproj/
