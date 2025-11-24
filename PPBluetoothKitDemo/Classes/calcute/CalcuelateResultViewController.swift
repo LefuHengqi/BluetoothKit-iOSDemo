@@ -103,6 +103,7 @@ class CalcuelateResultViewController: UIViewController {
         
         fatModel = PPBodyFatModel(inputModel: inputModel)
         
+//        let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_zh.json")
         let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
         
         //Get the range of each body indicator
