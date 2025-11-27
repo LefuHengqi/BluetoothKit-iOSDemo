@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'abyonCalculate'
-  spec.version      = '1.0'
+  spec.version      = '1.1'
   spec.summary      = 'abyonCalculate is a SDK for Bluetooth.'
   spec.description  = <<-DESC   
   abyonCalculate is a SDK for Bluetooth.

@@ -38,6 +38,8 @@
 #import "PPKorreFoodInfo.h"
 #import "PPCoffeeScaleDataModel.h"
 #import "PPTargetModel.h"
+#import "PPSyncBodyModel.h"
+#import "PPFingerprintInfo.h"
 
 
 #import "PPScaleState.h"

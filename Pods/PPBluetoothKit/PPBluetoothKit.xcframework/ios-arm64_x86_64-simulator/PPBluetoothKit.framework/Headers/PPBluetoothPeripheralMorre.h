@@ -240,7 +240,7 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 - (void)toZeroWithHandler:(void(^)(int status))handler;
 
 
-
+- (void)startHandPourMode2Ratio:(CGFloat)ratio handler:(void (^)(NSInteger))handler ;
 
 @end
 

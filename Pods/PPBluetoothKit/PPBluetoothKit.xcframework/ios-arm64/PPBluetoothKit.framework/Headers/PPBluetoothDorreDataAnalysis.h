@@ -10,6 +10,7 @@
 #import "PPBluetoothScaleBaseModel.h"
 #import "PPBatteryInfoModel.h"
 #import "PPAnalysisResultModel.h"
+#import "PPFingerprintInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray <PPBluetoothScaleBaseModel *>*)dorreHistoryWithData:(NSData *)reciveData device:( PPBluetoothAdvDeviceModel *)deviceAdv;
 
 + (PPBatteryInfoModel *)analysisStrengthWithData:(NSData *)receiveData;
+
++ (NSArray<PPFingerprintInfo *> *)parseFingerprintInfoWithData:(NSString *)reciveStr;
+
 @end
 
 NS_ASSUME_NONNULL_END

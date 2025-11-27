@@ -103,6 +103,7 @@ typedef NS_OPTIONS(NSUInteger, PPDeviceFuncType) {
     PPDeviceFuncTypeTargetDatas = 1 << 22, // Borre-支持目标体重体脂BMI
     PPDeviceFuncTypeDorreNickname = 1 << 23, // Dorre-支持昵称
     PPDeviceFuncTypeDorre16Datas = 1 << 24, // Dorre-支持16天数据
+    PPDeviceFuncTypeFingerprint = 1 << 25, // 指纹录入
 };
 
 // 设备精度
@@ -365,6 +366,8 @@ typedef NS_ENUM(NSUInteger, PPNutritionalScaleMode) {
     PPNutritionalScaleModeWeight = 0,
     // 食物模式
     PPNutritionalScaleModeFood = 1,
+    // 自定义模式
+    PPNutritionalScaleModeCustom = 2,
 };
 
 typedef NS_ENUM(NSUInteger, PPTorreLanguage) {
@@ -381,6 +384,8 @@ typedef NS_ENUM(NSUInteger, PPTorreLanguage) {
     PPTorreLanguageCzech = 10, // 捷克语
     PPTorreLanguagePolish = 11, // 波兰语
     PPTorreLanguageHungarian = 12, // 匈牙利语
+    PPTorreLanguageBrazilianPortuguese = 13, // 巴西葡萄牙语
+    PPTorreLanguageRussian = 14, // 俄语
 };
 
 typedef NS_ENUM(NSUInteger, PPBluetoothAppleWifiConfigState) {

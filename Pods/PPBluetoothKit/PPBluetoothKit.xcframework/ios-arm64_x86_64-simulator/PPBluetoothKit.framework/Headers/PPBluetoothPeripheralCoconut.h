@@ -14,6 +14,7 @@
 #import <PPBaseKit/PPBaseKit.h>
 #import "PPTorreDFUPackageModel.h"
 #import "PPBluetoothDefine.h"
+#import "PPSyncBodyModel.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -53,6 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)enterInternalCodeModeWithComplete:(void(^)(void))completion;
 /// 退出内码模式，部分设备支持
 - (void)exitInternalCodeModeWithComplete:(void(^)(void))completion;
+
+/// 同步身体数据（部分设备支持）
+- (void)syncBodyData:(PPSyncBodyModel *)model;
 
 @end
 

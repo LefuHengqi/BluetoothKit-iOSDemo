@@ -147,10 +147,10 @@ class CommonTool {
     class func getSecret(calcuteType:PPDeviceCalcuteType)->String {
         
         if PPCalculateTools.is8Electrodes(with: calcuteType) {
-            return DemoSecret8
+            return Secret_Body270
         } else {
             
-            return DemoSecret4
+            return Secret_TwoLegs140
         }
         
         

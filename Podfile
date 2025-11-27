@@ -7,9 +7,9 @@ target 'PPBluetoothKitDemo' do
 
 
   pod 'PPBaseKit', '1.2.17'
-  pod 'PPBluetoothKit', '1.2.31'
+  pod 'PPBluetoothKit', '1.2.32'
   pod 'PPCalculateKit', '1.2.22'
-  pod 'PPBasicCalculateKit', '1.0.4'
+  pod 'PPBasicCalculateKit', '1.0.5'
 
 #  pod 'PPBaseKit',:path=>'../PPBaseKit'
 #  pod 'PPCalculateKit',:path=>'../PPCalculateKit'

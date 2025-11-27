@@ -26,45 +26,6 @@
             </objects>
             <point key="canvasLocation" x="-640" y="-652"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="wX3-jj-rDq">
-            <objects>
-                <viewController id="pmR-nA-7ZM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dOb-45-dGh">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on bluetooth enable Bluetooth permission" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycz-fR-ee3">
-                                <rect key="frame" x="10" y="113" width="373" height="20.333333333333343"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abI-si-qDW">
-                                <rect key="frame" x="154" y="153.33333333333334" width="85" height="30"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Scan Device"/>
-                                <connections>
-                                    <segue destination="4df-4M-dsY" kind="push" id="M79-U1-tlo"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="D18-N0-qm5"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="abI-si-qDW" firstAttribute="centerX" secondItem="dOb-45-dGh" secondAttribute="centerX" id="0vV-eb-wfl"/>
-                            <constraint firstItem="Ycz-fR-ee3" firstAttribute="leading" secondItem="D18-N0-qm5" secondAttribute="leading" constant="10" id="ENV-OK-bli"/>
-                            <constraint firstItem="Ycz-fR-ee3" firstAttribute="top" secondItem="D18-N0-qm5" secondAttribute="top" constant="10" id="I59-Jt-JQk"/>
-                            <constraint firstItem="D18-N0-qm5" firstAttribute="trailing" secondItem="Ycz-fR-ee3" secondAttribute="trailing" constant="10" id="O6y-aC-8Yb"/>
-                            <constraint firstItem="abI-si-qDW" firstAttribute="top" secondItem="Ycz-fR-ee3" secondAttribute="bottom" constant="20" id="cxW-ZH-Y7C"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="cfW-At-gl9"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VbJ-Yt-yJ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="105" y="-1349"/>
-        </scene>
         <!--Search Device View Controller-->
         <scene sceneID="Kcp-OV-K0Q">
             <objects>
@@ -234,7 +195,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Device"/>
                                 <connections>
-                                    <segue destination="pmR-nA-7ZM" kind="push" id="7AL-um-jSk"/>
+                                    <segue destination="4df-4M-dsY" kind="push" id="Gfj-6T-bRt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6N-YC-nHb">
@@ -3566,10 +3527,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

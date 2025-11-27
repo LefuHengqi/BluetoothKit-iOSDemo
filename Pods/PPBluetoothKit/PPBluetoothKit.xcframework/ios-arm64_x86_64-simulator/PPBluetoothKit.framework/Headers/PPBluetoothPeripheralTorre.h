@@ -17,7 +17,7 @@
 #import "PPTorreDFUDataModel.h"
 #import "PPWifiInfoModel.h"
 #import <PPBaseKit/PPBaseKit.h>
-
+#import "PPFingerprintInfo.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -334,18 +334,18 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 /// - Parameter handler: 0打开 1关闭
 - (void)fetchImpedanceTestMode:(void(^)(NSInteger status))handler;
 
-/// 设置设备语言
+/// 设置设备语言（部分设备支持）
 /// - Parameter handler: 0成功 1失败
 - (void)setLanguage:(PPTorreLanguage)language completion:(void(^)(NSInteger status))completion;
 
-/// 获取设备语言
+/// 获取设备语言（部分设备支持）
 /// - Parameter status: 0成功 1失败
 /// - Parameter language: 设备语言
 - (void)getLanguageWithCompletion:(void(^)(NSInteger status, PPTorreLanguage language))completion;
 
-/// 获取设备支持的语言列表
+/// 获取设备支持的语言列表（部分设备支持）
 /// - Parameter status: 0成功 1失败
-/// - Parameter languages: 设备支持的语言（0: 中文简体，1: 英文，2: 中文繁体，3: 日语，4: 西班牙语，5: 葡萄牙语，6: 阿拉伯语，7: 韩语）
+/// - Parameter languages: 设备支持的语言（0: 中文简体，1: 英文，2: 中文繁体，3: 日语，4: 西班牙语，5: 葡萄牙语，6: 阿拉伯语，7: 韩语，8: 德语 9: 斯洛伐克语 10: 捷克语 11: 波兰语 12: 匈牙利语 13：巴西葡萄牙语 14：俄语）
 - (void)getSupportedLanguageListWithCompletion:(void(^)(NSInteger status, NSArray<NSNumber *> *languages))completion;
 
 /// 获取电量
@@ -362,6 +362,22 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 /// 获取Wi-Fi图标显示控制状态
 /// - Parameter handler: 0显示Wi-Fi图标  1隐藏Wi-Fi图标
 - (void)fetchWifiIconStatus:(void(^)(NSInteger status))handler;
+
+/// 删除指定成员指纹（部分设备支持）
+/// - Parameters:
+///   - userModel: 单个用户信息 - userId、memberId为必传项
+///   - handler:  0设置成功 1设置失败
+- (void)deleteFingerprint:(PPTorreSettingModel *)userModel withHandler:(void(^)(NSInteger status))handler;
+
+/// 录入指定成员指纹（部分设备支持）
+/// - Parameters:
+///   - userModel: 单个用户信息 - userId、memberId为必传项
+///   - handler:  0设置成功 1设置失败
+- (void)registerFingerprint:(PPTorreSettingModel *)userModel withHandler:(void(^)(NSInteger status))handler;
+
+/// 获取用户指纹信息列表（部分设备支持）
+/// - Parameter handler: 返回设备端所有用户的指纹信息
+- (void)fetchFingerprintList:(void(^)(NSArray<PPFingerprintInfo *> *infos)) handler;
 
 
 @end

@@ -21,8 +21,9 @@ let DemoAppSecrect = "UCzWzna/eazehXaz8kKAC6WVfcL25nIPYlV9fXYzqDM="
 // 请务必将下面的计算库 Secret 换成你们自己的，否则可能无法计算出结果。请联系商务获取计算库密钥
 // Please be sure to replace the following calculation library Secret with your own, otherwise it may not be possible to calculate the result.Please contact the business department to obtain the calculation library key
 
-/// 4电极（4 electrodes）
-let DemoSecret4 = "Jyn7dEtLTGS9J3+jmtczIergA7Wiz9iqFVNVmcxmmkNtIWiFTIrf1WWpGmkDYuVB"
-/// 8电极（8 electrodes）
-let DemoSecret8 = "qqlnPbHg95UEFQgmJs+bep+IQjdvY4kK9wbCGEVQr2Vv2+t9PbOP8l6NCcPSxqtk"
+/// 4电极（4 electrodes） TwoLegs140,TwoArms140,TwoLegs240
+let Secret_TwoLegs140 = "Jyn7dEtLTGS9J3+jmtczIergA7Wiz9iqFVNVmcxmmkNtIWiFTIrf1WWpGmkDYuVB"
+
+/// 8电极（8 electrodes） Body270
+let Secret_Body270 = "qqlnPbHg95UEFQgmJs+bep+IQjdvY4kK9wbCGEVQr2Vv2+t9PbOP8l6NCcPSxqtk"
 

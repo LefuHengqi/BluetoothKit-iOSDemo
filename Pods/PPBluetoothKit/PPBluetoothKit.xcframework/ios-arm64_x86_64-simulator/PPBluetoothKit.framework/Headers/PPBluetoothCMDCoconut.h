@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 //#import "PPBluetoothDeviceSettingModel.h"
 #import <PPBaseKit/PPBaseKit.h>
+#import "PPSyncBodyModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)syncTimeCMD;
 
 + (NSString *)syncInfoCmdWithSettingModel:(PPBluetoothDeviceSettingModel *)settingModel;
+
++ (NSString *)syncBodyData:(PPSyncBodyModel *)model;
+
 @end
 
 NS_ASSUME_NONNULL_END

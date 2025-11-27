@@ -15,6 +15,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+// 服务UUID
+static NSString *const kBK3432ServiceUUID = @"F000FFC0-0451-4000-B000-000000000000";
+// 特征UUID
+static NSString *const kCharacteristicFFC1 = @"F000FFC1-0451-4000-B000-000000000000";
+static NSString *const kCharacteristicFFC2 = @"F000FFC2-0451-4000-B000-000000000000";
+
 @interface PPBluetoothPeripheralFish : NSObject
 
 
@@ -47,6 +54,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// 同步厨房秤时间
 /// @param date 时间对象
 - (void)syncTime:(NSDate *)date;
+
+
+
+/// DFU升级，部分设备支持
+- (void)startDfu:(NSString *)packagePath handler:(void(^)(CGFloat progress, PPDFUState state))handler;
+/// 进入内码模式，部分设备支持
+- (void)enterInternalCodeModeWithComplete:(void(^)(void))completion;
+/// 退出内码模式，部分设备支持
+- (void)exitInternalCodeModeWithComplete:(void(^)(void))completion;
 
 
 @end

@@ -55,6 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)hasTargetDatasFunc:(PPDeviceFuncType)funcType API_DEPRECATED("已过期，不再使用(Expired and no longer in use)", ios(1.0, API_TO_BE_DEPRECATED), visionos(1.0, API_TO_BE_DEPRECATED));
 
++ (BOOL)hasFingerprintFunc:(PPDeviceFuncType)funcType;
+
 + (void)loadDeviceWithJsonData:(NSArray *)jsonDicDataArray;
 
 + (void)loadDeviceWithJsonFile:(NSString *)filePath;
