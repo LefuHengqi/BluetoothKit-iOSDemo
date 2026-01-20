@@ -405,6 +405,25 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 /// - Parameter handler: 返回设备端所有用户的指纹信息
 - (void)fetchFingerprintList:(void(^)(NSArray<PPFingerprintInfo *> *infos)) handler;
 
+/// 设置显示指标（部分设备支持）
+/// - handler:  0设置成功 1设置失败
+- (void)setDisplayMetrics:(PPDisplayMetrics)metrics hanlder:(void(^)(NSInteger status))handler;
+
+/// 获取显示指标（部分设备支持）
+- (void)getDisplayMetricsWithHanlder:(void(^)(PPDisplayMetrics metrics))handler;
+
+/// 设置隐私模式开关
+/// - Parameters:
+/// status 0 成功 1 失败
+- (void)setPrivacyMode:(BOOL)open handler:(void(^)(int status))handler;
+
+
+/// 获取隐私模式开关
+/// - Parameters:
+/// open:  0 关闭 1 开启
+- (void)getPrivacyModeWithHandler:(void(^)(int open))handler;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

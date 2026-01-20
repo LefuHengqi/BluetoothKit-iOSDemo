@@ -384,6 +384,13 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 /// - Parameter handler: 返回设备端所有用户的指纹信息
 - (void)fetchFingerprintList:(void(^)(NSArray<PPFingerprintInfo *> *infos)) handler;
 
+/// 设置显示指标（部分设备支持）
+/// - handler:  0设置成功 1设置失败
+- (void)setDisplayMetrics:(PPDisplayMetrics)metrics hanlder:(void(^)(NSInteger status))handler;
+
+/// 获取显示指标（部分设备支持）
+- (void)getDisplayMetricsWithHanlder:(void(^)(PPDisplayMetrics metrics))handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -489,20 +489,54 @@ extension DeviceBorreViewController:UICollectionViewDelegate,UICollectionViewDat
         if title == .FetchHistory{
             self.addBleCmd(ss: "dataFetchHistoryData")
             
-            self.XM_Borre?.dataFetchHistoryData(user, withHandler: { [weak self] models in
-                guard let `self` = self else {
-                    return
-                }
-                
-                
-                models.forEach { bb in
-                    
-                    self.addStatusCmd(ss: "histroty---weight:\(bb.weight)")
-                    
-                }
-                
-            })
+            DispatchQueue.global().async {
+                let XM_Semaphore = DispatchSemaphore(value: 0)
 
+                // 获取访客历史
+                // Get visitor history
+                let guest = PPTorreSettingModel()
+                guest.touristAccount()
+                var guestList = [PPBluetoothScaleBaseModel]()
+                self.XM_Borre?.dataFetchHistoryData(guest, withHandler: { [weak self] models in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    guestList = models
+                    XM_Semaphore.signal()
+                })
+                let XM_Result = XM_Semaphore.wait(timeout: DispatchTime.now() + 5)
+                if XM_Result == .timedOut {
+                    print("dataFetchHistoryData timeout")
+                }
+                
+                // 获取用户历史
+                // Get user history
+                var userList = [PPBluetoothScaleBaseModel]()
+                self.XM_Borre?.dataFetchHistoryData(self.user, withHandler: { [weak self] models in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    userList = models
+                    XM_Semaphore.signal()
+                })
+                let XM_Result1 = XM_Semaphore.wait(timeout: DispatchTime.now() + 5)
+                if XM_Result1 == .timedOut {
+                    print("dataFetchHistoryData timeout")
+                }
+                
+                DispatchQueue.main.async {
+                    self.addStatusCmd(ss: "Visitor history data:\(guestList.count)")
+                    for model in guestList {
+                        self.addStatusCmd(ss: "historical data-weight:\(model.weight)")
+                    }
+                    self.addStatusCmd(ss: "User historical data:\(userList.count)")
+                    for model in userList {
+                        self.addStatusCmd(ss: "historical data-weight:\(model.weight)")
+                    }
+                }
+            }
         }
         
         if title == .changeUnit{

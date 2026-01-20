@@ -25,7 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *memberID;
 @property (nonatomic, copy) NSString *userName;
 @property (nonatomic, assign) NSInteger deviceHeaderIndex;
-
+@property (nonatomic, assign) NSInteger birthYear;
+@property (nonatomic, assign) NSInteger birthMonth;
+@property (nonatomic, assign) NSInteger birthDay;
 
 @property (nonatomic, assign) CGFloat targetWeight;
 @property (nonatomic, assign) CGFloat idealWeight;

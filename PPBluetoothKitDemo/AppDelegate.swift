@@ -16,20 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        
-        let userDefaults = UserDefaults.standard
 
         
         // 本Demo提供的appKey、appSecrect和配置文件默认体验1个月
         //请务必更换您自己的AppKey、AppSecret、配置文件路径，否则您的应用可能无法正常使用本SDK功能。需要增加设备配置请联系我司销售顾问
 //        The appKey, appSecrect and configuration files provided by this demo have a default experience of 1 month.
 //        Please be sure to replace your own AppKey, AppSecret, and configuration file path, otherwise your application may not be able to use this SDK function normally. If you need to add equipment configuration, please contact our sales consultant
+
+        // 打印SDK日志
+        // Print SDK logs
+        PPLog.sharedInstance().logBlock = { log in
+            print("SDK-Log:\(log)")
+        }
         
         let path = Bundle.main.path(forResource: "lefu", ofType: "config") ?? ""
         PPBluetoothManager.loadDevice(withAppKey: DemoAppKey, appSecrect: DemoAppSecrect, filePath: path)
 
         
+        
+        let userDefaults = UserDefaults.standard
         if userDefaults.object(forKey: "userModel.shared") == nil{
             
             let data = try! NSKeyedArchiver.archivedData(withRootObject: userModel.shared, requiringSecureCoding: false)

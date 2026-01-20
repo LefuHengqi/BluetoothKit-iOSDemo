@@ -61,8 +61,8 @@ enum menuType:String{
     case hideWifiIcon = "Hide Wi-Fi Icon"
     case getWifiIconStatus = "Get Wi-Fi icon status"
     
-    
-
+    case setGravity = "Set gravity acceleration"
+    case getGravity = "Get gravity acceleration"
 
 }
 
@@ -72,7 +72,7 @@ class DeviceTorreViewController: BaseViewController {
     
     var XM_MtuSuccess = false
 
-    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus]
+    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser, .FetchHistory,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus, .setGravity, .getGravity]
     
     let user : PPTorreSettingModel = {
         
@@ -560,20 +560,54 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         if title == .FetchHistory{
             self.addBleCmd(ss: "dataFetchHistoryData")
             
-            self.XM_Torre?.dataFetchHistoryData(user, withHandler: { [weak self] models in
-                guard let `self` = self else {
-                    return
-                }
-                
-                
-                models.forEach { bb in
-                    
-                    self.addStatusCmd(ss: "histroty---weight:\(bb.weight)")
-                    
-                }
-                
-            })
+            DispatchQueue.global().async {
+                let XM_Semaphore = DispatchSemaphore(value: 0)
 
+                // 获取访客历史
+                // Get visitor history
+                let guest = PPTorreSettingModel()
+                guest.touristAccount()
+                var guestList = [PPBluetoothScaleBaseModel]()
+                self.XM_Torre?.dataFetchHistoryData(guest, withHandler: { [weak self] models in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    guestList = models
+                    XM_Semaphore.signal()
+                })
+                let XM_Result = XM_Semaphore.wait(timeout: DispatchTime.now() + 5)
+                if XM_Result == .timedOut {
+                    print("dataFetchHistoryData timeout")
+                }
+                
+                // 获取用户历史
+                // Get user history
+                var userList = [PPBluetoothScaleBaseModel]()
+                self.XM_Torre?.dataFetchHistoryData(self.user, withHandler: { [weak self] models in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    userList = models
+                    XM_Semaphore.signal()
+                })
+                let XM_Result1 = XM_Semaphore.wait(timeout: DispatchTime.now() + 5)
+                if XM_Result1 == .timedOut {
+                    print("dataFetchHistoryData timeout")
+                }
+                
+                DispatchQueue.main.async {
+                    self.addStatusCmd(ss: "Visitor history data:\(guestList.count)")
+                    for model in guestList {
+                        self.addStatusCmd(ss: "historical data-weight:\(model.weight)")
+                    }
+                    self.addStatusCmd(ss: "User historical data:\(userList.count)")
+                    for model in userList {
+                        self.addStatusCmd(ss: "historical data-weight:\(model.weight)")
+                    }
+                }
+            }
         }
         
         if title == .changeUnit{
@@ -945,6 +979,32 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
                 
             })
             
+        }
+        
+        // 部分设备支持
+        // Supported by some devices
+        if title == .setGravity {
+            self.addBleCmd(ss: menuType.setGravity.rawValue)
+
+            self.XM_Torre?.setGravityAcceleration(1, hanlder: { [weak self] status in
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.addStatusCmd(ss: "status:\(status)")
+            })
+        }
+        // 部分设备支持
+        // Supported by some devices
+        if title == .getGravity {
+            self.addBleCmd(ss: menuType.getGravity.rawValue)
+
+            self.XM_Torre?.getGravityAcceleration(hanlder: { [weak self] result in
+                guard let `self` = self else {
+                    return
+                }
+                self.addStatusCmd(ss: "result:\(result)")
+            })
         }
         
     }

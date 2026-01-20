@@ -424,5 +424,16 @@ typedef NS_ENUM(NSInteger, PPDFUState) {
     PPDFUStateError // 升级出错
 };
 
+typedef NS_ENUM(NSUInteger, PPDisplayMetrics) {
+    PPDisplayMetricsBMI = 1,
+    PPDisplayMetricsFat = 2,
+    PPDisplayMetricsPRO = 3,
+    PPDisplayMetricsMus = 4,
+    PPDisplayMetricsTbw = 5,
+    PPDisplayMetricsBon = 6,
+    PPDisplayMetricsAge = 7
+    
+};
+
 
 #endif /* PPBluetoothDefine_h */

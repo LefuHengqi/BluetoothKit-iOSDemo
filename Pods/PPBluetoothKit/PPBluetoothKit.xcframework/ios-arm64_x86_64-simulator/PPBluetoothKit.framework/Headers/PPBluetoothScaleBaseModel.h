@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PPBluetoothDefine.h"
 #import "PPKorreFoodInfo.h"
-
+#import "PPImpedanceFailModel.h"
 
 
 
@@ -30,6 +30,9 @@
 @property (nonatomic, assign) NSInteger lightStrength; // 特殊秤光照强度
 @property (nonatomic, assign) BOOL hasLightStrength; // 是否包含光照强度
 
+@property (nonatomic, assign) NSInteger batteryVoltage; // 电池电压，部分设备支持
+@property (nonatomic, assign) NSInteger photovoltaicVoltage; // 光伏电压，部分设备支持
+
  
 @property (nonatomic, assign) NSInteger impedance100EnCode; // 100kHz密文阻抗(4电极双频)
 
@@ -40,7 +43,7 @@
 @property (nonatomic, copy) NSString *memberId; //数据归属 torre协议用
 @property (nonatomic, assign) NSInteger footLen; // 脚长，CM放大100倍
 @property (nonatomic, strong) PPKorreFoodInfo *foodInfo; // 食物信息，营养秤才支持
-
+@property (nonatomic, strong) PPImpedanceFailModel *impedanceFailReason; // 阻抗测量失败原因，部分设备支持
 
 
 @property (nonatomic, assign) NSInteger  z100KhzLeftArmEnCode;//100KHz左手阻抗加密值(下位机上传值)

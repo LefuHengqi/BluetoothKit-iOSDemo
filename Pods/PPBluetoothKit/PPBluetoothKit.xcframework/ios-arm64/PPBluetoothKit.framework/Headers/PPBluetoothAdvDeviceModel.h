@@ -37,7 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *customDeviceName; // 自定义名称
 @property (nonatomic, copy) NSString *imgUrl; // 设备配置的图片
 @property (nonatomic, assign) NSInteger brandId;
-@property (nonatomic, strong) NSDictionary *advancedConfig;
+@property (nonatomic, strong) NSDictionary *advancedConfig; // 高级配置项
+@property (nonatomic, assign) BOOL isSupportADN; // 是否支持无WIFI列表请求配网
+@property (nonatomic, copy) NSString *code;//设备配置唯一ID
 
 @property (nonatomic, assign) PPDevicePeripheralType PeripheralType;
 
@@ -55,6 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)getSyncTargetCode;
 - (NSInteger)getTypeLen;
 - (NSInteger)getMaxFoodCount;
+- (NSInteger)getSupportUnlimitedUserCode;
+- (NSInteger)getSupportImpedanceSwitchCode;
+- (NSInteger)getIsSupportBirthdayCode;
 
 
 + (PPBluetoothAdvDeviceModel*)filterDeviceTypeAdvModelByCBAdvDataManufacturerData:(NSData *)advData andDeivceName:(NSString *)name RSSI:(NSNumber *)RSSI;
