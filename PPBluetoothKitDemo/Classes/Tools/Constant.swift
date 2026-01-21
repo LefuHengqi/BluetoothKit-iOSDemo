@@ -22,8 +22,8 @@ let DemoAppSecrect = "UCzWzna/eazehXaz8kKAC6WVfcL25nIPYlV9fXYzqDM="
 // Please be sure to replace the following calculation library Secret with your own, otherwise it may not be possible to calculate the result.Please contact the business department to obtain the calculation library key
 
 /// 4电极（4 electrodes） TwoLegs140,TwoArms140,TwoLegs240
-let Secret_TwoLegs140 = "Jyn7dEtLTGS9J3+jmtczIergA7Wiz9iqFVNVmcxmmkNtIWiFTIrf1WWpGmkDYuVB"
+let BodyCompositionDetection1 = "Jyn7dEtLTGS9J3+jmtczIergA7Wiz9iqFVNVmcxmmkNtIWiFTIrf1WWpGmkDYuVB"
 
 /// 8电极（8 electrodes） Body270
-let Secret_Body270 = "qqlnPbHg95UEFQgmJs+bep+IQjdvY4kK9wbCGEVQr2Vv2+t9PbOP8l6NCcPSxqtk"
+let BodyCompositionDetection2 = "qqlnPbHg95UEFQgmJs+bep+IQjdvY4kK9wbCGEVQr2Vv2+t9PbOP8l6NCcPSxqtk"
 
