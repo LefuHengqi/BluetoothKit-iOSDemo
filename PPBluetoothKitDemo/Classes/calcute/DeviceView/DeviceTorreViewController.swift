@@ -82,7 +82,7 @@ class DeviceTorreViewController: BaseViewController {
         uu.isPregnantMode = false
         
         uu.height = 180
-        uu.age = 20
+        uu.age = 28
         uu.gender = PPDeviceGenderType.female
         uu.unit = .unitKG
         
@@ -95,6 +95,9 @@ class DeviceTorreViewController: BaseViewController {
         uu.targetWeight = 60
         
         uu.idealWeight = 50
+        uu.birthYear = 1998
+        uu.birthMonth = 1
+        uu.birthDay = 20
         
         return uu
     }()
