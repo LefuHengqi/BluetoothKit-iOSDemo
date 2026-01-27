@@ -56,6 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
 // 需注意的区间 [1,2]
 @property (nonatomic,strong) NSArray  *watchfulArray;
 
+// 对当前所在区间的评价(BMI_leve1_evaluation,BMI_leve2_evaluation,BMI_leve3_evaluation,BMI_leve4_evaluation)
+@property (nonatomic,strong) NSArray <NSString *> *evaluationArray;
+
+// 对当前所在区间的建议(BMI_leve1_suggestion,BMI_leve2_suggestion,BMI_leve3_suggestion,BMI_leve4_suggestion)
+@property (nonatomic,strong) NSArray <NSString *> *suggestionArray;
 
 
 - (instancetype)initWithDic:(NSDictionary *)dic

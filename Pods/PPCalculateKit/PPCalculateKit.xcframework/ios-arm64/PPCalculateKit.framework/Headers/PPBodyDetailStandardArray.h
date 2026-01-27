@@ -49,6 +49,9 @@ typedef NS_ENUM(NSUInteger, PPBodyDetailStandardType){
 
 - (NSArray *)fetchPPBodyParam_BodyFat_StandartArray_percent_4_A:(NSDictionary *)dic typeWeight:(BOOL)isWeight;
 
+// 8电极体脂率
+- (NSArray *)fetchPPBodyParam_BodyFat_StandartArray_8:(NSDictionary *)dic;
+
 
 #pragma mark - 水分 【3段】【量、率】
 
@@ -105,6 +108,8 @@ typedef NS_ENUM(NSUInteger, PPBodyDetailStandardType){
 - (NSArray *)fetchPPBodyParam_BodySubcutaneousFat_StandartArray_4_D_typeWeight:(BOOL)isWeight;
 
 - (NSArray *)fetchPPBodyParam_BodySubcutaneousFat_StandartArray_percent_4_A:(NSDictionary *)dic typeWeight:(BOOL)isWeight;
+
+- (NSArray *)fetchPPBodyParam_BodySubcutaneousFat_StandartArray_8:(NSDictionary *)dic;
 
 
 #pragma mark - 骨骼肌 【3段】【量、率】
