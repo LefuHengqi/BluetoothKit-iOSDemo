@@ -33,8 +33,8 @@ class CalcuelateResultViewController: UIViewController {
         let lastTime = Date().timeIntervalSince1970 - 2100 // Time of the previous set of measurement data (unit: seconds). 上一组测量数据的时间(单位:秒)
         let deviceCalcuteType8 = self.deviceCalcuteType ?? .alternate8
         
-        // This requires using the previously saved measurement data.Otherwise, the smooth impedance algorithm will not be used.
-        // 此处需要使用已保存的上一次测量数据，否则不会走平滑阻抗算法
+        // This step requires using the previously saved set of measurement data; otherwise, the smooth impedance algorithm will not be executed.
+        // 此处需要使用已保存的上一组测量数据，否则不会走平滑阻抗算法
         let last = PPCalculateInputModel()
         last.secret = CommonTool.getSecret(calcuteType: deviceCalcuteType8)
         last.timeInterval = lastTime
@@ -111,6 +111,11 @@ class CalcuelateResultViewController: UIViewController {
                 
                 let lastInput = self.getLastCalculateInputModel()
                 fatModel = PPBodyFatModel(smoothWithLast: lastInput, currentInputModel: inputModel)
+
+                // After using the impedance smoothing algorithm, the impedance value will change. It is necessary to save the smoothed impedance as the impedance value of the current measurement data for calculation in the next set of measurement data.
+                // 使用平滑阻抗算法后，阻抗值会变化，需要保存平滑后的阻抗作为当前这次测量数据的阻抗值，用于下一组测量数据计算
+                print("Impedance after smoothing-z100KhzLeftArmEnCode:\(fatModel.ppZ100KhzLeftArmEnCode) z100KhzLeftLegEnCode:\(fatModel.ppZ100KhzLeftLegEnCode) z100KhzRightArmEnCode:\(fatModel.ppZ100KhzRightArmEnCode) z100KhzRightLegEnCode:\(fatModel.ppZ100KhzRightLegEnCode) z100KhzTrunkEnCode:\(fatModel.ppZ100KhzTrunkEnCode) z20KhzLeftArmEnCode:\(fatModel.ppZ20KhzLeftArmEnCode) z20KhzLeftLegEnCode:\(fatModel.ppZ20KhzLeftLegEnCode) z20KhzRightArmEnCode:\(fatModel.ppZ20KhzRightArmEnCode) z20KhzRightLegEnCode:\(fatModel.ppZ20KhzRightLegEnCode) z20KhzTrunkEnCode:\(fatModel.ppZ20KhzTrunkEnCode)")
+                
             } else {
                 fatModel = PPBodyFatModel(inputModel: inputModel)
             }

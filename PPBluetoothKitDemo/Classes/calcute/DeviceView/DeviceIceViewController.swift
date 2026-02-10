@@ -97,10 +97,14 @@ class DeviceIceViewController: BaseViewController {
             if advModel.deviceCalcuteType == .alternate8_5 {
                 // Smooth impedance algorithm. 平滑阻抗算法
                 
-                // The previous measurement data needs to be saved for the next calculation.
-                // 需要将上一次测量数据进行保存，用于下一次计算
+                // The previous set of measurement data needs to be saved for calculation of the next set of measurement data.
+                // 需要将上一组测量数据进行保存，用于下一组测量数据计算
                 let last = self.getTestLastModel()
                 fatModel = PPBodyFatModel(smoothWithLast: last, currentInputModel: inputModel)
+                
+                // After using the impedance smoothing algorithm, the impedance value will change. It is necessary to save the smoothed impedance as the impedance value of the current measurement data for calculation in the next set of measurement data.
+                // 使用平滑阻抗算法后，阻抗值会变化，需要保存平滑后的阻抗作为当前这次测量数据的阻抗值，用于下一组测量数据计算
+                print("Impedance after smoothing-z100KhzLeftArmEnCode:\(fatModel.ppZ100KhzLeftArmEnCode) z100KhzLeftLegEnCode:\(fatModel.ppZ100KhzLeftLegEnCode) z100KhzRightArmEnCode:\(fatModel.ppZ100KhzRightArmEnCode) z100KhzRightLegEnCode:\(fatModel.ppZ100KhzRightLegEnCode) z100KhzTrunkEnCode:\(fatModel.ppZ100KhzTrunkEnCode) z20KhzLeftArmEnCode:\(fatModel.ppZ20KhzLeftArmEnCode) z20KhzLeftLegEnCode:\(fatModel.ppZ20KhzLeftLegEnCode) z20KhzRightArmEnCode:\(fatModel.ppZ20KhzRightArmEnCode) z20KhzRightLegEnCode:\(fatModel.ppZ20KhzRightLegEnCode) z20KhzTrunkEnCode:\(fatModel.ppZ20KhzTrunkEnCode)")
                 
             } else {
                 fatModel = PPBodyFatModel(inputModel: inputModel)
@@ -143,8 +147,8 @@ class DeviceIceViewController: BaseViewController {
         let deviceCalcuteType8:PPDeviceCalcuteType = .alternate8_5
         let heartRate = 76
         
-        // This requires using the previously saved measurement data.Otherwise, the smooth impedance algorithm will not be used.
-        // 此处需要使用已保存的上一次测量数据，否则不会走平滑阻抗算法
+        // This step requires using the previously saved set of measurement data; otherwise, the smooth impedance algorithm will not be executed.
+        // 此处需要使用已保存的上一组测量数据，否则不会走平滑阻抗算法
         let last = PPCalculateInputModel()
         last.secret = CommonTool.getSecret(calcuteType: deviceCalcuteType8)
         last.timeInterval = lastTime
