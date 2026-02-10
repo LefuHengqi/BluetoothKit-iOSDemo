@@ -13,7 +13,7 @@ import PPCalculateKit
 class DeviceIceViewController: BaseViewController {
 
     var XM_Ice: PPBluetoothPeripheralIce?
-    
+    var lastInputModel:PPCalculateInputModel?
     var scaleCoconutViewController:ScaleCoconutViewController?
     
     var array:[menuType] = [.deviceInfo,.startMeasure,.SyncTime,.wificonfigstatus,.distributionNetwork,.changeUnit,.openHeartRate, .openImpedance, .closeImpedance, .closeHeartRate,.keepAlive, .dataSyncLog]
@@ -55,7 +55,7 @@ class DeviceIceViewController: BaseViewController {
     }
     
     func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, advModel: PPBluetoothAdvDeviceModel, isLock:Bool) {
-        
+
         let calculateWeightKg = Float(scaleModel.weight)/100
         
         var weightStr = calculateWeightKg.toCurrentUserString(accuracyType: Int(self.deviceModel.deviceAccuracyType.rawValue), unitType: Int(scaleModel.unit.rawValue),forWeight: true) + " \(Int(scaleModel.unit.rawValue).getUnitStr())"
@@ -90,17 +90,33 @@ class DeviceIceViewController: BaseViewController {
             inputModel.heartRate = scaleModel.heartRate
             inputModel.footLen = scaleModel.footLen
             inputModel.bodyAgeMethod = PPBodyAgeMethod(rawValue: UInt(advModel.getBodyAgeTypeCode())) ?? .default
+            inputModel.timeInterval = Date().timeIntervalSince1970
 
+            var fatModel:PPBodyFatModel!
             
-            let fatModel = PPBodyFatModel(inputModel: inputModel)
-
+            if advModel.deviceCalcuteType == .alternate8_5 {
+                // Smooth impedance algorithm. 平滑阻抗算法
+                
+                // The previous measurement data needs to be saved for the next calculation.
+                // 需要将上一次测量数据进行保存，用于下一次计算
+                let last = self.getTestLastModel()
+                fatModel = PPBodyFatModel(smoothWithLast: last, currentInputModel: inputModel)
+                
+            } else {
+                fatModel = PPBodyFatModel(inputModel: inputModel)
+            }
+            
+            self.lastInputModel = inputModel
             
             let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
             
-            //Get the range of each body indicator
+            // Obtain information such as the judgment range and evaluation of each physical indicator.If the standardArray of the PPBodyDetailModel object is empty, then this metric has no judgment range.
+            // 获取每个身体指标的判定范围和评价等信息，如果PPBodyDetailModel对象的standardArray为空，则该指标没有判定范围
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
             let weightParam = detailModel.ppBodyParam_Weight
             print("weight-currentValue:\(weightParam.currentValue) range:\(weightParam.standardArray)  standardTitle:\(bodyDataJson[weightParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[weightParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[weightParam.standeValuation] ?? "")")
+            
+            // Get all body indicator arrays(detailModel.data). 获取所有身体指标数组(detailModel.data)
     //        print("data:\(detailModel.data)")
             
             
@@ -119,6 +135,40 @@ class DeviceIceViewController: BaseViewController {
         }
         
         self.weightLbl.text = weightStr
+    }
+    
+    func getTestLastModel()->PPCalculateInputModel {
+
+        let lastTime = Date().timeIntervalSince1970 - 2100 // Time of the previous set of measurement data (unit: seconds). 上一组测量数据的时间(单位:秒)
+        let deviceCalcuteType8:PPDeviceCalcuteType = .alternate8_5
+        let heartRate = 76
+        
+        // This requires using the previously saved measurement data.Otherwise, the smooth impedance algorithm will not be used.
+        // 此处需要使用已保存的上一次测量数据，否则不会走平滑阻抗算法
+        let last = PPCalculateInputModel()
+        last.secret = CommonTool.getSecret(calcuteType: deviceCalcuteType8)
+        last.timeInterval = lastTime
+        last.height = 160
+        last.age = 20
+        last.gender = .female
+        last.isAthleteMode = false
+        last.bodyAgeMethod = .default
+        last.deviceCalcuteType = deviceCalcuteType8
+        last.weight = CGFloat(65)
+        last.z20KhzLeftArmEnCode = 0 // Impedance from the last measured data. 上一次测量数据的阻抗
+        last.z20KhzRightArmEnCode = 0 // Impedance from the last measured data. 上一次测量数据的阻抗
+        last.z20KhzLeftLegEnCode = 0 // Impedance from the last measured data. 上一次测量数据的阻抗
+        last.z20KhzRightLegEnCode = 0 // Impedance from the last measured data. 上一次测量数据的阻抗
+        last.z20KhzTrunkEnCode = 0 // Impedance from the last measured data. 上一次测量数据的阻抗
+        last.z100KhzLeftArmEnCode = 0 // Impedance from the last measured data. 上一次测量数据的阻抗
+        last.z100KhzRightArmEnCode = 0 // Impedance from the last measured data. 上一次测量数据的阻抗
+        last.z100KhzLeftLegEnCode = 0 // Impedance from the last measured data. 上一次测量数据的阻抗
+        last.z100KhzRightLegEnCode = 0 // Impedance from the last measured data. 上一次测量数据的阻抗
+        last.z100KhzTrunkEnCode = 0 // Impedance from the last measured data. 上一次测量数据的阻抗
+        last.deviceMac = ""
+        last.heartRate = heartRate
+        
+        return last
     }
 
     deinit {

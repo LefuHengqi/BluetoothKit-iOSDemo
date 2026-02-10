@@ -58,10 +58,13 @@ class DeviceBananaViewController: BaseViewController {
             
             let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
             
-            //Get the range of each body indicator
+            // Obtain information such as the judgment range and evaluation of each physical indicator.If the standardArray of the PPBodyDetailModel object is empty, then this metric has no judgment range.
+            // 获取每个身体指标的判定范围和评价等信息，如果PPBodyDetailModel对象的standardArray为空，则该指标没有判定范围
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
             let weightParam = detailModel.ppBodyParam_Weight
             print("weight-currentValue:\(weightParam.currentValue) range:\(weightParam.standardArray)  standardTitle:\(bodyDataJson[weightParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[weightParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[weightParam.standeValuation] ?? "")")
+            
+            // Get all body indicator arrays(detailModel.data). 获取所有身体指标数组(detailModel.data)
             //        print("data:\(detailModel.data)")
             
             
