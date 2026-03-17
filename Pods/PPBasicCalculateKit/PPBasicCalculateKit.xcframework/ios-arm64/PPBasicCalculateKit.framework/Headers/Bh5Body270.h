@@ -247,7 +247,7 @@
 @property(nonatomic, readonly, copy) NSDictionary *bhBMRList;           //!< 基础代谢Kcal-标准字典 "Min"“Max”
 @property(nonatomic, readonly, assign) unsigned int bhDCI;              //!< 建议卡路里摄入量 Kcal/day
 @property(nonatomic, readonly, assign) float bhIdealWeightKg;           //!< 理想体重(kg)
-@property(nonatomic, readonly, assign) unsigned int bhTargetWeight;     //!< 目标体重Kg
+@property(nonatomic, readonly, assign) float bhTargetWeight;     //!< 目标体重Kg
 @property(nonatomic, readonly, assign) float bhWeightKgCon;             //!< 体重控制(kg)
 @property(nonatomic, readonly, assign) float bhMuscleKgCon;             //!< 肌肉控制(kg)
 @property(nonatomic, readonly, assign) float bhBodyFatKgCon;            //!< 体脂控制(kg)
