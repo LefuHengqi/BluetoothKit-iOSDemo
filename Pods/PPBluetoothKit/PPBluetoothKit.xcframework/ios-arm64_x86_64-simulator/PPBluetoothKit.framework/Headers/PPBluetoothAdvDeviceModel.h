@@ -60,7 +60,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)getSupportUnlimitedUserCode;
 - (NSInteger)getSupportImpedanceSwitchCode;
 - (NSInteger)getIsSupportBirthdayCode;
-
+- (NSInteger)getSmallWeight002Code;
+- (NSInteger)getSupportCoffeManualMode;
+- (NSInteger)getTorreUserManagerMethod;
+- (NSInteger)getTorreMaxUserCount;
+- (NSInteger)getMaxMemberCount;
 
 + (PPBluetoothAdvDeviceModel*)filterDeviceTypeAdvModelByCBAdvDataManufacturerData:(NSData *)advData andDeivceName:(NSString *)name RSSI:(NSNumber *)RSSI;
 

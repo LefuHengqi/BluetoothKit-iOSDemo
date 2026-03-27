@@ -2,7 +2,7 @@ PODS:
   - IQKeyboardManager (6.5.19)
   - PPBaseKit (1.2.17)
   - PPBasicCalculateKit (1.0.7)
-  - PPBluetoothKit (1.2.33):
+  - PPBluetoothKit (1.2.35):
     - PPBaseKit
   - PPCalculateKit (1.2.26):
     - PPBaseKit
@@ -12,7 +12,7 @@ DEPENDENCIES:
   - IQKeyboardManager
   - PPBaseKit (= 1.2.17)
   - PPBasicCalculateKit (= 1.0.7)
-  - PPBluetoothKit (= 1.2.33)
+  - PPBluetoothKit (= 1.2.35)
   - PPCalculateKit (= 1.2.26)
   - SSZipArchive
 
@@ -29,10 +29,10 @@ SPEC CHECKSUMS:
   IQKeyboardManager: c8665b3396bd0b79402b4c573eac345a31c7d485
   PPBaseKit: 6c39660cf486016e77384a6c72887efd60a63d07
   PPBasicCalculateKit: 65a6ce55122aeffd560b0a22671860335aaa2f70
-  PPBluetoothKit: 85e74cdf51186ad9d9a58b2b763845d8a1316043
+  PPBluetoothKit: e4279b535b446bd4d30242480a01af4305209d6c
   PPCalculateKit: 1a9775a12ae610637c01e125815ef8fadc492eea
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
 
-PODFILE CHECKSUM: cbf2fef96e2d3b2e78886c30ea1abe74cbb607f5
+PODFILE CHECKSUM: e97c840c57da0b0092bbb8e7b6a316ab607de408
 
 COCOAPODS: 1.16.2

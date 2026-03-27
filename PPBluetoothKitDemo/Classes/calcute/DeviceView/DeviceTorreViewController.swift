@@ -63,6 +63,7 @@ enum menuType:String{
     
     case setGravity = "Set gravity acceleration"
     case getGravity = "Get gravity acceleration"
+    case specifyNicknameFontSize = "Specify nickname font size"
 
 }
 
@@ -72,7 +73,7 @@ class DeviceTorreViewController: BaseViewController {
     
     var XM_MtuSuccess = false
 
-    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser, .FetchHistory,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus, .setGravity, .getGravity]
+    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser, .FetchHistory,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus, .setGravity, .getGravity, .specifyNicknameFontSize]
     
     let user : PPTorreSettingModel = {
         
@@ -1013,6 +1014,79 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             })
         }
         
+        if title == .specifyNicknameFontSize{
+            
+            self.showNumberInputAlert {[weak self] (name, fontSize) in
+                guard let `self` = self else { return }
+                
+                self.addBleCmd(ss: "dataSyncUserList-specify nickname font size")
+                // Synchronize user information and specify nickname font size
+                user.userName = name
+                user.nameFontSize = fontSize
+                self.XM_Torre?.dataSyncUserList([user], withHandler: { [weak self] status in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    self.addStatusCmd(ss: "\(status)")
+
+                })
+                
+            } cancelHandler: {
+            }
+        }
+        
+    }
+    
+    
+    
+    func showNumberInputAlert(confirmHanlder:@escaping((_ name:String, _ value:Int)->Void), cancelHandler:@escaping(()->Void)) {
+        let alertController = UIAlertController(
+            title: "Synchronize user information",
+            message: "Enter nickname and font size",
+            preferredStyle: .alert
+        )
+        let name = self.user.userName
+        alertController.addTextField {textField in
+            textField.placeholder = "Enter username"
+            textField.clearButtonMode = .whileEditing
+            textField.autocorrectionType = .no
+            textField.text = name
+        }
+        
+        alertController.addTextField { textField in
+            textField.placeholder = "Enter font size"
+            textField.keyboardType = .numberPad
+            textField.clearButtonMode = .whileEditing
+            textField.autocorrectionType = .no
+            textField.becomeFirstResponder()
+        }
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
+            if let tf1 = alertController.textFields?.first, let tf2 = alertController.textFields?.last {
+                let text1 = tf1.text ?? name
+                let text2 = tf2.text ?? "0"
+                
+                if let number = Int(text2) {
+                    
+                    confirmHanlder(text1, number)
+                } else {
+                    print("Invalid input: \(text2)")
+                    cancelHandler()
+                }
+            } else {
+                print("empty")
+                cancelHandler()
+            }
+        }
+        alertController.addAction(confirmAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            cancelHandler()
+        }
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }

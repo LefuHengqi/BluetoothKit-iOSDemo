@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat targetWeight;
 @property (nonatomic, assign) CGFloat idealWeight;
 
+@property (nonatomic, assign) NSInteger nameFontSize; // 字模字体大小，部分设备支持
+
 //local pIndex，Borre协议专用
 @property (nonatomic, assign) NSInteger PIndex;
 

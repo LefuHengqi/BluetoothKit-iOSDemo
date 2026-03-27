@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)syncTimeCMDWithDevice180AModel:(PPBluetooth180ADeviceModel *)device180A;
 
++ (NSString *)syncTimeCMDWithZone:(PPZoneType)zoneType;
+
 + (NSString *)syncInfoCmdWithSettingModel:(PPBluetoothDeviceSettingModel *)settingModel device180AModel:(PPBluetooth180ADeviceModel *)device180A andAdvDeviceModel:(PPBluetoothAdvDeviceModel *)deviceModel;
 
 + (NSArray *)configWifiCMDBySSID:(NSString *)ssid andPassword:(NSString *)password;

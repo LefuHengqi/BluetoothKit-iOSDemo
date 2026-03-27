@@ -104,6 +104,7 @@ typedef NS_OPTIONS(NSUInteger, PPDeviceFuncType) {
     PPDeviceFuncTypeDorreNickname = 1 << 23, // Dorre-支持昵称
     PPDeviceFuncTypeDorre16Datas = 1 << 24, // Dorre-支持16天数据
     PPDeviceFuncTypeFingerprint = 1 << 25, // 指纹录入
+    PPDeviceFuncTypeToeprint = 1 << 26, // 脚趾纹录入
 };
 
 // 设备精度
@@ -318,8 +319,13 @@ typedef NS_ENUM(NSInteger, PPCoffeeCurrentMode) {
     /// 手冲模式2
     PPCoffeeCurrentModePourOver2 = 1,
     /// 意式模式
-    PPCoffeeCurrentModeEspresso = 2
+    PPCoffeeCurrentModeEspresso = 2,
+    ///手冲模式2展示另一种名称
+    PPCoffeeCurrentModePourOver = 3,
+    ///手动模式
+    PPCoffeeCurrentModeManual = 4
 };
+
 
 
 typedef NS_ENUM(NSInteger, PPCoffeeStage) {
@@ -433,6 +439,12 @@ typedef NS_ENUM(NSUInteger, PPDisplayMetrics) {
     PPDisplayMetricsBon = 6,
     PPDisplayMetricsAge = 7
     
+};
+
+// 时区
+typedef NS_ENUM(NSUInteger, PPZoneType) {
+    PPZoneTypeSystem = 0, // 系统时区
+    PPZoneTypeUTC, // UTC时区
 };
 
 

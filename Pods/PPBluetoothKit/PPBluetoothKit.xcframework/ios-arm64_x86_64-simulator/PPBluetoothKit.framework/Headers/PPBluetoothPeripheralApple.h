@@ -46,6 +46,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///  - status 0 : 成功，1 : 失败
 - (void)syncDeviceTimeWithHandler:(void(^)(NSInteger status))handler;
 
+/// 同步时间-指定时区
+/// 使用该方法前，请确认设备的时区
+///  - status 0 : 成功，1 : 失败
+- (void)syncDeviceTimeWithZone:(PPZoneType)zoneType handler:(void(^)(NSInteger status))handler;
+
 - (void)fetchDeviceBatteryInfo;
 
 - (void)syncDeviceSetting:(PPBluetoothDeviceSettingModel *)settingModel;
