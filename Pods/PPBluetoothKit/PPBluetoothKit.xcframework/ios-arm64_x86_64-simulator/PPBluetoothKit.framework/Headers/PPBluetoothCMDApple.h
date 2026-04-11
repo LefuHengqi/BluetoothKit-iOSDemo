@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)configWifiCMDBySSID:(NSString *)ssid andPassword:(NSString *)password;
 
 + (NSArray *)changeDNS:(NSString *)dns;
+
++ (NSString *)heartRateCodeWithOpen:(BOOL)open;
 @end
 
 NS_ASSUME_NONNULL_END

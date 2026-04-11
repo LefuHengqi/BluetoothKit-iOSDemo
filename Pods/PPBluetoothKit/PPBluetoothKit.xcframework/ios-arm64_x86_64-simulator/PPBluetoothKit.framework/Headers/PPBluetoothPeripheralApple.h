@@ -114,6 +114,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// 退出内码模式，部分设备支持
 - (void)exitInternalCodeModeWithComplete:(void(^)(void))completion;
 
+/// 开启心率，部分设备支持
+- (void)openHeartRateSwitchWithComplete:(void(^)(void))completion;
+
+/// 关闭心率，部分设备支持
+- (void)closeHeartRateSwitchWithComplete:(void(^)(void))completion;
+
+/// 查询心率开关状态，部分设备支持
+/// - Parameter handler: 0-心率测量打开， 1-心率测量关闭
+- (void)fetchHeartRateSwitch:(void(^)(NSInteger status))handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

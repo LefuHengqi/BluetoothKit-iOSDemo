@@ -39,6 +39,9 @@ enum DeviceMenuType:String{
     case deleteUser = "Delete User"
     case fetchFoodIDList = "Fetch FoodID List"
     case deleteFood = "Delete Food"
+    case turnOnHeartRate = "Turn on heart rate"
+    case turnOffHeartRate = "Turn off heart rate"
+    case getHeartRate = "Get heart rate switch status"
 }
 
 

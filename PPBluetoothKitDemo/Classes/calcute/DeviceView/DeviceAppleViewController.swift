@@ -17,7 +17,7 @@ class DeviceAppleViewController: BaseViewController {
     var scaleCoconutViewController:ScaleCoconutViewController?
 
     
-    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime,DeviceMenuType.queryDNS, DeviceMenuType.TestOTA, DeviceMenuType.UserOTA]
+    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime,DeviceMenuType.queryDNS, DeviceMenuType.TestOTA, DeviceMenuType.UserOTA, DeviceMenuType.turnOnHeartRate, DeviceMenuType.turnOffHeartRate, DeviceMenuType.getHeartRate]
     
     let user : PPTorreSettingModel = {
         
@@ -599,6 +599,29 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
                 
             })
 
+        }
+        
+        if title == .turnOnHeartRate {
+            self.addStatusCmd(ss: "openHeartRateSwitch")
+            
+            self.XM_Apple?.openHeartRateSwitch {
+            }
+        }
+        
+        if title == .turnOffHeartRate {
+            self.addStatusCmd(ss: "closeHeartRateSwitch")
+            
+            self.XM_Apple?.closeHeartRateSwitch {
+            }
+        }
+        
+        if title == .getHeartRate {
+            self.addStatusCmd(ss: "fetchHeartRateSwitch")
+            
+            self.XM_Apple?.fetchHeartRateSwitch({[weak self] status in
+                guard let `self` = self else { return }
+                self.addStatusCmd(ss: "status:\(status)")
+            })
         }
 
     }
