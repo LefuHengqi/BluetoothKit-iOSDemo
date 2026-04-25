@@ -15,7 +15,8 @@ class DeviceLorreViewController: BaseViewController {
     var array = [DeviceMenuType.connectDevice, DeviceMenuType.changeUnit,DeviceMenuType.toZero,DeviceMenuType.SyncTime,DeviceMenuType.syncFood,DeviceMenuType.fetchFoodIDList, DeviceMenuType.deleteFood]
     
     var foodIDList = [PPKorreFoodInfo]()
-
+    var modeStr = ""
+    var needSyncFood = XM_FoodDetailModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,8 @@ class DeviceLorreViewController: BaseViewController {
         self.connectDevice()
 
         // Do any additional setup after loading the view.
+        
+        self.setupFoodDetail()
     }
     
     func connectDevice(){
@@ -39,6 +42,44 @@ class DeviceLorreViewController: BaseViewController {
         
     }
     
+    func setupFoodDetail() {
+        
+        let food = XM_FoodDetailModel()
+        food.foodId = "apple_id_666"
+        food.foodName = "Apple"
+        food.servingWeightGrams = 100
+        food.lfCalories = 120
+        food.lfProtein = 50
+        food.lfTotalFat = 51
+        food.lfSaturatedFat = 52
+        food.pCusTransFat = 53
+        food.lfTotalCarbohydrate = 54
+        food.lfDietaryFiber = 55
+        food.lfSugars = 56
+        food.lfCholesterol = 57
+        food.lfSodium = 58
+        food.calciumMg = 59
+        food.vitaminAG = 60
+        food.vitaminB1G = 61
+        food.vitaminB2G = 62
+        food.vitaminB6G = 63
+        food.vitaminB12G = 64
+        food.vitaminCG = 65
+        food.vitaminDG = 66
+        food.vitaminEG = 67
+        food.niacinMg = 68
+        food.phosphorusMg = 69
+        food.potassiumMg = 70
+        food.magnesiumMg = 71
+        food.ironMg = 72
+        food.zincMg = 73
+        food.seleniumMg = 74
+        food.copperMg = 75
+        food.manganeseMg = 76
+        food.imageIndex = 13 // 0-49
+        
+        self.needSyncFood = food
+    }
     
 
     deinit{
@@ -160,18 +201,38 @@ extension DeviceLorreViewController: PPBluetoothFoodScaleDataDelegate{
         }) {
             foodRemoteId = foodInfo.foodRemoteId
         }
+
         
+        var ss = ""
+        if !foodRemoteId.isEmpty, foodRemoteId == self.needSyncFood.foodId {
+            let XM_WeightG:Float = CommonTool.XM_FoodScaleToGValue(model.weight, deviceAccuracyType: advModel.deviceAccuracyType)
+            let calValue = CommonTool.XM_CalculateValue(total: self.needSyncFood.servingWeightGrams ?? 0, nutrient: self.needSyncFood.lfCalories ?? 0, current: XM_WeightG, isPlus: model.isPlus)
+            let fatValue = CommonTool.XM_CalculateValue(total: self.needSyncFood.servingWeightGrams ?? 0, nutrient: self.needSyncFood.lfTotalFat ?? 0, current: XM_WeightG, isPlus: model.isPlus)
+            let proValue = CommonTool.XM_CalculateValue(total: self.needSyncFood.servingWeightGrams ?? 0, nutrient: self.needSyncFood.lfProtein ?? 0, current: XM_WeightG, isPlus: model.isPlus)
+            ss = String.init(format: "Calories:%.f  TotalFat:%.1f  Protein:%.1f", CommonTool.roundWithDecimal(Double(calValue),scale:1), CommonTool.roundWithDecimal(Double(fatValue),scale:1), CommonTool.roundWithDecimal(Double(proValue),scale:1))
+        }
+
         if model.isEnd{
             
-            self.weightLbl.text = "weight lock: \(weight.0) \(weight.1) \n foodNo: \(model.foodInfo.foodNo) \n foodRemoteId: \(foodRemoteId)"
-
+            self.weightLbl.text = "weight lock: \(weight.0) \(weight.1) \nmode: \(self.modeStr)\nfoodNo: \(model.foodInfo.foodNo) \noodRemoteId: \(foodRemoteId)\n\(ss)"
         }else{
-            self.weightLbl.text = "weight process: \(weight.0) \(weight.1) \n foodNo: \(model.foodInfo.foodNo) \n foodRemoteId: \(foodRemoteId)"
+            self.weightLbl.text = "weight process: \(weight.0) \(weight.1) \nmode: \(self.modeStr)\nfoodNo: \(model.foodInfo.foodNo) \nfoodRemoteId: \(foodRemoteId)\n\(ss)"
         }
+ 
     }
     
     func monitorScaleState(_ scaleState: PPScaleState!) {
         print("nutritionalScaleMode:\(scaleState.nutritionalScaleMode.rawValue)")
+        switch scaleState.nutritionalScaleMode {
+        case .weight:
+            self.modeStr = "Weighing mode"
+        case .food:
+            self.modeStr = "Nutritional scale mode"
+        case .custom:
+            self.modeStr = "Custom mode"
+        default:
+            self.modeStr = ""
+        }
     }
 }
 
@@ -195,9 +256,6 @@ extension DeviceLorreViewController:UICollectionViewDelegate, UICollectionViewDa
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSizeMake((UIScreen.main.bounds.size.width - 40) / 3,40)
-    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -290,42 +348,8 @@ extension DeviceLorreViewController:UICollectionViewDelegate, UICollectionViewDa
                     self.addConsoleLog(ss: "showFoodSyncStatus TimedOut ")
                 }
                 
-                
-                let XM_Food = PPKorreFoodInfo()
-                XM_Food.foodNo = 1
-                XM_Food.foodRemoteId = "cus_egg_id55"
-                XM_Food.foodWeight = CGFloat(100)
-                XM_Food.foodName = "Apple"
-                XM_Food.calories = CGFloat(200) // Calories
-                XM_Food.protein = CGFloat(115) // Protein
-                XM_Food.totalFat = CGFloat(300) // Total Fat
-                XM_Food.saturatedFat = CGFloat(68) // Saturated Fat
-                XM_Food.transFat = CGFloat(57) // Trans Fat
-                XM_Food.totalCarbohydrates = CGFloat(89)  // Total Carbohydrates
-                XM_Food.dietaryFiber = CGFloat(30)  // Dietary Fiber
-                XM_Food.sugars = CGFloat(35)  // Sugars
-                XM_Food.cholesterol = CGFloat(40)  // Cholesterol
-                XM_Food.sodium = CGFloat(45)  // Sodium
-                
-                XM_Food.calciumMg = CGFloat(50) // Calcium (mg)
-                XM_Food.vitaminAG = CGFloat(51) // Vitamin A (g)
-                XM_Food.vitaminB1G = CGFloat(52) // Vitamin B1 (g)
-                XM_Food.vitaminB2G = CGFloat(53) // Vitamin B2 (g)
-                XM_Food.vitaminB6G = CGFloat(54)  // Vitamin B6 (g)
-                XM_Food.vitaminB12G = CGFloat(55) // Vitamin B12 (g)
-                XM_Food.vitaminCG = CGFloat(56) // Vitamin C (g)
-                XM_Food.vitaminDG = CGFloat(57) // Vitamin D (g)
-                XM_Food.vitaminEG = CGFloat(58) // Vitamin E (g)
-                XM_Food.niacinMg = CGFloat(59) // Niacin (mg)
-                XM_Food.phosphorusMg = CGFloat(60) // Phosphorus (mg)
-                XM_Food.potassiumMg = CGFloat(61)  // Potassium (mg)
-                XM_Food.magnesiumMg = CGFloat(62) // Magnesium (mg)
-                XM_Food.ironMg = CGFloat(63)  // Iron (mg)
-                XM_Food.zincMg = CGFloat(64)  // Zinc (mg)
-                XM_Food.seleniumMg = CGFloat(65) // Selenium (mg)
-                XM_Food.copperMg = CGFloat(66)  // Copper (mg)
-                XM_Food.manganeseMg = CGFloat(67) // Manganese (mg)
-                XM_Food.imageIndex = 13 // // 0-49
+                //
+                let XM_Food = self.needSyncFood.XM_TransformPPFoodInfo(foodNo: 1)
                 
                 self.addBleCmd(ss:"dataSyncFoodInfo")
                 self.XM_Lorre?.dataSyncFoodInfo(XM_Food, withHandler: {[weak self] status, errorCode in
@@ -386,7 +410,9 @@ extension DeviceLorreViewController:UICollectionViewDelegate, UICollectionViewDa
                 }
                 self.addBleCmd(ss: "dataDeleteFood")
                 let XM_Food = PPKorreFoodInfo()
-                XM_Food.foodNo = 1 // food number
+                // Delete all food.
+                // 删除全部食物
+                XM_Food.foodNo = 255
                 self.XM_Lorre?.dataDeleteFood(XM_Food, withHandler: {[weak self] status, errorCode in
                     guard let `self` = self else {
                         return
@@ -435,5 +461,19 @@ extension DeviceLorreViewController:UICollectionViewDelegate, UICollectionViewDa
             
             self.foodIDList = foodList
         })
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSizeMake((UIScreen.main.bounds.size.width - 40) / 3.0, 60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
+        return 10
     }
 }

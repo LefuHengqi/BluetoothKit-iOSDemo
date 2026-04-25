@@ -364,9 +364,6 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSizeMake((UIScreen.main.bounds.size.width - 40) / 3,50)
-    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -1038,6 +1035,19 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSizeMake((UIScreen.main.bounds.size.width - 40) / 3.0, 60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
+        return 10
+    }
     
     
     func showNumberInputAlert(confirmHanlder:@escaping((_ name:String, _ value:Int)->Void), cancelHandler:@escaping(()->Void)) {

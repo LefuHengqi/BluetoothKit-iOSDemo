@@ -144,6 +144,74 @@ class CommonTool {
         return [:]
     }
     
+    class func roundWithDecimal(_ value: Double, scale: Int) -> Double {
+        let decimalValue = Decimal(value)
+        let behavior = NSDecimalNumberHandler(
+            roundingMode: .plain,  // 四舍五入
+            scale: Int16(scale),   // 保留小数位数
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: false
+        )
+        
+        let decimalNumber = NSDecimalNumber(decimal: decimalValue)
+        let roundedNumber = decimalNumber.rounding(accordingToBehavior: behavior)
+        
+        return roundedNumber.doubleValue
+    }
+    
+    class func XM_CalculateValue(total:Float, nutrient:Float, current:Float, isPlus:Bool = true)->Float {
+        
+        if total < 0.0001 || nutrient < 0.00001 {
+            print("total：\(total)-nutrient:\(nutrient)")
+            return 0
+        }
+        
+        if current < 0.0001 {
+            print("current=0")
+            return 0
+        }
+        
+        if !isPlus {
+            print("负数")
+            return 0
+        }
+        
+        let f1: Float = nutrient
+        let f2: Float = total
+        let i1: Int = 10000
+
+        let step1 = Int((f1 * 100) + 0.5)
+        let step2 = Int((f2 * 100) + 0.5)
+        let step3 = (step1 * i1) / step2
+        
+        
+        let w1: Float = current
+        let w2: Int = 10000
+        let w3: Int = step3  // 假设 step3 已定义
+
+        let step5 = Int((w1 * 100) + 0.5)
+        let step6 = (w3 * step5) / w2
+        let step7 = Float(step6) / 100.0
+        
+        return step7
+        
+    }
+    
+    /// 将设备中获取的值，转成 g
+    class func XM_FoodScaleToGValue(_ value:Int, deviceAccuracyType:PPDeviceAccuracyType)->Float {
+        
+        var XM_Value = Float(value)
+        if deviceAccuracyType == .point01G {
+
+            XM_Value = Float(value) / 10.0
+        }
+        
+        return XM_Value
+    }
+    
+    
     class func getSecret(calcuteType:PPDeviceCalcuteType)->String {
         
         if PPCalculateTools.is8Electrodes(with: calcuteType) {
@@ -155,5 +223,4 @@ class CommonTool {
         
         
     }
-    
 }

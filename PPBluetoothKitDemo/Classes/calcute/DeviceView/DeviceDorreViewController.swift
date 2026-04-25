@@ -7,7 +7,7 @@
 
 import UIKit
 import PPBluetoothKit
-
+import PPCalculateKit
 
 
 
@@ -20,37 +20,15 @@ class DeviceDorreViewController: BaseViewController {
                  menuType.deviceInfo,
                  menuType.startMeasure,
                  .selectUser,menuType.SyncTime,
-//                 .wificonfigstatus,
-//                 .distributionNetwork,
                  .SyncUserList,
-                 .deleteUser,
-//                 .ImpedanceSwitch,
-//                 .openImpedance,
-//                 .closeImpedance,
-//                 .changeUnit,
-//                 .HeartRateSwitch,
-//                 .openHeartRate,
-//                 .closeHeartRate,
-                 .clearDeviceData,
-//                 .ScreenLuminance,
-                 .keepAlive,
-//                 .getRGBMode,
-//                 .setRGBMode,
                  .fetchUserInfo,
+                 .deleteUser,
+                 .clearDeviceData,
+                 .keepAlive,
                  .FetchHistory,
         .getUserInfoIsEdit ,
         .setUserInfoIsNotEdit,
         .setUserInfoIsEdit,
-//                 .getUserMembers,
-
-//        .otaUser,
-//                 .otaLocal,
-//                 .dataSyncLog,
-//        .impedanceTestMode,
-//        .openImpedanceTestMode,
-//        .closeImpedanceTestMode,
-//                 .setTorreLanguage,
-//        .getTorreLanguage
     ]
     
     let user : PPTorreSettingModel = {
@@ -65,13 +43,10 @@ class DeviceDorreViewController: BaseViewController {
         uu.gender = PPDeviceGenderType.female
         uu.unit = .unitKG
         
-        uu.memberID = "0EFA1294-A2D4-4476-93DC-1C2A2D8F1FEE"
+        uu.memberID = "1234567890"
         
-        uu.userID = "0EFA1294-A2D4-4476-93DC-1C2A2D8F1FEE"
+        uu.userID = "abcdefghijklmn"
         
-//        uu.memberID = UUID().uuidString
-//        
-//                uu.userID = UUID().uuidString
         uu.userName = "Tom"
         
         uu.targetWeight = 60
@@ -185,7 +160,8 @@ class DeviceDorreViewController: BaseViewController {
     
     }
     
-    func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, isLock:Bool) {
+    
+    func displayScaleModel(_ scaleModel:PPBluetoothScaleBaseModel, advModel: PPBluetoothAdvDeviceModel, isLock:Bool) {
         
         let calculateWeightKg = Float(scaleModel.weight)/100
         
@@ -193,16 +169,91 @@ class DeviceDorreViewController: BaseViewController {
         
         weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
         
-        if (scaleModel.isHeartRating) {
+        let inputModel = PPCalculateInputModel()
+        inputModel.secret = CommonTool.getSecret(calcuteType: advModel.deviceCalcuteType)
+        inputModel.isAthleteMode = self.user.isAthleteMode
+        inputModel.isPregnantMode = self.user.isPregnantMode
+        inputModel.height = self.user.height
+        inputModel.age = self.user.age
+        inputModel.gender = self.user.gender
+        inputModel.bodyAgeMethod = PPBodyAgeMethod(rawValue: UInt(advModel.getBodyAgeTypeCode())) ?? .default
+        
+        // Measurement completed
+        if scaleModel.isEnd {
             
-            weightStr = weightStr + "\nMeasuring heart rate..."
-        } else if (scaleModel.isFatting) {
+            var fatModel:PPBodyFatModel? = nil
+            if (PPCalculateTools.is8Electrodes(with: advModel.deviceCalcuteType)) {
+                // Calculate body data (Eight electrodes)
+                
+                
+                inputModel.deviceCalcuteType = advModel.deviceCalcuteType
+                inputModel.weight = CGFloat(calculateWeightKg)
+                inputModel.z20KhzLeftArmEnCode = scaleModel.z20KhzLeftArmEnCode
+                inputModel.z20KhzRightArmEnCode = scaleModel.z20KhzRightArmEnCode
+                inputModel.z20KhzLeftLegEnCode = scaleModel.z20KhzLeftLegEnCode
+                inputModel.z20KhzRightLegEnCode = scaleModel.z20KhzRightLegEnCode
+                inputModel.z20KhzTrunkEnCode = scaleModel.z20KhzTrunkEnCode
+                inputModel.z100KhzLeftArmEnCode = scaleModel.z100KhzLeftArmEnCode
+                inputModel.z100KhzRightArmEnCode = scaleModel.z100KhzRightArmEnCode
+                inputModel.z100KhzLeftLegEnCode = scaleModel.z100KhzLeftLegEnCode
+                inputModel.z100KhzRightLegEnCode = scaleModel.z100KhzRightLegEnCode
+                inputModel.z100KhzTrunkEnCode = scaleModel.z100KhzTrunkEnCode
+                inputModel.deviceMac = advModel.deviceMac
+                inputModel.heartRate = scaleModel.heartRate
+                inputModel.footLen = scaleModel.footLen
+
+                
+                fatModel = PPBodyFatModel(inputModel: inputModel)
+               
+            } else {
+                // Calculate body data (Four electrodes)
+
+
+                inputModel.deviceCalcuteType = advModel.deviceCalcuteType
+                inputModel.weight = CGFloat(calculateWeightKg)
+                inputModel.impedance = scaleModel.impedance
+                inputModel.impedance100EnCode = scaleModel.impedance100EnCode
+                inputModel.deviceMac = advModel.deviceMac
+                inputModel.heartRate = scaleModel.heartRate
+                inputModel.footLen = scaleModel.footLen
+
+                fatModel = PPBodyFatModel(inputModel: inputModel)
+
+            }
             
-            weightStr = weightStr + "\nMeasuring body fat..."
+            guard let fatModel = fatModel else {
+                print("fatModel is nil")
+                return
+            }
+            
+            let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
+            
+            // Obtain information such as the judgment range and evaluation of each physical indicator.If the standardArray of the PPBodyDetailModel object is empty, then this metric has no judgment range.
+            // 获取每个身体指标的判定范围和评价等信息，如果PPBodyDetailModel对象的standardArray为空，则该指标没有判定范围
+            let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
+            let weightParam = detailModel.ppBodyParam_Weight
+            print("weight-currentValue:\(weightParam.currentValue) range:\(weightParam.standardArray)  standardTitle:\(bodyDataJson[weightParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[weightParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[weightParam.standeValuation] ?? "")")
+            
+            // Get all body indicator arrays(detailModel.data). 获取所有身体指标数组(detailModel.data)
+    //        print("data:\(detailModel.data)")
+            
+            
+            let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
+            self.addStatusCmd(ss: ss)
+            
+        } else {
+            
+            if (scaleModel.isHeartRating) {
+                
+                weightStr = weightStr + "\nMeasuring heart rate..."
+            } else if (scaleModel.isFatting) {
+                
+                weightStr = weightStr + "\nMeasuring body fat..."
+            }
+            
         }
         
         self.weightLbl.text = weightStr
-        
     }
 
     deinit{
@@ -254,9 +305,6 @@ extension DeviceDorreViewController:UICollectionViewDelegate,UICollectionViewDat
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSizeMake((UIScreen.main.bounds.size.width - 40) / 3,50)
-    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -853,6 +901,19 @@ extension DeviceDorreViewController:UICollectionViewDelegate,UICollectionViewDat
 //        }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSizeMake((UIScreen.main.bounds.size.width - 40) / 3.0, 60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
+        return 10
+    }
 }
 
 extension DeviceDorreViewController:PPBluetoothUpdateStateDelegate{
@@ -967,7 +1028,7 @@ extension DeviceDorreViewController: PPBluetoothServiceDelegate{
 extension DeviceDorreViewController:PPBluetoothScaleDataDelegate{
     func monitorProcessData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        self.weightLbl.text = String.init(format: "weight process:%0.2f", Float(model.weight) / 100.0)
+        displayScaleModel(model, advModel: advModel, isLock: false)
         
         self.weightLbl.textColor = UIColor.red
         
@@ -975,7 +1036,7 @@ extension DeviceDorreViewController:PPBluetoothScaleDataDelegate{
     
     func monitorLockData(_ model: PPBluetoothScaleBaseModel!, advModel: PPBluetoothAdvDeviceModel!) {
         
-        self.weightLbl.text = String.init(format: "weight lock:%0.2f", Float(model.weight) / 100.0)
+        displayScaleModel(model, advModel: advModel, isLock: true)
         
         self.weightLbl.textColor = UIColor.green
     }

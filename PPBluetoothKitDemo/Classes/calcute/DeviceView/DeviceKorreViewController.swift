@@ -12,11 +12,13 @@ class DeviceKorreViewController: BaseViewController {
 
     var XM_Korre : PPBluetoothPeripheralKorre?
 
-    var array = [DeviceMenuType.connectDevice, DeviceMenuType.changeUnit,DeviceMenuType.toZero,DeviceMenuType.SyncTime,DeviceMenuType.syncUserInfo,DeviceMenuType.selectUser,DeviceMenuType.deleteUser,DeviceMenuType.syncFood,DeviceMenuType.fetchFoodIDList, DeviceMenuType.deleteFood,DeviceMenuType.FetchHistory]
+    var array = [DeviceMenuType.connectDevice, DeviceMenuType.changeUnit,DeviceMenuType.toZero,DeviceMenuType.SyncTime,DeviceMenuType.syncUserInfo,DeviceMenuType.selectUser,DeviceMenuType.getUserList,DeviceMenuType.deleteUser,DeviceMenuType.syncFood,DeviceMenuType.fetchFoodIDList, DeviceMenuType.deleteFood,DeviceMenuType.FetchHistory]
     
     var foodIDList = [PPKorreFoodInfo]()
     let userID = "123456789"
     let memberID = "666666"
+    var modeStr = ""
+    var needSyncFood = XM_FoodDetailModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +31,7 @@ class DeviceKorreViewController: BaseViewController {
         
         self.connectDevice()
 
-        // Do any additional setup after loading the view.
+        self.setupFoodDetail()
     }
     
     func connectDevice(){
@@ -40,7 +42,44 @@ class DeviceKorreViewController: BaseViewController {
         
     }
     
-    
+    func setupFoodDetail() {
+        
+        let food = XM_FoodDetailModel()
+        food.foodId = "apple_id_666"
+        food.foodName = "Apple"
+        food.servingWeightGrams = 100
+        food.lfCalories = 120
+        food.lfProtein = 50
+        food.lfTotalFat = 51
+        food.lfSaturatedFat = 52
+        food.pCusTransFat = 53
+        food.lfTotalCarbohydrate = 54
+        food.lfDietaryFiber = 55
+        food.lfSugars = 56
+        food.lfCholesterol = 57
+        food.lfSodium = 58
+        food.calciumMg = 59
+        food.vitaminAG = 60
+        food.vitaminB1G = 61
+        food.vitaminB2G = 62
+        food.vitaminB6G = 63
+        food.vitaminB12G = 64
+        food.vitaminCG = 65
+        food.vitaminDG = 66
+        food.vitaminEG = 67
+        food.niacinMg = 68
+        food.phosphorusMg = 69
+        food.potassiumMg = 70
+        food.magnesiumMg = 71
+        food.ironMg = 72
+        food.zincMg = 73
+        food.seleniumMg = 74
+        food.copperMg = 75
+        food.manganeseMg = 76
+        food.imageIndex = 13 // 0-49
+        
+        self.needSyncFood = food
+    }
 
     deinit{
 
@@ -162,17 +201,35 @@ extension DeviceKorreViewController: PPBluetoothFoodScaleDataDelegate{
             foodRemoteId = foodInfo.foodRemoteId
         }
         
+        var ss = ""
+        if !foodRemoteId.isEmpty, foodRemoteId == self.needSyncFood.foodId {
+            let XM_WeightG:Float = CommonTool.XM_FoodScaleToGValue(model.weight, deviceAccuracyType: advModel.deviceAccuracyType)
+            let calValue = CommonTool.XM_CalculateValue(total: self.needSyncFood.servingWeightGrams ?? 0, nutrient: self.needSyncFood.lfCalories ?? 0, current: XM_WeightG, isPlus: model.isPlus)
+            let fatValue = CommonTool.XM_CalculateValue(total: self.needSyncFood.servingWeightGrams ?? 0, nutrient: self.needSyncFood.lfTotalFat ?? 0, current: XM_WeightG, isPlus: model.isPlus)
+            let proValue = CommonTool.XM_CalculateValue(total: self.needSyncFood.servingWeightGrams ?? 0, nutrient: self.needSyncFood.lfProtein ?? 0, current: XM_WeightG, isPlus: model.isPlus)
+            ss = String.init(format: "Calories:%.f  TotalFat:%.1f  Protein:%.1f", CommonTool.roundWithDecimal(Double(calValue),scale:1), CommonTool.roundWithDecimal(Double(fatValue),scale:1), CommonTool.roundWithDecimal(Double(proValue),scale:1))
+        }
+
         if model.isEnd{
             
-            self.weightLbl.text = "weight lock: \(weight.0) \(weight.1) \n foodNo: \(model.foodInfo.foodNo) \n foodRemoteId: \(foodRemoteId)"
-
+            self.weightLbl.text = "weight lock: \(weight.0) \(weight.1) \nmode: \(self.modeStr)\nfoodNo: \(model.foodInfo.foodNo) \noodRemoteId: \(foodRemoteId)\n\(ss)"
         }else{
-            self.weightLbl.text = "weight process: \(weight.0) \(weight.1) \n foodNo: \(model.foodInfo.foodNo) \n foodRemoteId: \(foodRemoteId)"
+            self.weightLbl.text = "weight process: \(weight.0) \(weight.1) \nmode: \(self.modeStr)\nfoodNo: \(model.foodInfo.foodNo) \nfoodRemoteId: \(foodRemoteId)\n\(ss)"
         }
     }
     
     func monitorScaleState(_ scaleState: PPScaleState!) {
         print("nutritionalScaleMode:\(scaleState.nutritionalScaleMode.rawValue)")
+        switch scaleState.nutritionalScaleMode {
+        case .weight:
+            self.modeStr = "Weighing mode"
+        case .food:
+            self.modeStr = "Nutritional scale mode"
+        case .custom:
+            self.modeStr = "Custom mode"
+        default:
+            self.modeStr = ""
+        }
     }
 }
 
@@ -195,10 +252,7 @@ extension DeviceKorreViewController:UICollectionViewDelegate, UICollectionViewDa
         return cell
         
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSizeMake((UIScreen.main.bounds.size.width - 40) / 3,40)
-    }
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -305,6 +359,17 @@ extension DeviceKorreViewController:UICollectionViewDelegate, UICollectionViewDa
             })
         }
         
+        if title == .getUserList {
+            
+            self.addBleCmd(ss:"dataFetchUserList")
+            self.XM_Korre?.dataFetchUserList({ userModel in
+                self.addStatusCmd(ss: "count:\(userModel.count)")
+                for item in userModel {
+                    self.addStatusCmd(ss: "userID:\(item.userID) memberID:\(item.memberID)")
+                }
+            })
+        }
+        
         if title == .deleteUser {
             
             self.addBleCmd(ss:"dataDeleteUser \n userID:\(self.userID) \n memberID:\(self.memberID)")
@@ -340,21 +405,7 @@ extension DeviceKorreViewController:UICollectionViewDelegate, UICollectionViewDa
                 }
                 
                 
-                let XM_Food = PPKorreFoodInfo()
-                XM_Food.foodNo = 1
-                XM_Food.foodRemoteId = "cus_egg_id55"
-                XM_Food.foodWeight = CGFloat(100)
-                XM_Food.foodName = "egg"
-                XM_Food.calories = CGFloat(200) // Calories
-                XM_Food.protein = CGFloat(115) // Protein
-                XM_Food.totalFat = CGFloat(300) // Total Fat
-                XM_Food.saturatedFat = CGFloat(68) // Saturated Fat
-                XM_Food.transFat = CGFloat(57) // Trans Fat
-                XM_Food.totalCarbohydrates = CGFloat(89)  // Total Carbohydrates
-                XM_Food.dietaryFiber = CGFloat(30)  // Dietary Fiber
-                XM_Food.sugars = CGFloat(35)  // Sugars
-                XM_Food.cholesterol = CGFloat(40)  // Cholesterol
-                XM_Food.sodium = CGFloat(45)  // Sodium
+                let XM_Food = self.needSyncFood.XM_TransformPPFoodInfo(foodNo: 1)
                 
                 self.addBleCmd(ss:"dataSyncFoodInfo")
                 self.XM_Korre?.dataSyncFoodInfo(XM_Food, withHandler: {[weak self] status, errorCode in
@@ -414,16 +465,57 @@ extension DeviceKorreViewController:UICollectionViewDelegate, UICollectionViewDa
         
         if title == .deleteFood {
             
-            self.addBleCmd(ss: "dataDeleteFood")
-            let XM_Food = PPKorreFoodInfo()
-            XM_Food.foodNo = 1 // food number
-            self.XM_Korre?.dataDeleteFood(XM_Food, withHandler: {[weak self] status, errorCode in
-                guard let `self` = self else {
-                    return
+            DispatchQueue.global().async {
+                let XM_Semaphore = DispatchSemaphore(value: 0)
+                
+                self.addBleCmd(ss:"showFoodSyncStatus")
+                self.XM_Korre?.showFoodSyncStatus(handler: {[weak self] status in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    self.addConsoleLog(ss: "status:\(status)")
+                    XM_Semaphore.signal()
+                })
+                
+                let XM_Result = XM_Semaphore.wait(timeout: DispatchTime.now() + 2)
+                if XM_Result == .timedOut {
+                    self.addConsoleLog(ss: "showFoodSyncStatus TimedOut ")
+                }
+                self.addBleCmd(ss: "dataDeleteFood")
+                let XM_Food = PPKorreFoodInfo()
+                // Delete all food.
+                // 删除全部食物
+                XM_Food.foodNo = 255
+                self.XM_Korre?.dataDeleteFood(XM_Food, withHandler: {[weak self] status, errorCode in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    self.addConsoleLog(ss: "status:\(status) errorCode:\(errorCode)")
+                    XM_Semaphore.signal()
+                })
+                
+                let XM_Result1 = XM_Semaphore.wait(timeout: DispatchTime.now() + 2)
+                if XM_Result1 == .timedOut {
+                    self.addConsoleLog(ss: "dataDeleteFood TimedOut ")
                 }
                 
-                self.addConsoleLog(ss: "status:\(status) errorCode:\(errorCode)")
-            })
+                self.addBleCmd(ss:"hideFoodSyncStatus")
+                self.XM_Korre?.hideFoodSyncStatus(handler: {[weak self] status in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    self.addConsoleLog(ss: "status:\(status)")
+                    XM_Semaphore.signal()
+                })
+                
+                let XM_Result2 = XM_Semaphore.wait(timeout: DispatchTime.now() + 2)
+                if XM_Result2 == .timedOut {
+                    self.addConsoleLog(ss: "hideFoodSyncStatus TimedOut ")
+                }
+            }
         }
 
     }
@@ -443,5 +535,20 @@ extension DeviceKorreViewController:UICollectionViewDelegate, UICollectionViewDa
             
             self.foodIDList = foodList
         })
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSizeMake((UIScreen.main.bounds.size.width - 40) / 3.0, 60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
+        return 10
     }
 }
