@@ -385,12 +385,12 @@ extension DeviceDorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "dataSyncUserList")
             
-            self.XM_Dorre?.dataSyncUserList([user], withHandler: { [weak self] status in
+            self.XM_Dorre?.dataSyncUserList([user], withHandler: { [weak self] (status, errorType) in
                 guard let `self` = self else {
                     return
                 }
                 
-                self.addStatusCmd(ss: "\(status)")
+                self.addStatusCmd(ss: "status:\(status) errorType:\(errorType)")
 
             })
 

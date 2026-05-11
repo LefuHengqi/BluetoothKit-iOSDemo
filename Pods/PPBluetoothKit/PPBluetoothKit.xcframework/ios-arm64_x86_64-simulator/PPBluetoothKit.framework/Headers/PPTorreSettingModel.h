@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger PIndex;
 
 @property (nonatomic, assign) NSInteger timeStamp; // 时间戳，该用户最近一次称重时间，亚飞设备用户列表返回
+@property (nonatomic, copy) NSString *crc32Value; // 昵称CRC32，部分设备支持
 
 @property (nonatomic, copy) NSArray <PPUserHistoryData *> *recentData;
 

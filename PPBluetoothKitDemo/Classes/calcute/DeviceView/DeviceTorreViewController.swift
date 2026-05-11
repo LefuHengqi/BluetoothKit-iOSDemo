@@ -29,6 +29,7 @@ enum menuType:String{
     case distributionNetwork = "distribution network"
     case selectUser = "select user"
     case deleteUser = "delete user"
+    case getUserIDList = "get UserID List"
 
     case openHeartRate = "Open HeartRate"
     case closeHeartRate = "Close HeartRate"
@@ -73,7 +74,7 @@ class DeviceTorreViewController: BaseViewController {
     
     var XM_MtuSuccess = false
 
-    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser, .FetchHistory,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus, .setGravity, .getGravity, .specifyNicknameFontSize]
+    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.getUserIDList, .FetchHistory,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus, .setGravity, .getGravity, .specifyNicknameFontSize]
     
     let user : PPTorreSettingModel = {
         
@@ -450,15 +451,33 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "dataSyncUserList")
             
-            self.XM_Torre?.dataSyncUserList([user], withHandler: { [weak self] status in
+            self.XM_Torre?.dataSyncUserList([user], withHandler: { [weak self] (status, errorType) in
                 guard let `self` = self else {
                     return
                 }
                 
-                self.addStatusCmd(ss: "\(status)")
+                self.addStatusCmd(ss: "status:\(status) errorType:\(errorType)")
 
             })
 
+        }
+        
+        if title == .getUserIDList{
+            
+        
+            
+            self.addBleCmd(ss: "dataFetchUserID")
+            
+            self.XM_Torre?.dataFetchUserID({[weak self] userIDList in
+                guard let `self` = self else {
+                    return
+                }
+                self.addStatusCmd(ss: "count:\(userIDList.count)")
+                for userID in userIDList {
+                    self.addStatusCmd(ss: "userID:\(userID)")
+                }
+                
+            })
         }
         
         if title == .ImpedanceSwitch{
@@ -1020,12 +1039,12 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
                 // Synchronize user information and specify nickname font size
                 user.userName = name
                 user.nameFontSize = fontSize
-                self.XM_Torre?.dataSyncUserList([user], withHandler: { [weak self] status in
+                self.XM_Torre?.dataSyncUserList([user], withHandler: { [weak self] (status, errorType) in
                     guard let `self` = self else {
                         return
                     }
                     
-                    self.addStatusCmd(ss: "\(status)")
+                    self.addStatusCmd(ss: "status:\(status) errorType:\(errorType)")
 
                 })
                 

@@ -384,12 +384,12 @@ extension DeviceBorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addBleCmd(ss: "dataSyncUserList")
             
-            self.XM_Borre?.dataSyncUserList([user], withHandler: { [weak self] status in
+            self.XM_Borre?.dataSyncUserList([user], withHandler: { [weak self] (status, errorType) in
                 guard let `self` = self else {
                     return
                 }
                 
-                self.addStatusCmd(ss: "\(status)")
+                self.addStatusCmd(ss: "status:\(status) errorType:\(errorType)")
 
             })
 

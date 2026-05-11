@@ -41,6 +41,7 @@
 #import "PPSyncBodyModel.h"
 #import "PPFingerprintInfo.h"
 #import "PPImpedanceFailModel.h"
+#import "PPCRC32Calculator.h"
 
 #import "PPScaleState.h"
 #import "PPBluetoothDefine.h"

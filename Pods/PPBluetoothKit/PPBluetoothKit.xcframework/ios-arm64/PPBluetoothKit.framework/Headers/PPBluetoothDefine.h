@@ -447,5 +447,21 @@ typedef NS_ENUM(NSUInteger, PPZoneType) {
     PPZoneTypeUTC, // UTC时区
 };
 
+// 同步用户信息错误码类型
+typedef NS_ENUM(NSInteger, PPSyncUserErrorType) {
+    // 设置成功
+    PPSyncUserErrorTypeNone = 0,
+    // 设置失败
+    PPSyncUserErrorTypeFailure = 1,
+    // 失败，称端用户选择中
+    PPSyncUserErrorTypeSelecting = 2,
+    // 设置成功，需要同步昵称字模数据
+    PPSyncUserErrorTypeNeedSyncName = 3,
+    // 设置失败，称端已存满
+    PPSyncUserErrorTypeStorageFull = 4,
+    // 数据总长度为0或接收长度与总长度不匹配
+    PPSyncUserErrorTypeInvalidData = 255
+};
+
 
 #endif /* PPBluetoothDefine_h */

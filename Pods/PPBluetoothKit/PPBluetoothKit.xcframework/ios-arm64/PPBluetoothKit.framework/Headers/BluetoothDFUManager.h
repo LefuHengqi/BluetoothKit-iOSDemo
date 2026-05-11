@@ -18,19 +18,19 @@ static NSString *const kImgBlockCharacteristicUUID = @"f000ffc2-0451-4000-b000-0
 static NSString *const kDFUProgressNotification = @"DFUProgressNotification";
 static NSString *const kDFUStatusNotification = @"DFUStatusNotification";
 
-typedef NS_ENUM(NSInteger, DFUState) {
-    DFUStateIdle,
-    DFUStateSearching,
-    DFUStateConnecting,
-    DFUStateDiscoveringServices,
-    DFUStateDiscoveringCharacteristics,
-    DFUStateEnablingNotifications,
-    DFUStateQueryingVersion,
-    DFUStateComparingVersion,
-    DFUStateStartingUpgrade,
-    DFUStateSendingData,
-    DFUStateCompleted,
-    DFUStateError
+typedef NS_ENUM(NSInteger, PPDFUManagerState) {
+    PPDFUManagerStateIdle,
+    PPDFUManagerStateSearching,
+    PPDFUManagerStateConnecting,
+    PPDFUManagerStateDiscoveringServices,
+    PPDFUManagerStateDiscoveringCharacteristics,
+    PPDFUManagerStateEnablingNotifications,
+    PPDFUManagerStateQueryingVersion,
+    PPDFUManagerStateComparingVersion,
+    PPDFUManagerStateStartingUpgrade,
+    PPDFUManagerStateSendingData,
+    PPDFUManagerStateCompleted,
+    PPDFUManagerStateError
 };
 
 @interface BluetoothDFUManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, DFUState) {
 @property (nonatomic, strong) CBCharacteristic *imgIdentifyCharacteristic;
 @property (nonatomic, strong) CBCharacteristic *imgBlockCharacteristic;
 
-@property (nonatomic, assign) DFUState currentState;
+@property (nonatomic, assign) PPDFUManagerState currentState;
 @property (nonatomic, strong) NSData *firmwareData;
 @property (nonatomic, assign) NSInteger currentBlock;
 @property (nonatomic, assign) NSInteger totalBlocks;

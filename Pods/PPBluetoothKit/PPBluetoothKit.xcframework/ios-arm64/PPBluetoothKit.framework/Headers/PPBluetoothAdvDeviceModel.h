@@ -65,6 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)getTorreUserManagerMethod;
 - (NSInteger)getTorreMaxUserCount;
 - (NSInteger)getMaxMemberCount;
+- (NSInteger)getIsDorreSupportAvatarCode;
 
 + (PPBluetoothAdvDeviceModel*)filterDeviceTypeAdvModelByCBAdvDataManufacturerData:(NSData *)advData andDeivceName:(NSString *)name RSSI:(NSNumber *)RSSI;
 

@@ -194,16 +194,20 @@ NS_ASSUME_NONNULL_BEGIN
 /// 同步用户列表给设备 - 设备中如果有此用户会更新用户信息，若没有会插入给设备
 /// - Parameters:
 ///   - infos: 用户列表 - 对象中的每个属性都要赋值
-///   - handler:  0设置成功 1设置失败
-- (void)dataSyncUserList:(NSArray <PPTorreSettingModel *>*)infos withHandler:(void(^)(NSInteger status))handler;
+///   - handler:
+///       status:  0设置成功 1设置失败
+///       errorType: 错误类型枚举
+- (void)dataSyncUserList:(NSArray <PPTorreSettingModel *>*)infos withHandler:(void(^)(NSInteger status, PPSyncUserErrorType errorType))handler;
 
 
 
 /// 同步单个用户给设备 - 设备中如果有此用户会更新用户信息，若没有会插入给设备
 /// - Parameters:
 ///   - infos: 单个用户信息 - 对象中的每个属性都要赋值
-///   - handler:  0设置成功 1设置失败
-- (void)dataSyncUserInfo:(PPTorreSettingModel *)infos withHandler:(void(^)(NSInteger status))handler;
+///   - handler:
+///       status:  0设置成功 1设置失败
+///       errorType: 错误类型枚举
+- (void)dataSyncUserInfo:(PPTorreSettingModel *)infos withHandler:(void(^)(NSInteger status, PPSyncUserErrorType errorType))handler;
 
 
 /// 选中测量用户 -  用于测量过程中指定测量用户，指定后不需要在设备端进行选择

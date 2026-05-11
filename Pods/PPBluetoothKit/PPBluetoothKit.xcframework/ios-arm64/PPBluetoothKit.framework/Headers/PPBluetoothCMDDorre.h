@@ -10,6 +10,7 @@
 #import "PPBluetoothDefine.h"
 #import "PPBluetoothAdvDeviceModel.h"
 #import "PPUserBodyData.h"
+#import "PPUserRecentBodyData.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
