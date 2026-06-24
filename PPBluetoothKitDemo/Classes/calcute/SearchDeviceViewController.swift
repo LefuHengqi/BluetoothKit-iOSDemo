@@ -37,6 +37,45 @@ class SearchDeviceViewController: UIViewController {
 
     }
     
+    
+    func getProductAndType(deviceCalcuteType:PPDeviceCalcuteType)->(Int,String) {
+
+        switch deviceCalcuteType {
+        case .unknow:
+            return (-1, "unknow")
+        case .inScale:
+            return (-1, "inScale")
+        case .direct:
+            return (-1, "direct")
+        case .alternate:
+            return (-1, "alternate")
+        case .alternate8:
+            return (1, "alternate8")
+        case .alternateNormal:
+            return (-1, "alternateNormal")
+        case .needNot:
+            return (-1, "needNot")
+        case .alternate8_0:
+            return (4, "alternate8_0")
+        case .alternate8_1:
+            return (3, "alternate8_1")
+        case .alternate4_0:
+            return (-1, "alternate4_0")
+        case .alternate4_1:
+            return (-1, "alternate4_1")
+        case .alternate8_2:
+            return (7, "alternate8_2")
+        case .alternate8_3:
+            return (5, "alternate8_3")
+        case .alternate8_4:
+            return (6, "alternate8_4")
+        case .alternate8_5:
+            return (6, "alternate8_5")
+        default:
+            return (-1,"")
+        }
+
+    }
 
     /*
     // MARK: - Navigation
@@ -132,16 +171,15 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
         
         
         cell.textLabel?.numberOfLines = 0
-        
-        cell.textLabel?.text = "Name:\(model.0.deviceName)\t\tRSSI:\(model.0.rssi)\nmac:\(model.0.deviceMac)\nsettingId:\(model.0.deviceSettingId)\nadvLength:\(model.0.advLength)\t\tsign:\(model.0.sign)\nPeripheralType:\(caType)"
-        
+        let ret = self.getProductAndType(deviceCalcuteType: model.0.deviceCalcuteType)
+        cell.textLabel?.text = "Name:\(model.0.deviceName)\t\tRSSI:\(model.0.rssi)\nmac:\(model.0.deviceMac)\nsettingId:\(model.0.deviceSettingId)\nadvLength:\(model.0.advLength)\t\tsign:\(model.0.sign)\nPeripheralType:\(caType)\nbhProduct:\(ret.0)\ndeviceCalcuteType:\(ret.1)"
         
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 166
     }
     
     
