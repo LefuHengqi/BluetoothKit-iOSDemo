@@ -350,11 +350,11 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 
 /// 同步最近16天趋势数据（部分设备支持）
 /// - Parameters:
-///     - recentList - 最近16天数据，按时间升序排序
+///     - NSArray <PPUserBodyData *> *recentList - 最近16天数据，按时间升序排序，PPUserBodyData 对象数组
 ///     - type - 16天数据的类型（目前只支持体重）
 ///     - userModel - 用户信息，需要 userID memberID
-///- status：0-成功，1-失败
-- (void)syncLatest16BodyData:(NSArray <PPUserBodyData *> *)recentList type:(PPUserBodyDataType)type user:(PPTorreSettingModel *)userModel lastRecentBodyData:(PPUserRecentBodyData*)lastBodyData handler:(void(^)(int status))handler;
+///     - status：0-成功，1-失败
+- (void)syncLatest16BodyData:(NSArray *)recentList type:(PPUserBodyDataType)type user:(PPTorreSettingModel *)userModel lastRecentBodyData:(PPUserRecentBodyData*)lastBodyData handler:(void(^)(int status))handler;
 
 /// 用户名转换为设备支持的用户名（部分设备支持）
 - (NSString *)convertDeviceUserName:(NSString *)userName;

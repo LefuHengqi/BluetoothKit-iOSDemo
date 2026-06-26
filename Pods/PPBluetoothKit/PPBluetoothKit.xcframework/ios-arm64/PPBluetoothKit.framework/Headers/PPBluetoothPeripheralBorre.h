@@ -354,8 +354,14 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 /// 查询RGB显示模式
 - (void)getRGBModeHandler:(void(^)(BOOL lightEnable,Borre608LightMode lightMode,NSString *normalColor,NSString *gainColor,NSString *lossColor))handler;
 
-/// 同步最近7天身体数据
-- (void)syncLast7DaysData608:(NSArray <PPUserRecentBodyData *> *)recentList lastRecentBodyData:(PPUserRecentBodyData*)lastBodyData type:(PPUserBodyDataType)type user:(PPTorreSettingModel *)userModel  handler:(void(^)(int status))handler;
+/// 同步最近7天/次身体数据
+///  - Parameters:
+///     - NSArray <PPUserRecentBodyData *> *recentList: 最近7次数据，按时间升序排序, PPUserRecentBodyData 对象数组
+///     - lastBodyData:最近一次数据
+///     - type:7次数据的type
+///     - userModel:用户信息
+///     - handler:  0设置成功 1设置失败
+- (void)syncLast7DaysData608:(NSArray *)recentList lastRecentBodyData:(PPUserRecentBodyData*)lastBodyData type:(PPUserBodyDataType)type user:(PPTorreSettingModel *)userModel  handler:(void(^)(int status))handler;
 
 /// 获取电量
 - (void)fetchDeviceBatteryInfoWithCompletion:(void(^)(PPBatteryInfoModel *batteryInfo))completion;
@@ -365,11 +371,12 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 
 /// 同步最近7次趋势数据（部分设备支持）
 /// - Parameters:
-///     - recentList - 最近7次数据，按时间升序排序
+///     - NSArray <PPUserBodyData *> *recentList - 最近7次数据，按时间升序排序，PPUserBodyData 对象数组
 ///     - type - 7次数据的类型（体重/BMI/体脂率/水分率/肌肉量/BMR）
 ///     - userModel - 用户信息，需要 userID memberID
-///     - lastWeightData - 最后一次的体重数据
-- (void)syncLatest7BodyData:(NSArray <PPUserBodyData *> *)recentList type:(PPUserBodyDataType)type user:(PPTorreSettingModel *)userModel lastWeightData:(PPUserBodyData *)lastWeightData handler:(void(^)(int status))handler;
+///     - lastWeightData - 最后一次数据
+///     - handler - 0设置成功 1设置失败
+- (void)syncLatest7BodyData:(NSArray *)recentList type:(PPUserBodyDataType)type user:(PPTorreSettingModel *)userModel lastWeightData:(PPUserBodyData *)lastWeightData handler:(void(^)(int status))handler;
 
 
 /// 设置设备目标状态（部分设备支持）
