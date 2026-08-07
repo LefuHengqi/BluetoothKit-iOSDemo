@@ -58,6 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 是否支持指纹
 + (BOOL)hasFingerprintFunc:(PPDeviceFuncType)funcType;
 
++ (BOOL)hasFingerOrToeFunc:(PPDeviceFuncType)funcType;
+
 // 是否支持脚趾纹
 + (BOOL)hasToeprintFunc:(PPDeviceFuncType)funcType;
 

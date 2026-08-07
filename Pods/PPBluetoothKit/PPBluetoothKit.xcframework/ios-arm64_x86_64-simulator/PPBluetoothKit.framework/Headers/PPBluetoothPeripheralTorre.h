@@ -412,6 +412,11 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 ///   - result: 1： 9.805，2 ： 9.8009，3： 9.7969，4： 9.7949，5 ：  9.7905
 - (void)getGravityAccelerationWithHanlder:(void(^)(NSInteger result))handler;
 
+/// 设备恢复出厂
+/// - Parameters:
+///   - handler:  0成功 1失败
+- (void)resetDeviceWithHanlder:(void(^)(NSInteger result))handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -434,6 +434,11 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 /// open:  0 关闭 1 开启
 - (void)getPrivacyModeWithHandler:(void(^)(int open))handler;
 
+/// 设备恢复出厂
+/// - Parameters:
+///   - handler:  0设置成功 1设置失败
+- (void)resetDeviceWithHanlder:(void(^)(NSInteger result))handler;
+
 
 @end
 

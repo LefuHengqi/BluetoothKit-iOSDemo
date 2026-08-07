@@ -396,6 +396,11 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 /// 获取显示指标（部分设备支持）
 - (void)getDisplayMetricsWithHanlder:(void(^)(PPDisplayMetrics metrics))handler;
 
+/// 设备恢复出厂
+/// - Parameters:
+///   - handler:  0设置成功 1设置失败
+- (void)resetDeviceWithHanlder:(void(^)(NSInteger result))handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

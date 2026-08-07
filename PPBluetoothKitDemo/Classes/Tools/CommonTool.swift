@@ -215,9 +215,10 @@ class CommonTool {
     class func getSecret(calcuteType:PPDeviceCalcuteType)->String {
         
         if PPCalculateTools.is8Electrodes(with: calcuteType) {
+            print("Computation library secret:\(BodyCompositionDetection2)")
             return BodyCompositionDetection2
         } else {
-            
+            print("Computation library secret:\(BodyCompositionDetection1)")
             return BodyCompositionDetection1
         }
         

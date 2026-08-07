@@ -65,6 +65,7 @@ enum menuType:String{
     case setGravity = "Set gravity acceleration"
     case getGravity = "Get gravity acceleration"
     case specifyNicknameFontSize = "Specify nickname font size"
+    case resetDevice = "Reset device"
 
 }
 
@@ -74,7 +75,7 @@ class DeviceTorreViewController: BaseViewController {
     
     var XM_MtuSuccess = false
 
-    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.getUserIDList, .FetchHistory,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus, .setGravity, .getGravity, .specifyNicknameFontSize]
+    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.getUserIDList, .FetchHistory,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus, .setGravity, .getGravity, .specifyNicknameFontSize, .resetDevice]
     
     let user : PPTorreSettingModel = {
         
@@ -291,11 +292,12 @@ class DeviceTorreViewController: BaseViewController {
             // Obtain information such as the judgment range and evaluation of each physical indicator.If the standardArray of the PPBodyDetailModel object is empty, then this metric has no judgment range.
             // 获取每个身体指标的判定范围和评价等信息，如果PPBodyDetailModel对象的standardArray为空，则该指标没有判定范围
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
-            let weightParam = detailModel.ppBodyParam_Weight
-            print("weight-currentValue:\(weightParam.currentValue) range:\(weightParam.standardArray)  standardTitle:\(bodyDataJson[weightParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[weightParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[weightParam.standeValuation] ?? "")")
+            let fatParam = detailModel.ppBodyParam_BodyFat
+            print("fat-name:\(bodyDataJson[fatParam.bodyParamNameString] ?? "") fat-currentValue:\(fatParam.currentValue) range:\(fatParam.standardArray)  standardTitle:\(bodyDataJson[fatParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[fatParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[fatParam.standeValuation] ?? "")")
             
             // Get all body indicator arrays(detailModel.data). 获取所有身体指标数组(detailModel.data)
     //        print("data:\(detailModel.data)")
+            
             
             
             let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
@@ -1049,6 +1051,18 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
                 })
                 
             } cancelHandler: {
+            }
+        }
+        
+        if title == .resetDevice {
+            self.addBleCmd(ss: menuType.resetDevice.rawValue)
+            self.XM_Torre?.resetDevice { [weak self] status in
+                guard let `self` = self else {
+                    return
+                }
+                // 0-成功 1-失败
+                // 0-Success 1-Failure
+                self.addStatusCmd(ss: "status:\(status)")
             }
         }
         
