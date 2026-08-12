@@ -452,7 +452,6 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         
             
             self.addBleCmd(ss: "dataSyncUserList")
-            
             self.XM_Torre?.dataSyncUserList([user], withHandler: { [weak self] (status, errorType) in
                 guard let `self` = self else {
                     return

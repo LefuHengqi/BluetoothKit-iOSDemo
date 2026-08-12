@@ -12,6 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PPBMPConverter : NSObject
 
 /// 主转换方法
-+ (UIImage *)convertText:(NSString *)text fixedHeight:(NSUInteger)fixedHeight maxWidth:(NSUInteger)maxWidth fontSize:(NSInteger)fSize;
++ (UIImage *)convertText:(NSString *)text fixedHeight:(NSUInteger)fixedHeight maxWidth:(NSUInteger)maxWidth fontSize:(NSInteger)fSize font:(UIFont *)font;
 @end
 NS_ASSUME_NONNULL_END
