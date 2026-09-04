@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)changeDNS:(NSString *)dns;
 
 + (NSString *)heartRateCodeWithOpen:(BOOL)open;
+
++ (NSArray<NSData *> *)splitBluetoothData:(NSString *)contentStr mtu:(NSInteger)mtuLen cmd:(Byte)cmd;
+
 @end
 
 NS_ASSUME_NONNULL_END

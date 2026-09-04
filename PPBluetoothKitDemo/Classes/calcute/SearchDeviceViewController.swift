@@ -172,14 +172,14 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
         
         cell.textLabel?.numberOfLines = 0
         let ret = self.getProductAndType(deviceCalcuteType: model.0.deviceCalcuteType)
-        cell.textLabel?.text = "Name:\(model.0.deviceName)\t\tRSSI:\(model.0.rssi)\nmac:\(model.0.deviceMac)\nsettingId:\(model.0.deviceSettingId)\nadvLength:\(model.0.advLength)\t\tsign:\(model.0.sign)\nPeripheralType:\(caType)\nbhProduct:\(ret.0)\ndeviceCalcuteType:\(ret.1)"
+        cell.textLabel?.text = "Name:\(model.0.deviceName)\t\tRSSI:\(model.0.rssi)\nmac:\(model.0.deviceMac)\nsettingId:\(model.0.deviceSettingId)\nadvLength:\(model.0.advLength)\t\tsign:\(model.0.sign)\nPeripheralType:\(caType)\nbhProduct:\(ret.0)\ndeviceCalcuteType:\(ret.1)\nneedAuth:\(model.0.needAuth)  httpType:\(model.0.httpType)"
         
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 166
+        return 186
     }
     
     

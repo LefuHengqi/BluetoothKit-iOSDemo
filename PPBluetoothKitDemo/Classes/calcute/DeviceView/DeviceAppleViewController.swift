@@ -17,7 +17,7 @@ class DeviceAppleViewController: BaseViewController {
     var scaleCoconutViewController:ScaleCoconutViewController?
 
     
-    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime,DeviceMenuType.queryDNS, DeviceMenuType.TestOTA, DeviceMenuType.UserOTA, DeviceMenuType.turnOnHeartRate, DeviceMenuType.turnOffHeartRate, DeviceMenuType.getHeartRate]
+    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime,DeviceMenuType.queryDNS, DeviceMenuType.TestOTA, DeviceMenuType.UserOTA, DeviceMenuType.turnOnHeartRate, DeviceMenuType.turnOffHeartRate, DeviceMenuType.getHeartRate, DeviceMenuType.updateCACertificate, DeviceMenuType.getCAInfo]
     
     let user : PPTorreSettingModel = {
         
@@ -619,6 +619,55 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
                 guard let `self` = self else { return }
                 self.addStatusCmd(ss: "status:\(status)")
             })
+        }
+        
+        if title == .updateCACertificate {
+            self.addStatusCmd(ss: "updateCAContent")
+            
+            guard let path = Bundle.main.path(forResource: "Digicert_global_root.pem", ofType: "") else {
+                self.addStatusCmd(ss: "Certificate file not found locally")
+                return
+            }
+            
+            do {
+                
+                let content = try String(contentsOfFile: path, encoding: .utf8)
+                
+                self.addStatusCmd(ss: "Please wait...")
+                
+                // 仅部分设备支持。Only some devices support this.
+                self.XM_Apple?.updateCAContent(content, handler: {[weak self] (errorCode, caInfo) in
+                    guard let `self` = self else { return }
+                    
+                    if errorCode == 0 {
+                        self.addStatusCmd(ss: "success. expirationDate:\(caInfo.expirationDate ?? "") caFingerprint:\(caInfo.caFingerprint ?? "")")
+                    } else {
+                        self.addStatusCmd(ss: "fail. errorCode:\(errorCode)")
+                    }
+                    
+                })
+                
+            } catch {
+                self.addStatusCmd(ss: "File reading failed：\(error)")
+            }
+
+        }
+        
+        if title == .getCAInfo {
+            self.addStatusCmd(ss: "fetchCAInfo")
+            
+            // 仅部分设备支持。Only some devices support this.
+            self.XM_Apple?.fetchCAInfo(handler: {[weak self] (errorCode, caInfo) in
+                guard let `self` = self else { return }
+                
+                if errorCode == 0 {
+                    self.addStatusCmd(ss: "success. expirationDate:\(caInfo.expirationDate ?? "") caFingerprint:\(caInfo.caFingerprint ?? "")")
+                } else {
+                    self.addStatusCmd(ss: "fail. errorCode:\(errorCode)")
+                }
+                
+            })
+
         }
 
     }

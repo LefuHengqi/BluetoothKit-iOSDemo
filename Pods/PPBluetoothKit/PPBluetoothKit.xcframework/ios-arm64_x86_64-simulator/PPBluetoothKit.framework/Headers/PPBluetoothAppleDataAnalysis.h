@@ -10,6 +10,7 @@
 #import "PPBluetoothScaleBaseModel.h"
 #import "PPBluetooth180ADeviceModel.h"
 #import "PPBatteryInfoModel.h"
+#import "PPCAInfoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (PPBluetoothScaleBaseModel *)analysis20LengthDataWithCalcute4_1:(NSData *)receiveDate deviceAdvModel:(PPBluetoothAdvDeviceModel *)device andDevice180AModel:(PPBluetooth180ADeviceModel *)device180A;
 
 + (PPBatteryInfoModel *)analysisStrengthWithData:(NSData *)receiveData;
+
++ (PPCAInfoModel *)analysisCAInfoWithData:(NSData *)receiveData;
 
 @end
 

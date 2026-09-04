@@ -43,6 +43,8 @@ enum DeviceMenuType:String{
     case turnOnHeartRate = "Turn on heart rate"
     case turnOffHeartRate = "Turn off heart rate"
     case getHeartRate = "Get heart rate switch status"
+    case updateCACertificate = "Update CA certificate"
+    case getCAInfo = "Get CA certificate information"
 }
 
 

@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 #pragma mark - fff2
-- (NSArray *)userInfo:(PPKorreUserModel *)userModel;
+- (NSArray *)userInfo:(PPKorreUserModel *)userModel advModel:(PPBluetoothAdvDeviceModel *)advModel;
 
 - (NSArray *)memberByUserId:(NSString *)userId memberId:(NSString *)memberId;
 

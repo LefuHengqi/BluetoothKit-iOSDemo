@@ -45,7 +45,7 @@
 
 #import "PPScaleState.h"
 #import "PPBluetoothDefine.h"
-
+#import "PPWifiInfoModel.h"
 
 #import <PPBaseKit/PPBaseKit.h>
 

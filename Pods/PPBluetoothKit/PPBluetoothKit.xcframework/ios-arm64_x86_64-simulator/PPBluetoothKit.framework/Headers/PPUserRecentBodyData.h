@@ -19,22 +19,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@property (nonatomic, assign) CGFloat bmi; // bmi：放大10倍,243 = 24.3
+@property (nonatomic, assign) CGFloat bmi; // bmi：放大100倍
 
-@property (nonatomic, assign) CGFloat bodyfat; // bodyfat：放大10倍,243 = 24.3
+@property (nonatomic, assign) CGFloat bodyfat; // bodyfat：放大100倍
 
 @property (nonatomic, assign) CGFloat heartRate; // heartRate：放大10倍,960 = 96
 
-@property (nonatomic, assign) CGFloat muscleRate; // muscleRate：放大10倍,243 = 24.3
+@property (nonatomic, assign) CGFloat muscleRate; // muscleRate：放大100倍
 
-@property (nonatomic, assign) CGFloat muscle; // muscle：放大10倍,960 = 96
+@property (nonatomic, assign) CGFloat muscle; // muscle：放大100倍
 
-@property (nonatomic, assign) CGFloat bone; // muscle：放大10倍,960 = 96
+@property (nonatomic, assign) CGFloat bone; // muscle：放大100倍
 
-@property (nonatomic, assign) CGFloat boneRate; // muscleRate：放大10倍,243 = 24.3
+@property (nonatomic, assign) CGFloat boneRate; // 骨骼肌率：放大100倍
 
-@property (nonatomic, assign) CGFloat waterRate; // muscleRate：放大10倍,243 = 24.3
+@property (nonatomic, assign) CGFloat waterRate; // 水分率：放大100倍
 
+@property (nonatomic, assign) CGFloat visceralFat; // 内脏脂肪，放大10倍
+
+@property (nonatomic, assign) NSInteger weight; // 重量，放大100倍
 
 @end
 
