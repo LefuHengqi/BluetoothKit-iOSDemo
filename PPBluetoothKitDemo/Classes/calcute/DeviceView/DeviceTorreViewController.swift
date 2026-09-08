@@ -137,13 +137,6 @@ class DeviceTorreViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.XM_Torre?.scaleDataDelegate = self
-        
-        if self.XM_MtuSuccess == true {
-            
-            self.XM_Torre?.codeStartMeasure({ status in
-            })
-            
-        }
 
     }
     
@@ -771,7 +764,8 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
                             return
                         }
                         
-                        self.addStatusCmd(ss: "\(status)")
+                        let str = status == .registSuccess ? "success" : "fail"
+                        self.addStatusCmd(ss: "\(str)-\(status)")
                         
                     })
 

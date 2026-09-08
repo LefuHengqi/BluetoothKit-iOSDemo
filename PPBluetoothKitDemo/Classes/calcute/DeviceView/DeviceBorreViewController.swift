@@ -676,7 +676,8 @@ extension DeviceBorreViewController:UICollectionViewDelegate,UICollectionViewDat
                             return
                         }
                         
-                        self.addStatusCmd(ss: "\(status)")
+                        let str = status == .registSuccess ? "success" : "fail"
+                        self.addStatusCmd(ss: "\(str)-\(status)")
                         
                     })
 
