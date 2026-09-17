@@ -33,6 +33,9 @@ class SearchDeviceViewController: UIViewController {
         self.scaleManager.updateStateDelegate = self;
         self.scaleManager.surroundDeviceDelegate = self;
         
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 340
+        self.tableView.register(SearchDeviceCardCell.self, forCellReuseIdentifier: SearchDeviceCardCell.reuseIdentifier)
     
 
     }
@@ -77,15 +80,35 @@ class SearchDeviceViewController: UIViewController {
 
     }
 
-    /*
-    // MARK: - Navigation
+    func getWifiProtocalType(peripheralType: PPDevicePeripheralType)->String {
+        
+        switch peripheralType {
+        case .peripheralApple, .peripheralCoconut:
+            return "V2.0/V3.0 Protocol"
+        case .peripheralIce, .peripheralTorre, .peripheralBorre, .peripheralDorre:
+            return "Torre/V4.0 Protocol"
+        default:
+            return "Unknown"
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
+    func getCalculateAPI(calcuteType: PPDeviceCalcuteType)->String {
+        switch calcuteType {
+        case .direct:
+            return "DC Four-Electrode Algorithm v2.0"
+        case .alternate, .alternateNormal, .alternate4_0:
+            return "AC Four-Electrode Algorithm"
+        case .alternate4_1:
+            return "Dual-Frequency AC Four-Electrode Algorithm"
+        case .alternate8, .alternate8_0, .alternate8_1, .alternate8_2, .alternate8_3, .alternate8_4:
+            return "AC Eight-Electrode Algorithm"
+        case .alternate8_5:
+            return "AC Eight-Electrode Algorithm Smooth"
+        default:
+            return "AC Four-Electrode Algorithm"
+        }
+    }
 
 }
 
@@ -96,61 +119,43 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchDeviceCardCell.reuseIdentifier, for: indexPath) as! SearchDeviceCardCell
+        
         let model = self.XM_FoundDeviceArray[indexPath.row]
-
-        
         var caType = ""
-        
-        
+
         switch(model.0.peripheralType){
-            
         case .peripheralApple:
             caType = "PeripheralApple"
             break
         case .peripheralBanana:
             caType = "PeripheralBanana"
-            
-            
-            
             break
         case .peripheralCoconut:
             caType = "PeripheralCoconut"
-            
             break
         case .peripheralDurian:
             caType = "PeripheralDurian"
-            
-            
             break
         case .peripheralEgg:
             caType = "PeripheralEgg"
-            
             break
         case .peripheralFish:
             caType = "PeripheralFish"
-            
             break
         case .peripheralGrapes:
             caType = "PeripheralGrapes"
-            
-            
             break
         case .peripheralTorre:
             caType = "PeripheralTorre"
-            
             break
-            
         case .peripheralDorre:
             caType = "PeripheralDorre"
-            
             break
-            
         case .peripheralHamburger:
             caType = "PeripheralHamburger"
-
         case .peripheralIce:
             caType = "PeripheralIce"
-
         case .peripheralJambul:
             caType = "PeripheralJambul"
         case .peripheralBorre:
@@ -161,26 +166,37 @@ extension SearchDeviceViewController:UITableViewDelegate,UITableViewDataSource{
             caType = "PeripheralLorre"
         case .peripheralMorre:
             caType = "PeripheralMorre"
-            
         default:
             caType = "Unknow"
-     
+        }
+
+        
+        let authStr = model.0.needAuth ? "Need" : "No Need"
+        let httpStr = model.0.httpType == 1 ? "https" : "http"
+        let adns = model.0.isSupportADN ? "Yes" : "No"
+        let wifiProtolStr = self.getWifiProtocalType(peripheralType: model.0.peripheralType)
+        let api = self.getCalculateAPI(calcuteType: model.0.deviceCalcuteType)
+        let ret = self.getProductAndType(deviceCalcuteType: model.0.deviceCalcuteType)
+        
+        
+        var cardModel = SearchDeviceCardModel()
+        cardModel.platform = SearchDeviceCardModel.Platform(deviceName: "\(model.0.deviceName)", advLength: "\(model.0.advLength)", sign: "\(model.0.sign)")
+        cardModel.basic = SearchDeviceCardModel.Basic(mac: "\(model.0.deviceMac)", rssi: "\(model.0.rssi)", peripheralType: caType, needAuth: authStr)
+        cardModel.network = nil
+        if PPBluetoothManager.hasWifiFunc(model.0.deviceFuncType) {
+            cardModel.network = SearchDeviceCardModel.Network(wifiProtocolType: wifiProtolStr, httpScheme: httpStr, supportADN: adns)
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell")!
-        
-        
-        cell.textLabel?.numberOfLines = 0
-        let ret = self.getProductAndType(deviceCalcuteType: model.0.deviceCalcuteType)
-        cell.textLabel?.text = "Name:\(model.0.deviceName)\t\tRSSI:\(model.0.rssi)\nmac:\(model.0.deviceMac)\nsettingId:\(model.0.deviceSettingId)\nadvLength:\(model.0.advLength)\t\tsign:\(model.0.sign)\nPeripheralType:\(caType)\nbhProduct:\(ret.0)\ndeviceCalcuteType:\(ret.1)\nneedAuth:\(model.0.needAuth)  httpType:\(model.0.httpType)"
-        
+        cardModel.calcute = nil
+        if model.0.deviceType != .CA {
+            cardModel.calcute = SearchDeviceCardModel.Calcute(calculateType: ret.1, calculateAPI: api, product: "\(ret.0)")
+        }
+
+        cell.configCard(with: cardModel)
+
         return cell
     }
     
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 186
-    }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
