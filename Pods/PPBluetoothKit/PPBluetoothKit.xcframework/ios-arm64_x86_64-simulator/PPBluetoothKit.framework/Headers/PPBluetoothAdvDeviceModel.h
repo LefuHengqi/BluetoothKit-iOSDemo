@@ -69,6 +69,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)getIsSupportCalorieTrendsCode;
 - (NSInteger)getIsSupportFoodIDCode;
 - (NSInteger)getNutrientsTypeCode;
+- (NSInteger)getDisplayDecimalPlaces;
+- (NSInteger)getIsSupportECG;
+
 
 
 + (PPBluetoothAdvDeviceModel*)filterDeviceTypeAdvModelByCBAdvDataManufacturerData:(NSData *)advData andDeivceName:(NSString *)name RSSI:(NSNumber *)RSSI;

@@ -401,6 +401,22 @@ transferContinueStatus:(NSInteger)transferContinueStatus
 ///   - handler:  0设置成功 1设置失败
 - (void)resetDeviceWithHanlder:(void(^)(NSInteger result))handler;
 
+/// 设置数据采集模式 - 控制心率/血氧/ECG数据采集的开启与结束，部分设备支持
+/// - Parameters:
+///   - mode: 数据采集模式
+///   - handler: 0设置成功 1设置失败
+- (void)setDataCollectionMode:(PPDataCollectionMode)mode withHandler:(void(^)(NSInteger status))handler;
+
+/// 设置ECG测量开关，部分设备支持
+/// - Parameters:
+///   - open: YES 打开ECG测量，NO 关闭ECG测量
+///   - handler: 0设置成功 1设置失败
+- (void)setECGMeasureSwitch:(BOOL)open withHandler:(void(^)(NSInteger status))handler;
+
+/// 获取ECG测量开关，部分设备支持
+/// - Parameter handler: 0 ECG测量打开 1 ECG测量关闭
+- (void)getECGMeasureSwitchWithHandler:(void(^)(NSInteger status))handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

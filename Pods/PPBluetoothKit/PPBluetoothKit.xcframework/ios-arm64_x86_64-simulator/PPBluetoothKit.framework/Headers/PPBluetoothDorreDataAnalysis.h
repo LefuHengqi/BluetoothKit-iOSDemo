@@ -11,6 +11,9 @@
 #import "PPBatteryInfoModel.h"
 #import "PPAnalysisResultModel.h"
 #import "PPFingerprintInfo.h"
+#import "PPHeartRateDataModel.h"
+#import "PPECGDataModel.h"
+#import "PPBloodOxygenDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (PPBatteryInfoModel *)analysisStrengthWithData:(NSData *)receiveData;
 
 + (NSArray<PPFingerprintInfo *> *)parseFingerprintInfoWithData:(NSString *)reciveStr;
+
++ (PPHeartRateDataModel *)analysisHeartRateData:(NSData *)receiveData;
+
++ (PPBloodOxygenDataModel *)analysisBloodOxygenData:(NSData *)receiveData;
+
++ (PPECGDataModel *)analysisECGData:(NSData *)receiveData;
 
 @end
 

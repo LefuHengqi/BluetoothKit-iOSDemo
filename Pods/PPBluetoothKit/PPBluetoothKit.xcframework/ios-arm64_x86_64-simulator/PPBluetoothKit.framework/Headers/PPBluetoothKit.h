@@ -47,6 +47,10 @@
 #import "PPBluetoothDefine.h"
 #import "PPWifiInfoModel.h"
 
+#import "PPHeartRateDataModel.h"
+#import "PPBloodOxygenDataModel.h"
+#import "PPECGDataModel.h"
+
 #import <PPBaseKit/PPBaseKit.h>
 
 //! Project version number for PPBluetoothKit.

@@ -392,6 +392,11 @@ typedef NS_ENUM(NSUInteger, PPTorreLanguage) {
     PPTorreLanguageHungarian = 12, // 匈牙利语
     PPTorreLanguageBrazilianPortuguese = 13, // 巴西葡萄牙语
     PPTorreLanguageRussian = 14, // 俄语
+    PPTorreLanguageFrench = 15, // 法语
+    PPTorreLanguageItalian = 16, // 意大利语
+    PPTorreLanguageDanish = 17, // 丹麦语
+    PPTorreLanguageTurkish = 18, // 土耳其语
+
 };
 
 typedef NS_ENUM(NSUInteger, PPBluetoothAppleWifiConfigState) {
@@ -463,5 +468,12 @@ typedef NS_ENUM(NSInteger, PPSyncUserErrorType) {
     PPSyncUserErrorTypeInvalidData = 255
 };
 
+// 数据采集模式
+typedef NS_ENUM(NSUInteger, PPDataCollectionMode) {
+    PPDataCollectionModeStop = 0x00,        // 结束数据采集
+    PPDataCollectionModeHeartRate = 0x01,   // 开始心率数据采集
+    PPDataCollectionModeBloodOxygen = 0x02, // 开始血氧数据采集
+    PPDataCollectionModeECG = 0x03,         // 开始ECG数据采集
+};
 
 #endif /* PPBluetoothDefine_h */

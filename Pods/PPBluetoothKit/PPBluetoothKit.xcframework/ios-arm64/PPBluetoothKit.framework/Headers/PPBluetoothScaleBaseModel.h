@@ -33,6 +33,8 @@
 @property (nonatomic, assign) NSInteger batteryVoltage; // 电池电压，部分设备支持
 @property (nonatomic, assign) NSInteger photovoltaicVoltage; // 光伏电压，部分设备支持
 
+@property (nonatomic, assign) NSInteger spO2; // SpO2
+@property (nonatomic, assign) BOOL isECGing; 
  
 @property (nonatomic, assign) NSInteger impedance100EnCode; // 100kHz密文阻抗(4电极双频)
 

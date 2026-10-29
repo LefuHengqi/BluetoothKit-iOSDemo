@@ -19,6 +19,9 @@
 @class PPBodyFatModel;
 @class PPBatteryInfoModel;
 @class PPCoffeeScaleDataModel;
+@class PPECGDataModel;
+@class PPBloodOxygenDataModel;
+@class PPHeartRateDataModel;
 
 
 @protocol PPBluetoothUpdateStateDelegate <NSObject>
@@ -87,6 +90,8 @@
 /// Torre、Borre、Dorre 获取当前设备的实时状态，请勿缓存
 - (void)monitorScaleState:(PPScaleState *)scaleState;
 
+/// ECG/血氧数据采集上报，部分设备才支持
+- (void)collectDataECG:(PPECGDataModel *)ecg bloodOxygen:(PPBloodOxygenDataModel *)bloodOxygen heartRate:(PPHeartRateDataModel *)heartRate currentMode:(PPDataCollectionMode)mode;
 
 @end
 
