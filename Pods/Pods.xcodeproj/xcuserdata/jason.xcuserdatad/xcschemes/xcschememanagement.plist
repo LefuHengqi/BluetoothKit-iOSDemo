@@ -14,36 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>PPBaseKit-PPBaseKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>PPBaseKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>PPBasicCalculateKit-PPBasicCalculateKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>PPBasicCalculateKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>PPBluetoothKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>PPCalculateKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-PPBluetoothKitDemo.xcscheme</key>
 		<dict>
 			<key>isShown</key>

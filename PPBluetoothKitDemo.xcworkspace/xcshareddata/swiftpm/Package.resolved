@@ -1,0 +1,42 @@
+{
+  "originHash" : "4a3b3ffc8165105421593fd476932a6865b65894bc97bcc8a2fcd67661f0ffd6",
+  "pins" : [
+    {
+      "identity" : "ppbasekit_ios_spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LefuHengqi/PPBaseKit_iOS_SPM.git",
+      "state" : {
+        "revision" : "7c937fd99538172b0d58fb87c87760c3daea7da3",
+        "version" : "1.2.18"
+      }
+    },
+    {
+      "identity" : "ppbasiccalculatekit_ios_spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LefuHengqi/PPBasicCalculateKit_iOS_SPM.git",
+      "state" : {
+        "revision" : "8dfc2ebe9e1403636a8a0d9a80c79b4e50a31948",
+        "version" : "1.0.8"
+      }
+    },
+    {
+      "identity" : "ppbluetoothkit_ios_spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LefuHengqi/PPBluetoothKit_iOS_SPM.git",
+      "state" : {
+        "revision" : "da0ec20250c05c5bd56654a4c5c0fe31ed1198d4",
+        "version" : "1.2.50"
+      }
+    },
+    {
+      "identity" : "ppcalculatekit_ios_spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LefuHengqi/PPCalculateKit_iOS_SPM.git",
+      "state" : {
+        "revision" : "8254530032d7fd90dab4fcd4be48addd8b56aed3",
+        "version" : "1.2.27"
+      }
+    }
+  ],
+  "version" : 3
+}
