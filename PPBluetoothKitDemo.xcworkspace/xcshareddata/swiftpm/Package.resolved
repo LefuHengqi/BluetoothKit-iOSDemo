@@ -1,5 +1,5 @@
 {
-  "originHash" : "4a3b3ffc8165105421593fd476932a6865b65894bc97bcc8a2fcd67661f0ffd6",
+  "originHash" : "190bf780139c5dabd337fbb2f1214f2e1961969827cab4eb8113bd5942d57b29",
   "pins" : [
     {
       "identity" : "ppbasekit_ios_spm",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LefuHengqi/PPBluetoothKit_iOS_SPM.git",
       "state" : {
-        "revision" : "da0ec20250c05c5bd56654a4c5c0fe31ed1198d4",
-        "version" : "1.2.50"
+        "revision" : "d3bed226dd4264fa70e5d50f0b98cfefdb201e4a",
+        "version" : "1.2.51"
       }
     },
     {

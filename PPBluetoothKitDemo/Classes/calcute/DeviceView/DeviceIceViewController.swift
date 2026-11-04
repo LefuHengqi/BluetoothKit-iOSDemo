@@ -429,7 +429,7 @@ extension DeviceIceViewController:UICollectionViewDelegate,UICollectionViewDataS
                                     return
                                 }
                                 
-                                self.addStatusCmd(ss: "\(status) \(sn)")
+                                self.addStatusCmd(ss: "\(success) \(sn)")
                                 
                             })
                             
