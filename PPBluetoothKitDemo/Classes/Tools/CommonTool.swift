@@ -29,11 +29,23 @@ class CommonTool {
                     "PP_ERROR_TYPE_IMPEDANCE_TRUNK",
                     "PP_ERROR_TYPE_HOME",
                     "PP_ERROR_TYPE_PRODUCT",
+                    "PP_ERROR_TYPE_SECRET_MISSING",
+                    "PP_ERROR_TYPE_PACKAGE_NAME_GET_ERROR",
+                    "PP_ERROR_TYPE_SECRET_FORMAT_ERROR",
+                    "PP_ERROR_TYPE_PACKAGE_NAME_MISMATCH",
+                    "PP_ERROR_TYPE_AUTH_EXPIRED",
+                    "PP_ERROR_TYPE_SECRET_ILLEGAL",
+                    "PP_ERROR_TYPE_AUTH_PLATFORM_MISMATCH",
+                    "PP_ERROR_TYPE_AUTH_VERSION_MISMATCH",
+                    "PP_ERROR_TYPE_AUTH_ALGORITHM_MISMATCH",
+                    "PP_ERROR_TYPE_UNDEFINED",
                     "PP_ERROR_TYPE_Ohter"
         ]
         
         var index = fatModel.errorType.rawValue
-        if index > arr.count {
+        if index == 9999 {
+            index = 25
+        } else if index > arr.count {
             index = arr.count - 1
         }
         
