@@ -25,7 +25,7 @@ enum UnitType:Int{
 
 extension Float{
     
-    func toUnitStr(unitType:Int, accuracyType:Int, forWeight:Bool = false, kgRounding:Bool = false)->String{
+    func toUnitStr(unitType:Int, accuracyType:Int, forWeight:Bool = false, smallWeightCode:Int = 0, displayDecimalPlaces:Int = 1)->String{
         
         let unit = UnitType.init(rawValue: unitType)
         
@@ -35,14 +35,21 @@ extension Float{
             
         case .Unit_KG:
             
-            if(deviceType == .point005){
+            if(self < 10 && smallWeightCode == 1 && forWeight){
+
+                return String.init(format: "%0.2f", self)
+                
+            } else if(deviceType == .point005){
                 
                 if forWeight{
                     
                     if self > 100{
-                      
+                        
+                        if displayDecimalPlaces == 2 {
+                            return String.init(format: "%0.2f", self)
+                        }
+                        
                         return String.init(format: "%0.1f", floor(self *   10) / 10)
-
                     }
                     
                     return String.init(format: "%0.2f", self)
@@ -52,22 +59,41 @@ extension Float{
                 }
                 
             }else{
-                return String.init(format: "%0.1f", self)
+                
+                if forWeight {
+                    
+                    if self > 100, displayDecimalPlaces == 2 {
+                        return String.init(format: "%0.2f", self)
+                    }
+
+                    return XM_KeepPoint1S(tempKg: self)
+                } else {
+                    
+                    return String.init(format: "%0.1f", self)
+                }
                 
             }
             
         case .Unit_lb:
-            if(deviceType == .point005){
+            if (self < 10 && smallWeightCode == 1 && forWeight) {
+                
+                let weightInt = Int(self * 100 + 0.5)
+                let lb100 = (weightInt * 22046 + 25000) / 10000 / 5 * 5;
+                let lbFloat = Float(lb100) / 100.0
+                
+                return String.init(format: "%0.2f", lbFloat)
+
+            } else if(deviceType == .point005){
                 
                 
-                let weight = roundf(self * 100 + 5) / 10
+                let weight = (self * 100 + 5) / 10
                 
-                let  roundWeightInt = Int(weight)
+                let  roundWeightInt = Int(weight+0.005)
                 
                 let floorWeightFloat = Float(roundWeightInt) / 10
                 
                 
-                let floorWeight =  floorf(floorWeightFloat * 10 * 22046 / 10000)
+                let floorWeight =  Int(floorWeightFloat * 10 * 22046 / 10000)
                 
                 let floorWeightInt = Int(floorWeight)
                 
@@ -80,113 +106,87 @@ extension Float{
                 
 
                 
-                var floorWeight = self * 10 * 22046 / 10000
+                let floorWeight = self * 10 * 22046 / 10000
                 
-                let intFloor = Int(floor(floorWeight))
+                var intFloor = Int(floorWeight)
                 
                 if(intFloor % 2 > 0){
-                    floorWeight = floorWeight + 1
+                    intFloor = intFloor + 1
                 }
-                
-                let weight = Float(floorWeight) / 10
-                
-                
-                var IntWeight = Int(weight * 10)
-                
-                
-                
 
+                let weight = Float(intFloor) / 10.0
                 
-                return String.init(format: "%0.1f", Float(IntWeight) / 10)
+                return String.init(format: "%0.1f", weight)
                 
             }
 
         case .Unit_st:
             
             if(deviceType == .point005){
-                
-                
 
+                let weight = (self * 100 + 5)/10
                 
-                let weight = roundf(self * 100 + 5)/10
-                
-                let roundWeightInt = Int(weight)
+                let roundWeightInt = Int(weight + 0.005)
                 
                 let floorWeightFloat = Float(roundWeightInt) / 10
                 
                 let lb =  floorWeightFloat * 10 * 22046 / 1000
-                
-                let st = Int(floorf(lb / 14))
+                let temp = lb / 14
+                let st = Int(temp)
                 
                 let stFloat = Float(st) / 100
                 
                 return String.init(format: "%0.2f", stFloat)
                 
             }else{
-                
-                
-                
-                
-                
-                var lb = self * 10 * 22046 / 10000
-                    
-    //                    lb.round()
-                
-                
-                
-                var  roundWeightInt = Int(floor(lb))
 
-                if(roundWeightInt % 2 > 0){
-                    roundWeightInt = roundWeightInt + 1
-                }
-                    
-                    let weight = Float(roundWeightInt) / 10.0
+                let lb:Int = Int(Int((self * 100 + 5) / 10) * 22046 / 1000)
                 
-                return String.init(format: "%0.1f", weight)
+                var stInt = lb / 14
+                if (stInt % 2 != 0) {
+                    stInt += 1;
+                }
+                
+                let tempKg = Float(stInt) / 100.0
+                
+                return String.init(format: "%0.2f", tempKg)
             }
             
         case .Unit_Jin:
-            // fix:#I8LI0E，斤只保留一位小数，与Android保持一致
+            if(self < 10 && smallWeightCode == 1 && forWeight){
+
+                return String.init(format: "%0.2f", self*2)
+            }
+
                 return String.init(format: "%0.1f", self*2)
                 
         case .Unit_stlb:
             
             if(deviceType == .point005){
                 
-                let weight = roundf(self * 100 + 5) / 10
-                
-                let  roundWeightInt = Int(weight)
-                
-                let floorWeightFloat = Float(roundWeightInt) / 10
-                
-                let floorWeight =  floorf(floorWeightFloat * 10 * 22046 / 10000)
-                
-                let floorWeightInt = Int(floorWeight)
-                
-                let stPart = floorWeightInt / 140
-                
-                let lbPart =  Float(floorWeightInt).truncatingRemainder(dividingBy: 140.0) / 10.0
-
-                return String.init(format: "%ld:%.1f", stPart,lbPart )
+                let grams = self * 1000
+                let toLong = Int64(grams + 50 + 0.05)
+                let step1 = (toLong / 100) * 100
+                let lbWeight = (step1 * 22046) / 10000
+                let stValue = lbWeight / 14000
+                let lbValue = lbWeight % 14000
+                let lbValueDouble = Double(lbValue) / 1000.0
+                let divided = (lbValueDouble * 10).rounded(.towardZero) / 10
+                return String(format: "%d:%.1f", stValue, divided)
                 
             }else{
                 
-                var floorWeight = self * 10 * 22046 / 10000
-
-                let intFloor = Int(floorf(floorWeight))
+                let l = Int(self * 1000 + 0.05)
+                let toLong = l + 50
+                let lbWeight = (toLong / 100 * 100 * 22046) / 10000
+                let stValue = lbWeight / 14000
+                let lbValue = lbWeight % 14000
                 
-                if(intFloor % 2 > 0){
-                    
-                    floorWeight = floorWeight + 1
-                }
+                let divide = Float(lbValue) / 1000.0
+                let divideValue = Float(Int(divide * 10)) / 10.0
                 
-                let floorWeightInt = Int(floorWeight)
+                return String.init(format: "%ld:%.1f", stValue, divideValue)
                 
-                let stPart = floorWeightInt / 140
-                
-                let lbPart =  Float(floorWeightInt).truncatingRemainder(dividingBy: 140.0) / 10.0
-
-                return String.init(format: "%ld:%.1f", stPart,lbPart )
             }
             
         case .none:
@@ -194,10 +194,24 @@ extension Float{
             return ""
         }
     }
-
-    func toCurrentUserString(accuracyType : Int, unitType:Int, forWeight:Bool = false, kgRounding:Bool = false)->String{
+    
+    func XM_KeepPoint1S(tempKg: Float) -> String {
         
-        return self.toUnitStr(unitType: unitType, accuracyType: accuracyType, forWeight: forWeight, kgRounding:kgRounding)
+        var XM_Kg = (tempKg * 10000 + 5) / 10000
+        if tempKg < 0 {
+            XM_Kg = (tempKg * 10000 - 5) / 10000
+        }
+        let XM_10Kg = Int(XM_Kg * 10)
+        let XM_DoubleKgValue = Float(XM_10Kg) / 10.0
+
+        let XM_ValueStr = String.init(format: "%.1f", XM_DoubleKgValue)
+        
+        return XM_ValueStr
+    }
+
+    func toCurrentUserString(accuracyType : Int, unitType:Int, forWeight:Bool = false, smallWeightCode:Int = 0, displayDecimalPlaces:Int = 1)->String{
+        
+        return self.toUnitStr(unitType: unitType, accuracyType: accuracyType, forWeight: forWeight, smallWeightCode: smallWeightCode, displayDecimalPlaces: displayDecimalPlaces)
 
     }
     

@@ -159,9 +159,11 @@ extension DeviceDurianViewController:PPBluetoothConnectDelegate{
         
         self.XM_IsConnect = false
         
-        self.connectStateLbl.text = "disconnect"
+        self.connectStateLbl.text = Localization.string("disconnect")
         
         self.connectStateLbl.textColor = UIColor.red
+        
+        self.navigationController?.popToViewController(self, animated: true)
     }
     
     
@@ -181,7 +183,7 @@ extension DeviceDurianViewController: PPBluetoothServiceDelegate{
         self.addBleCmd(ss: "discoverFFF0ServiceSuccess")
         self.XM_IsConnect = true
 
-        self.connectStateLbl.text = "connected"
+        self.connectStateLbl.text = Localization.string("connected")
         self.connectStateLbl.textColor = UIColor.green
 
     }
@@ -273,27 +275,21 @@ extension DeviceDurianViewController:UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         
         
-        cell.titleLbl.text = title.rawValue
+        cell.titleLbl.text = Localization.string(title.rawValue)
         
         if title == .changeUnit{
             
-            cell.titleLbl.text = "\(title.rawValue)(\(self.unit == PPDeviceUnit.unitKG ? "lb" : "kg"))"
+            cell.titleLbl.text = "\(Localization.string(title.rawValue))(\(self.unit == PPDeviceUnit.unitKG ? "lb" : "kg"))"
         }
         
         if title == .startMeasure{
             
             cell.titleLbl.textColor = UIColor.green
             
-        } else {
+        } else{
             cell.titleLbl.textColor = UIColor.black
+
         }
-//        else  if title == .distributionNetwork{
-//            cell.titleLbl.textColor = UIColor.red
-//
-//        }else{
-//            cell.titleLbl.textColor = UIColor.black
-//
-//        }
         
         return cell
         
@@ -321,11 +317,11 @@ extension DeviceDurianViewController:UICollectionViewDelegate, UICollectionViewD
         }
 //
         if !self.XM_IsConnect{
-
+            
             self.addStatusCmd(ss: "device disconnect")
-
-
-
+            
+            self.view.makeToast(Localization.string("disconnect"))
+            
             return
         }
 //

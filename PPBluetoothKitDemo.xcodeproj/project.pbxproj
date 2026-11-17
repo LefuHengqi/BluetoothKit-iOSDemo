@@ -15,8 +15,16 @@
 		955A39E72A2B3A0E00853B9D /* PPBluetoothKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A39E62A2B3A0E00853B9D /* PPBluetoothKitDemoUITests.swift */; };
 		955A39E92A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955A39E82A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift */; };
 		95EBEFDD2AEA406A00CEA5CF /* lefu.config in Resources */ = {isa = PBXBuildFile; fileRef = 95EBEFDC2AEA406A00CEA5CF /* lefu.config */; };
+		9604070E309DBB8B00E64A2D /* PPBluetoothKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9604070D309DBB8B00E64A2D /* PPBluetoothKit */; };
+		96040711309DBD4F00E64A2D /* PPBaseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 96040710309DBD4F00E64A2D /* PPBaseKit */; };
+		96040714309DBD6C00E64A2D /* PPBasicCalculateKit in Frameworks */ = {isa = PBXBuildFile; productRef = 96040713309DBD6C00E64A2D /* PPBasicCalculateKit */; };
+		96040717309DBD8100E64A2D /* PPCalculateKit in Frameworks */ = {isa = PBXBuildFile; productRef = 96040716309DBD8100E64A2D /* PPCalculateKit */; };
+		9610739E30AADFAF00AD0BBA /* DorreMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9610739D30AADFAF00AD0BBA /* DorreMemberViewController.swift */; };
 		9611287E2F99FB08004E981D /* XM_FoodDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611287C2F99FB08004E981D /* XM_FoodDetailModel.swift */; };
 		96177BB22C6DB06C00A9554C /* CommonTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96177BB12C6DB06C00A9554C /* CommonTool.swift */; };
+		961D832B30A6E0CC003C74B0 /* WifiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961D832A30A6E0CC003C74B0 /* WifiCell.swift */; };
+		961D832D30A6E0EA003C74B0 /* WifiListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961D832C30A6E0EA003C74B0 /* WifiListViewController.swift */; };
+		961D832F30A6E5DC003C74B0 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961D832E30A6E5DC003C74B0 /* ConfigViewController.swift */; };
 		964167D22ED06C9700316990 /* body_lang_zh.json in Resources */ = {isa = PBXBuildFile; fileRef = 964167D12ED06C9700316990 /* body_lang_zh.json */; };
 		966811FE2C8F159F0018172C /* body_lang_en.json in Resources */ = {isa = PBXBuildFile; fileRef = 966811FD2C8F159F0018172C /* body_lang_en.json */; };
 		966F7A1C2B9053740006A1C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966F7A1B2B9053740006A1C8 /* Main.storyboard */; };
@@ -49,21 +57,28 @@
 		966F7B162B9064300006A1C8 /* FoundedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7AFB2B9064300006A1C8 /* FoundedViewController.swift */; };
 		966F7B182B9068080006A1C8 /* SelecteCalcuteTypeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7B172B9068080006A1C8 /* SelecteCalcuteTypeListViewController.swift */; };
 		966F7B1A2B90688F0006A1C8 /* SelecteCalcuteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F7B192B90688F0006A1C8 /* SelecteCalcuteCell.swift */; };
-		9694F90C30988D2D003F595B /* PPBluetoothKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9694F90B30988D2D003F595B /* PPBluetoothKit */; };
-		9694F90F30988D3C003F595B /* PPCalculateKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9694F90E30988D3C003F595B /* PPCalculateKit */; };
-		9694F91230988D4A003F595B /* PPBasicCalculateKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9694F91130988D4A003F595B /* PPBasicCalculateKit */; };
-		9694F91530988D57003F595B /* PPBaseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9694F91430988D57003F595B /* PPBaseKit */; };
 		96CB5CF62CD36B5F00ECE549 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 96CB5CF52CD36B5F00ECE549 /* PrivacyInfo.xcprivacy */; };
+		96D5630830A5D552000C15C5 /* DeviceUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D5630730A5D552000C15C5 /* DeviceUserCell.swift */; };
+		96D5630A30A5D57D000C15C5 /* DeviceUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D5630930A5D57D000C15C5 /* DeviceUserViewController.swift */; };
 		96DE32B02B994C0A004D2842 /* OpenTestTorreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DE32AF2B994C0A004D2842 /* OpenTestTorreViewController.swift */; };
 		96DE32B22B994C9F004D2842 /* DeviceOpenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DE32B12B994C9F004D2842 /* DeviceOpenViewController.swift */; };
 		96DED0272C8EF61500947A09 /* DeviceDorreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED0262C8EF61500947A09 /* DeviceDorreViewController.swift */; };
 		96DED0292C8EF63100947A09 /* DFUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED0282C8EF63100947A09 /* DFUViewController.swift */; };
 		96E019AE2E34C3640035F3ED /* DeviceKorreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E019AD2E34C3640035F3ED /* DeviceKorreViewController.swift */; };
 		96E1B15C2E3A1BA2000A4809 /* DeviceLorreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E1B15B2E3A1BA2000A4809 /* DeviceLorreViewController.swift */; };
+		96EAA15430A8056C00A18258 /* DeviceMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA15330A8056C00A18258 /* DeviceMemberViewController.swift */; };
 		96EB01D42C6C562000DAB8CC /* BorreScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EB01D32C6C562000DAB8CC /* BorreScaleViewController.swift */; };
 		96EB01D62C6C56A600DAB8CC /* DeviceBorreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EB01D52C6C56A600DAB8CC /* DeviceBorreViewController.swift */; };
 		96F6601E2C50DEF300A7855E /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F6601D2C50DEF300A7855E /* Constant.swift */; };
 		96FFAA01000000000000BEE2 /* SearchDeviceCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FFAA01000000000000BEE1 /* SearchDeviceCardCell.swift */; };
+		96FFAA022F0000000000BD02 /* BodyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FFAA022F0000000000BD01 /* BodyDetailViewController.swift */; };
+		96FFAA042F0000000000BD04 /* BodyDetailItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FFAA042F0000000000BD03 /* BodyDetailItemCell.swift */; };
+		96FFAA062F0000000000BD06 /* BodyDetailFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FFAA062F0000000000BD05 /* BodyDetailFlowLayout.swift */; };
+		96FFAA082F0000000000BD08 /* BodyDetailAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FFAA082F0000000000BD07 /* BodyDetailAlertViewController.swift */; };
+		96FFAA112F0000000000BF02 /* DeviceHistoryDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FFAA102F0000000000BF01 /* DeviceHistoryDataViewController.swift */; };
+		96FFAA132F0000000000BF04 /* DeviceHistoryDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FFAA122F0000000000BF03 /* DeviceHistoryDataCell.swift */; };
+		96FFAA212F0000000000BF12 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FFAA202F0000000000BF11 /* Localizable.strings */; };
+		96FFAA252F0000000000BF16 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FFAA242F0000000000BF15 /* Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,8 +112,12 @@
 		955A39E62A2B3A0E00853B9D /* PPBluetoothKitDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPBluetoothKitDemoUITests.swift; sourceTree = "<group>"; };
 		955A39E82A2B3A0E00853B9D /* PPBluetoothKitDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPBluetoothKitDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		95EBEFDC2AEA406A00CEA5CF /* lefu.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lefu.config; sourceTree = "<group>"; };
+		9610739D30AADFAF00AD0BBA /* DorreMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DorreMemberViewController.swift; sourceTree = "<group>"; };
 		9611287C2F99FB08004E981D /* XM_FoodDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XM_FoodDetailModel.swift; sourceTree = "<group>"; };
 		96177BB12C6DB06C00A9554C /* CommonTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTool.swift; sourceTree = "<group>"; };
+		961D832A30A6E0CC003C74B0 /* WifiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiCell.swift; sourceTree = "<group>"; };
+		961D832C30A6E0EA003C74B0 /* WifiListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiListViewController.swift; sourceTree = "<group>"; };
+		961D832E30A6E5DC003C74B0 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		964167D12ED06C9700316990 /* body_lang_zh.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = body_lang_zh.json; sourceTree = "<group>"; };
 		966811FD2C8F159F0018172C /* body_lang_en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = body_lang_en.json; sourceTree = "<group>"; };
 		966F7A1B2B9053740006A1C8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -132,16 +151,28 @@
 		966F7B172B9068080006A1C8 /* SelecteCalcuteTypeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelecteCalcuteTypeListViewController.swift; sourceTree = "<group>"; };
 		966F7B192B90688F0006A1C8 /* SelecteCalcuteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelecteCalcuteCell.swift; sourceTree = "<group>"; };
 		96CB5CF52CD36B5F00ECE549 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		96D5630730A5D552000C15C5 /* DeviceUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUserCell.swift; sourceTree = "<group>"; };
+		96D5630930A5D57D000C15C5 /* DeviceUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUserViewController.swift; sourceTree = "<group>"; };
 		96DE32AF2B994C0A004D2842 /* OpenTestTorreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTestTorreViewController.swift; sourceTree = "<group>"; };
 		96DE32B12B994C9F004D2842 /* DeviceOpenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceOpenViewController.swift; sourceTree = "<group>"; };
 		96DED0262C8EF61500947A09 /* DeviceDorreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDorreViewController.swift; sourceTree = "<group>"; };
 		96DED0282C8EF63100947A09 /* DFUViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFUViewController.swift; sourceTree = "<group>"; };
 		96E019AD2E34C3640035F3ED /* DeviceKorreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceKorreViewController.swift; sourceTree = "<group>"; };
 		96E1B15B2E3A1BA2000A4809 /* DeviceLorreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLorreViewController.swift; sourceTree = "<group>"; };
+		96EAA15330A8056C00A18258 /* DeviceMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMemberViewController.swift; sourceTree = "<group>"; };
 		96EB01D32C6C562000DAB8CC /* BorreScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorreScaleViewController.swift; sourceTree = "<group>"; };
 		96EB01D52C6C56A600DAB8CC /* DeviceBorreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceBorreViewController.swift; sourceTree = "<group>"; };
 		96F6601D2C50DEF300A7855E /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		96FFAA01000000000000BEE1 /* SearchDeviceCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDeviceCardCell.swift; sourceTree = "<group>"; };
+		96FFAA022F0000000000BD01 /* BodyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyDetailViewController.swift; sourceTree = "<group>"; };
+		96FFAA042F0000000000BD03 /* BodyDetailItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyDetailItemCell.swift; sourceTree = "<group>"; };
+		96FFAA062F0000000000BD05 /* BodyDetailFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyDetailFlowLayout.swift; sourceTree = "<group>"; };
+		96FFAA082F0000000000BD07 /* BodyDetailAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyDetailAlertViewController.swift; sourceTree = "<group>"; };
+		96FFAA102F0000000000BF01 /* DeviceHistoryDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHistoryDataViewController.swift; sourceTree = "<group>"; };
+		96FFAA122F0000000000BF03 /* DeviceHistoryDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHistoryDataCell.swift; sourceTree = "<group>"; };
+		96FFAA222F0000000000BF13 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		96FFAA232F0000000000BF14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		96FFAA242F0000000000BF15 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		DE895BE9C07F15D7E6408539 /* Pods_PPBluetoothKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PPBluetoothKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAD8C40FCCE4BC474A517D5 /* Pods-PPBluetoothKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PPBluetoothKitDemo.debug.xcconfig"; path = "Target Support Files/Pods-PPBluetoothKitDemo/Pods-PPBluetoothKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,11 +182,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9694F90C30988D2D003F595B /* PPBluetoothKit in Frameworks */,
+				9604070E309DBB8B00E64A2D /* PPBluetoothKit in Frameworks */,
+				96040717309DBD8100E64A2D /* PPCalculateKit in Frameworks */,
+				96040711309DBD4F00E64A2D /* PPBaseKit in Frameworks */,
 				549E0A65C9C73F82E7444078 /* Pods_PPBluetoothKitDemo.framework in Frameworks */,
-				9694F91530988D57003F595B /* PPBaseKit in Frameworks */,
-				9694F90F30988D3C003F595B /* PPCalculateKit in Frameworks */,
-				9694F91230988D4A003F595B /* PPBasicCalculateKit in Frameworks */,
+				96040714309DBD6C00E64A2D /* PPBasicCalculateKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +249,7 @@
 				9557F6502A4962AB00F6AE60 /* SwiftHeader.h */,
 				955A39C52A2B3A0D00853B9D /* AppDelegate.swift */,
 				966F7A1B2B9053740006A1C8 /* Main.storyboard */,
+				96FFAA202F0000000000BF11 /* Localizable.strings */,
 			);
 			path = PPBluetoothKitDemo;
 			sourceTree = "<group>";
@@ -278,6 +310,7 @@
 				966F7ADD2B9064300006A1C8 /* DemoExtensions.swift */,
 				96F6601D2C50DEF300A7855E /* Constant.swift */,
 				96177BB12C6DB06C00A9554C /* CommonTool.swift */,
+				96FFAA242F0000000000BF15 /* Localization.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -292,6 +325,8 @@
 				966F7AE02B9064300006A1C8 /* CalcuteSelectDeviceViewController.swift */,
 				966F7AF22B9064300006A1C8 /* CalcuteInfoViewController.swift */,
 				966F7AF62B9064300006A1C8 /* CalcuelateResultViewController.swift */,
+				96FFAA022F0000000000BD01 /* BodyDetailViewController.swift */,
+				96FFAA082F0000000000BD07 /* BodyDetailAlertViewController.swift */,
 				966F7B172B9068080006A1C8 /* SelecteCalcuteTypeListViewController.swift */,
 				966F7AE42B9064300006A1C8 /* WifiConfigViewController.swift */,
 				9611287D2F99FB08004E981D /* Model */,
@@ -329,6 +364,13 @@
 				966F7AF02B9064300006A1C8 /* DeviceJambulViewController.swift */,
 				966F7AF12B9064300006A1C8 /* DeviceAppleViewController.swift */,
 				96E1B15B2E3A1BA2000A4809 /* DeviceLorreViewController.swift */,
+				96FFAA102F0000000000BF01 /* DeviceHistoryDataViewController.swift */,
+				96FFAA122F0000000000BF03 /* DeviceHistoryDataCell.swift */,
+				96D5630930A5D57D000C15C5 /* DeviceUserViewController.swift */,
+				961D832C30A6E0EA003C74B0 /* WifiListViewController.swift */,
+				961D832E30A6E5DC003C74B0 /* ConfigViewController.swift */,
+				96EAA15330A8056C00A18258 /* DeviceMemberViewController.swift */,
+				9610739D30AADFAF00AD0BBA /* DorreMemberViewController.swift */,
 			);
 			path = DeviceView;
 			sourceTree = "<group>";
@@ -340,6 +382,10 @@
 				966F7AF52B9064300006A1C8 /* ItemCollectionViewCell.swift */,
 				966F7B192B90688F0006A1C8 /* SelecteCalcuteCell.swift */,
 				96FFAA01000000000000BEE1 /* SearchDeviceCardCell.swift */,
+				96FFAA042F0000000000BD03 /* BodyDetailItemCell.swift */,
+				96FFAA062F0000000000BD05 /* BodyDetailFlowLayout.swift */,
+				96D5630730A5D552000C15C5 /* DeviceUserCell.swift */,
+				961D832A30A6E0CC003C74B0 /* WifiCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -451,13 +497,14 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 955A39B92A2B3A0D00853B9D;
 			packageReferences = (
 				9694F90A30988D2D003F595B /* XCRemoteSwiftPackageReference "PPBluetoothKit_iOS_SPM" */,
-				9694F90D30988D3C003F595B /* XCRemoteSwiftPackageReference "PPCalculateKit_iOS_SPM" */,
-				9694F91030988D4A003F595B /* XCRemoteSwiftPackageReference "PPBasicCalculateKit_iOS_SPM" */,
-				9694F91330988D57003F595B /* XCRemoteSwiftPackageReference "PPBaseKit_iOS_SPM" */,
+				9604070F309DBD4F00E64A2D /* XCRemoteSwiftPackageReference "PPBaseKit_iOS_SPM" */,
+				96040712309DBD6C00E64A2D /* XCRemoteSwiftPackageReference "PPBasicCalculateKit_iOS_SPM" */,
+				96040715309DBD8100E64A2D /* XCRemoteSwiftPackageReference "PPCalculateKit_iOS_SPM" */,
 			);
 			productRefGroup = 955A39C32A2B3A0D00853B9D /* Products */;
 			projectDirPath = "";
@@ -482,6 +529,7 @@
 				955A39CF2A2B3A0E00853B9D /* Assets.xcassets in Resources */,
 				966811FE2C8F159F0018172C /* body_lang_en.json in Resources */,
 				966F7B122B9064300006A1C8 /* BluetoothKitDemo.storyboard in Resources */,
+				96FFAA212F0000000000BF12 /* Localizable.strings in Resources */,
 				95EBEFDD2AEA406A00CEA5CF /* lefu.config in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,34 +602,46 @@
 			buildActionMask = 2147483647;
 			files = (
 				966F7B002B9064300006A1C8 /* ScaleCoconutViewController.swift in Sources */,
+				961D832F30A6E5DC003C74B0 /* ConfigViewController.swift in Sources */,
 				966F7B152B9064300006A1C8 /* CalcuteObj.swift in Sources */,
 				966F7B102B9064300006A1C8 /* ItemCollectionViewCell.swift in Sources */,
 				966F7AFD2B9064300006A1C8 /* SearchDeviceViewController.swift in Sources */,
 				966F7B1A2B90688F0006A1C8 /* SelecteCalcuteCell.swift in Sources */,
 				96FFAA01000000000000BEE2 /* SearchDeviceCardCell.swift in Sources */,
+				96FFAA022F0000000000BD02 /* BodyDetailViewController.swift in Sources */,
+				96FFAA082F0000000000BD08 /* BodyDetailAlertViewController.swift in Sources */,
+				96FFAA042F0000000000BD04 /* BodyDetailItemCell.swift in Sources */,
+				96FFAA062F0000000000BD06 /* BodyDetailFlowLayout.swift in Sources */,
 				96177BB22C6DB06C00A9554C /* CommonTool.swift in Sources */,
+				96FFAA252F0000000000BF16 /* Localization.swift in Sources */,
 				966F7B042B9064300006A1C8 /* DeviceFishViewController.swift in Sources */,
 				966F7B022B9064300006A1C8 /* DeviceCoconutViewController.swift in Sources */,
 				966F7AFF2B9064300006A1C8 /* ScaleViewController.swift in Sources */,
+				96EAA15430A8056C00A18258 /* DeviceMemberViewController.swift in Sources */,
 				966F7B062B9064300006A1C8 /* BaseViewController.swift in Sources */,
 				966F7B182B9068080006A1C8 /* SelecteCalcuteTypeListViewController.swift in Sources */,
 				966F7B142B9064300006A1C8 /* UserInfoViewController.swift in Sources */,
 				966F7AFC2B9064300006A1C8 /* DemoExtensions.swift in Sources */,
 				96DED0292C8EF63100947A09 /* DFUViewController.swift in Sources */,
+				96FFAA112F0000000000BF02 /* DeviceHistoryDataViewController.swift in Sources */,
+				96FFAA132F0000000000BF04 /* DeviceHistoryDataCell.swift in Sources */,
 				966F7B072B9064300006A1C8 /* DeviceIceViewController.swift in Sources */,
 				96E1B15C2E3A1BA2000A4809 /* DeviceLorreViewController.swift in Sources */,
 				966F7B0A2B9064300006A1C8 /* DeviceGrapesViewController.swift in Sources */,
+				96D5630A30A5D57D000C15C5 /* DeviceUserViewController.swift in Sources */,
 				966F7AFE2B9064300006A1C8 /* CalcuteSelectDeviceViewController.swift in Sources */,
 				955A39C62A2B3A0D00853B9D /* AppDelegate.swift in Sources */,
 				966F7B162B9064300006A1C8 /* FoundedViewController.swift in Sources */,
 				966F7B132B9064300006A1C8 /* DemoIndexViewController.swift in Sources */,
 				96E019AE2E34C3640035F3ED /* DeviceKorreViewController.swift in Sources */,
+				9610739E30AADFAF00AD0BBA /* DorreMemberViewController.swift in Sources */,
 				966F7B092B9064300006A1C8 /* DeviceHamburgerViewController.swift in Sources */,
 				96EB01D42C6C562000DAB8CC /* BorreScaleViewController.swift in Sources */,
 				96F6601E2C50DEF300A7855E /* Constant.swift in Sources */,
 				966F7B0D2B9064300006A1C8 /* DeviceAppleViewController.swift in Sources */,
 				966F7B0F2B9064300006A1C8 /* CoconutCollectionViewCell.swift in Sources */,
 				9611287E2F99FB08004E981D /* XM_FoodDetailModel.swift in Sources */,
+				961D832B30A6E0CC003C74B0 /* WifiCell.swift in Sources */,
 				96EB01D62C6C56A600DAB8CC /* DeviceBorreViewController.swift in Sources */,
 				966F7B112B9064300006A1C8 /* CalcuelateResultViewController.swift in Sources */,
 				96DE32B02B994C0A004D2842 /* OpenTestTorreViewController.swift in Sources */,
@@ -592,6 +652,8 @@
 				96DE32B22B994C9F004D2842 /* DeviceOpenViewController.swift in Sources */,
 				966F7B0C2B9064300006A1C8 /* DeviceJambulViewController.swift in Sources */,
 				966F7B0B2B9064300006A1C8 /* DeviceDurianViewController.swift in Sources */,
+				96D5630830A5D552000C15C5 /* DeviceUserCell.swift in Sources */,
+				961D832D30A6E0EA003C74B0 /* WifiListViewController.swift in Sources */,
 				966F7B082B9064300006A1C8 /* DeviceEggViewController.swift in Sources */,
 				966F7B032B9064300006A1C8 /* DeviceBananaViewController.swift in Sources */,
 			);
@@ -636,6 +698,15 @@
 				955A39D12A2B3A0E00853B9D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		96FFAA202F0000000000BF11 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96FFAA232F0000000000BF14 /* en */,
+				96FFAA222F0000000000BF13 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -761,8 +832,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.51.0;
+				CURRENT_PROJECT_VERSION = 1.2.52.0;
 				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -781,13 +853,13 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.51;
+				MARKETING_VERSION = 1.2.52;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -803,6 +875,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lefu.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = PPBluetoothKitDemo/SwiftHeader.h;
 				SWIFT_VERSION = 5.0;
@@ -816,8 +889,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.51.0;
+				CURRENT_PROJECT_VERSION = 1.2.52.0;
 				DEVELOPMENT_TEAM = W4G83GSZJ8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -831,13 +905,13 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.51;
+				MARKETING_VERSION = 1.2.52;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -853,6 +927,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lefu.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = PPBluetoothKitDemo/SwiftHeader.h;
 				SWIFT_VERSION = 5.0;
@@ -978,6 +1053,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9604070F309DBD4F00E64A2D /* XCRemoteSwiftPackageReference "PPBaseKit_iOS_SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LefuHengqi/PPBaseKit_iOS_SPM.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.19;
+			};
+		};
+		96040712309DBD6C00E64A2D /* XCRemoteSwiftPackageReference "PPBasicCalculateKit_iOS_SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LefuHengqi/PPBasicCalculateKit_iOS_SPM.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.8;
+			};
+		};
+		96040715309DBD8100E64A2D /* XCRemoteSwiftPackageReference "PPCalculateKit_iOS_SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LefuHengqi/PPCalculateKit_iOS_SPM.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.29;
+			};
+		};
 		9694F90A30988D2D003F595B /* XCRemoteSwiftPackageReference "PPBluetoothKit_iOS_SPM" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LefuHengqi/PPBluetoothKit_iOS_SPM.git";
@@ -986,52 +1085,28 @@
 				minimumVersion = 1.2.50;
 			};
 		};
-		9694F90D30988D3C003F595B /* XCRemoteSwiftPackageReference "PPCalculateKit_iOS_SPM" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LefuHengqi/PPCalculateKit_iOS_SPM.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.27;
-			};
-		};
-		9694F91030988D4A003F595B /* XCRemoteSwiftPackageReference "PPBasicCalculateKit_iOS_SPM" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LefuHengqi/PPBasicCalculateKit_iOS_SPM.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.8;
-			};
-		};
-		9694F91330988D57003F595B /* XCRemoteSwiftPackageReference "PPBaseKit_iOS_SPM" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LefuHengqi/PPBaseKit_iOS_SPM.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.18;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9694F90B30988D2D003F595B /* PPBluetoothKit */ = {
+		9604070D309DBB8B00E64A2D /* PPBluetoothKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9694F90A30988D2D003F595B /* XCRemoteSwiftPackageReference "PPBluetoothKit_iOS_SPM" */;
 			productName = PPBluetoothKit;
 		};
-		9694F90E30988D3C003F595B /* PPCalculateKit */ = {
+		96040710309DBD4F00E64A2D /* PPBaseKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9694F90D30988D3C003F595B /* XCRemoteSwiftPackageReference "PPCalculateKit_iOS_SPM" */;
-			productName = PPCalculateKit;
+			package = 9604070F309DBD4F00E64A2D /* XCRemoteSwiftPackageReference "PPBaseKit_iOS_SPM" */;
+			productName = PPBaseKit;
 		};
-		9694F91130988D4A003F595B /* PPBasicCalculateKit */ = {
+		96040713309DBD6C00E64A2D /* PPBasicCalculateKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9694F91030988D4A003F595B /* XCRemoteSwiftPackageReference "PPBasicCalculateKit_iOS_SPM" */;
+			package = 96040712309DBD6C00E64A2D /* XCRemoteSwiftPackageReference "PPBasicCalculateKit_iOS_SPM" */;
 			productName = PPBasicCalculateKit;
 		};
-		9694F91430988D57003F595B /* PPBaseKit */ = {
+		96040716309DBD8100E64A2D /* PPCalculateKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9694F91330988D57003F595B /* XCRemoteSwiftPackageReference "PPBaseKit_iOS_SPM" */;
-			productName = PPBaseKit;
+			package = 96040715309DBD8100E64A2D /* XCRemoteSwiftPackageReference "PPCalculateKit_iOS_SPM" */;
+			productName = PPCalculateKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

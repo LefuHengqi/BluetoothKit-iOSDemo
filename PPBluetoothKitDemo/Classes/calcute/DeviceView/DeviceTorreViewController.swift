@@ -11,71 +11,73 @@ import PPCalculateKit
 
 enum menuType:String{
     
-    case connectDevice = "connect Device"
-    case checkBindState = "check bindState"
-    case deviceInfo = "device info"
-    case startMeasure = "start measure"
-    case SyncTime = "Sync time"
-    case SyncUserList = "Sync user list"
-    case ImpedanceSwitch = "Impedance Switch"
-    case HeartRateSwitch = "HeartRate Switch"
+    case connectDevice          = "menu_connectDevice"
+        case checkBindState         = "menu_checkBindState"
+        case deviceInfo             = "menu_deviceInfo"
+        case startMeasure           = "menu_startMeasure"
+        case stopMeasure           = "menu_stopMeasure"
+        case SyncTime               = "menu_syncTime"
+        case SyncUser               = "menu_syncUser"
+        case ImpedanceSwitch        = "menu_impedanceSwitch"
+        case HeartRateSwitch        = "menu_heartRateSwitch"
 
-    case FetchHistory = "Fetch History"
-    case changeUnit = "Change unit"
-    case clearDeviceData = "Clear DeviceData"
-    case ScreenLuminance = "ScreenLuminance"
-    case keepAlive = "keep connect alive"
-    case wificonfigstatus = "wifi config"
-    case distributionNetwork = "distribution network"
-    case selectUser = "select user"
-    case deleteUser = "delete user"
-    case getUserIDList = "get UserID List"
+        case FetchHistory           = "menu_fetchHistory"
+        case changeUnit             = "menu_changeUnit"
+        case clearDeviceData        = "menu_clearDeviceData"
+        case ScreenLuminance        = "menu_screenLuminance"
+        case keepAlive              = "menu_keepAlive"
+        case wificonfigstatus       = "menu_wifiConfigStatus"
+        case distributionNetwork    = "menu_distributionNetwork"
+        case selectUser             = "menu_selectUser"
+        case deleteUser             = "menu_deleteUser"
+        case getUserIDList          = "menu_getUserIDList"
 
-    case openHeartRate = "Open HeartRate"
-    case closeHeartRate = "Close HeartRate"
-    case openImpedance = "Open Impedance"
-    case closeImpedance = "Close Impedance"
-    case otaUser = "OTA-User Upgrade"
-    case otaLocal = "OTA-Local Upgrade"
-    case dataSyncLog = "Sync Log"
-    
-    case impedanceTestMode = "Impedance Test Mode"
-    case openImpedanceTestMode = "Open Impedance Test Mode"
-    case closeImpedanceTestMode = "Close Impedance Test Mode"
-    
-    case setTorreLanguage = "set Language"
-    case getTorreLanguage = "get Language"
-    
-    case getRGBMode = "get RGBMode"
-    case setRGBMode = "set RGBMode"
-    case getUserMembers = "get UserMembers"
-    
-    case queryDeviceTime = "Query Device Time"
+        case openHeartRate          = "menu_openHeartRate"
+        case closeHeartRate         = "menu_closeHeartRate"
+        case openImpedance          = "menu_openImpedance"
+        case closeImpedance         = "menu_closeImpedance"
+        case otaUser                = "menu_otaUser"
+        case otaLocal               = "menu_otaLocal"
+        case dataSyncLog            = "menu_dataSyncLog"
 
-    case fetchUserInfo = "fetch UserInfo"
-    case getUserInfoIsEdit = "get UserInfoIsEdit"
-    case setUserInfoIsNotEdit = "set UserInfoIsNotEdit"
-    case setUserInfoIsEdit = "set UserInfoIsEdit"
-    case DFU = "DFU"
-    
-    case showWifiIcon = "Show Wi-Fi Icon"
-    case hideWifiIcon = "Hide Wi-Fi Icon"
-    case getWifiIconStatus = "Get Wi-Fi icon status"
-    
-    case setGravity = "Set gravity acceleration"
-    case getGravity = "Get gravity acceleration"
-    case specifyNicknameFontSize = "Specify nickname font size"
-    case resetDevice = "Reset device"
+        case impedanceTestMode      = "menu_impedanceTestMode"
+        case openImpedanceTestMode  = "menu_openImpedanceTestMode"
+        case closeImpedanceTestMode = "menu_closeImpedanceTestMode"
 
+        case setTorreLanguage       = "menu_setTorreLanguage"
+        case getTorreLanguage       = "menu_getTorreLanguage"
+
+        case getRGBMode             = "menu_getRGBMode"
+        case setRGBMode             = "menu_setRGBMode"
+        case getUserMembers         = "menu_getUserMembers"
+
+        case queryDeviceTime        = "menu_queryDeviceTime"
+
+        case fetchUserInfo          = "menu_fetchUserInfo"
+        case getUserInfoIsEdit      = "menu_getUserInfoIsEdit"
+        case setUserInfoIsNotEdit   = "menu_setUserInfoIsNotEdit"
+        case setUserInfoIsEdit      = "menu_setUserInfoIsEdit"
+        case DFU                    = "menu_dfu"
+
+        case showWifiIcon           = "menu_showWifiIcon"
+        case hideWifiIcon           = "menu_hideWifiIcon"
+        case getWifiIconStatus      = "menu_getWifiIconStatus"
+
+        case setGravity             = "menu_setGravity"
+        case getGravity             = "menu_getGravity"
+        case specifyNicknameFontSize = "menu_specifyNicknameFontSize"
+        case resetDevice            = "menu_resetDevice"
+        case equipmentHistorical = "Equipment_Historical_Data"
+        case deviceUser = "Device_User"
+        case memberManager = "Member_Management"
 }
 
 class DeviceTorreViewController: BaseViewController {
 
     var XM_Torre: PPBluetoothPeripheralTorre?
     
-    var XM_MtuSuccess = false
-
-    var array = [.DFU,menuType.checkBindState,menuType.deviceInfo,menuType.startMeasure,.selectUser,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,.SyncUserList,.deleteUser,.getUserIDList, .FetchHistory,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus, .setGravity, .getGravity, .specifyNicknameFontSize, .resetDevice]
+    var syncInfoComplete = false
+    var array = [.DFU, .equipmentHistorical, .deviceUser,menuType.startMeasure,menuType.SyncTime,.wificonfigstatus,.distributionNetwork,menuType.deviceInfo,.ImpedanceSwitch, .openImpedance, .closeImpedance,.changeUnit,.HeartRateSwitch, .openHeartRate, .closeHeartRate,.clearDeviceData,menuType.checkBindState,.ScreenLuminance,.keepAlive, .otaUser, .otaLocal, .dataSyncLog, .impedanceTestMode, .openImpedanceTestMode, .closeImpedanceTestMode, .setTorreLanguage, .getTorreLanguage, .showWifiIcon, .hideWifiIcon, .getWifiIconStatus, .setGravity, .getGravity, .specifyNicknameFontSize, .resetDevice]
     
     let user : PPTorreSettingModel = {
         
@@ -143,9 +145,6 @@ class DeviceTorreViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // Stop measurement command
-        self.XM_Torre?.codeStopMeasure({ status in
-        })
     }
   
 
@@ -167,9 +166,12 @@ class DeviceTorreViewController: BaseViewController {
 
         }
         
+        self.connectStateLbl.text = Localization.string("disconnect")
+        
         self.connectDevice()
         
     }
+
     
     func connectDevice(){
         
@@ -219,7 +221,7 @@ class DeviceTorreViewController: BaseViewController {
         
         var weightStr = calculateWeightKg.toCurrentUserString(accuracyType: Int(self.deviceModel.deviceAccuracyType.rawValue), unitType: Int(scaleModel.unit.rawValue),forWeight: true) + " \(Int(scaleModel.unit.rawValue).getUnitStr())"
         
-        weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
+        weightStr = isLock ? Localization.string("weight_lock") + weightStr : Localization.string("weight_process") + weightStr
         
         
         // Measurement completed
@@ -279,31 +281,29 @@ class DeviceTorreViewController: BaseViewController {
                 print("fatModel is nil")
                 return
             }
-            
-            let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
+
             
             // Obtain information such as the judgment range and evaluation of each physical indicator.If the standardArray of the PPBodyDetailModel object is empty, then this metric has no judgment range.
             // 获取每个身体指标的判定范围和评价等信息，如果PPBodyDetailModel对象的standardArray为空，则该指标没有判定范围
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
-            let fatParam = detailModel.ppBodyParam_BodyFat
-            print("fat-name:\(bodyDataJson[fatParam.bodyParamNameString] ?? "") fat-currentValue:\(fatParam.currentValue) range:\(fatParam.standardArray)  standardTitle:\(bodyDataJson[fatParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[fatParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[fatParam.standeValuation] ?? "")")
-            
-            // Get all body indicator arrays(detailModel.data). 获取所有身体指标数组(detailModel.data)
-    //        print("data:\(detailModel.data)")
-            
-            
-            
+
             let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
             self.addStatusCmd(ss: ss)
+            
+            // Go to details page. 跳转详情页
+            let bodyDetailVC = BodyDetailViewController()
+            bodyDetailVC.errorType = fatModel.errorType
+            bodyDetailVC.detailModel = detailModel
+            self.navigationController?.pushViewController(bodyDetailVC, animated: true)
             
         } else {
             
             if (scaleModel.isHeartRating) {
                 
-                weightStr = weightStr + "\nMeasuring heart rate..."
+                weightStr = weightStr + "\n\(Localization.string("Measuring_heart_rate"))"
             } else if (scaleModel.isFatting) {
                 
-                weightStr = weightStr + "\nMeasuring body fat..."
+                weightStr = weightStr + "\n\(Localization.string("Measuring_body_fat"))"
             }
             
         }
@@ -337,21 +337,18 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         
         
-        cell.titleLbl.text = title.rawValue
+        cell.titleLbl.text = Localization.string(title.rawValue)
         
         if title == .changeUnit{
             
-            cell.titleLbl.text = "\(title.rawValue)(\(self.unit == PPDeviceUnit.unitKG ? "lb" : "kg"))"
+            cell.titleLbl.text = "\(Localization.string(title.rawValue))(\(self.unit == PPDeviceUnit.unitKG ? "lb" : "kg"))"
         }
         
         if title == .startMeasure{
             
             cell.titleLbl.textColor = UIColor.green
             
-        }else  if title == .distributionNetwork{
-            cell.titleLbl.textColor = UIColor.red
-
-        }else{
+        } else{
             cell.titleLbl.textColor = UIColor.black
 
         }
@@ -370,14 +367,17 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
             self.addStatusCmd(ss: "device disconnect")
             
-            
+            self.view.makeToast(Localization.string("disconnect"))
             
             return
         }
         
-        if !self.XM_MtuSuccess {
+        if !self.syncInfoComplete {
             
-            self.addConsoleLog(ss: "MTU not updated")
+            self.addConsoleLog(ss: "Synchronization incomplete")
+            
+            self.view.makeToast(Localization.string("synchronizationing"))
+            
             return
         }
         
@@ -440,12 +440,12 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
         }
         
         
-        if title == .SyncUserList{
+        if title == .SyncUser{
             
         
             
-            self.addBleCmd(ss: "dataSyncUserList")
-            self.XM_Torre?.dataSyncUserList([user], withHandler: { [weak self] (status, errorType) in
+            self.addBleCmd(ss: "dataSyncUserInfo")
+            self.XM_Torre?.dataSyncUserInfo(self.user, withHandler: { [weak self] (status, errorType) in
                 guard let `self` = self else {
                     return
                 }
@@ -574,58 +574,6 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             
         }
         
-        if title == .FetchHistory{
-            self.addBleCmd(ss: "dataFetchHistoryData")
-            
-            DispatchQueue.global().async {
-                let XM_Semaphore = DispatchSemaphore(value: 0)
-
-                // 获取访客历史
-                // Get visitor history
-                let guest = PPTorreSettingModel()
-                guest.touristAccount()
-                var guestList = [PPBluetoothScaleBaseModel]()
-                self.XM_Torre?.dataFetchHistoryData(guest, withHandler: { [weak self] models in
-                    guard let `self` = self else {
-                        return
-                    }
-                    
-                    guestList = models
-                    XM_Semaphore.signal()
-                })
-                let XM_Result = XM_Semaphore.wait(timeout: DispatchTime.now() + 5)
-                if XM_Result == .timedOut {
-                    print("dataFetchHistoryData timeout")
-                }
-                
-                // 获取用户历史
-                // Get user history
-                var userList = [PPBluetoothScaleBaseModel]()
-                self.XM_Torre?.dataFetchHistoryData(self.user, withHandler: { [weak self] models in
-                    guard let `self` = self else {
-                        return
-                    }
-                    
-                    userList = models
-                    XM_Semaphore.signal()
-                })
-                let XM_Result1 = XM_Semaphore.wait(timeout: DispatchTime.now() + 5)
-                if XM_Result1 == .timedOut {
-                    print("dataFetchHistoryData timeout")
-                }
-                
-                DispatchQueue.main.async {
-                    self.addStatusCmd(ss: "Visitor history data:\(guestList.count)")
-                    for model in guestList {
-                        self.addStatusCmd(ss: "historical data-weight:\(model.weight)")
-                    }
-                    self.addStatusCmd(ss: "User historical data:\(userList.count)")
-                    for model in userList {
-                        self.addStatusCmd(ss: "historical data-weight:\(model.weight)")
-                    }
-                }
-            }
-        }
         
         if title == .changeUnit{
             self.addBleCmd(ss: "codeChange")
@@ -729,50 +677,10 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
                 self.addStatusCmd(ss: "The device does not support Wi Fi")
                 return
             }
-
-            self.addBleCmd(ss: "dataFindSurroundDevice")
-            self.addBleCmd(ss: "hold on")
             
-            self.XM_Torre?.dataFindSurroundDevice({ [weak self] wifiList in
-                guard let `self` = self else {
-                    return
-                }
-                
-                for info in wifiList {
-                    self.addStatusCmd(ss: "wifi:\(info.ssid)")
-                }
-                
-                let vc = WifiConfigViewController.instantiate()
-                vc.wifiList = wifiList
-                
-                vc.configHandle = { [weak self] (ssid, password, dns) in
-                    guard let `self` = self else {
-                        return
-                    }
-                    
-                    self.addStatusCmd(ss: "ssid:\(ssid) password:\(password) dns:\(dns)")
-                    
-                    let wifiModel = PPWifiInfoModel()
-                    wifiModel.ssid = ssid ?? ""
-                    wifiModel.password = password ?? ""
-
-                    let domain = dns ?? ""
-                    
-                    self.addBleCmd(ss: "dataConfigNetWork")
-                    self.XM_Torre?.dataConfigNetWork(wifiModel, domain: domain, withHandler: { [weak self] status, error in
-                        guard let `self` = self else {
-                            return
-                        }
-                        
-                        let str = status == .registSuccess ? "success" : "fail"
-                        self.addStatusCmd(ss: "\(str)-\(status)")
-                        
-                    })
-
-                }
-
-                self.navigationController?.pushViewController(vc, animated: true)
-            })
+            let vc = WifiListViewController()
+            vc.XM_Torre = self.XM_Torre
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
         if title == .selectUser{
@@ -1030,11 +938,11 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
             self.showNumberInputAlert {[weak self] (name, fontSize) in
                 guard let `self` = self else { return }
                 
-                self.addBleCmd(ss: "dataSyncUserList-specify nickname font size")
+                self.addBleCmd(ss: "dataSyncUserInfo-specify nickname font size")
                 // Synchronize user information and specify nickname font size
                 user.userName = name
                 user.nameFontSize = fontSize
-                self.XM_Torre?.dataSyncUserList([user], withHandler: { [weak self] (status, errorType) in
+                self.XM_Torre?.dataSyncUserInfo(self.user, withHandler: { [weak self] (status, errorType) in
                     guard let `self` = self else {
                         return
                     }
@@ -1057,6 +965,60 @@ extension DeviceTorreViewController:UICollectionViewDelegate,UICollectionViewDat
                 // 0-Success 1-Failure
                 self.addStatusCmd(ss: "status:\(status)")
             }
+        }
+        
+        
+        if title == .equipmentHistorical {
+            let vc = DeviceHistoryDataViewController()
+            vc.deviceModel = self.XM_Torre?.deviceAdv
+            vc.userInfo = self.user
+            
+            // 获取指定用户(UserId)下所有成员历史数据
+            // Retrieve historical data for all members under a specified user (UserId)
+            vc.onFetchLeftHistory = { [weak self] in
+                guard let `self` = self else { return }
+                
+                self.addBleCmd(ss: "dataFetchHistoryData-user")
+                vc.view.makeToastActivity(.center)
+                self.XM_Torre?.dataFetchHistoryData(self.user, withHandler: { models in
+                    vc.view.hideToastActivity()
+                    
+                    if models.count < 1 {
+                        vc.view.makeToast(Localization.string("Historical_empty"))
+                    }
+                    
+                    vc.setHistory(models, type: .left)
+                })
+            }
+            
+            // 获取游客历史数据
+            // Fetch visitor history data
+            vc.onFetchRightHistory = { [weak self] in
+                guard let `self` = self else { return }
+                
+                self.addBleCmd(ss: "dataFetchHistoryData-guest")
+
+                vc.view.makeToastActivity(.center)
+                let guest = PPTorreSettingModel()
+                guest.touristAccount()
+                self.XM_Torre?.dataFetchHistoryData(guest, withHandler: {models in
+                    vc.view.hideToastActivity()
+                    
+                    if models.count < 1 {
+                        vc.view.makeToast(Localization.string("Historical_empty"))
+                    }
+                    
+                    vc.setHistory(models, type: .right)
+                })
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        if title == .deviceUser {
+            let vc = DeviceUserViewController()
+            vc.XM_Torre = self.XM_Torre
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
     }
@@ -1181,7 +1143,7 @@ extension DeviceTorreViewController:PPBluetoothConnectDelegate{
     
     func centralManagerDidConnect() {
                 
-        self.XM_MtuSuccess = false
+        self.syncInfoComplete = false
         self.addConsoleLog(ss: "centralManagerDidConnect")
 
         
@@ -1194,11 +1156,13 @@ extension DeviceTorreViewController:PPBluetoothConnectDelegate{
         
         self.XM_IsConnect = false
         
-        self.connectStateLbl.text = "disconnect"
+        self.connectStateLbl.text = Localization.string("disconnect")
         
         self.connectStateLbl.textColor = UIColor.red
         
-        self.XM_MtuSuccess = false
+        self.syncInfoComplete = false
+        
+        self.navigationController?.popToViewController(self, animated: true)
     }
     
     
@@ -1213,41 +1177,55 @@ extension DeviceTorreViewController: PPBluetoothServiceDelegate{
     
     func discoverFFF0ServiceSuccess() {
         
+        // Update MTU → Sync Time → Sync User Data → Select User → Start Measurement
+        // 更新MTU->同步时间->同步用户信息->选择用户->开始测量
         
         self.addBleCmd(ss: "codeUpdateMTU")
-
-        
-        self.XM_Torre?.codeUpdateMTU({[weak self] statu in
-
-            guard let `self` = self else {return}
+        self.XM_Torre?.codeUpdateMTU {[weak self] mtuStatus in
+            guard let `self` = self else { return }
+            self.addStatusCmd(ss: "\(mtuStatus == 0 ? "success" : "failed")")
             
-            self.addStatusCmd(ss: "\(statu)")
-            
-            self.addBleCmd(ss: "codeStartMeasure")
-            
-            if statu == 0 { // MTU successful
-                
-                // Start measurement command, and send "stop measurement" command after measurement is completed.
-                self.XM_Torre?.codeStartMeasure({ [weak self] status in
-                    
-                    guard let `self` = self else {return}
-                    
-                    self.addStatusCmd(ss: "\(statu)")
-                })
-                
-                self.XM_MtuSuccess = true
-                
-                self.connectStateLbl.text = "connected"
-                
-                self.connectStateLbl.textColor = UIColor.green
-                
-                self.XM_IsConnect = true
-                
+            if mtuStatus != 0 {
+                return
             }
+            
+            
+            self.connectStateLbl.text = Localization.string("connected")
+            self.connectStateLbl.textColor = UIColor.green
+            self.XM_IsConnect = true
 
-        })
-
+            
+            self.addBleCmd(ss: "codeSyncTime")
+            self.XM_Torre?.codeSyncTime {[weak self] timeStatus in
+                guard let `self` = self else { return }
+                self.addStatusCmd(ss: "\(timeStatus == 0 ? "success" : "failed")")
+                
+                self.addBleCmd(ss: "dataSyncUserInfo")
+                self.XM_Torre?.dataSyncUserInfo(self.user) {[weak self] syncStatus, errorType in
+                    guard let `self` = self else { return }
+                    self.addStatusCmd(ss: "\(syncStatus == 0 ? "success" : "failed")")
+                    
+                    self.addBleCmd(ss: "dataSelectUser")
+                    self.XM_Torre?.dataSelectUser(self.user) {[weak self] selectStatus in
+                        guard let `self` = self else { return }
+                        self.addStatusCmd(ss: "\(selectStatus == 0 ? "success" : "failed")")
+                        
+                        self.syncInfoComplete = true
+                        
+                        self.addBleCmd(ss: "codeStartMeasure")
+                        self.XM_Torre?.codeStartMeasure {[weak self] startStatus in
+                            guard let `self` = self else { return }
+                            self.addStatusCmd(ss: "\(startStatus == 0 ? "success" : "failed")")
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
     }
+    
+    
     
 }
 

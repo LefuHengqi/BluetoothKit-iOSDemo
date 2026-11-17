@@ -99,18 +99,18 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PPBaseKit/PPBaseKit.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PPBasicCalculateKit/PPBasicCalculateKit.bundle"
-  install_resource "${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64/PPCalculateKit.framework/BodyParam.json"
-  install_resource "${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64/PPCalculateKit.framework/BodyParam_HT_8.json"
-  install_resource "${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64_x86_64-simulator/PPCalculateKit.framework/BodyParam.json"
-  install_resource "${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64_x86_64-simulator/PPCalculateKit.framework/BodyParam_HT_8.json"
+  install_resource "${PODS_ROOT}/../../PPCalculateKit/PPCalculateKit.xcframework/ios-arm64/PPCalculateKit.framework/BodyParam.json"
+  install_resource "${PODS_ROOT}/../../PPCalculateKit/PPCalculateKit.xcframework/ios-arm64/PPCalculateKit.framework/BodyParam_HT_8.json"
+  install_resource "${PODS_ROOT}/../../PPCalculateKit/PPCalculateKit.xcframework/ios-arm64_x86_64-simulator/PPCalculateKit.framework/BodyParam.json"
+  install_resource "${PODS_ROOT}/../../PPCalculateKit/PPCalculateKit.xcframework/ios-arm64_x86_64-simulator/PPCalculateKit.framework/BodyParam_HT_8.json"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PPBaseKit/PPBaseKit.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PPBasicCalculateKit/PPBasicCalculateKit.bundle"
-  install_resource "${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64/PPCalculateKit.framework/BodyParam.json"
-  install_resource "${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64/PPCalculateKit.framework/BodyParam_HT_8.json"
-  install_resource "${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64_x86_64-simulator/PPCalculateKit.framework/BodyParam.json"
-  install_resource "${PODS_ROOT}/PPCalculateKit/PPCalculateKit.xcframework/ios-arm64_x86_64-simulator/PPCalculateKit.framework/BodyParam_HT_8.json"
+  install_resource "${PODS_ROOT}/../../PPCalculateKit/PPCalculateKit.xcframework/ios-arm64/PPCalculateKit.framework/BodyParam.json"
+  install_resource "${PODS_ROOT}/../../PPCalculateKit/PPCalculateKit.xcframework/ios-arm64/PPCalculateKit.framework/BodyParam_HT_8.json"
+  install_resource "${PODS_ROOT}/../../PPCalculateKit/PPCalculateKit.xcframework/ios-arm64_x86_64-simulator/PPCalculateKit.framework/BodyParam.json"
+  install_resource "${PODS_ROOT}/../../PPCalculateKit/PPCalculateKit.xcframework/ios-arm64_x86_64-simulator/PPCalculateKit.framework/BodyParam_HT_8.json"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

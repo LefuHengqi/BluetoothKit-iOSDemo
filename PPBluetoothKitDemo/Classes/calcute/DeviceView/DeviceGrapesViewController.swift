@@ -32,7 +32,7 @@ class DeviceGrapesViewController: BaseViewController {
 
         }
         
-        self.connectStateLbl.text = "Recevied advertisementData"
+        self.connectStateLbl.text = Localization.string("Recevied advertisementData")
         self.connectStateLbl.textColor = UIColor.green
         guard let device = self.deviceModel else {return}
 
@@ -83,10 +83,10 @@ extension DeviceGrapesViewController: PPBluetoothFoodScaleDataDelegate{
         
         if model.isEnd{
             
-            self.weightLbl.text = "weight lock:\(model.weight) unit:\(model.unit.rawValue) \n display:\(weight.0) \(weight.1)"
+            self.weightLbl.text = "\(Localization.string("weight_lock"))\(model.weight) \(Localization.string("food_unit"))\(model.unit.rawValue) \n \(Localization.string("display"))\(weight.0) \(weight.1)"
 
         }else{
-            self.weightLbl.text = "weight process:\(model.weight) unit:\(model.unit.rawValue) \n display:\(weight.0) \(weight.1)"
+            self.weightLbl.text = "\(Localization.string("weight_process"))\(model.weight) \(Localization.string("food_unit"))\(model.unit.rawValue) \n \(Localization.string("display"))\(weight.0) \(weight.1)"
         }
 
     }
@@ -105,7 +105,7 @@ extension DeviceGrapesViewController:UICollectionViewDelegate, UICollectionViewD
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
 
-        cell.titleLbl.text = title.rawValue
+        cell.titleLbl.text = Localization.string(title.rawValue)
 
         return cell
         

@@ -1,20 +1,28 @@
 PODS:
   - IQKeyboardManager (6.5.19)
+  - SnapKit (5.7.1)
   - SSZipArchive (2.4.3)
+  - Toast-Swift (5.1.1)
 
 DEPENDENCIES:
   - IQKeyboardManager
+  - SnapKit (= 5.7.1)
   - SSZipArchive
+  - Toast-Swift
 
 SPEC REPOS:
   trunk:
     - IQKeyboardManager
+    - SnapKit
     - SSZipArchive
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   IQKeyboardManager: c8665b3396bd0b79402b4c573eac345a31c7d485
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
+  Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
 
-PODFILE CHECKSUM: ab11dc20372f3d78b000908c0ec6b6bd38946c28
+PODFILE CHECKSUM: e0c5c8329e7391a933c407645435e0f5857b8d1d
 
 COCOAPODS: 1.17.0

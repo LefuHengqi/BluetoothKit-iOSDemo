@@ -125,9 +125,11 @@ extension BaseViewController{
     
     
     func addStatusCmd(ss:String){
-        self.conslogStr.append("\nstatus:\(ss)\n")
-
-        self.scrollBottom()
+        DispatchQueue.main.async {
+            self.conslogStr.append("\nstatus:\(ss)\n")
+            
+            self.scrollBottom()
+        }
 
     }
     

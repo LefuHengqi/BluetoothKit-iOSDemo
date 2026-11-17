@@ -177,7 +177,7 @@ extension DeviceKorreViewController: PPBluetoothServiceDelegate{
             
             self.XM_IsConnect = true
 
-            self.connectStateLbl.text = "connected"
+            self.connectStateLbl.text = Localization.string("connected")
             self.connectStateLbl.textColor = UIColor.green
         })
  
@@ -207,14 +207,14 @@ extension DeviceKorreViewController: PPBluetoothFoodScaleDataDelegate{
             let calValue = CommonTool.XM_CalculateValue(total: self.needSyncFood.servingWeightGrams ?? 0, nutrient: self.needSyncFood.lfCalories ?? 0, current: XM_WeightG, isPlus: model.isPlus)
             let fatValue = CommonTool.XM_CalculateValue(total: self.needSyncFood.servingWeightGrams ?? 0, nutrient: self.needSyncFood.lfTotalFat ?? 0, current: XM_WeightG, isPlus: model.isPlus)
             let proValue = CommonTool.XM_CalculateValue(total: self.needSyncFood.servingWeightGrams ?? 0, nutrient: self.needSyncFood.lfProtein ?? 0, current: XM_WeightG, isPlus: model.isPlus)
-            ss = String.init(format: "Calories:%.f  TotalFat:%.1f  Protein:%.1f", CommonTool.roundWithDecimal(Double(calValue),scale:1), CommonTool.roundWithDecimal(Double(fatValue),scale:1), CommonTool.roundWithDecimal(Double(proValue),scale:1))
+            ss = String.init(format: "\(Localization.string("Calories"))%.f  \(Localization.string("TotalFat"))%.1f  \(Localization.string("Protein"))%.1f", CommonTool.roundWithDecimal(Double(calValue),scale:1), CommonTool.roundWithDecimal(Double(fatValue),scale:1), CommonTool.roundWithDecimal(Double(proValue),scale:1))
         }
 
         if model.isEnd{
             
-            self.weightLbl.text = "weight lock: \(weight.0) \(weight.1) \nmode: \(self.modeStr)\nfoodNo: \(model.foodInfo.foodNo) \noodRemoteId: \(foodRemoteId)\n\(ss)"
+            self.weightLbl.text = "\(Localization.string("weight_lock")) \(weight.0) \(weight.1) \nmode: \(self.modeStr)\nfoodNo: \(model.foodInfo.foodNo) \nfoodRemoteId: \(foodRemoteId)\n\(ss)"
         }else{
-            self.weightLbl.text = "weight process: \(weight.0) \(weight.1) \nmode: \(self.modeStr)\nfoodNo: \(model.foodInfo.foodNo) \nfoodRemoteId: \(foodRemoteId)\n\(ss)"
+            self.weightLbl.text = "\(Localization.string("weight_process")) \(weight.0) \(weight.1) \nmode: \(self.modeStr)\nfoodNo: \(model.foodInfo.foodNo) \nfoodRemoteId: \(foodRemoteId)\n\(ss)"
         }
     }
     
@@ -222,11 +222,11 @@ extension DeviceKorreViewController: PPBluetoothFoodScaleDataDelegate{
         print("nutritionalScaleMode:\(scaleState.nutritionalScaleMode.rawValue)")
         switch scaleState.nutritionalScaleMode {
         case .weight:
-            self.modeStr = "Weighing mode"
+            self.modeStr = Localization.string("Weighing mode")
         case .food:
-            self.modeStr = "Nutritional scale mode"
+            self.modeStr = Localization.string("Nutritional scale mode")
         case .custom:
-            self.modeStr = "Custom mode"
+            self.modeStr = Localization.string("Custom mode")
         default:
             self.modeStr = ""
         }
@@ -247,7 +247,7 @@ extension DeviceKorreViewController:UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         
         
-        cell.titleLbl.text = title.rawValue
+        cell.titleLbl.text = Localization.string(title.rawValue)
         
         return cell
         
@@ -273,11 +273,11 @@ extension DeviceKorreViewController:UICollectionViewDelegate, UICollectionViewDa
 
         
         if !self.XM_IsConnect{
-
+            
             self.addStatusCmd(ss: "device disconnect")
-
-
-
+            
+            self.view.makeToast(Localization.string("disconnect"))
+            
             return
         }
 

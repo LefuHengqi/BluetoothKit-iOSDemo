@@ -15,16 +15,18 @@ class CalcuelateResultViewController: UIViewController {
     var selectType = calcuteType.calcuteType8AC
     var myUserModel : UserModel!
     var deviceCalcuteType:PPDeviceCalcuteType?
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.showReslut()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.showReslut()
     }
     
     func getLastCalculateInputModel()->PPCalculateInputModel {
@@ -135,23 +137,19 @@ class CalcuelateResultViewController: UIViewController {
             fatModel = PPBodyFatModel(inputModel: inputModel)
         }
 
-        
-//        let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_zh.json")
-        let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
-        
         // Obtain information such as the judgment range and evaluation of each physical indicator.If the standardArray of the PPBodyDetailModel object is empty, then this metric has no judgment range.
         // 获取每个身体指标的判定范围和评价等信息，如果PPBodyDetailModel对象的standardArray为空，则该指标没有判定范围
         let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
-        let fatParam = detailModel.ppBodyParam_BodyFat
-        print("fat-name:\(bodyDataJson[fatParam.bodyParamNameString] ?? "") fat-currentValue:\(fatParam.currentValue) range:\(fatParam.standardArray)  standardTitle:\(bodyDataJson[fatParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[fatParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[fatParam.standeValuation] ?? "")")
-        
-        // Get all body indicator arrays(detailModel.data). 获取所有身体指标数组(detailModel.data)
-//        print("data:\(detailModel.data)")
         
         let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
 
         
         self.textView.text = ss
+        
+        let bodyDetailVC = BodyDetailViewController()
+        bodyDetailVC.errorType = fatModel.errorType
+        bodyDetailVC.detailModel = detailModel
+        self.navigationController?.pushViewController(bodyDetailVC, animated: true)
      
 //        print("\(ss)")
     }

@@ -191,17 +191,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjh-Yk-gBG">
-                                <rect key="frame" x="173" y="325.66666666666669" width="47" height="30"/>
+                                <rect key="frame" x="86.666666666666686" y="316" width="220" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="KH0-T3-Isf"/>
+                                    <constraint firstAttribute="width" constant="220" id="uRl-S6-Yld"/>
+                                </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Device"/>
+                                <state key="normal" title="Device">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="4df-4M-dsY" kind="push" id="Gfj-6T-bRt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6N-YC-nHb">
-                                <rect key="frame" x="166" y="415.66666666666669" width="61" height="30"/>
+                                <rect key="frame" x="86.666666666666686" y="406" width="220" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Caculate"/>
+                                <state key="normal" title="Caculate">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="pyy-Kz-KHp" kind="push" id="9mi-C4-gp5"/>
                                 </connections>
@@ -210,13 +220,19 @@
                         <viewLayoutGuide key="safeArea" id="b2t-bs-AfC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="f6N-YC-nHb" firstAttribute="width" secondItem="gjh-Yk-gBG" secondAttribute="width" id="08O-OG-MXP"/>
                             <constraint firstItem="gjh-Yk-gBG" firstAttribute="centerX" secondItem="txF-SF-PXd" secondAttribute="centerX" id="8Yh-1u-EME"/>
-                            <constraint firstItem="gjh-Yk-gBG" firstAttribute="centerY" secondItem="txF-SF-PXd" secondAttribute="centerY" multiplier="0.8" id="WVM-zX-6Vi"/>
-                            <constraint firstItem="f6N-YC-nHb" firstAttribute="top" secondItem="gjh-Yk-gBG" secondAttribute="bottom" constant="60" id="YR0-5q-Wyb"/>
+                            <constraint firstItem="f6N-YC-nHb" firstAttribute="height" secondItem="gjh-Yk-gBG" secondAttribute="height" id="Lyf-m0-Enc"/>
+                            <constraint firstItem="gjh-Yk-gBG" firstAttribute="centerY" secondItem="txF-SF-PXd" secondAttribute="centerY" constant="-80" id="TLS-Fy-DIJ"/>
+                            <constraint firstItem="f6N-YC-nHb" firstAttribute="top" secondItem="gjh-Yk-gBG" secondAttribute="bottom" constant="30" id="YR0-5q-Wyb"/>
                             <constraint firstItem="f6N-YC-nHb" firstAttribute="centerX" secondItem="gjh-Yk-gBG" secondAttribute="centerX" id="a7t-eK-thy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qsF-7t-ZEY"/>
+                    <connections>
+                        <outlet property="calculateBtn" destination="f6N-YC-nHb" id="Ein-5G-svM"/>
+                        <outlet property="deviceBtn" destination="gjh-Yk-gBG" id="Ikg-Rd-Q2k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFT-eP-efI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -275,6 +291,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4Qh-uD-VM1"/>
+                    <connections>
+                        <outlet property="ac4Btn" destination="2em-OL-Wbf" id="MdN-mb-Uvk"/>
+                        <outlet property="ac8Btn" destination="vF6-nZ-24o" id="gES-Dd-wLW"/>
+                        <outlet property="dc4Btn" destination="r6y-XD-ksD" id="G2b-DI-Tyd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bc0-jw-a4c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Rkc-iM-wXe" userLabel="Exit" sceneMemberID="exit"/>
@@ -1536,7 +1557,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="isPregnantMode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ZT-VV-pXk">
-                                <rect key="frame" x="16" y="353" width="129.33333333333331" height="21"/>
+                                <rect key="frame" x="16" y="353" width="129.33333333333334" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -3527,10 +3548,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

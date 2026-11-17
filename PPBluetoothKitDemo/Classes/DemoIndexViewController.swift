@@ -10,6 +10,10 @@ import PPBluetoothKit
 
 public class DemoIndexViewController: UIViewController {
     
+    @IBOutlet weak var deviceBtn: UIButton!
+    @IBOutlet weak var calculateBtn: UIButton!
+    
+    
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -21,6 +25,13 @@ public class DemoIndexViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         self.Request()
+        
+        self.deviceBtn.layer.cornerRadius = 12
+        self.deviceBtn.layer.masksToBounds = true
+        self.deviceBtn.setTitle(Localization.string("home_device"), for: .normal)
+        self.calculateBtn.layer.cornerRadius = 12
+        self.calculateBtn.layer.masksToBounds = true
+        self.calculateBtn.setTitle(Localization.string("home_caculate"), for: .normal)
     }
 
     

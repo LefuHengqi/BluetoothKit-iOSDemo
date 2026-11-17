@@ -9,11 +9,16 @@ import UIKit
 
 class CalcuteSelectDeviceViewController: UIViewController {
 
-  
+    @IBOutlet weak var dc4Btn: UIButton!
+    @IBOutlet weak var ac4Btn: UIButton!
+    @IBOutlet weak var ac8Btn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.dc4Btn.setTitle(Localization.string("dc_4_algorithm"), for: .normal)
+        self.ac4Btn.setTitle(Localization.string("ac_4_algorithm"), for: .normal)
+        self.ac8Btn.setTitle(Localization.string("ac_8_algorithm"), for: .normal)
     }
     
     @IBAction func DC4Click(_ sender: Any) {

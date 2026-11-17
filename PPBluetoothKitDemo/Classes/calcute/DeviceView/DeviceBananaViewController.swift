@@ -31,7 +31,7 @@ class DeviceBananaViewController: BaseViewController {
         
         var weightStr = calculateWeightKg.toCurrentUserString(accuracyType: Int(self.deviceModel.deviceAccuracyType.rawValue), unitType: Int(scaleModel.unit.rawValue),forWeight: true) + " \(Int(scaleModel.unit.rawValue).getUnitStr())"
         
-        weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
+        weightStr = isLock ? Localization.string("weight_lock") + weightStr : Localization.string("weight_process") + weightStr
         
         // Measurement completed
         if scaleModel.isEnd {
@@ -56,28 +56,27 @@ class DeviceBananaViewController: BaseViewController {
             
             let fatModel = PPBodyFatModel(inputModel: inputModel)
             
-            let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
-            
             // Obtain information such as the judgment range and evaluation of each physical indicator.If the standardArray of the PPBodyDetailModel object is empty, then this metric has no judgment range.
             // 获取每个身体指标的判定范围和评价等信息，如果PPBodyDetailModel对象的standardArray为空，则该指标没有判定范围
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
-            let fatParam = detailModel.ppBodyParam_BodyFat
-            print("fat-name:\(bodyDataJson[fatParam.bodyParamNameString] ?? "") fat-currentValue:\(fatParam.currentValue) range:\(fatParam.standardArray)  standardTitle:\(bodyDataJson[fatParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[fatParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[fatParam.standeValuation] ?? "")")
-            
-            // Get all body indicator arrays(detailModel.data). 获取所有身体指标数组(detailModel.data)
-            //        print("data:\(detailModel.data)")
             
             
             let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
             self.addStatusCmd(ss: ss)
+            
+            // Go to details page. 跳转详情页
+            let bodyDetailVC = BodyDetailViewController()
+            bodyDetailVC.errorType = fatModel.errorType
+            bodyDetailVC.detailModel = detailModel
+            self.navigationController?.pushViewController(bodyDetailVC, animated: true)
         } else {
             
             if (scaleModel.isHeartRating) {
                 
-                weightStr = weightStr + "\nMeasuring heart rate..."
+                weightStr = weightStr + "\n\(Localization.string("Measuring_heart_rate"))"
             } else if (scaleModel.isFatting) {
                 
-                weightStr = weightStr + "\nMeasuring body fat..."
+                weightStr = weightStr + "\n\(Localization.string("Measuring_body_fat"))"
             }
             
         }
@@ -120,7 +119,7 @@ extension DeviceBananaViewController:PPBluetoothUpdateStateDelegate{
 
             
             self.XM_Banana.receivedDeviceData()
-            self.connectStateLbl.text = "connected"
+            self.connectStateLbl.text = Localization.string("connected")
             self.connectStateLbl.textColor = UIColor.green
 
         }

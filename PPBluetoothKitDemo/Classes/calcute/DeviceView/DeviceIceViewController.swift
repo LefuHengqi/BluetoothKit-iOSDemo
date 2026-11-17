@@ -16,7 +16,7 @@ class DeviceIceViewController: BaseViewController {
     var lastInputModel:PPCalculateInputModel?
     var scaleCoconutViewController:ScaleCoconutViewController?
     
-    var array:[menuType] = [.deviceInfo,.startMeasure,.SyncTime,.wificonfigstatus,.distributionNetwork,.changeUnit,.openHeartRate, .openImpedance, .closeImpedance, .closeHeartRate,.keepAlive, .dataSyncLog]
+    var array:[menuType] = [.deviceInfo, .equipmentHistorical,.startMeasure,.SyncTime,.wificonfigstatus,.distributionNetwork,.changeUnit,.openHeartRate, .openImpedance, .closeImpedance, .closeHeartRate,.keepAlive, .dataSyncLog]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -60,7 +60,7 @@ class DeviceIceViewController: BaseViewController {
         
         var weightStr = calculateWeightKg.toCurrentUserString(accuracyType: Int(self.deviceModel.deviceAccuracyType.rawValue), unitType: Int(scaleModel.unit.rawValue),forWeight: true) + " \(Int(scaleModel.unit.rawValue).getUnitStr())"
         
-        weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
+        weightStr = isLock ? Localization.string("weight_lock") + weightStr : Localization.string("weight_process") + weightStr
         
         // Measurement completed
         if scaleModel.isEnd {
@@ -112,28 +112,27 @@ class DeviceIceViewController: BaseViewController {
             
             self.lastInputModel = inputModel
             
-            let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
-            
             // Obtain information such as the judgment range and evaluation of each physical indicator.If the standardArray of the PPBodyDetailModel object is empty, then this metric has no judgment range.
             // 获取每个身体指标的判定范围和评价等信息，如果PPBodyDetailModel对象的standardArray为空，则该指标没有判定范围
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
-            let fatParam = detailModel.ppBodyParam_BodyFat
-            print("fat-name:\(bodyDataJson[fatParam.bodyParamNameString] ?? "") fat-currentValue:\(fatParam.currentValue) range:\(fatParam.standardArray)  standardTitle:\(bodyDataJson[fatParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[fatParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[fatParam.standeValuation] ?? "")")
-            
-            // Get all body indicator arrays(detailModel.data). 获取所有身体指标数组(detailModel.data)
-    //        print("data:\(detailModel.data)")
             
             
             let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
             self.addStatusCmd(ss: ss)
+            
+            // Go to details page. 跳转详情页
+            let bodyDetailVC = BodyDetailViewController()
+            bodyDetailVC.errorType = fatModel.errorType
+            bodyDetailVC.detailModel = detailModel
+            self.navigationController?.pushViewController(bodyDetailVC, animated: true)
         } else {
             
             if (scaleModel.isHeartRating) {
                 
-                weightStr = weightStr + "\nMeasuring heart rate..."
+                weightStr = weightStr + "\n\(Localization.string("Measuring_heart_rate"))"
             } else if (scaleModel.isFatting) {
                 
-                weightStr = weightStr + "\nMeasuring body fat..."
+                weightStr = weightStr + "\n\(Localization.string("Measuring_body_fat"))"
             }
             
         }
@@ -198,21 +197,18 @@ extension DeviceIceViewController:UICollectionViewDelegate,UICollectionViewDataS
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         
         
-        cell.titleLbl.text = title.rawValue
+        cell.titleLbl.text = Localization.string(title.rawValue)
         
         if title == .changeUnit{
             
-            cell.titleLbl.text = "\(title.rawValue)(\(self.unit == PPDeviceUnit.unitKG ? "lb" : "kg"))"
+            cell.titleLbl.text = "\(Localization.string(title.rawValue))(\(self.unit == PPDeviceUnit.unitKG ? "lb" : "kg"))"
         }
         
         if title == .startMeasure{
             
             cell.titleLbl.textColor = UIColor.green
             
-        }else  if title == .distributionNetwork{
-            cell.titleLbl.textColor = UIColor.red
-
-        }else{
+        } else{
             cell.titleLbl.textColor = UIColor.black
 
         }
@@ -230,7 +226,9 @@ extension DeviceIceViewController:UICollectionViewDelegate,UICollectionViewDataS
         if !self.XM_IsConnect{
             
             self.addStatusCmd(ss: "device disconnect")
-
+            
+            self.view.makeToast(Localization.string("disconnect"))
+            
             return
         }
         
@@ -323,22 +321,7 @@ extension DeviceIceViewController:UICollectionViewDelegate,UICollectionViewDataS
                 self.addStatusCmd(ss: "\(status)")
             })
         }
-        
-        if title == .FetchHistory{
-            self.addBleCmd(ss: "dataFetchHistoryData")
-            
-            self.XM_Ice?.dataFetchHistoryData(handler: { [weak self] models, error in
-                guard let `self` = self else {
-                    return
-                }
-                
-                models.forEach { bb in
-                    
-                    self.addStatusCmd(ss: "histroty---weight:\(bb.weight)")
-                    
-                }
-            })
-        }
+    
         
         if title == .changeUnit{
             self.addBleCmd(ss: "change unit")
@@ -386,64 +369,68 @@ extension DeviceIceViewController:UICollectionViewDelegate,UICollectionViewDataS
                 self.addStatusCmd(ss: "The device does not support Wi Fi")
                 return
             }
-
-            self.addBleCmd(ss: "dataFindSurroundDevice")
-            self.addBleCmd(ss: "hold on")
             
-            self.XM_Ice?.dataFindSurroundDevice({ [weak self] wifiList, status in
-                guard let `self` = self else {
-                    return
-                }
-                
-                for info in wifiList {
-                    self.addStatusCmd(ss: "wifi:\(info.ssid)")
-                }
-                
-                let vc = WifiConfigViewController.instantiate()
-                vc.wifiList = wifiList
-                
-                vc.configHandle = { [weak self] (ssid, password, dns) in
-                    guard let `self` = self else {
-                        return
-                    }
-                    
-                    self.addStatusCmd(ss: "ssid:\(ssid ?? "") password:\(password ?? "") dns:\(dns ?? "")")
-                    
-                    let wifiModel = PPWifiInfoModel()
-                    wifiModel.ssid = ssid ?? ""
-                    wifiModel.password = password ?? ""
-                    
-                    self.addBleCmd(ss: "changeDNS")
-                    self.XM_Ice?.changeDNS(dns ?? "", withReciveDataHandler: {[weak self] isSuccess in
-                        guard let `self` = self else {
-                            return
-                        }
-                        
-                        self.addStatusCmd(ss: "changeDNS-\(isSuccess)")
-                        
-                        if  isSuccess {
-                            
-                            self.addBleCmd(ss: "dataConfigNetWork")
-                            self.XM_Ice?.dataConfigNetWork(wifiModel, withHandler: {[weak self] success, sn in
-                                guard let `self` = self else {
-                                    return
-                                }
-                                
-                                self.addStatusCmd(ss: "\(success) \(sn)")
-                                
-                            })
-                            
-                        }
-                        
-                    })
+            let vc = WifiListViewController()
+            vc.XM_Ice = self.XM_Ice
+            self.navigationController?.pushViewController(vc, animated: true)
 
-                    
-                    
-
-                }
-
-                self.navigationController?.pushViewController(vc, animated: true)
-            })
+//            self.addBleCmd(ss: "dataFindSurroundDevice")
+//            self.addBleCmd(ss: "hold on")
+//            
+//            self.XM_Ice?.dataFindSurroundDevice({ [weak self] wifiList, status in
+//                guard let `self` = self else {
+//                    return
+//                }
+//                
+//                for info in wifiList {
+//                    self.addStatusCmd(ss: "wifi:\(info.ssid)")
+//                }
+//                
+//                let vc = WifiConfigViewController.instantiate()
+//                vc.wifiList = wifiList
+//                
+//                vc.configHandle = { [weak self] (ssid, password, dns) in
+//                    guard let `self` = self else {
+//                        return
+//                    }
+//                    
+//                    self.addStatusCmd(ss: "ssid:\(ssid ?? "") password:\(password ?? "") dns:\(dns ?? "")")
+//                    
+//                    let wifiModel = PPWifiInfoModel()
+//                    wifiModel.ssid = ssid ?? ""
+//                    wifiModel.password = password ?? ""
+//                    
+//                    self.addBleCmd(ss: "changeDNS")
+//                    self.XM_Ice?.changeDNS(dns ?? "", withReciveDataHandler: {[weak self] isSuccess in
+//                        guard let `self` = self else {
+//                            return
+//                        }
+//                        
+//                        self.addStatusCmd(ss: "changeDNS-\(isSuccess)")
+//                        
+//                        if  isSuccess {
+//                            
+//                            self.addBleCmd(ss: "dataConfigNetWork")
+//                            self.XM_Ice?.dataConfigNetWork(wifiModel, withHandler: {[weak self] success, sn in
+//                                guard let `self` = self else {
+//                                    return
+//                                }
+//                                
+//                                self.addStatusCmd(ss: "\(success) \(sn)")
+//                                
+//                            })
+//                            
+//                        }
+//                        
+//                    })
+//
+//                    
+//                    
+//
+//                }
+//
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            })
         }
         
         if title == .queryDeviceTime{
@@ -471,6 +458,43 @@ extension DeviceIceViewController:UICollectionViewDelegate,UICollectionViewDataS
                 }
                 
             })
+        }
+        
+        if title == .equipmentHistorical {
+            let vc = DeviceHistoryDataViewController()
+            vc.deviceModel = self.XM_Ice?.deviceAdv
+            
+            // 获取用户历史数据
+            // Fetch user history data
+            vc.onFetchLeftHistory = { [weak self] in
+                guard let `self` = self else { return }
+                
+                self.addBleCmd(ss: "dataFetchHistoryData")
+                vc.view.makeToastActivity(.center)
+                self.XM_Ice?.dataFetchHistoryData { models, error in
+                    vc.view.hideToastActivity()
+                    
+                    if models.count < 1 {
+                        vc.view.makeToast(Localization.string("Historical_empty"))
+                    }
+                    
+                    vc.setHistory(models, type: .left)
+                }
+
+            }
+            
+            // 删除设备中历史数据
+            // Delete historical data from the device
+            vc.onFetchRightHistory = { [weak self] in
+                guard let `self` = self else { return }
+                
+                self.addBleCmd(ss: "deleteDeviceHistoryData")
+
+                self.XM_Ice?.deleteDeviceHistoryData()
+                vc.view.makeToast(Localization.string("Command_sent"))
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -552,9 +576,11 @@ extension DeviceIceViewController:PPBluetoothConnectDelegate{
         
         self.XM_IsConnect = false
         
-        self.connectStateLbl.text = "disconnect"
+        self.connectStateLbl.text = Localization.string("disconnect")
         
         self.connectStateLbl.textColor = UIColor.red
+        
+        self.navigationController?.popToViewController(self, animated: true)
     }
     
     
@@ -566,8 +592,18 @@ extension DeviceIceViewController: PPBluetoothServiceDelegate{
 
         self.addBleCmd(ss: "discoverFFF0ServiceSuccess")
         
+        // Sync Time
+        // 同步时间
+        
+        self.addBleCmd(ss: "codeSyncTime")
+        self.XM_Ice?.syncTime({[weak self] timeStatus in
+            guard let `self` = self else { return }
+            
+            self.addStatusCmd(ss: "\(timeStatus == 0 ? "success" : "failed")")
+        })
+        
         self.XM_IsConnect = true
-        self.connectStateLbl.text = "connected"
+        self.connectStateLbl.text = Localization.string("connected")
         self.connectStateLbl.textColor = UIColor.green
         
         self.XM_Ice?.scaleDataDelegate = self

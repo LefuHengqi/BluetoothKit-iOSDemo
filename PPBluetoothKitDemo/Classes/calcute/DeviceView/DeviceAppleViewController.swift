@@ -13,11 +13,13 @@ class DeviceAppleViewController: BaseViewController {
 
     
     var XM_Apple : PPBluetoothPeripheralApple?
-    var XM_ScaleHistoryList : Array<PPBluetoothScaleBaseModel>? //同步历史数据
-    var scaleCoconutViewController:ScaleCoconutViewController?
-
+    var XM_ScaleHistoryList : [PPBluetoothScaleBaseModel]? //同步历史数据
+    var XM_HistoryComplete:((_ list:[PPBluetoothScaleBaseModel])->(Void))?
     
-    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime,DeviceMenuType.queryDNS, DeviceMenuType.TestOTA, DeviceMenuType.UserOTA, DeviceMenuType.turnOnHeartRate, DeviceMenuType.turnOffHeartRate, DeviceMenuType.getHeartRate, DeviceMenuType.updateCACertificate, DeviceMenuType.getCAInfo]
+    var scaleCoconutViewController:ScaleCoconutViewController?
+    
+    
+    var array = [DeviceMenuType.startMeasure, .FetchHistory, DeviceMenuType.SyncTime, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit,DeviceMenuType.distributionNetwork,DeviceMenuType.queryWifiConfig,DeviceMenuType.restoreFactory,DeviceMenuType.queryDeviceTime,DeviceMenuType.queryDNS, DeviceMenuType.TestOTA, DeviceMenuType.UserOTA, DeviceMenuType.turnOnHeartRate, DeviceMenuType.turnOffHeartRate, DeviceMenuType.getHeartRate, DeviceMenuType.updateCACertificate, DeviceMenuType.getCAInfo]
     
     let user : PPTorreSettingModel = {
         
@@ -85,7 +87,7 @@ class DeviceAppleViewController: BaseViewController {
         }
         alertController.addTextField { (textField) in
             textField.placeholder = "DOMAIN"
-            textField.text = "http://nat.lefuenergy.com:10082"
+            textField.text = "http://120.79.144.170:6032"
         }
 
         // 添加取消和确定按钮
@@ -149,7 +151,7 @@ class DeviceAppleViewController: BaseViewController {
         
         var weightStr = calculateWeightKg.toCurrentUserString(accuracyType: Int(self.deviceModel.deviceAccuracyType.rawValue), unitType: Int(scaleModel.unit.rawValue),forWeight: true) + " \(Int(scaleModel.unit.rawValue).getUnitStr())"
         
-        weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
+        weightStr = isLock ? Localization.string("weight_lock") + weightStr : Localization.string("weight_process") + weightStr
         
         // Measurement completed
         if scaleModel.isEnd {
@@ -172,29 +174,29 @@ class DeviceAppleViewController: BaseViewController {
             inputModel.bodyAgeMethod = PPBodyAgeMethod(rawValue: UInt(advModel.getBodyAgeTypeCode())) ?? .default
 
             let fatModel = PPBodyFatModel(inputModel: inputModel)
-            
-            let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
+
             
             // Obtain information such as the judgment range and evaluation of each physical indicator.If the standardArray of the PPBodyDetailModel object is empty, then this metric has no judgment range.
             // 获取每个身体指标的判定范围和评价等信息，如果PPBodyDetailModel对象的standardArray为空，则该指标没有判定范围
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
-            let fatParam = detailModel.ppBodyParam_BodyFat
-            print("fat-name:\(bodyDataJson[fatParam.bodyParamNameString] ?? "") fat-currentValue:\(fatParam.currentValue) range:\(fatParam.standardArray)  standardTitle:\(bodyDataJson[fatParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[fatParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[fatParam.standeValuation] ?? "")")
-            
-            // Get all body indicator arrays(detailModel.data). 获取所有身体指标数组(detailModel.data)
-            //        print("data:\(detailModel.data)")
             
             
             let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
             self.addStatusCmd(ss: ss)
+            
+            // Go to details page. 跳转详情页
+            let bodyDetailVC = BodyDetailViewController()
+            bodyDetailVC.errorType = fatModel.errorType
+            bodyDetailVC.detailModel = detailModel
+            self.navigationController?.pushViewController(bodyDetailVC, animated: true)
         } else {
             
             if (scaleModel.isHeartRating) {
                 
-                weightStr = weightStr + "\nMeasuring heart rate..."
+                weightStr = weightStr + "\n\(Localization.string("Measuring_heart_rate"))"
             } else if (scaleModel.isFatting) {
                 
-                weightStr = weightStr + "\nMeasuring body fat..."
+                weightStr = weightStr + "\n\(Localization.string("Measuring_body_fat"))"
             }
             
         }
@@ -292,9 +294,11 @@ extension DeviceAppleViewController:PPBluetoothConnectDelegate{
         
         self.XM_IsConnect = false
         
-        self.connectStateLbl.text = "disconnect"
+        self.connectStateLbl.text = Localization.string("disconnect")
         
         self.connectStateLbl.textColor = UIColor.red
+        
+        self.navigationController?.popToViewController(self, animated: true)
     }
     
     
@@ -311,10 +315,21 @@ extension DeviceAppleViewController: PPBluetoothServiceDelegate{
         
         self.XM_Apple?.scaleDataDelegate = self
 
+        
+        // Sync Time
+        // 同步时间
+        
+        self.addBleCmd(ss: "codeSyncTime")
+        self.XM_Apple?.syncDeviceTime(handler: {[weak self] timeStatus in
+            guard let `self` = self else { return }
+            
+            self.addStatusCmd(ss: "\(timeStatus == 0 ? "success" : "failed")")
+        })
+        
         self.addBleCmd(ss: "discoverFFF0ServiceSuccess")
         self.XM_IsConnect = true
 
-        self.connectStateLbl.text = "connected"
+        self.connectStateLbl.text = Localization.string("connected")
         self.connectStateLbl.textColor = UIColor.green
 
     }
@@ -338,8 +353,9 @@ extension DeviceAppleViewController: PPBluetoothCMDDataDelegate{
                 self.addStatusCmd(ss: "histroty---weight:\(model.weight)")
                 
             })
-            
         }
+        
+        self.XM_HistoryComplete?(self.XM_ScaleHistoryList ?? [])
     }
     func syncDeviceTimeSuccess() {
         self.addStatusCmd(ss: "syncDeviceTimeSuccess")
@@ -411,27 +427,21 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         
         
-        cell.titleLbl.text = title.rawValue
+        cell.titleLbl.text = Localization.string(title.rawValue)
         
         if title == .changeUnit{
             
-            cell.titleLbl.text = "\(title.rawValue)(\(self.unit == PPDeviceUnit.unitKG ? "lb" : "kg"))"
+            cell.titleLbl.text = "\(Localization.string(title.rawValue))(\(self.unit == PPDeviceUnit.unitKG ? "lb" : "kg"))"
         }
         
         if title == .startMeasure{
             
             cell.titleLbl.textColor = UIColor.green
             
-        } else {
+        } else{
             cell.titleLbl.textColor = UIColor.black
+
         }
-//        else  if title == .distributionNetwork{
-//            cell.titleLbl.textColor = UIColor.red
-//
-//        }else{
-//            cell.titleLbl.textColor = UIColor.black
-//
-//        }
         
         return cell
         
@@ -443,11 +453,11 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
         let title = array[indexPath.row]
 
         if !self.XM_IsConnect{
-
+            
             self.addStatusCmd(ss: "device disconnect")
-
-
-
+            
+            self.view.makeToast(Localization.string("disconnect"))
+            
             return
         }
 //
@@ -477,10 +487,48 @@ extension DeviceAppleViewController:UICollectionViewDelegate, UICollectionViewDa
 
 
         if title == .FetchHistory{
-            self.addBleCmd(ss: "dataFetchHistoryData")
-            self.XM_ScaleHistoryList = []
-            self.XM_Apple?.fetchDeviceHistoryData()
+            
+            let vc = DeviceHistoryDataViewController()
+            vc.deviceModel = self.XM_Apple?.deviceAdv
+            
+            // 获取用户历史数据
+            // Fetch user history data
+            vc.onFetchLeftHistory = { [weak self] in
+                guard let `self` = self else { return }
 
+                vc.view.makeToastActivity(.center)
+                
+                self.XM_ScaleHistoryList = []
+                self.XM_HistoryComplete = {[weak self] models in
+                    guard let `self` = self else { return }
+                    
+                    vc.view.hideToastActivity()
+                    
+                    if models.count < 1 {
+                        vc.view.makeToast(Localization.string("Historical_empty"))
+                    }
+                    
+                    vc.setHistory(models, type: .left)
+                }
+                
+                self.addBleCmd(ss: "fetchDeviceHistoryData")
+                self.XM_Apple?.fetchDeviceHistoryData()
+            }
+            
+            // 删除设备中历史数据
+            // Delete historical data from the device
+            vc.onFetchRightHistory = { [weak self] in
+                guard let `self` = self else { return }
+                
+                self.addBleCmd(ss: "deleteDeviceHistoryData")
+
+                self.XM_Apple?.deleteDeviceHistoryData { status in
+                    vc.view.makeToast(status == 0 ? Localization.string("Deleted_successfully") : Localization.string("Deletion_failed"))
+                }
+                
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         if title == .DeleteHistoryData{
             self.addBleCmd(ss: "deleteHistoryData")

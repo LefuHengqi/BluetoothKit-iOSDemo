@@ -18,10 +18,11 @@ class DeviceCoconutViewController:BaseViewController{
     
     
     var XM_Coconut : PPBluetoothPeripheralCoconut?
-    
+    var advDevice:PPBluetoothAdvDeviceModel?
     var XM_ScaleHistoryList : Array<PPBluetoothScaleBaseModel>? //同步历史数据
+    var XM_HistoryComplete:((_ list:[PPBluetoothScaleBaseModel])->(Void))?
 
-    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.DeleteHistoryData, DeviceMenuType.changeUnit]
+    var array = [DeviceMenuType.startMeasure, DeviceMenuType.SyncTime, DeviceMenuType.FetchHistory, DeviceMenuType.changeUnit]
     
     let user : PPTorreSettingModel = {
         
@@ -100,7 +101,7 @@ class DeviceCoconutViewController:BaseViewController{
         
         var weightStr = calculateWeightKg.toCurrentUserString(accuracyType: Int(self.deviceModel.deviceAccuracyType.rawValue), unitType: Int(scaleModel.unit.rawValue),forWeight: true) + " \(Int(scaleModel.unit.rawValue).getUnitStr())"
         
-        weightStr = isLock ? "weight lock:" + weightStr : "weight process:" + weightStr
+        weightStr = isLock ? Localization.string("weight_lock") + weightStr : Localization.string("weight_process") + weightStr
         
         // Measurement completed
         if scaleModel.isEnd {
@@ -125,30 +126,29 @@ class DeviceCoconutViewController:BaseViewController{
 
             
             let fatModel = PPBodyFatModel(inputModel: inputModel)
-            
-            
-            let bodyDataJson = CommonTool.loadJSONFromFile(filename: "body_lang_en.json")
+
             
             // Obtain information such as the judgment range and evaluation of each physical indicator.If the standardArray of the PPBodyDetailModel object is empty, then this metric has no judgment range.
             // 获取每个身体指标的判定范围和评价等信息，如果PPBodyDetailModel对象的standardArray为空，则该指标没有判定范围
             let detailModel = PPBodyDetailModel(bodyFatModel: fatModel)
-            let fatParam = detailModel.ppBodyParam_BodyFat
-            print("fat-name:\(bodyDataJson[fatParam.bodyParamNameString] ?? "") fat-currentValue:\(fatParam.currentValue) range:\(fatParam.standardArray)  standardTitle:\(bodyDataJson[fatParam.standardTitle] ?? "") standSuggestion:\(bodyDataJson[fatParam.standSuggestion] ?? "") standeValuation:\(bodyDataJson[fatParam.standeValuation] ?? "")")
-            
-            // Get all body indicator arrays(detailModel.data). 获取所有身体指标数组(detailModel.data)
-            //        print("data:\(detailModel.data)")
             
             
             let ss = CommonTool.getDesp(fatModel: fatModel, inputModel: inputModel)
             self.addStatusCmd(ss: ss)
+            
+            // Go to details page. 跳转详情页
+            let bodyDetailVC = BodyDetailViewController()
+            bodyDetailVC.errorType = fatModel.errorType
+            bodyDetailVC.detailModel = detailModel
+            self.navigationController?.pushViewController(bodyDetailVC, animated: true)
         } else {
             
             if (scaleModel.isHeartRating) {
                 
-                weightStr = weightStr + "\nMeasuring heart rate..."
+                weightStr = weightStr + "\n\(Localization.string("Measuring_heart_rate"))"
             } else if (scaleModel.isFatting) {
                 
-                weightStr = weightStr + "\nMeasuring body fat..."
+                weightStr = weightStr + "\n\(Localization.string("Measuring_body_fat"))"
             }
             
         }
@@ -171,27 +171,21 @@ extension DeviceCoconutViewController:UICollectionViewDelegate, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         
         
-        cell.titleLbl.text = title.rawValue
+        cell.titleLbl.text = Localization.string(title.rawValue)
         
         if title == .changeUnit{
             
-            cell.titleLbl.text = "\(title.rawValue)(\(self.unit == PPDeviceUnit.unitKG ? "lb" : "kg"))"
+            cell.titleLbl.text = "\(Localization.string(title.rawValue))(\(self.unit == PPDeviceUnit.unitKG ? "lb" : "kg"))"
         }
         
         if title == .startMeasure{
             
             cell.titleLbl.textColor = UIColor.green
             
-        } else {
+        } else{
             cell.titleLbl.textColor = UIColor.black
+
         }
-//        else  if title == .distributionNetwork{
-//            cell.titleLbl.textColor = UIColor.red
-//
-//        }else{
-//            cell.titleLbl.textColor = UIColor.black
-//
-//        }
         
         return cell
         
@@ -204,11 +198,11 @@ extension DeviceCoconutViewController:UICollectionViewDelegate, UICollectionView
 
         
         if !self.XM_IsConnect{
-
+            
             self.addStatusCmd(ss: "device disconnect")
-
-
-
+            
+            self.view.makeToast(Localization.string("disconnect"))
+            
             return
         }
 //
@@ -235,9 +229,57 @@ extension DeviceCoconutViewController:UICollectionViewDelegate, UICollectionView
 
 
         if title == .FetchHistory{
-            self.addBleCmd(ss: "dataFetchHistoryData")
-            self.XM_ScaleHistoryList = []
-            self.XM_Coconut?.fetchDeviceHistoryData()
+            
+            let funcType = self.deviceModel.deviceFuncType
+            if !PPBluetoothManager.hasHistoryFunc(funcType){
+                
+                self.addStatusCmd(ss: "This device does not support the historical data feature.")
+                
+                return
+            }
+            
+            
+            let vc = DeviceHistoryDataViewController()
+            vc.deviceModel = self.advDevice
+            
+            // 获取用户历史数据
+            // Fetch user history data
+            vc.onFetchLeftHistory = { [weak self] in
+                guard let `self` = self else { return }
+
+                vc.view.makeToastActivity(.center)
+                
+                self.XM_ScaleHistoryList = []
+                self.XM_HistoryComplete = {[weak self] models in
+                    guard let `self` = self else { return }
+                    
+                    vc.view.hideToastActivity()
+                    
+                    if models.count < 1 {
+                        vc.view.makeToast(Localization.string("Historical_empty"))
+                    }
+                    
+                    vc.setHistory(models, type: .left)
+                }
+                
+                self.addBleCmd(ss: "fetchDeviceHistoryData")
+                self.XM_Coconut?.fetchDeviceHistoryData()
+            }
+            
+            // 删除设备中历史数据
+            // Delete historical data from the device
+            vc.onFetchRightHistory = { [weak self] in
+                guard let `self` = self else { return }
+                
+                self.addBleCmd(ss: "deleteDeviceHistoryData")
+
+                self.XM_Coconut?.deleteDeviceHistoryData()
+                
+                vc.view.makeToast(Localization.string("Command_sent"))
+                
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
 
         }
         if title == .DeleteHistoryData{
@@ -310,7 +352,8 @@ extension DeviceCoconutViewController:PPBluetoothSurroundDeviceDelegate{
             self.XM_Coconut = PPBluetoothPeripheralCoconut(peripheral: peripheral, andDevice: device)
             self.XM_Coconut?.serviceDelegate = self
             self.XM_Coconut?.cmdDelegate = self
-//            self.XM_Coconut?.scaleDataDelegate = self
+            
+            self.advDevice = deviceModel
 
         }
         
@@ -323,11 +366,6 @@ extension DeviceCoconutViewController: PPBluetoothCMDDataDelegate{
     
     func syncDeviceHistorySuccess() { //同步历史数据成功
         
-//        guard let deviceModel = self.deviceModel else {return}
-
-        
-//        self.XM_Coconut?.deleteDeviceHistoryData()//删除历史数据
-        
         if let models = self.XM_ScaleHistoryList{
             
             models.forEach({ model in
@@ -337,6 +375,8 @@ extension DeviceCoconutViewController: PPBluetoothCMDDataDelegate{
             })
             
         }
+        
+        self.XM_HistoryComplete?(self.XM_ScaleHistoryList ?? [])
     }
     func syncDeviceTimeSuccess() {
         self.addStatusCmd(ss: "syncDeviceTimeSuccess")
@@ -369,9 +409,11 @@ extension DeviceCoconutViewController:PPBluetoothConnectDelegate{
         
         self.XM_IsConnect = false
         
-        self.connectStateLbl.text = "disconnect"
+        self.connectStateLbl.text = Localization.string("disconnect")
         
         self.connectStateLbl.textColor = UIColor.red
+        
+        self.navigationController?.popToViewController(self, animated: true)
     }
     
     
@@ -387,19 +429,20 @@ extension DeviceCoconutViewController: PPBluetoothServiceDelegate{
     func discoverFFF0ServiceSuccess() {
         
         self.XM_Coconut?.scaleDataDelegate = self
-
+        
         self.addBleCmd(ss: "discoverFFF0ServiceSuccess")
+        
+        // Sync Time
+        // 同步时间
+        
+        self.addBleCmd(ss: "codeSyncTime")
+        self.XM_Coconut?.syncDeviceTime()
+
         self.XM_IsConnect = true
 
-        self.connectStateLbl.text = "connected"
+        self.connectStateLbl.text = Localization.string("connected")
         self.connectStateLbl.textColor = UIColor.green
-        
-//        let funcType : PPDeviceFuncType = selectDevice!.0.deviceFuncType
-//
-//        if PPBluetoothManager.hasHistoryFunc(funcType){
-//            
-//            self.XM_Coconut?.syncDeviceTime()
-//        }
+
 
 
     }

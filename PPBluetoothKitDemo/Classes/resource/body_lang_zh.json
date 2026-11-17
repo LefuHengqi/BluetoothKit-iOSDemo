@@ -447,5 +447,7 @@
   "mus_leve2_name": "标准",
   "BodySubcutaneousFat_leve3_suggestion": "减少高热量食品的摄入，如糖果、油炸食品等，注意控制饮食量，合理分配膳食，避免过饱或过饿的状态，适当增加有氧运动，如慢跑、游泳、快走等，可以帮助消耗多余的脂肪。",
   "BodyHealth_leve4_name": "良好",
-  "BodyControl_introduction": "控制体重是以标准体重和BMI为依据，推荐的体重控制标准。"
+  "BodyControl_introduction": "控制体重是以标准体重和BMI为依据，推荐的体重控制标准。",
+  "BodyIdealWeight_name":"理想体重",
+  "FootLen_name":"脚长"
 }
