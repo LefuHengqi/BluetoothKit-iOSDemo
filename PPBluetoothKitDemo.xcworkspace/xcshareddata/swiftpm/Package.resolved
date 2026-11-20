@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LefuHengqi/PPBluetoothKit_iOS_SPM.git",
       "state" : {
-        "revision" : "d3bed226dd4264fa70e5d50f0b98cfefdb201e4a",
-        "version" : "1.2.51"
+        "revision" : "1443ee2c502782c144b4c0e573f3723a93b799d8",
+        "version" : "1.2.52"
       }
     },
     {

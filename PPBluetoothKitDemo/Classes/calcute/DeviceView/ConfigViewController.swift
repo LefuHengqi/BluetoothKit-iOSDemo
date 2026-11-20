@@ -235,13 +235,28 @@ final class ConfigViewController: UIViewController {
         
         if let XM_Ice = self.XM_Ice {
             self.view.makeToastActivity(.center)
-            XM_Ice.configNetWork(wifiModel, withHandler: {[weak self] isSuccess, sn, state in
+            
+            XM_Ice.changeDNS(domain) {[weak self] success in
                 guard let `self` = self else { return }
                 
-                self.view.hideToastActivity()
+                if !success {
+                    print("domain fail")
+                    
+                    self.view.hideToastActivity()
+                    self.resultLabel.text = "\(Localization.string("fail"))"
+                    return
+                }
                 
-                self.resultLabel.text = isSuccess == true ? "\(Localization.string("network_success"))-sn:\(sn)" : "\(Localization.string("fail"))-status:\(state)"
-            })
+                XM_Ice.configNetWork(wifiModel, withHandler: {[weak self] isSuccess, sn, state in
+                    guard let `self` = self else { return }
+                    
+                    self.view.hideToastActivity()
+                    
+                    self.resultLabel.text = isSuccess == true ? "\(Localization.string("network_success"))-sn:\(sn)" : "\(Localization.string("fail"))-status:\(state)"
+                })
+            }
+            
+            
         }
     }
 
