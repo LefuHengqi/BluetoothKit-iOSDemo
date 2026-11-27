@@ -8,8 +8,8 @@
 
 import Foundation
 
-// SDK集成文档：https://xinzhiyun.feishu.cn/docx/MnUed4VF4o43KgxAugccG3pknbf?from=from_copylink
-// SDK integration documentation:https://xinzhiyun.feishu.cn/docx/HSu2d84ThoKYSbxdyFdciyIMnUh?from=from_copylink
+// SDK集成文档：https://xinzhiyun.feishu.cn/docx/Pt10dg3GsogZQZxDhLPctgmxnOg?from=from_copylink
+// SDK integration documentation:https://xinzhiyun.feishu.cn/docx/ZSrfd79vholQA3xWwW2cugKDnid?from=from_copylink
 
 // 请务必将 AppKey 和 AppSecrect 换成你们自己的，否则可能无法搜索到设备
 // Please be sure to replace it with your AppKey and AppSecrect

@@ -6,33 +6,8 @@
   <div style="width: 48%;">
 
 
-
-1. [iOS SDK Overview](https://xinzhiyun.feishu.cn/docx/FZYwd286NouHxoxXVpccUCZ9n4c)
-2. [iOS SDK Integration](https://xinzhiyun.feishu.cn/docx/HSu2d84ThoKYSbxdyFdciyIMnUh)
-3. [iOS SDK Device Scanning](https://xinzhiyun.feishu.cn/docx/IIihdZleFoUzUmxnD95c01Kgngd)
-4. [iOS SDK Integrated body scale](https://xinzhiyun.feishu.cn/docx/AcrBdE7D1oWRiexm1tLc4zRsnQc)
-5. [iOS SDK Integrated kitchen scale](https://xinzhiyun.feishu.cn/docx/R0IWd2wBCoa7Ymx0NBhcIWq4nTh)
-6. [iOS SDK Calculation library usage](https://xinzhiyun.feishu.cn/docx/BlaCdzEVeoF87JxbDsdcuESPnog)
-7. [iOS sample program address](https://github.com/LefuHengqi/BluetoothKit-iOSDemo)
-8. [Love Open Platform](https://uniquehealth.lefuenergy.com/unique-open-web/#/home)
-
-
-
-</div>
-  <div style="width: 48%;">
-
-
-
-1. [iOS SDK 概述](https://xinzhiyun.feishu.cn/docx/MaHEdRx7Bo02Q8x60pFcrzRgnkf)
-2. [iOS SDK 集成方式](https://xinzhiyun.feishu.cn/docx/MnUed4VF4o43KgxAugccG3pknbf)
-3. [iOS SDK 设备扫描](https://xinzhiyun.feishu.cn/docx/Sv51dG0DOoBinsxzQFjcWQcNnnd)
-4. [iOS SDK 人体秤接入](https://xinzhiyun.feishu.cn/docx/PGdydZYhUoQxDFxTmq2cMpF5noe)
-5. [iOS SDK 厨房秤接入](https://xinzhiyun.feishu.cn/docx/A0BLdhLP6oMhhxx8Dlbc7qgbnth)
-6. [iOS SDK 计算库使用](https://xinzhiyun.feishu.cn/docx/ESTNdFm9Ao7Ev9xen2mcKmyYnrg)
-7. [iOS 示例程序地址](https://github.com/LefuHengqi/BluetoothKit-iOSDemo)
-8. [乐福开放平台](https://uniquehealth.lefuenergy.com/unique-open-web/#/home)
-
-
+1. [SDK集成文档-中文](https://xinzhiyun.feishu.cn/docx/Pt10dg3GsogZQZxDhLPctgmxnOg?from=from_copylink)
+2. [SDK Integration Documentation - English](https://xinzhiyun.feishu.cn/docx/ZSrfd79vholQA3xWwW2cugKDnid?from=from_copylink)
 
 </div>
 </div>
@@ -42,9 +17,16 @@
 
 ## iOS SDK
 
-`PPBluetoothKit ` is a packaged SDK for body scales and food scales, including Bluetooth scanning, Bluetooth connection logic, and data parsing logic.
+The Lefu iOS SDK consists of 4 SDKs:
 
-`PPCalculateKit ` is an SDK for body fat calculation package, including 4-electrode AC algorithm, 4-electrode DC algorithm, 8-electrode AC algorithm
+| Framework | Description |
+| :--- | :--- |
+| PPBluetoothKit | Bluetooth scanning, connection, and data parsing. Supports the full range of body scale and kitchen scale protocols |
+| PPCalculateKit | Body fat calculation. Built-in algorithms for 4-electrode AC, 4-electrode DC, and 8-electrode AC |
+| PPBaseKit | Base dependency. Defines enumerations, data models, and utility classes |
+| PPBasicCalculateKit | Calculation library base, contains the calculation library binary files |
+
+Supported hardware types include: Bluetooth body scales (4-electrode/8-electrode), Bluetooth kitchen scales/nutrition scales, and Torre series Bluetooth WiFi body fat scales.
 
 [Version update instructions](https://xinzhiyun.feishu.cn/wiki/CIrBwHz5ziwM1UkTPdocJpTTnib?from=from_copylink)
 
